@@ -1,0 +1,209 @@
+\section{Background and Related Work}
+\label{sec:Background}
+%\subsection{Cross-project Defect Prediction}
+The CPDP approaches have been studied by many researchers
+of late~\cite{Ma12,Nam13,Rahman12,Turhan09,Zimmermann09}. Since the performance
+of CPDP is usually very poor~\cite{Zimmermann09}, researchers have proposed various techniques to
+improve CPDP~\cite{Ma12,Nam13,Turhan09,Watanabe08}.
+
+% In the previous studies, cross-prediction was
+% applied on datasets with the same metric set or researchers simply used
+% following ways to overcome the limitation about different metric sets:
+% % ~\sung{I think you need to organize previous work based on this. 
+% % Say, A did something. B did something. However, they applied on datasets with the same metric sets.
+% % C did something. D did something. Howerver, they used common metric among existing project datasets.
+% % \ldots
+% % } 
+% \squishlist
+% 	\item Collecting the same metric set for projects used in an empirical study.
+% 	\item Using common metrics among existing project datasets.
+% 	\item Conducting cross-prediction within a project group consisting of
+% 	existing projects having the same metric set.
+% \squishend
+
+Watanabe et al. proposed the metric compensation approach for
+CPDP~\cite{Watanabe08}. The metric compensation transforms a target dataset
+similar to a source dataset by using the average metric
+values~\cite{Watanabe08}.
+To evaluate the performance of the metric compensation, Watanabe et al. collected
+two defect datasets with the same metric set (8 object-oriented
+metrics) from two software projects and then conducted
+CPDP~\cite{Watanabe08}.
+
+Rahman et al. evaluated the CPDP performance in terms of
+cost-effectiveness and confirmed that the prediction performance of CPDP is
+comparable to WPDP~\cite{Rahman12}. For the empirical study, Rahman et al.
+collected 9 datasets with the same process metric set~\cite{Rahman12}.
+
+Fukushima et al. conducted an empirical study of just-in-time defect prediction
+in the CPDP setting~\cite{Fukushima14}. They used 16
+datasets with the same metric set~\cite{Fukushima14}. The 11 datasets were
+provided by Kamei et al. but 5 projects were newly collected with the same metric
+set of the 11 datasets~\cite{Fukushima14,Kamei13}.
+
+However, collecting datasets with the
+same metric set might limit CPDP. For example, if
+existing defect datasets contain object-oriented metrics such as CK
+metrics~\cite{Basili96}, collecting the same object-oriented metrics is
+impossible for projects that are written in non-object-oriented languages.
+
+Turhan et al. proposed the nearest-neighbour (NN) filter to improve the
+performance of CPDP~\cite{Turhan09}. The basic idea of the NN
+filter is that prediction models are built by source instances that are
+nearest-neighbours of target instances~\cite{Turhan09}. To conduct
+CPDP, Turhan et al. used 10 NASA and SOFTLAB datasets in the
+PROMISE repository~\cite{promise12,Turhan09}.
+%With the NN filter, cross-prediction results improved from 0.26 to 0.35 in
+%terms of average f-measure. However, within-prediction results were still the
+% best (0.37)~\cite{Turhan09}.
+
+Ma et al. proposed Transfer Naive Bayes (TNB)~\cite{Ma12}. The TNB builds a
+prediction model by weighting source instances similar to target
+instances~\cite{Ma12}. Using the same datasets used by Turhan et al., Ma et al.
+evaluated the TNB models for CPDP~\cite{Ma12,Turhan09}.
+% The cross-prediction performance of TNB
+% (0.39) outperformed that of the NN filter (0.35) in terms of average f-measure~\cite{Ma12}.
+
+Since the datasets used in the empirical studies of Turhan et al. and Ma et al.
+have heterogeneous metric sets, they conducted CPDP using the common
+metrics~\cite{Ma12,Turhan09}. There is another CPDP study with the top-K
+common metric subset~\cite{He14subset}. However, as explained in
+Section~\ref{sec:Introduction}, CPDP using common metrics is
+worse than WPDP~\cite{He14subset,Turhan09}.
+%   The NASA and SOFTLAB datasets have different
+% metric sets (21 to 39 metrics)~\cite{Turhan09}. Among them, only 17 common
+% metrics were used in their empirical studies.
+
+
+
+Nam et al. adapted a state-of-the-art
+transfer learning technique called Transfer Component Analysis (TCA) and
+proposed TCA+~\cite{Nam13}. They used 8
+datasets in two groups, ReLink and AEEEM, with 26 and 61 metrics
+respectively~\cite{Nam13}.
+% 
+% He et al. conducted the empirical study for defect prediction
+% using a simplified metric set~\cite{He14subset}. They conducted CPDP on 34
+% datasets with the same metric set (20 code metrics) and showed CPDP
+
+However, Nam et al. could not conduct CPDP between ReLink and AEEEM because they
+have heterogeneous metric sets.
+Since the project pool with the same metric set is very limited, conducting
+CPDP using a project group with the same metric set can be
+limited as well. For example, at most 18\% of defect datasets in the
+PROMISE repository have the same metric set~\cite{promise12}. In other words,
+we cannot directly conduct CPDP for the 18\% of the defect datasets by
+using the remaining (82\%) datasets in the PROMISE
+repository~\cite{promise12}.
+CPDP studies conducted by Canfora et al. and Panichella et al.
+use 10 Java projects only with the same metric set from the PROMISE
+repository~\cite{Canfora13,promise12,Panichella14}
+% ~\sung{say how many \% of PROMISE projects have the same dataset.}
+% although there are lots of existing datasets available.
+
+% Cross-prediction with TCA+ showed comparable results to within-prediction in average f-measure on 8 open source projects~\cite{Nam13}.
+
+% Fukushima et al. conducted an empirical study of just-in-time defect prediction
+% under cross-project settings on 11 open source projects with the same metric set~\cite{Fukushima14}. 
+% They observed cross-prediction models can be
+% improved in terms of AUC by selecting a source dataset similar to a target
+% dataset~\cite{Fukushima14}.
+
+Zhang et al. proposed the universal model for CPDP~\cite{Zhang14}.
+%Since the individual project may have its specific
+%defect characteristic, the universal model may not work for all
+%projects~\cite{Zhang14}. To resolve this limitation, Zhang et al. proposed
+%context-aware rank transformations that change metric values ranged from 1 to
+% 10 across all projects~\cite{Zhang14}. In this way, 
+The universal model is
+built using 1398 projects from SourceForge and Google code and leads to
+comparable prediction results to WPDP in their experimental
+setting~\cite{Zhang14}.
+
+However, the universal defect prediction model may be difficult to apply for the
+projects with heterogeneous metric sets since the universal
+model uses 26 metrics including code metrics, object-oriented metrics, and
+process metrics. In other words, the model can only be applicable for
+target datasets with the same 26 metrics. In the case where the target project
+has not been developed in object-oriented languages, a universal model built
+using object-oriented metrics cannot be used for the target dataset.
+%  or need to costly build a new universal model with the same
+% metric set of the target dataset.
+
+
+He et al. addressed the limitations due to
+heterogeneous metric sets in CPDP studies listed
+above~\cite{He14}.
+Their approach, CPDP-IFS, used distribution
+characteristic vectors of an instance as metrics.
+The prediction performance of their best approach is comparable to or
+helpful in improving regular CPDP models~\cite{He14}.
+
+However, the approach by He et al. is not compared with WPDP~\cite{He14}.
+Although their best approach is helpful to improve regular CPDP models, the
+evaluation might be weak since the prediction performance of a regular CPDP is
+usually very poor~\cite{Zimmermann09}. In addition, He et al. conducted
+experiments on only 11 projects in 3 dataset groups~\cite{He14}.
+
+% In our previous study, we used two groups of datasets, ReLink and
+% AEEEM~\cite{Nam13}. 
+We propose HDP to address the above
+limitations caused by projects with heterogeneous metric sets.
+Contrary to the study by He et al.~\cite{He14}, we compare HDP to
+WPDP, and HDP achieved better or comparable prediction performance to WPDP in
+about 68\% of predictions.
+In addition, we conducted extensive experiments on 28 projects in 5 dataset groups. In
+Section~\ref{sec:Approach}, we explain our approach in detail.
+
+% In this section, we explain transfer learning on different domains.
+% Transfer learning is one of the recent very active research topics in the
+% machine learning community~\cite{Pan10}. Transfer learning can reduce expensive
+% costs incurred while collecting and labeling training data by transferring
+% knowledge from existing data and models~\cite{Pan10}.
+% 
+% To define transfer learning formally, Pan et al. gave the definition of a
+% domain; ``a domain, $D$, consists of two components: a feature space $\chi$ and
+% a marginal distribution $P(X)$, where $X=\{x_1,...,x_n\}\in
+% \chi$''~\cite{Pan10}. According to this definition, a domain can be
+% represented as follows: $D=\{\chi,P(X)\}$. When we say two domains are different, it
+% represents different feature spaces, $\chi$, or different distributions, $P(X)$.
+% 
+% Most transfer learning studies focused on different distributions by
+% assuming feature spaces are the same across datasets, but less focused on
+% different feature spaces~\cite{Pan10}.
+% Since our study aims to resolve the issue on defect prediction on
+% datasets with different feature spaces, the term `different
+% domains' stands for `different feature spaces of datasets' throughout the paper.
+% 
+% 
+% Dai et al.~\cite{Dai08} proposed Translated Learning to address transfer
+% learning on different feature spaces.
+% The core approach used in translated learning is to identify co-occurrence features, which are
+% linked between source and target features to migrate knowledge of source data to
+% models for target data~\cite{Dai08}. Yang et al.~\cite{Yang09} introduced
+% heterogeneous transfer learning for image clustering by using text
+% data, which have a different feature space to image data. Zhu et
+% al.~\cite{Zhu11} proposed heterogeneous transfer learning for image
+% classification using text data that has different feature spaces. However, all
+% these studies utilize tags given to images on web sites to link/bridge difference feature sets so that it is
+% difficult to directly apply their approaches for our cross-domain defect
+% prediction.
+% % Translated learning is an independent
+% % algorithm from existing machine learning algorithms such as Decision tree,
+% % Random Forest, Logistic Regression and etc., which are widely used for defect prediction.
+% 
+% Inspired by translated and heterogeneous transfer learning, we design
+% our approaches to identify co-occurrence features between source and target
+% datasets for the cross-domain defect prediction. Our approaches are based on
+% statistical information and existing approaches that might be used to measure
+% similarity between two features.
+% %working together with
+% %existing machine learning algorithms for defect prediction.
+% In Section~\ref{sec:analyzers}, we describe in detail how to identify
+% co-occurrence features for our cross-domain defect prediction.
+
+
+% \subsubsection{Random Analyzer}
+% We defined random analyzer, where we match srouce and target feautres randomly
+% to evaluate if the proposed analyzers work better than the random analyzer.
+

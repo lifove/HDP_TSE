@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/cddp/!svn/ver/1255/trunk/paper/Figures/Result
+END
+worst_dist_low_buggy_mean.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/worst_dist_low_buggy_mean.pdf
+END
+best_dist.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cddp/!svn/ver/1149/trunk/paper/Figures/Result/best_dist.pdf
+END
+loss_dist.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/cddp/!svn/ver/1164/trunk/paper/Figures/Result/loss_dist.pdf
+END
+medical_dist.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/medical_dist.pdf
+END
+auc_compare.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/auc_compare.pdf
+END
+best_dist_bplot.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cddp/!svn/ver/1255/trunk/paper/Figures/Result/best_dist_bplot.pdf
+END
+compare.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/compare.pdf
+END
+loss_dist_bplot.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/cddp/!svn/ver/1255/trunk/paper/Figures/Result/loss_dist_bplot.pdf
+END
+beanplot_manual_matching.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/beanplot_manual_matching.pdf
+END
+worst_dist_two_mode.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/cddp/!svn/ver/1142/trunk/paper/Figures/Result/worst_dist_two_mode.pdf
+END
