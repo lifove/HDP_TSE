@@ -396,11 +396,6 @@ source and $j$-th target metrics.
 % \end{tabular}
 % \end{table}
 
-\subsection{Identifying Prediction Probability Threshold}
-The performance of a prediction model in terms of precision and recall is decided by the prediction probability of each prediction result of an instance. The prediction probability threshold of 0.5 is commonly used in literature~\jc{need citations}. However, the optimal threshold may be different and is difficult to identify in advance. To address this issue, we reuse the optimal threshold from the source used to build HDP models for the target. We design our empirical study to compare prediction results using the optimal threshold to those using the commonly used threshold, 0.5, in Section~\ref{sec:Evaluation}.
-
-To get the optimal threshold from the source, we compute all f-measures when a increasing threshold value changes prediction results.
-
 \subsection{Building Prediction Models}
 
 After applying metric selection and matching, we can finally build a
