@@ -1,0 +1,13 @@
+\section{Result in F-measure}
+In this section, we evaluate HDP models in terms of f-measure. F-measure is one of widely used measures to evaluate defect prediction models. Since f-measure is a harmonic mean of precision and recall, it provides actual prediction accuracy. Precision is the rate of correctly predicted buggy instances from instances predicted as buggy. Recall is the rate of correctly predicted buggy instances among all buggy instances.
+
+To compute f-measure, we need to set the threshold of prediction probability. When a prediction model classifies an instance, the model usually provides prediction probability for the instance. For example, Instance A gets the prediction probability of 0.78 while Instance B gets the probability of 0.45 by the model. If we let the model predicts an instance as buggy when the probability is greater than `0.5', Instance A will be predicted as buggy (0.78$>$0.50) but Instance B will be predicted as clean (0.45$<$0.50). Here, the cutoff value of `0.5' that decides the bug-proneness of an instance is the threshold of prediction probability of the model. In most defect prediction literature, the widely used prediction threshold is 0.5. By changing the threshold, prediction results vary.
+
+However, we cannot identify the optimal threshold to lead to the best prediction results in advance. To our knowledge, there are no existing approaches to identify the optimal threshold in advance. Some researchers analyze ROC curves but ROC curves can be drawn from past prediction histories. Without the past prediction histories, identifying the probability threshold is a challenging issue.
+
+To identify the optimal threshold, we used information from the best threshold of a source dataset....
+
+
+%The performance of a prediction model in terms of precision and recall is decided by the prediction probability of each prediction result of an instance. The prediction probability threshold of 0.5 is commonly used in literature~\jc{need citations}. However, the optimal threshold may be different and is difficult to identify in advance. To address this issue, we reuse the optimal threshold from the source used to build HDP models for the target. We design our empirical study to compare prediction results using the optimal threshold to those using the commonly used threshold, 0.5, in Section~\ref{sec:Evaluation}.
+
+%To get the optimal threshold from the source, we compute all f-measures when a increasing threshold value changes prediction results.

@@ -12,7 +12,17 @@ Like prior works\cite{nam2013transfer,ma2012transfer,rahman2012recalling,ryu2014
 	\label{fig:small_data}
 \end{figure}
 
-\subsection{Approach}
+\subsection{Approach I}
+
+As mentioned before, data sets are used in two steps in HDP: KS-test and building learner. In this experiment, standard HDP method is followed. But, instead of using all the instances from candidate data sets, we propose to randomly sample the original data and use smaller data set to perform KS-test and build model. That is smaller source with target data sets in KS-test and smaller source with large data sets in defect prediction(SS-SL).
+
+In SS-SL experiment, all the original data sets will be randomly sampled to generate smaller data sets of size $N$, where $N \in \{50, 100, 150, 200\}$.If the number of instances in the original data set is smaller than $N$, all those instances will be included and no sample action is required. Specifically, in KS-test, instead of using original data sets, the sampled smaller data sets will be used. For example, in the original data sets, Apache and arc are with instance size of $194$ and $234$. If KS-test is performed on them, the smaller data sets Apache\_sampled and arc\_sampled will be used, both of which include $N$, say 50, instances. 
+
+After obtaining all the matched features from KS-test, defect prediction learner for the target data set will be built based on the corresponding source data. The similar way is adopted here as in KS-test. Instead of using original data set in the basic HDP method, the previously sampled smaller data set will be used, which is the same sampled data set used in KS-test. To predict all the defects in the target data sets, the original data set will be used as target. For example, if Apache and arc are source and target data pair according to KS-test result, the smaller Apache\_sampled data with $N$ instances will be used to train the learner, and the original arc with $194$ instances will be the target data to be predicted.
+
+The SS-SL experiment is conducted over the same data sets as basic HDP with 20 iterations. Logistic regression is the default learner as before. The median of 20 AUCs and IQR are reported to evaluate the performance of SS-SL. Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}. Figure.XXX shows the results of SS-SL where $N \in \{50,100,150,200\}$. Note that with the increase of $N$, the difference between HDP-Scipy and HDP-N becomes smaller. When $N=200$, $27/28$ tests are within 0.05 difference in terms of AUC and $17/28$ tests show smaller data sets have equivalent or even better performence.
+
+\subsection{Approach II}
 
 In \cite{menzies2008implications}, Menzies et al. used Naive Bayes and C4.5 two simple learners to predict defects over PROMISE data. To look for the lower bound on the number of training instances, three sub-sampling techniques were applied to the training data. They found that as few as 50 instances did just as well as larger sample size and 25 might suffice for some data sets. However, in \cite{peduzzi1996simulation}, it was reported that number of events per variable(EPV) would affect the performance of logistic regression. Specifically, if the training data has fewer events relative to the independent variable, the bias of the regression coefficients will be increased.  In HDP method, data sets are used in metric selection, metric matching and learner building, where are exactly we expect to use small data size. The new experiment is designed as fowllowing.
 
