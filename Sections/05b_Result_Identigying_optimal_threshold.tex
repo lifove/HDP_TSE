@@ -14,7 +14,12 @@ To identify the optimal threshold, we used information from the best threshold o
 
 BTHD simply reuses the best threshold value from the training set for the test set. For example, if the HDP model built using the training set leads to the best f-measure on the training set itself with the threshold of 0.43, the prediction performance for the test set is computed by using the threshold of 0.43 as well.
 
-To decide the best threshold for the test set, PRBTHD uses the percentile rank of the best threshold value among threshold values from the training set. If the percentile rank of the threshold of 0.43 is 64.2\%, PRBTHD find the threshold value whose percentile rank is 64.2\% or the nearest among threshold values from the test set. Since metric matching of HDP is based on similar distributions between source and target datsets, we assume that distributions of threshold values between the training and test sets should be similar. In other words, we design PRBTHD
+To decide the best threshold for the test set, PRBTHD uses the percentile rank of the best threshold value among the threshold values from the training set. \jc{need a formal definition of the percentile rank?} For example, if the percentile rank of the best threshold of 0.43 is 64.2\%, PRBTHD finds the threshold value whose percentile rank is 64.2\% or the nearest among threshold values from the test set. Since metric matching of HDP is based on similar distributions between source and target datasets, we assume that distributions of threshold values between the training and test sets should be similar.
+
+PRBTHD\_KS filters out some prediction combinations whose distributions of threshold values between the training and test sets are not similar. To compare the distributions of the threshold values, we used KS test again and filter out prediction combinations whose p-value of the KS test is not greater than 0.05 which is a commonly used significance level in the
+statistical test~\cite{Corder09}.
+
+Table~\ref{threshold_result} shows the prediction performance in a median f-measure and the Win/Tie/Loss evaluation. The second row (THD\_0.5) in the table shows the results when we use the threshold value of 0.5 which is the widely used prediction threshold in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. 
 
 \begin{table}[t]
 %\small

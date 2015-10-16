@@ -38,7 +38,7 @@ Figure \ref{fig:samll_data} shows the sampled data AUC improvements over origina
 
 
 
-\subsection{Smapled Data With EPV Constraints}
+\subsection{Sampled Data With EPV Constraints}
 \label{sec:EPV}
  Results from the last experiment show that small data sets can get the similar performance as the original experiment. Regarding how small data sample work in our HDP experiment,  we found that in \cite{peduzzi1996simulation}, it was reported that number of events per variable(EPV) would affect the performance of logistic regression. Specifically, if the training data has fewer events relative to the independent variable, the bias of the regression coefficients will be increased. To verify this, we design another small sample data sets with EPV constraints.
 
@@ -47,5 +47,12 @@ Recall Figure \ref{fig:framework}, for the source data A, instead using all data
 As seen in Figure \ref{fig:small_epv}, we can get the similar performance as the original experiment even with the only subset of the original data sets. As $N$ increases from 50 to 200, the performance doesn't change a lot. Therefore, the actual actor that small sample data works is the number of {\it events}(i.e, defective data) in the sampled data since EPV = 10 for all $N's$. Recall section \ref{sec:small} and table \ref{tab:datasets}, when unsupervised sample size $N=200$, there're $\frac{22}{28}$ sampled data sets containing more than 20 defective data，which means most of those sampled data sets meet the criteria used in section \ref{sec:EPV}. This can explain why $N=200$ works for our experiment in section \ref{sec:small}.
 
 
+\begin{figure}[!htp]
+	\centering
+% 	\vspace{0.5mm}
+	\includegraphics[width=\linewidth]{Figures/raleigh/tree.eps}
+	\caption{Tree}
+	\label{fig:tree}
+\end{figure}
 
 
