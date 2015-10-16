@@ -19,13 +19,13 @@ To decide the best threshold for the test set, PRBTHD uses the percentile rank o
 PRBTHD\_KS filters out some prediction combinations whose distributions of threshold values between the training and test sets are not similar. To compare the distributions of the threshold values, we used KS test again and filter out prediction combinations whose p-value of the KS test is not greater than 0.05 which is a commonly used significance level in the
 statistical test~\cite{Corder09}.
 
-Table~\ref{threshold_result} shows the prediction performance in a median f-measure and the Win/Tie/Loss evaluation. The second row (THD\_0.5) in the table shows the results when we use the threshold value of 0.5 which is the widely used prediction threshold in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. 
+Table~\ref{tab:threshold_result} shows the prediction performance in a median f-measure and the Win/Tie/Loss evaluation against to WPDP. The second row (THD\_0.5) in the table shows the results when we use the threshold value of 0.5 which is the widely used prediction threshold in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. Comparing to THD\_0.5, BTHD, PRBTHD, and PRBTHD\_KS show better prediction performance. The median f-measures from the three threshold methods are greater than 0.227 in THD\_0.5. In addition, the percentages of Loss cases decrease in the three threshold methods comparing to THD\_0.50. For example, in THD\_0.5, the percentage of Loss is 67.1\% but that in PRBTHD\_KS is 39.6\%. In other words, more than 60\% of prediction combinations get better or comparable prediction performance to WPDP in terms of f-measure. Although the total number of predictions in PRBTHD\_KS decreases, PRBTHD\_KS filtered out Loss cases effectively as the median f-measure and the percentages of Win and Tie increase.
 
 \begin{table}[t]
 %\small
 \scriptsize
 \centering
-\caption{Median f-measure of HDP in KSAnalyzer (cutoff=0.05) in different threshold methods.
+\caption{Median f-measure of HDP in KSAnalyzer (cutoff=0.05) and the Win/Tie/Loss evaluation against to WPDP in different threshold methods. 
 }
 \label{tab:threshold_result}
 \begin{tabular}{|c||c||c|c|c||c|}
@@ -56,6 +56,8 @@ PRBTHD\_KS& 0.340	& 50.0\% & 10.3\%	& 39.7\% & 184\\ \hline
 
 \end{tabular}
 \end{table}
+
+However, the median f-measure is 
 
 %The performance of a prediction model in terms of precision and recall is decided by the prediction probability of each prediction result of an instance. The prediction probability threshold of 0.5 is commonly used in literature~\jc{need citations}. However, the optimal threshold may be different and is difficult to identify in advance. To address this issue, we reuse the optimal threshold from the source used to build HDP models for the target. We design our empirical study to compare prediction results using the optimal threshold to those using the commonly used threshold, 0.5, in Section~\ref{sec:Evaluation}.
 
