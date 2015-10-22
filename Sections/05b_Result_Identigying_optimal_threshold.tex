@@ -1,25 +1,25 @@
 \section{Result in F-measure}
-In this section, we evaluate HDP models in terms of f-measure. F-measure is one of the widely used measures to evaluate defect prediction models. Since f-measure is a harmonic mean of precision and recall, it provides actual prediction accuracy~\cite{Lee11,Rahman13,Fukushima14,Herzig13,Jing14}. Precision is the rate of correctly predicted buggy instances from instances predicted as buggy. Recall is the rate of correctly predicted buggy instances among all buggy instances.
+In this section, we evaluate HDP models in terms of f-measure. F-measure is one of the widely used measures to evaluate defect prediction models~\cite{Lee11,Rahman13,Fukushima14,Herzig13,Jing14}. Since f-measure is a harmonic mean of precision and recall, it provides actual prediction accuracy. Precision is the rate of correctly predicted buggy instances from instances predicted as buggy. Recall is the rate of correctly predicted buggy instances among all buggy instances.
 
-To compute f-measure, we need to set the threshold of prediction probability~\cite{Lessmann08,Rahman12}. When a prediction model classifies an instance, the model usually provides prediction probability for the instance. For example, Instance A gets the prediction probability of 0.78 while Instance B gets the probability of 0.45 by the model. If we let the model predicts an instance as buggy when the probability is greater than `0.5', Instance A will be predicted as buggy (0.78$>$0.50) but Instance B will be predicted as clean (0.45$<$0.50). Here, the cutoff value of `0.5' that decides the bug-proneness of an instance is the threshold of prediction probability of the model. In most defect prediction literature, the widely used prediction threshold is 0.5~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. By changing the threshold, prediction results vary.
+To compute f-measure, we need to set the threshold of prediction probability~\cite{Lessmann08,Rahman12}. When a prediction model classifies an instance, the model usually provides prediction probability for the instance. For example, Instance A gets the prediction probability of 0.78 while Instance B gets the probability of 0.45 by the model. If we let the model predicts an instance as buggy when the probability is greater than `0.5', Instance A will be predicted as buggy (0.78$>$0.50) but Instance B will be predicted as clean (0.45$\leq$0.50). Here, the cutoff value of `0.5' that decides the bug-proneness of an instance is the threshold of prediction probability of the model. In most defect prediction literature, the widely used prediction threshold is 0.5~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. By changing the threshold, prediction results vary.
 
 However, we cannot identify the optimal threshold to lead to the best prediction results in advance. To our knowledge, there are no existing approaches to identify the optimal threshold in advance. Some researchers analyze ROC curves but ROC curves can be drawn from past prediction histories~\cite{Fawcett06,Tosun09}. Without the past prediction histories, identifying the probability threshold is a challenging issue.
 
-To identify the optimal threshold, we used information from the best threshold of a source dataset. After metric matching for HPD models, we can get a training set and build a HDP model. From this model, we can identify the best threshold of prediction probability for the training set itself. By using the best threshold from the training set and its model, we used the following three methods from the training set to decide the best threshold for the test set:
+To identify the optimal threshold, we use information from the optimal threshold of a source dataset. After metric matching for HPD models, we can get a training set and build a HDP model. By applying this model for the training set, we can compute the optimal threshold of prediction probability for the training set itself. By using the optimal threshold from the training set and its model, we design the following three methods to decide the optimal threshold for the test set:
 \squishlist
-\item Using the best threshold value from the training set (BTHD)
-\item Using the percentile rank of the best threshold among all threshold values (PRBTHD)
+\item Using the optimal threshold value from the training set (BTHD)
+\item Using the percentile rank of the optimal threshold among all threshold values (PRBTHD)
 \item Using PRBTHD after filtering out prediction combinations whose threshold distributions between the training and test sets are not similar by the KS test with p$<$0.05 (PRBTHD\_KS).
 \squishend
 
-BTHD simply reuses the best threshold value from the training set for the test set. For example, if the HDP model built using the training set leads to the best f-measure on the training set itself with the threshold of 0.43, the prediction performance for the test set is computed by using the threshold of 0.43 as well.
+BTHD simply reuses the optimal threshold value from the training set for the test set. For example, if the HDP model built using the training set leads to the best f-measure on the training set itself with the threshold of 0.43, the prediction performance for the test set is computed by using the threshold of 0.43 as well.
 
-To decide the best threshold for the test set, PRBTHD uses the percentile rank of the best threshold value among the threshold values from the training set. \jc{need a formal definition of the percentile rank?} For example, if the percentile rank of the best threshold of 0.43 is 64.2\%, PRBTHD finds the threshold value whose percentile rank is 64.2\% or the nearest among threshold values from the test set. Since metric matching of HDP is based on similar distributions between source and target datasets, we assume that distributions of threshold values between the training and test sets should be similar.
+PRBTHD uses the percentile rank of the optimal threshold value among the threshold values from the training set. \jc{need a formal definition of the percentile rank?} For example, if the percentile rank of the optimal threshold of 0.43 is 64.2\%, PRBTHD finds the threshold value whose percentile rank is 64.2\% or the nearest among threshold values from the test set. Since metric matching of HDP is based on similar distributions between source and target datasets, we assume that distributions of threshold values between the training and test sets should be similar.
 
-PRBTHD\_KS filters out some prediction combinations whose distributions of threshold values between the training and test sets are not similar. To compare the distributions of the threshold values, we used KS test again and filter out prediction combinations whose p-value of the KS test is not greater than 0.05 which is a commonly used significance level in the
+PRBTHD\_KS filters out some prediction combinations whose distributions of threshold values between the training and test sets are not similar. To compare the distributions of the threshold values, we use KS test again and filter out prediction combinations whose p-value of the KS test is not greater than 0.05 which is a commonly used significance level in the
 statistical test~\cite{Corder09}.
 
-Table~\ref{tab:threshold_result} shows the prediction performance in a median f-measure and the Win/Tie/Loss evaluation against to WPDP. The second row (THD\_0.5) in the table shows the results when we use the threshold value of 0.5 which is the widely used prediction threshold in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. Comparing to THD\_0.5, BTHD, PRBTHD, and PRBTHD\_KS show better prediction performance. The median f-measures from the three threshold methods are greater than 0.227 in THD\_0.5. In addition, the percentages of Loss cases decrease in the three threshold methods comparing to THD\_0.50. For example, in THD\_0.5, the percentage of Loss is 67.1\% but that in PRBTHD\_KS is 39.6\%. In other words, more than 60\% of prediction combinations get better or comparable prediction performance to WPDP in terms of f-measure. Although the total number of predictions in PRBTHD\_KS decreases, PRBTHD\_KS filtered out Loss cases effectively as the median f-measure and the percentages of Win and Tie increase.
+Table~\ref{tab:threshold_result} shows the prediction performance in a median f-measure and the Win/Tie/Loss evaluation against to WPDP. The second row (THD\_0.5) in the table shows the results when we use the threshold value of 0.5 which is the widely used prediction threshold in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}. BTHD, PRBTHD, and PRBTHD\_KS show better prediction performance than THD\_0.5. The median f-measures in the three threshold methods are greater than 0.227 in THD\_0.5. In addition, the percentages of Loss cases decrease in the three threshold methods compared to THD\_0.50. For example, in THD\_0.5, the percentage of Loss is 67.1\% but that in PRBTHD\_KS is 39.6\%. In other words, more than 60\% of prediction combinations get better or comparable prediction performance to WPDP in terms of f-measure. Although the total number of predictions in PRBTHD\_KS decreases, PRBTHD\_KS filtered out Loss cases effectively as the median f-measure and the percentages of Win and Tie increase.
 
 \begin{table}[t]
 %\small
@@ -28,7 +28,7 @@ Table~\ref{tab:threshold_result} shows the prediction performance in a median f-
 \caption{Median f-measure of HDP in KSAnalyzer (cutoff=0.05) and the Win/Tie/Loss evaluation against to WPDP in different threshold methods. 
 }
 \label{tab:threshold_result}
-\begin{tabular}{|c||c||c|c|c||c|}
+\begin{tabular}{|c||@{}c@{}||c||c|c|c||@{}c@{}|}
 %\begin{tabular}{|c|D||D|D|D||c|}
 \hline
 
@@ -37,15 +37,16 @@ Table~\ref{tab:threshold_result} shows the prediction performance in a median f-
 % \multicolumn{3}{c|}{{\bf Cross}}	&
 % \multirow{2}{*}{\specialcell{{\bf Target}\\{\bf coverage}}}
 \specialcell{{\bf Threshold}\\{\bf Methods}}
-& {\bf F-measure}
+& \specialcell{{\bf WPDP}\\{\bf (THD\_0.5)}}
+& {\bf HDP}
 & {\bf Win}\%
 & {\bf Tie}\% 
 & {\bf Loss}\%
-& \specialcell{{\bf \# of}\\{\bf Predictions}} \\ \hline \hline
-THD\_0.5 & 0.227	& 28.8\% & 4.1\%	& 67.1\% & 222\\ \hline
-BTHD & 0.315	& 44.6\% & 5.9\%	& 49.5\% & 222\\ \hline
-PRBTHD & 0.323	& 48.2\% & 5.4\%	& 46.4\% & 222\\ \hline
-PRBTHD\_KS& 0.340	& 50.0\% & 10.3\%	& 39.7\% & 184\\ \hline
+& \specialcell{{\bf \# of}\\{\bf Predictions}} \\ \hline
+THD\_0.5 & \multirow{4}{*}{0.333} & 0.227	& 28.8\% & 4.1\%	& 67.1\% & 222\\ \cline{1-1} \cline{3-7}
+BTHD & & 0.315	& 44.6\% & 5.9\%	& 49.5\% & 222\\ \cline{1-1} \cline{3-7}
+PRBTHD & & 0.323	& 48.2\% & 5.4\%	& 46.4\% & 222\\ \cline{1-1} \cline{3-7}
+PRBTHD\_KS& & 0.340	& 50.0\% & 10.3\%	& 39.7\% & 184\\ \hline
 % 29\\
 % \hline\hline
 %\bf{\emph{All}} &  0.657 & 0.636 & \underline{\bf 0.724} & 100\%\\	%& 316\\
@@ -57,7 +58,7 @@ PRBTHD\_KS& 0.340	& 50.0\% & 10.3\%	& 39.7\% & 184\\ \hline
 \end{tabular}
 \end{table}
 
-However, the median f-measures in Table~\ref{tab:threshold_result} are quite low as they are less than 0.5. The median f-measure of WPDP was also low (0.333). We observed the maximum f-measure of a HDP model in ant-1.3$\Rightarrow$ar5 was 0.857 while that of a WPDP model was 0.545. We also observed the minimum f-measure in ar1$\Rightarrow$camel-1.0 was 0.059 while that of a WPDP model is 0.100. Actually, prediction performance varies regardless of WPDP or HDP settings. Rather, prediction performance varies according to each dataset. If we could identify the feasibility of the prediction model for a certain dataset in advance, the defect prediction feasibility on a certain dataset
+However, the median f-measures in Table~\ref{tab:threshold_result} are quite low as they are less than 0.5. The median f-measure of WPDP (THD\_0.5) was also low (0.333).\footnote{Identifying the optimal threshold for WPDP models is out of scope of this study. Thus, for the WPDP models, we used the threshold value of 0.50 widely used in the defect prediction literature~\cite{Lee11,Rahman13,Herzig13,Zimmermann09}.} We observed the maximum f-measure of a HDP model in ant-1.3$\Rightarrow$ar5 was 0.857 while the f-measure of a WPDP model for ar5 was 0.545. We also observed the minimum f-measure in ar1$\Rightarrow$camel-1.0 was 0.059 while the f-measure of a WPDP model for camel-1.0 is 0.100. Actually, prediction performance varies regardless of WPDP or HDP settings. Rather, prediction performance varies according to each dataset. If we could identify the feasibility of the prediction model for a certain dataset in advance, we could achieve promising prediction performance in terms of f-measure. However, this is one of the most challenging problem in defect prediction. The results in Table~\ref{tab:threshold_result} shows a potential that identifying the optimal threshold can improve the prediction performance in terms of f-measure and PRBTHD\_KS can be helpful to check the defect prediction feasibility in advance. We remain this problem as a future direction of software defect prediction studies.
 
 %The performance of a prediction model in terms of precision and recall is decided by the prediction probability of each prediction result of an instance. The prediction probability threshold of 0.5 is commonly used in literature~\jc{need citations}. However, the optimal threshold may be different and is difficult to identify in advance. To address this issue, we reuse the optimal threshold from the source used to build HDP models for the target. We design our empirical study to compare prediction results using the optimal threshold to those using the commonly used threshold, 0.5, in Section~\ref{sec:Evaluation}.
 
