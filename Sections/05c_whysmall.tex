@@ -7,8 +7,49 @@
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
 
+\section{Explaining These Results}
+
 The above results are astonishing (to say the least): a small numher
-of examples is sufficient to build a defect predictor. It turns out that, with a little sampling theory
+of examples is sufficient to build a defect predictor. This result was seen:
+\bi
+\item In our own transfer learning experiments where columns from one data set where mapped to columns with different names in another data set;
+\item In the work of other researchers as they explored how many samples are required to be successful in logistic regression;
+\item In our own work, shown above, where we could reproduce the logistic regression results (see \fig{xxx5}).
+\ei
+These results are so surprising that it raises the issue if there exists an underlying phenomena that enables the construction
+of effective defect predictors from small samples.  The rest of this section explores a mathematical model of such a phenomena.
+As a result of that analysis, we can now identify what kinds of data sets can,  or can not, build successful predictors using 50 to 200 samples.
+
+\subsection{``Chessboard'' Sampling}
+
+Suppose a chessboard is divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells). Suppose further that each cell
+contains some signal we want to detect, but that signal is not spread evenly around the board. That is to say, some cells are blank which other cells are $e$\% covered
+with that signal. The probability of finding that signal is a product of:
+\bi
+\item The probability $c$ of picking a particular cell;
+\item The probability $p$ that, once we arrive at that cell, we will land on the  signal.
+After $n$ random samples, we can derive\footnote{Derivation: if we see something at probability $e$, then we will miss it at probability $1-e$.
+After $n$ attempts, the probability of missing it is $(1-e)^n$ so the probability of seeing it is $1-((1-p)^n)$.}
+the expression\begin{equation}\label{eq:p}
+p= (1-(1-e)^n)
+\end{equation}
+With a few changes, this chessboard model can be
+used to represent the process of machine
+learning. For example:
+\bi
+\item
+Instead of a board with two
+dimensions, data mining works on a ``chessboard''
+with $d$ dimensions: one for every independent
+variable collected from a project (for a list of the
+dimensions used in MORPH data sets of this study,
+see \fig{ck}).
+\item
+Instead of each dimension being divided into eight (like a chessboard), project data is divided according to some {\em descritization policy}~\cite{lust08}
+where numeric variables are summarized into a small number $b$ bins. XXXX wwhy only 9
+
+Software project data is described according
+It turns out that, with a little sampling theory
 it is possible to predict what kinds of data {\em will} and {\em will not} need so few samples in order to learn an adequate predictor.
 
 To understand that theory, we first image we are defining a  project using three dimensions.
