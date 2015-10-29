@@ -1,0 +1,56 @@
+
+
+\input{dims}
+
+The above results are astonishing (to say the least): a small numher
+of examples is sufficient to build a defect predictor.
+
+Suppose we were to define a project using three dimensions:
+\bi
+\item The vertical dimension is the number of defects per class;
+\item The horizontal dimensions could be any of the project descriptions seen \fig{ck}. For this example, we will say:
+  \bi
+  \item The east-west dimension is the lines of code per class;
+  \item The north-south dimension  is the number of children per class.
+    \ei
+    Whatever pair of horizontal dimensions are used, we will divide those dimensions into some {\em bins}
+    \ei
+    If we had  divided our horizontal dimensions into eight {\em bins}, the resulting space
+    could be viewed as a chess board which is mostly flat but, in some squares, there
+    are piles of defective classes.
+
+    Based on the above mental model, we now derive an expression for how many times we need to jump to any random square on the chessboard,
+    before finding defective modules. We start with the standard binomial sampling equation, show below. If an even occurs at probability $p$,
+    then after $n$ samples:
+    \bi
+  \item
+    We can miss it with probability $(1-p)^n$;
+  \item
+    We can hence find it with probability $\textrm{found}=1-((1-p)**n)$
+    \ei
+    If software is described using   $d$ dimensions, each divided into $b$ bins, then the 
+    project divides into   $C=b^d$ cells.
+    The probability of selecting any particular cell is hence $1/C$
+    
+    The  errors $e$ of a project are spread around that space $s$ according to a {\em skew} variable. At $\textrm{skew}=1$, they are evenly distributed.
+    At other values of $\textrm{skew}$, some parts of the space contain more errors than others, computed as follows:
+    \bi
+  \item $R_c$ is a random number $0\le R \le 1$, selected for each part of the space $c\in C$.
+  \item $x_c$ is the proportion of errors in each part of $C$. $x_c =  R_{c\in C}^\textrm{skew}$.
+  \item We normalize $x_c$ to be some ratio $0 \le x_c \le 1$ as follows: $X= \sum_{c\in C} x_c$ then $x_c = \frac{x_c}{X}$
+    \ei
+    If  $e$ is the ratio of classes within a software projects containing errors, then 
+    the expected value of the probability $p$ of selecting a cell {\em and} that cell containing errors
+    \begin{equation}
+      p = \sum_{c\in C}(\frac{1}{C})ex_c
+    \end{equation}
+
+    To study this equation, 1000 times, we computed $p$ then $\textrm{found}=1-((1-p)**n)$ for increasing values of $n$.
+    In these simulations, we recorded the lowest $n$ value where $\textrm{found}>T$ was greater than some reasonable lower threshold $T$
+    of certainty
+    (applying engineering judgment, we used $T=0.66$). For these simulations:
+    \bi
+  \item We used $d \in {3,4,5,6,7}$ dimensions, selected at random;
+  \item We used $b \in \{2,3,4,5,6,7\}$ bins, selected at random;
+    \item We said that the ratio of classes with errors was $e\in \{0.1,0.2,0.3,0.4\}$, selected at random.
+    \ei
