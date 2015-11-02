@@ -9,97 +9,88 @@
 
 \section{Explaining These Results}
 
-The above results are astonishing (to say the least): a small numher
-of examples is sufficient to build a defect predictor. This result was seen:
+The above results are suprising (to say the least): a small numher
+of examples is sufficient to build a defect predictor, even when the data is being transferred from columns with other names.
+Hence it is important to ask:
 \bi
-\item In our own transfer learning experiments where columns from one data set where mapped to columns with different names in another data set;
-\item In the work of other researchers as they explored how many samples are required to be successful in logistic regression;
-\item In our own work, shown above, where we could reproduce the logistic regression results (see \fig{xxx5}).
+\item Are the above results relevant to just the data used in this study?
+\item Or some more fundamental process at work?
 \ei
-These results are so surprising that it raises the issue if there exists an underlying phenomena that enables the construction
-of effective defect predictors from small samples.  The rest of this section explores a mathematical model of such a phenomena.
-As a result of that analysis, we can now identify what kinds of data sets can,  or can not, build successful predictors using 50 to 200 samples.
+This section argues the latter; i.e. that the above results are not some quirk of our scripts. Rather, it is a result
+of core inductive processes.
+Specifically:
+\bi
+\item
+If data mining is an instance of sampling theory,
+\item Then it is possible to derive
+an expression defining claasses of data sets where it is (and is not) possible to  construct
+defect predictors using a small number of samples (say 50 to 200).
+\ei
+The important feature of this model is the
+following: there is much evidence that the data used
+in defect prediction research belong to the ``a few
+samples is enough'' class.  That is, we can expect that our
+results are externally valid for defect prediction data.
 
 \subsection{``Chessboard'' Sampling}
 
-Suppose a chessboard is divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells). Suppose further that each cell
-contains some signal we want to detect, but that signal is not spread evenly around the board. That is to say, some cells are blank which other cells are $e$\% covered
+Suppose a chessboard is divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells). Suppose further that the chessbooard
+contains some signal we want to detect, but that signal is not spread evenly around the board.
+That is to say, some cells of the chessboard are blank which other cells are $e$\% covered
 with that signal. The probability of finding that signal is a product of:
 \bi
 \item The probability $c$ of picking a particular cell;
-\item The probability $p$ that, once we arrive at that cell, we will land on the  signal.
-After $n$ random samples, we can derive\footnote{Derivation: if we see something at probability $e$, then we will miss it at probability $1-e$.
-After $n$ attempts, the probability of missing it is $(1-e)^n$ so the probability of seeing it is $1-((1-p)^n)$.}
-the expression\begin{equation}\label{eq:p}
-p= (1-(1-e)^n)
-\end{equation}
+\item The probability $p$ that, once we arrive at that cell, we will find  the  signal in that cell.
+\ei
 With a few changes, this chessboard model can be
 used to represent the process of machine
-learning. For example:
-\bi
-\item
-Instead of a board with two
+learning. For example,
+instead of a board with two
 dimensions, data mining works on a ``chessboard''
 with $d$ dimensions: one for every independent
-variable collected from a project (for a list of the
-dimensions used in MORPH data sets of this study,
+variable collected from a project (for example, for a list of the
+$d=21$ dimensions used in our MORPH data sets of this study,
 see \fig{ck}).
-\item
-Instead of each dimension being divided into eight (like a chessboard), project data is divided according to some {\em descritization policy}~\cite{lust08}
-where numeric variables are summarized into a small number $b$ bins. XXXX wwhy only 9
 
-Software project data is described according
-It turns out that, with a little sampling theory
-it is possible to predict what kinds of data {\em will} and {\em will not} need so few samples in order to learn an adequate predictor.
-
-To understand that theory, we first image we are defining a  project using three dimensions.
-For this example, we will suppose that the
-the {\em vertical dimension} is the number of known errors per class while
-the {\em horizontal dimensions} could be any of the project descriptions seen \fig{ck}. For this example, we will say:
-  \bi
-  \item The east-west dimension is the lines of code per class;
-  \item The north-south dimensions is the number of children per class.
-    \ei
-    Whatever pair of horizontal dimensions are used, we can divide those dimensions into some {\em bins}
-    If we had  divided our horizontal dimensions into eight {\em bins}, the resulting space
-    could be viewed as a chess board which is mostly flat but, in some squares, there
-    are piles of defective classes.
-
-    A data mining algorithm seeks some combination of the dimensions that selects for some target class (in our case,
-    classes with a pile of defective classes). If we select a cell of that chess board at random, what is the probability
-    we will find defective classes in that square? In the following, we will assume a ``chess board'' with $d$ dimensions
-    divided into $b$ bins.
-
-    If an event occurs at probability $p$,
-    then after $n$ samples then 
-    we can miss it with probability $(1-p)^n$ and find it with probability
-    \begin{equation}\label{eq:pb}
-      q=1-((1-p)^n)
-    \end{equation}
-    Next, we say that if software is described using   $d$ dimensions, each divided into $b$ bins, then the 
-    project divides into   $C=b^d$ cells.
-    The probability of selecting any particular cell is hence $1/C = b^{-d}$.
-    
-    The  errors $e$ of a project are spread around that space $s$ according to a {\em skew} variable. At $\textrm{skew}=1$, they are evenly distributed over all cells.
-    At other values of $\textrm{skew}$, some parts of the space contain more errors than others, computed as follows:
+Further,
+instead of each dimension being divided into eight (like a chessboard), it is standard practice in data mining for SE~\cite{Menzies2014a}
+to divide dimensions accroding to some {\em descritization policy}~\cite{lust08}.
+Discretization converts a numeric variable with infinite range into a smaller number of  $b$ bins. Hence, the number of cells in a
+hyperdimensional chessboard is $b^d$ and the probability of selecting any one cell is
+\begin{equation}\label{eq:c}c=1/(d^d)=b^{-d}\end{equation}
+Once we arrive at any cells, we will be in a region weith $e$ percent errors.
+What are is the probability $p$ that we will find those $e$ errors, given $n$ samples from the training data?
+According to Voas and Miller~\cite{voas1995software},
+if we see something at probability $e$, then we will miss it at probability $1-e$.
+After $n$ attempts, the probability of missing it is $(1-e)^n$ so the probability of stumbling onto $e$ errors is
+\begin{equation}\label{eq:p}
+p(e,n) = (1-(1-e)^n)
+\end{equation}
+The premise of data mining is that in the data ``chessboard'', some cells contain more of the signal than others. Hence, the 
+distribution of the $e$ errors are ``skewed'' by some factor $k$. If $k=1$, then all the errors are evenly distributed over all cells.
+But at all other values of $k$, some cells contain more errors than others, computed as follows:
     \bi
   \item $R_c$ is a random number $0\le R \le 1$, selected for each part of the space $c\in C$.
-  \item $x_c$ is the proportion of errors in each part of $C$. \mbox{$x_c =  R_{c\in C}^\textrm{skew}$}.
+  \item $x_c$ is the proportion of errors in each part of $C$. \mbox{$x_c =  R_{c\in C}^k$}.
   \item We normalize $x_c$ to be some ratio $0 \le x_c \le 1$ as follows: $X= \sum_{c\in C} x_c$ then $x_c = x_c/X$
     \ei
-    If  $e$ is the ratio of classes within a software projects containing errors, then 
+    If  $e$ is the ratio of classes within a software projects containing errors, then $e'$ 
     the expected value of the probability $p$ of selecting a cell {\em and} that cell containing errors is:
     \begin{equation}\label{eq:p}
-      p = \sum_{c\in C}b^{-d}ex_c
+      e' = \sum_{c\in C}cx_ce
     \end{equation}
-    The last step in this process is to use \eq{p} to find $p$, which is then passed to \eq{pn} to determine $q$;
-    i.e. the probability we
-    will find defects in any cell.
+    where $c$ comes from \eq{c} and $e$ is the ratio of classes in the training set with defects.
 
-    Using a small Monte Carlo simulation, we can explore at what point it is likely that $n$ samples will stumble over a defect. 
-    1000 times, we picked $\textrm{skew},b,d,e$ values at random from:
+Using these equations, we can determine how many training examples $n$ are required before 
+  $p(e',n)$ (\eq{p}) returns a value more than some reasonable threshold $T$.
+  To make that determination, we call $p(e',n)$ for increasing values of $n$ until $p \ge T$
+  (for this paper, we used $T \ge 67\%$.
+  
+    This above maths lets us define
+    a  Monte Carlo simulation to assess the external validity of our results.
+    1000 times, we picked $k,b,d,e$ values at random from:
     \bi
-      \item $\textrm{skew} \in {1,2,3,4,5}$;
+      \item $k \in {1,2,3,4,5}$;
   \item $d \in {3,4,5,6,7}$ dimensions;
   \item $b \in \{2,3,4,5,6,7\}$ bins; 
     \item $e\in \{0.1,0.2,0.3,0.4\}$
@@ -109,20 +100,56 @@ the {\em horizontal dimensions} could be any of the project descriptions seen \f
       
     For each of the 1000 repeats,
      we increased $n$ until \eq{pb} reported that $q$ passed some reasonable threshold (for these experiments, we used $q>67\%$).
-     Next, we logged the 1000 examples of   $\textrm{skew},b,d,e,n$ found via this process.
-     
-    To summarize this analysis, we discretized $n$ into $n<50, n<100, n<200,n\ge200$ which we denoted {\em lt50, lt100, lt200,ge200}, respectively.
+     Next, we logged the 1000 examples of   $k,b,d,e,n$ found via this process.
+    To help simplify the reporting of these results,
+     we divided $n$ into $n<50, n<100, n<200,n\ge200$ which we denoted {\em lt50, lt100, lt200,ge200}, respectively.
     This data was given to a decision tree learner to determine what $n$ values are selected by different
-    ranges of $\{\textrm{skew},b,d,e\}$. Decision tree learners seek an attribute range that, when used to split the data,
+    ranges of $\{k,b,d,e\}$. Decision tree learners seek an attribute range that, when used to split the data,
       simplifies the distribution of the dependent variable in each split (in our case, {\em lt50, lt100, lt200,ge200}).
       The decision tree learner is then called recursively on each split.
-
       To test the stability of the learned model, the learning is repeated ten times, each time using 90\%of the data from training and the rest
-      for testing. The weighted average performance values for the decision tree of \fig{tree} were remarkably good:
+      for testing. The weighted average performance values for the learned decision trees were remarkably good:
       \bi
     \item False alarm rates = 2\%;
     \item F-measures (i.e. the harmonic mean of recall and precision) of 95\%
       \ei
+The resulting decision tree, shown in \fig{tree}
+shows the external validity of these results. In that tree:
+\bi
+\item
+The green branches show where $n \le 200$ samples would
+be enough to detect defective modules at probability
+67\% or more.
+\item
+The red branches where more than $n$ samples would be enough.
+\ei
+It is useful to consider where defect prediction data sets
+fall into that tree.
+Numerous
+recent research results show that, for defect data,
+good predictors can be built via a {\em median chop}
+of dimensions~\cite{Zhang2014,nam2015clami};
+i.e. $b=2$. Other results show that defect
+prediction data containing dozens of attributes also
+contains many correlated attributes, and that
+feature subset
+selection tools can reduce that set to
+$d \in \{2,3\}$ dimensions~\cite{Menzies07}.
 
-      
+
+The top half of that tree shows that when the data
+can be reduced to two dimensions, then if each
+dimensions needs less than three bins, then {\em
+ltt50, lt100, lt200 } samples will suffice (i.e.$n<
+200$).  The bottom of tree shows that when the data
+needs more than two or three dimensions, and those
+dimensions needs only two bins, then no outcome
+needs {\em ge200} samples (i.e. $n\ge200$).
+
+The green branches are interesting since 
+
+
+
+% some bracksh shown in white
+%leaves need to be labelled A,B,C (little black letter on right hand side)
       
