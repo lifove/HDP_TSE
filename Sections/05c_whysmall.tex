@@ -2,42 +2,60 @@
 
 \input{dims}
 
+\newcommand{\tion}[1]{\S\ref{sect:#1}}
 \newcommand{\fig}[1]{Figure~\ref{fig:#1}}
 \newcommand{\eq}[1]{Equation~\ref{eq:#1}}
 \newcommand{\bi}{\begin{itemize}}
 \newcommand{\ei}{\end{itemize}}
 
 \section{Explaining These Results}
+To assess the generality of the above results, we need some background knowledge that knows when a few samples will (or will not)
+be sufficient to built a defect predictor. Using some sampling theory, this section (a)~builds such a mathematical model; (b)~maps known parameters
+of our defect data sets into that model; (c)~identifies what would need to change before the above results would no longer holder.
+To start, we repeat the {\em lessons learned} above as well as what is {\em known about defect data sets}.
+Next, we define a {\em maths model} which will be used in a {\em Monte Carlo simulation} to generate a log of how many samples are required
+to find some signal. This log will be summarized via a {\em decision tree learner}.
 
-The above results are suprising (to say the least): a small numher
-of examples is sufficient to build a defect predictor, even when the data is being transferred from columns with other names.
-Hence it is important to ask:
-\bi
-\item Are the above results relevant to just the data used in this study?
-\item Or some more fundamental process at work?
-\ei
-This section argues the latter; i.e. that the above results are not some quirk of our scripts. Rather, it is a result
-of core inductive processes.
-Specifically:
-\bi
-\item
-If data mining is an instance of sampling theory,
-\item Then it is possible to derive
-an expression defining claasses of data sets where it is (and is not) possible to  construct
-defect predictors using a small number of samples (say 50 to 200).
-\ei
-The important feature of this model is the
-following: there is much evidence that the data used
-in defect prediction research belong to the ``a few
-samples is enough'' class.  That is, we can expect that our
-results are externally valid for defect prediction data.
+\subsection{Set up}
+\subsubsection{ Lessons from the above work}
 
-\subsection{``Chessboard'' Sampling}
+The above results show
+that a  
+a small number
+of examples are sufficient to build a defect predictor, even when the data is being transferred from columns with other names.
+In the following we will build a model computing the probability that $n$ training examples are sufficient to detect $e$\% defect modules.
 
-Suppose a chessboard is divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells). Suppose further that the chessbooard
-contains some signal we want to detect, but that signal is not spread evenly around the board.
-That is to say, some cells of the chessboard are blank which other cells are $e$\% covered
-with that signal. The probability of finding that signal is a product of:
+In order to simplify the analysis, we will divide $n$ into
+  $n<50, n<100, n<200,n\ge200$ which we denoted {\em lt50, lt100, lt200,ge200}, respectively (and note that {\em ge200} is where the above
+  results do not hold).
+
+\subsubsection{Known about defect data sets}\label{sect:data}
+
+Numerous recent
+research results show that, for defect data, good
+predictors can be built via a {\em median chop} of
+numeric project data~\cite{Zhang2014,nam2015clami};
+i.e. they are divided into $b=2$ bins. Other results
+show that defect prediction data containing dozens
+of attributes also contains many correlated
+attributes, and that feature subset selection tools
+can reduce that set to $d \in \{2,3\}$
+dimensions~\cite{Menzies07}.
+
+Hence, in the following, we will pay particular attention to the regions of our mathematical model
+that falls into $b=2, d \le 3$.
+
+\subsubsection{A Maths Model}
+
+Before writing down the maths, it is useful to start with some intuitions.
+Accordingly, a chess board  containing small  piles of defects in some cells.
+Like all chess boards, this one is  divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells).
+Further, some cells of the chessboard are blank which other cells are $e$\% covered
+with that signal.
+
+If we throw a small pebble at that chess board, what are the odds
+we will hit the defects?
+Clearly, this is the product of:
 \bi
 \item The probability $c$ of picking a particular cell;
 \item The probability $p$ that, once we arrive at that cell, we will find  the  signal in that cell.
@@ -56,17 +74,17 @@ Further,
 instead of each dimension being divided into eight (like a chessboard), it is standard practice in data mining for SE~\cite{Menzies2014a}
 to divide dimensions accroding to some {\em descritization policy}~\cite{lust08}.
 Discretization converts a numeric variable with infinite range into a smaller number of  $b$ bins. Hence, the number of cells in a
-hyperdimensional chessboard is $b^d$ and the probability of selecting any one cell is
+hyper-dimensional chessboard is $b^d$ and the probability of selecting any one cell is
 \begin{equation}\label{eq:c}c=1/(d^d)=b^{-d}\end{equation}
 Once we arrive at any cells, we will be in a region weith $e$ percent errors.
-What are is the probability $p$ that we will find those $e$ errors, given $n$ samples from the training data?
+What  is the probability $p$ that we will find those $e$ errors, given $n$ samples from the training data?
 According to Voas and Miller~\cite{voas1995software},
 if we see something at probability $e$, then we will miss it at probability $1-e$.
 After $n$ attempts, the probability of missing it is $(1-e)^n$ so the probability of stumbling onto $e$ errors is
 \begin{equation}\label{eq:p}
 p(e,n) = (1-(1-e)^n)
 \end{equation}
-The premise of data mining is that in the data ``chessboard'', some cells contain more of the signal than others. Hence, the 
+The premise of data mining is that in the data ``chess board'', some cells contain more of the signal than others. Hence, the 
 distribution of the $e$ errors are ``skewed'' by some factor $k$. If $k=1$, then all the errors are evenly distributed over all cells.
 But at all other values of $k$, some cells contain more errors than others, computed as follows:
     \bi
@@ -84,14 +102,15 @@ But at all other values of $k$, some cells contain more errors than others, comp
 Using these equations, we can determine how many training examples $n$ are required before 
   $p(e',n)$ (\eq{p}) returns a value more than some reasonable threshold $T$.
   To make that determination, we call $p(e',n)$ for increasing values of $n$ until $p \ge T$
-  (for this paper, we used $T \ge 67\%$.
-  
+  (for this paper, we used $T = 67\%$.
+
+\subsubsection{Monte Carlo Simulation}
     This above maths lets us define
     a  Monte Carlo simulation to assess the external validity of our results.
     1000 times, we picked $k,b,d,e$ values at random from:
     \bi
-      \item $k \in {1,2,3,4,5}$;
-  \item $d \in {3,4,5,6,7}$ dimensions;
+      \item $k \in \{1,2,3,4,5\}$;
+  \item $d \in \{3,4,5,6,7\}$ dimensions;
   \item $b \in \{2,3,4,5,6,7\}$ bins; 
     \item $e\in \{0.1,0.2,0.3,0.4\}$
       \ei
@@ -99,10 +118,11 @@ Using these equations, we can determine how many training examples $n$ are requi
       with 40 or more diminesions, that good predictors can be build using $d\le 7$ of those dimensions~\cite{me07a}.)
       
     For each of the 1000 repeats,
-     we increased $n$ until \eq{pb} reported that $q$ passed some reasonable threshold (for these experiments, we used $q>67\%$).
+     we increased $n$ until \eq{p} reported that $q$ passed our reasonable threshold.
      Next, we logged the 1000 examples of   $k,b,d,e,n$ found via this process.
-    To help simplify the reporting of these results,
-     we divided $n$ into $n<50, n<100, n<200,n\ge200$ which we denoted {\em lt50, lt100, lt200,ge200}, respectively.
+
+\subsubsection{Decision Tree Learning}
+
     This data was given to a decision tree learner to determine what $n$ values are selected by different
     ranges of $\{k,b,d,e\}$. Decision tree learners seek an attribute range that, when used to split the data,
       simplifies the distribution of the dependent variable in each split (in our case, {\em lt50, lt100, lt200,ge200}).
@@ -113,6 +133,8 @@ Using these equations, we can determine how many training examples $n$ are requi
     \item False alarm rates = 2\%;
     \item F-measures (i.e. the harmonic mean of recall and precision) of 95\%
       \ei
+\subsection{Results}
+
 The resulting decision tree, shown in \fig{tree}
 shows the external validity of these results. In that tree:
 \bi
@@ -123,18 +145,7 @@ be enough to detect defective modules at probability
 \item
 The red branches where more than $n$ samples would be enough.
 \ei
-It is useful to consider where defect prediction data sets
-fall into that tree.
-Numerous
-recent research results show that, for defect data,
-good predictors can be built via a {\em median chop}
-of dimensions~\cite{Zhang2014,nam2015clami};
-i.e. $b=2$. Other results show that defect
-prediction data containing dozens of attributes also
-contains many correlated attributes, and that
-feature subset
-selection tools can reduce that set to
-$d \in \{2,3\}$ dimensions~\cite{Menzies07}.
+When analyzing the tree, we first look at the regions relevant to standard defect data sets (as defined in \tion{data})
 
 
 The top half of that tree shows that when the data

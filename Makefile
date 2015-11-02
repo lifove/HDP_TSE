@@ -25,6 +25,10 @@ preview:
 view :
 	evince $(HOME)/tmp/$(Src).pdf &
 
+skim:
+	/Applications/Skim.app/Contents/MacOS/Skim $(HOME)/tmp/$(Src).pdf &
+
+
 one : dirs tex done 
 
 ready :

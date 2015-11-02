@@ -1,0 +1,372 @@
+
+
+*******************************************************************************
+Mon Nov  2 10:36:16 2015
+
+
+FIT:    data read from "data"
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*n**x + c
+BREAK: Need via and either parameter list or file
+
+*******************************************************************************
+Mon Nov  2 10:36:44 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*n**x + c
+BREAK: Need via and either parameter list or file
+
+*******************************************************************************
+Mon Nov  2 10:37:15 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+BREAK: Need via and either parameter list or file
+
+*******************************************************************************
+Mon Nov  2 10:37:28 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:37:33 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 3.9887530000e+06   0.00e+00  6.23e+02    1.000000e+00   1.000000e+00   1.000000e+00
+1543 9.7840930173e+05  -3.93e+00  6.23e+02    8.012982e-11   5.074351e+00   1.068457e+00
+
+The fit was stopped by the user after 1543 iterations.
+final sum of squares of residuals : 978409
+rel. change during last iteration : -3.92884e-05
+
+degrees of freedom    (FIT_NDF)                        : 332
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 54.2864
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2947.02
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 8.01298e-11      +/- 1.163e-10    (145.1%)
+n               = 5.07435          +/- 0.2485       (4.897%)
+c               = 1.06846          +/- 4.246        (397.4%)
+
+correlation matrix of the fit parameters:
+                a      n      c      
+a               1.000 
+n              -1.000  1.000 
+c              -0.556  0.549  1.000 
+
+
+*******************************************************************************
+Mon Nov  2 10:38:26 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 9.7840930173e+05   0.00e+00  2.63e+03    8.012982e-11   5.074351e+00   1.068457e+00
+   1 9.7839186528e+05  -1.78e-04  2.63e+02    8.007562e-11   5.074579e+00   1.069260e+00
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 978392
+rel. change during last iteration : -1.78215e-05
+
+degrees of freedom    (FIT_NDF)                        : 332
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 54.2859
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2946.96
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 8.00756e-11      +/- 1.162e-10    (145.1%)
+n               = 5.07458          +/- 0.2483       (4.894%)
+c               = 1.06926          +/- 4.246        (397.1%)
+
+correlation matrix of the fit parameters:
+                a      n      c      
+a               1.000 
+n              -1.000  1.000 
+c              -0.556  0.549  1.000 
+
+
+*******************************************************************************
+Mon Nov  2 10:38:48 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 9.7839186528e+05   0.00e+00  2.64e+03    8.007562e-11   5.074579e+00   1.069260e+00
+   1 9.7837777183e+05  -1.44e-03  2.64e+02    8.002143e-11   5.074699e+00   1.070062e+00
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 978378
+rel. change during last iteration : -1.44049e-05
+
+degrees of freedom    (FIT_NDF)                        : 332
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 54.2856
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2946.92
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 8.00214e-11      +/- 1.161e-10    (145.1%)
+n               = 5.0747           +/- 0.2484       (4.894%)
+c               = 1.07006          +/- 4.246        (396.8%)
+
+correlation matrix of the fit parameters:
+                a      n      c      
+a               1.000 
+n              -1.000  1.000 
+c              -0.556  0.549  1.000 
+
+
+*******************************************************************************
+Mon Nov  2 10:39:53 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = x**n + a
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n            
+   0 1.2537982093e+27   0.00e+00  4.03e+13    8.002143e-11   5.074699e+00
+  26 2.4649238857e+06  -2.44e-02  4.03e-13   -7.219565e+01   1.006496e+00
+
+After 26 iterations the fit converged.
+final sum of squares of residuals : 2.46492e+06
+rel. change during last iteration : -0.000244467
+
+degrees of freedom    (FIT_NDF)                        : 333
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 86.0359
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7402.17
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -72.1956         +/- 8.58         (11.88%)
+n               = 1.0065           +/- 0.007793     (0.7743%)
+
+correlation matrix of the fit parameters:
+                a      n      
+a               1.000 
+n              -0.837  1.000 
+
+
+*******************************************************************************
+Mon Nov  2 10:40:41 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 7.1142742043e+10   0.00e+00  4.69e+04   -7.219565e+01   1.006496e+00   1.070062e+00
+
+
+*******************************************************************************
+Mon Nov  2 10:40:43 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:40:51 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:41:02 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:41:30 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:41:36 2015
+
+
+FIT:    data read from 'data'
+        format = z
+        #datapoints = 335
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*x**n + c
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov  2 10:44:30 2015
+
+
+FIT:    data read from 'data.tomcat'
+        format = z
+        #datapoints = 858
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a *x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 2.3278532300e+08   0.00e+00  1.87e+03    1.000000e+00   1.000000e+00   1.000000e+00
+ 355 5.0558267886e+07   0.00e+00  1.87e+04    4.474142e-20   7.772200e+00   9.862149e-01
+
+The fit was stopped by the user after 355 iterations.
+final sum of squares of residuals : 5.05583e+07
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 855
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 243.172
+variance of residuals (reduced chisquare) = WSSR/ndf   : 59132.5
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 4.47414e-20      +/- 6.572e-20    (146.9%)
+n               = 7.7722           +/- 0.2133       (2.744%)
+c               = 0.986215         +/- 10.57        (1072%)
+
+correlation matrix of the fit parameters:
+                a      n      c      
+a               1.000 
+n              -1.000  1.000 
+c              -0.467  0.463  1.000 
+
+
+*******************************************************************************
+Mon Nov  2 10:46:55 2015
+
+
+FIT:    data read from 'data.xalan27'
+        format = z
+        #datapoints = 909
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a *x**n + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             n             c            
+   0 3.5760353000e+08   0.00e+00  1.99e+03    1.000000e+00   1.000000e+00   1.000000e+00
+ 163 2.6255124889e+08  -6.00e+01  1.99e+04    4.485433e-02   1.528689e+00   9.934213e-01
+
+The fit was stopped by the user after 163 iterations.
+final sum of squares of residuals : 2.62551e+08
+rel. change during last iteration : -0.000599776
+
+degrees of freedom    (FIT_NDF)                        : 906
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 538.323
+variance of residuals (reduced chisquare) = WSSR/ndf   : 289792
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0448543        +/- 0.04921      (109.7%)
+n               = 1.52869          +/- 0.1599       (10.46%)
+c               = 0.993421         +/- 48.75        (4907%)
+
+correlation matrix of the fit parameters:
+                a      n      c      
+a               1.000 
+n              -0.999  1.000 
+c              -0.813  0.796  1.000 
