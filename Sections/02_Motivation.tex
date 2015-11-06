@@ -1,39 +1,85 @@
 \section{Motivation}
 \label{sec:Motivation}
 
-Why study transfer learning? We can offer two practical reasons and one theoretical reason.
-
-\subsection{Transfer Learning: Theoretical Implications}
-
-One theoretical reason is to study the nature of
+One reason to explore transfer learning
+is to study the nature of
 generality in software engineering.  Professional
-societies assumesuch generalities exist when they
-offer lists of supposedly general ``best practices''
-such as the IEEE 1012 standard for software
-verification~\cite{1012}.  Endres & Rombach offer dozens
-of lessons of software engineering~\cite{endres03}.  Many
-other widely-cited researchers dothe same; e.g.
-Glass~\cite{glass02}; Jones~\cite{jones10}; Boehm~\cite{hoehm00b}.  Budgen
-&Kitchenham seek to reorganize SE research using
-general conclusions drawn from a larger number of
+societies assume such generalities exist when they
+offer lists of supposedly general ``best practices'':
+\bi
+\item For example, the  IEEE 1012 standard for software
+  verification~\cite{1012};
+\item
+  Also, Endres & Rombach offer
+dozens of lessons of software
+engineering~\cite{endres03};
+\item Further, many other
+widely-cited researchers dothe same; e.g.
+Glass~\cite{glass02}; Jones~\cite{jones10};
+Boehm~\cite{hoehm00b}.
+\item
+  More generally, Budgen &Kitchenham seek to
+reorganize SE research using general conclusions
+drawn from a larger number of
 studies~\cite{budgen06,budgen09}.
-
-Given the constant pace of change within SE, how can
-any conclusion stand the test of time?  Worse still,
-numerous {\em local learning} results show that we
+\ei
+However,
+given the constant pace of change within SE, can we trust
+those supposed generalities? 
+Numerous {\em local learning} results show that we
 should mistrust general conclusions (made over a
 wide population of projects) since they may not hold
-for projects. For example, Yang et
+for projects.  Posnett et al.~\cite{posnett11}
+discuss {\em ecological inference} in software
+engineering, which is the concept that what holds
+for the entire population also holds for each
+individual.  They learn models at different levels
+of aggregation (modules, packages, files) and show
+that models that work at one level of aggregation
+can be sub-optimal at others.  For example, Yang et
 al.~\cite{yang11}, Bettenburg et
 al.~\cite{betten14}, and Menzies et al.~\cite{me12d}
 all explore the generation of models using {\em all}
 data versus {\em local} samples that more specific
-to particular test cases. They all report the same
-thing: better models (sometimes with much lower
-variance in their predictions) are generated from
-local information.
+to particular test cases. These papers report that
+better models (sometimes with much lower variance in
+their predictions) are generated from local
+information.
+These results have an unsettling effect on anyone
+struggling to propose policies for an organization.
+If all prior conclusions can change for the new
+project, or some small part of a project, how can
+any manager ever hope to propose, and defend, IT
+policies (e.g. when should some module be inspected,
+when should it be refactored, where to focus
+expensive testing procedures, etc)?
 
-Hess
+If we cannot {\em generalize} to all projects and all parts
+of current projects, perhaps a more achievable goal is
+the {\em stabilize} the pace of conclusion change. 
+While it may be 
+a fool's errand  and wait for  eternal and global SE
+conclusions, one possible approach is for organizations
+to declare $N$ prior projects as {\em reference projects},
+from which lessons learned will be transferred to new projects.
+In practice, using such reference sets requires three processes:
+\be
+\item Finding the reference sets (this paper shows that finding
+  them may not be too complex a task, at least for defect prediction).
+  \item Recognizing when to update  the reference set. In practice,
+  this could be as simple as noting when predictions start failing for new projects-- at which time, we would loop to point \#1.
+\item Transferring
+  lessons from the reference set to new projects.  
+  \ee
+In this approach, the policies of the organization will be
+stable just as long as the reference set is not updated.
+In this paper, we do not address the pace of change in the reference set
+(that is left for future work).
+Rather, we focus on point \#3: transferring lessons from
+the reference set to new projects. To support this third point,
+we need to  resolving the problems
+  that this paper addresses (data expressed in different terminology,
+  cannot transfer till there is enough data to match old projects to new).
 
+  
 
-Prior attempts at offering general conclusions for SE~\cite{}
