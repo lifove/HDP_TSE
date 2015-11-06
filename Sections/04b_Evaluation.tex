@@ -2,7 +2,39 @@
 \label{sec: small_data_sets}
 
 \subsection{WHY Small Training Data Sets}
-Like prior works\cite{nam2013transfer, ma2012transfer, rahman2012recalling, ryu2014value, zhang2014towards}, the basic HDP method we proposed uses all the instances in feasible data sets as training data to perform KS-test and build defect prediction learners. The straightforward drawback of using all data is that it will take much long time to finish the whole defect prediction process. The observation from our experiments also verifies this: it takes several days on a 24-cores machine to find all possible matched features in KS-test. On the other hand, whether using all the instances from the data set will be helpful and necessary to build defect learners in such transfer learning scenario is still unclear. In CPDP with transfer learning methods, where data size has a big effect on running time, small training data seems more promising if we can get similar or even better prediction performance. Menzies et.al. \cite{menzies2008implications} pointed out that ``performance ceiling'' exists when using static code features to explore defects in software data repositories.  Furthermore, Thurhan et atl.\cite{turhan2009relative} and Fayola et al.\cite{peters2013better} improved the  performance of the CPDP with the same metric set by applying data filtering techniques to select the filtered training data. Therefore, it would be more interesting to investigate whether using small sampled data sets is feasible in heterogeneous defect prediction. Then we did the following experiment.
+
+Like prior works\cite{nam2013transfer,
+  ma2012transfer, rahman2012recalling, ryu2014value,
+  zhang2014towards}, the basic HDP method we
+proposed uses all the instances in feasible data
+sets as training data to perform KS-test and build
+defect prediction learners. The straightforward
+drawback of using all data is that it will take much
+long time to finish the whole defect prediction
+process. The observation from our experiments also
+verifies this: it takes several days on a 24-cores
+machine to find all possible matched features in
+KS-test. On the other hand, whether using all the
+instances from the data set will be helpful and
+necessary to build defect learners in such transfer
+learning scenario is still unclear. In CPDP with
+transfer learning methods, where data size has a big
+effect on running time, small training data seems
+more promising if we can get similar or even better
+prediction performance. Menzies
+et.al. \cite{menzies2008implications} pointed out
+that ``performance ceiling'' exists when using
+static code features to explore defects in software
+data repositories.  Furthermore, Thurhan et
+atl.\cite{turhan2009relative} and Fayola et
+al.\cite{peters2013better} improved the performance
+of the CPDP with the same metric set by applying
+data filtering techniques to select the filtered
+training data. Therefore, it would be more
+interesting to investigate whether using small
+sampled data sets is feasible in heterogeneous
+defect prediction. Then we did the following
+experiment.
 
 \begin{figure}[!htp]
 	\centering
