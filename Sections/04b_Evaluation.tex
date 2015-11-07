@@ -1,40 +1,14 @@
-\section{Small Training Data sets(tentative)}
-\label{sec: small_data_sets}
-
-\subsection{WHY Small Training Data Sets}
+\section{Size Limits (lower bounds) for Effective Transfer Learning}
 
 Like prior works\cite{nam2013transfer,
   ma2012transfer, rahman2012recalling, ryu2014value,
   zhang2014towards}, the basic HDP method we
-proposed uses all the instances in feasible data
+proposed above uses {\em all} the instances in feasible data
 sets as training data to perform KS-test and build
-defect prediction learners. The straightforward
-drawback of using all data is that it will take much
-long time to finish the whole defect prediction
-process. The observation from our experiments also
-verifies this: it takes several days on a 24-cores
-machine to find all possible matched features in
-KS-test. On the other hand, whether using all the
-instances from the data set will be helpful and
-necessary to build defect learners in such transfer
-learning scenario is still unclear. In CPDP with
-transfer learning methods, where data size has a big
-effect on running time, small training data seems
-more promising if we can get similar or even better
-prediction performance. Menzies
-et.al. \cite{menzies2008implications} pointed out
-that ``performance ceiling'' exists when using
-static code features to explore defects in software
-data repositories.  Furthermore, Thurhan et
-atl.\cite{turhan2009relative} and Fayola et
-al.\cite{peters2013better} improved the performance
-of the CPDP with the same metric set by applying
-data filtering techniques to select the filtered
-training data. Therefore, it would be more
-interesting to investigate whether using small
-sampled data sets is feasible in heterogeneous
-defect prediction. Then we did the following
-experiment.
+defect prediction learners.
+Collecting {\em all} that data requires waiting for a project to finish before
+transferring its learned lessons. This begs the question ``how early can we transfer?''.
+That is, how {\em few} source data examples do we need before transfer can be effective?
 
 \begin{figure}[!htp]
 	\centering
@@ -44,14 +18,55 @@ experiment.
 	\label{fig:small_data}
 \end{figure}
 
-\subsection{Unsupervised Sampled Data}
-\label{sec:small}
 
-As mentioned before, data sets are used in two steps in standard HDP besides testing: matching feature and building learner. To evaluate the effect of sample size, instead of using all the instances from candidate data sets, we propose to randomly sample the original data and use smaller data sets for matching features and building learner. For space limitation, we only use KSAnalyzer for matching features.
+\subsection{200 Random Samples are Enough}
 
-In this experiment, all the original data sets will be randomly sampled to generate smaller data sets of size $N$, where $N \in \{50, 100, 150, 200\}$. If the number of instances in the original data set is smaller than $N$, all those instances will be included and no sample action is required. Specifically, in KS-test, instead of using original data sets, the sampled smaller data sets will be used. For example, in the original data sets, Apache and arc are with instance size of $194$ and $234$. If KS-test is performed on them, the smaller data sets Apache\_sampled and arc\_sampled will be used, both of which include $N$, say 50, instances. 
+Recall from the above,
+HDP uses  data sets  in a two step process.
+To test the impact of having access to {\em less} data,
+we  add a third initial sampling process:
+instead of using all the instances from
+candidate data sets, that  data sets will
+be randomly sampled to generate smaller data sets of
+size $N \in \{50, 100, 150, 200\}$. If
+the number of instances in the original data set is
+smaller than $N$, all those instances will be
+included.
 
-After obtaining all the matched features from KS-test, defect prediction learner for the target data set will be built based on the corresponding source data. The similar way is adopted here as in KS-test. Instead of using original data set in the basic HDP method, the previously sampled smaller data set will be used, which is the same sampled source data set used in KS-test. To predict all the defects in the target data sets, the original data set will be used as target. For example, if Apache and arc are source and target data pair according to KS-test result, the smaller Apache\_sampled data with $N$ instances will be used to train the learner, and the original arc with $194$ instances will be the target data to be predicted.
+The results for this HDP-with-limited-training-data experiment is shown in \fig{small_data}
+(we display median AUC results from 20 repeats, using  Logistic regression
+as the default learner). 
+% Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}.
+In that figure:
+\bi
+\item
+  The {\em black} line show the results using {\em all} data;
+\item
+  The {\em red} line shows results from transferring from {\em some} small $N$ number of samples
+  in the source data.
+\item
+  The letters show the unique ID of each data set.
+\ei
+The data sets are ordered left to right by the difference to the black line (where we transfer using {\em
+  all} the source data:
+\bi
+\item
+  On the left, the black line is
+  {\em above} the red line; i.e. for those data sets, we do {\em better} using
+  {\em all} data than using {\em some}.
+  \item
+On the right, the black line is {\em below} the red
+line; i.e. for those data sets, we do {\em worse}
+using {\em all} data than using {\em some}.  \ei
+Note that the gap between the red and black line
+shrinks as we use more data and after $N=100$, the
+net gap space is almost zero.  When $N=200$, $27/28$
+tests are within 0.05 difference in terms of AUC and
+$17/28$ tests show smaller data sets have equivalent
+or even better performance. Here, we recommend that
+sample size $N=200$ could be good enough for this
+HDP framework to get a good predictor.
+
 
 
 \begin{figure}[!htp]
@@ -62,29 +77,54 @@ After obtaining all the matched features from KS-test, defect prediction learner
 	\label{fig:small_epv}
 \end{figure}
 
-This experiment is conducted over the same data sets as basic HDP with 20 iterations. Logistic regression is the default learner as before. The median of 20 AUCs is reported to evaluate the performance. 
-% Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}. 
-Figure \ref{fig:samll_data} shows the sampled data AUC improvements over original data with $N \in \{50,100,150,200\}$. Note that with the increase of $N$, the difference between all data and sampled data experiment becomes smaller. When $N=200$, $27/28$ tests are within 0.05 difference in terms of AUC and $17/28$ tests show smaller data sets have equivalent or even better performance. Here, we recommend that sample size $N=200$ could be good enough for this HDP framework to get a good predictor.
+
+\subsection{20 Defective Examples  are Enough}
 
 
+The results of the last section are very encouraging-- a small number of source
+training examples are enough for effective transfer learning. Naturally,
+we were suspicious of this result (since it was ``almost too good to be true'').
+Accordingly, we explored the literature and found:
+\bi
+\item Evidence that this ``a few examples are enough'' has been seen in other domains;
+\item Methods to reduce the cost of reducing this data set, even further.
+  \ei
+Working in the domain cardiology,
+  Peduzzi et al.~\cite{peduzzi1996simulation}
+  report 10 ``events'' per variable (EPV) are enough to maximize the predictive performance
+  of  Logistic Regression (the learner used in this study). Translated into our terminology,
+  that study would predict that  10 defective modules per independent variable should
+  suffice for effective learning. Of course, learners require defective and {\em non-defective}
+  examples so to $M$ defective examples, we add will add $N > M$ more.
 
+  To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
+  independent variables were picked during {\em metric  selection}. In practice, that number
+  was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$
+  randomly selected defect modules, then added up to $N$ more for $N\in \{50,100,150,250\}$.
 
+  (Aside: note that this is different to the above experiment since, before, the more $N$ examples
+  we selected, the more {\em defective} modules we would use. Now, in this experiment, we will also
+  use a fixed $M=20$ number of defects.).
 
-\subsection{Sampled Data With EPV Constraints}
-\label{sec:EPV}
- Results from the last experiment show that small data sets can get the similar performance as the original experiment. Regarding how small data sample work in our HDP experiment,  we found that in \cite{peduzzi1996simulation}, it was reported that number of events per variable(EPV) would affect the performance of logistic regression. In that work, authors used Monte Carlo study to investigate the effects of EPV on logistic regression model. Their experiments were set up on data from cardiac trial of 673 patients, 252 deaths of which occurred. They identified 7 prognostic variables(decisions) for predicting mortality. The EPV of the whole data set was 36 (252/7). In their experiments, they randomly selected 500 samples out of 673 with EPV changing from 2 to 25 with replacement. They compared the results from each 500 sample against the results from the logistic regression model fitted to the whole data set. Results showed that if the training data had fewer events relative to the independent variable( e.g. EPV\textless10), the bias of the regression coefficients will be increased and the resultant prediction from the model would have large variance and low accuracy. To verify this, we design another transfer learning experiment with small sample data sets under EPV constraints.
+  The results are shown in \fig{small_epv}. Like before:
+  \bi
+  \item These are median AUC results from 20 repeats.
+\item
+  The {\em black/red} lines show the results using {\em all/some} of the data, respectively
+  (but now, the {\em some} never contains more than $M=20$ defective modules;
+\item
+  The data sets are ordered left to right according
+  the performance difference between using
+   all} or {\em some} of the data;
+   \item
+     On the left/right ,  we do {\em better/worse} using
+  {\em all} data than using {\em some}.
+  \ei
+  We observe that between $N=50$ and $N=200$, the performance delta
+  does not change by very much. Also, if we compare $N=200$ between \fig{small_data}
+  and \fig{small_epv}, there seems no large disadvantage of using just
+  $M=20$ defective modules.
 
-Recall Figure \ref{fig:framework}, for the source data A, instead using all data in Project A, we perform supervised sampling with EPV =10 (recommended in \cite{peduzzi1996simulation})  and N =\{50, 100, 150, 200\} instances will be selected as the new source data ${\hat A}$, which will be used in metric selection, metric matching and prediction phases. For the target project B, instead of using all data for metric matching, a unsupervised sampling applied into project B and resultant data sets ${\hat B}$ with N = \{50, 100, 150, 200\} instances will be only used for metric matching. After prediction model is built with new source data $\hat A$, the original target data B will be applied to predict defects. Note that based on previous HDP experiments, the number of matched metrics(variables) is round 2. Therefore, at most 20 defective instances are randomly selected from source data in supervised sampling.
-
-As seen in Figure \ref{fig:small_epv}, we can get the similar performance as the original experiment even with the only subset of the original data sets. As $N$ increases from 50 to 200, the performance doesn't change a lot. Therefore, the actual actor that small sample data works is the number of {\it events}(i.e, defective data) in the sampled data since EPV = 10 for all $N's$. Recall section \ref{sec:small} and table \ref{tab:datasets}, when unsupervised sample size $N=200$, there're $\frac{22}{28}$ sampled data sets containing more than 20 defective data，which means most of those sampled data sets meet the criteria used in section \ref{sec:EPV}. This can explain why $N=200$ works for our experiment in section \ref{sec:small}.
-
-
-%\begin{figure*}[!htp]
-%	\centering
-% 	\vspace{0.5mm}
-%	\includegraphics[width=0.7\linewidth]{Figures/raleigh/tree.eps}
-%	\caption{Tree}
-%	\label{fig:tree}
-%\end{figure*}
-
-
+  Note that such a very small sample would be very quick to collect: after writing (say) a few
+  hundred classes, inspect enough to find 20 defective ones-- at which point that data is a candidate
+  for transfer learning.
