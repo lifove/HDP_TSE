@@ -6,23 +6,23 @@ is to study the nature of
 generality in software engineering.  Professional
 societies assume such generalities exist when they
 offer lists of supposedly general ``best practices'':
-\bi
+\squishlist
 \item For example, the  IEEE 1012 standard for software
   verification~\cite{1012};
 \item
-  Also, Endres & Rombach offer
+  Also, Endres \& Rombach offer
 dozens of lessons of software
 engineering~\cite{endres03};
 \item Further, many other
-widely-cited researchers dothe same; e.g.
+widely-cited researchers do the same; e.g.
 Glass~\cite{glass02}; Jones~\cite{jones10};
-Boehm~\cite{hoehm00b}.
+% Boehm~\cite{hoehm00b}.
 \item
-  More generally, Budgen &Kitchenham seek to
+  More generally, Budgen \& Kitchenham seek to
 reorganize SE research using general conclusions
 drawn from a larger number of
 studies~\cite{budgen06,budgen09}.
-\ei
+\squishend
 However,
 given the constant pace of change within SE, can we trust
 those supposed generalities? 
@@ -49,28 +49,28 @@ These results have an unsettling effect on anyone
 struggling to propose policies for an organization.
 If all prior conclusions can change for the new
 project, or some small part of a project, how can
-any manager ever hope to propose, and defend, IT
+any manager ever hope to propose and defend IT
 policies (e.g. when should some module be inspected,
 when should it be refactored, where to focus
 expensive testing procedures, etc)?
 
 If we cannot {\em generalize} to all projects and all parts
-of current projects, perhaps a more achievable goal is
-the {\em stabilize} the pace of conclusion change. 
+of current projects, perhaps a more achievable goal is to {\em stabilize} the pace of conclusion change. 
 While it may be 
 a fool's errand  and wait for  eternal and global SE
 conclusions, one possible approach is for organizations
 to declare $N$ prior projects as {\em reference projects},
 from which lessons learned will be transferred to new projects.
 In practice, using such reference sets requires three processes:
-\be
+\squishlist
+
 \item Finding the reference sets (this paper shows that finding
   them may not be too complex a task, at least for defect prediction).
   \item Recognizing when to update  the reference set. In practice,
   this could be as simple as noting when predictions start failing for new projects-- at which time, we would loop to point \#1.
 \item Transferring
   lessons from the reference set to new projects.  
-  \ee
+\squishend
 In this approach, the policies of the organization will be
 stable just as long as the reference set is not updated.
 In this paper, we do not address the pace of change in the reference set

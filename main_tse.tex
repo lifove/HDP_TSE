@@ -443,7 +443,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Heterogeneous Defect Prediction\\ and A Replication Study}
+\title{Overcoming Limits to Transfer Learning in Defect Prediction}
 %
 %
 % author names and IEEE memberships
@@ -470,14 +470,16 @@
 \author{Jaechang~Nam,~%~\IEEEmembership{Member,~IEEE,}
         Sunghun~Kim,~\IEEEmembership{Member,~IEEE,}
         Wei~Fu,~%~\IEEEmembership{Member,~IEEE,}
-        and~Tim~Menzies,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
-\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Shell is with the Department
-of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
-GA, 30332.\protect\\
+        Tim~Menzies,~\IEEEmembership{Member,~IEEE},
+        and~Lin Tan% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem J. Nam and L. Tan is with the Department
+of Electrical and Computer Engineering, University of Waterloo, Waterloo,
+ON, Canada.\protect\\
 % note need leading \protect in front of \\ to get a newline within \thanks as
 % \\ is fragile and will error, could use \hfil\break instead.
-E-mail: see http://www.michaelshell.org/contact.html
-\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.}% <-this % stops an unwanted space
+E-mail: \{jc.nam,lintan\}@uwaterloo.ca
+\IEEEcompsocthanksitem S. Kim is with the Department of Computer Science and Engineering, the Hong Kong University of Science and Technology, Hong Kong, China.
+\IEEEcompsocthanksitem W. Fu and T. Menzies are with the Department of Computer Science, NC State University, Raleigh, NC, 27695.}% <-this % stops an unwanted space
 \thanks{Manuscript received October XX, 2015; revised January XX, 2016.}}
 
 % note the % following the last \IEEEmembership and also \thanks - 
@@ -542,24 +544,24 @@ E-mail: see http://www.michaelshell.org/contact.html
 \IEEEtitleabstractindextext{%
 \begin{abstract}
 Software defect prediction is one of the most active research areas in
-software engineering. We can build a prediction model with defect data
-collected from a software project and predict defects in the same
+software engineering. We can build a prediction model with past defect data
+collected from a software project and predict new defects in the same
 project, i.e. within-project defect prediction (WPDP).
 Researchers also proposed cross-project defect prediction (CPDP) to predict
 defects for new projects lacking in defect data by using
 prediction models built by other projects. In recent studies, CPDP is proved to
-be feasible. However, CPDP requires projects that have the same metric set,
+be feasible. However, there are two major limitations to transfer knowledge across projects for CPDP. First, CPDP requires projects that have the same metric set,
 meaning the metric sets should be identical between projects.
 As a result, current techniques for CPDP are difficult to apply across
-projects with heterogeneous metric sets.
+projects with heterogeneous metric sets. Second, it is not well-studied when we can conduct effective CPDP. In other words, since a target dataset have few data samples as its history is short, it is important to investigate the lower bounds of data samples for effective CPDP.
 
-To address the limitation, we propose heterogeneous defect
+To address the first limitation, we propose heterogeneous defect
 prediction (HDP) to predict defects across
 projects with heterogeneous metric sets. Our HDP approach conducts metric selection
 and metric matching to build a prediction model between projects with heterogeneous
 metric sets. Our empirical study on 28 subjects shows that about 68\% of
 predictions using our approach outperform or are comparable to WPDP with
-statistical significance.
+statistical significance. For the second limitation, we conduct additional empirical study by using various sampling sizes of source and target datasets and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that the sample size of 200 for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -597,12 +599,12 @@ defect prediction, quality assurance, heterogeneous metrics, replication study.
 
 \input{Sections/01_Introduction.tex}
 \input{Sections/02_Background.tex}
-%\input{Sections/02_Motivation.tex}
+\input{Sections/02_Motivation.tex}
 \input{Sections/03_Approach.tex}
 \input{Sections/04_Evaluation.tex}
-\input{Sections/04b_Evaluation.tex}
 \input{Sections/05_Result.tex}
 \input{Sections/05b_Result_Identigying_optimal_threshold.tex}
+\input{Sections/04b_Evaluation.tex}
 \input{Sections/05c_whysmall.tex}
 \input{Sections/06_Discussion.tex}
 \input{Sections/07_Conclusion.tex}
@@ -795,22 +797,22 @@ defect prediction, quality assurance, heterogeneous metrics, replication study.
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
-\end{IEEEbiography}
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
 
 % if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 % insert where needed to balance the two columns on the last page with
 % biographies
 %\newpage
 
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate

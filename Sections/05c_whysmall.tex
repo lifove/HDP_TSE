@@ -3,20 +3,20 @@
 %\input{dims}
 
 \newcommand{\tion}[1]{\S\ref{sect:#1}}
-\newcommand{\fig}[1]{Figure~\ref{fig:#1}}
+% \newcommand{\fig}[1]{Figure~\ref{fig:#1}}
 \newcommand{\eq}[1]{Equation~\ref{eq:#1}}
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
+% \newcommand{\bi}{\begin{itemize}}
+% \newcommand{\ei}{\end{itemize}}
 
 \section{Explaining These Results}\label{sect:xplain}
 To assess the generality of the above results, we need some background knowledge that knows when a few samples will (or will not)
-be sufficient to built a defect predictor. Using some sampling theory, this section:
+be sufficient to build a defect predictor. Using some sampling theory, this section:
 \bi
 \item
 Builds such a mathematical model;
 \item Maps known aspects
 of defect data  into that model;
-\item Identifies what would need to change before the above results would no longer holder.
+\item Identifies what would need to change before the above results would no longer hold.
 \ei
 To start, we repeat the {\em lessons learned} above as well as what is {\em known about defect data sets}.
 Next, we define a {\em maths model} which will be used in a {\em Monte Carlo simulation} to generate a log of how many samples are required
@@ -26,10 +26,9 @@ to find some signal. This log will be summarized via a {\em decision tree learne
 \subsubsection{ Lessons from the above work}
 
 The above results show
-that a  
-a small number
+that a small number
 of examples are sufficient to build a defect predictor, even when the data is being transferred from columns with other names.
-In the following we will build a model computing the probability that $n$ training examples are sufficient to detect $e$\% defect modules.
+In the following we will build a model computing the probability that $n$ training examples are sufficient to detect $e$\% defective modules.
 
 In order to simplify the analysis, we will divide $n$ into
   $n<50, n<100, n<200,n\ge 200$ respectively (and note that $n  \ge 200$ is where the above
@@ -45,15 +44,15 @@ i.e. they are divided into $b=2$ bins.
 
 Other results~\cite{shepperd94}
 show that defect prediction data containing dozens
-of attributes  containing many correlated
+of attributes, many of which are correlated
 attributes. Hence, while a data set may have many dimensions, it only really ``needs'' a few
-(and by ``need'' we mean that adding in uneeded dimensions does not add to the accuracy
-of defect preditors learend from this data).
+(and by ``need'' we mean that adding in unnecessary dimensions does not add to the accuracy
+of defect predictors learned from this data).
 
 
 Feature subset selection algorithms~\cite{Hall03} can  determine
 which  dimensions are needed, and which can be ignored.
-When applied to defect datas~\cite{Menzies07},
+When applied to defect data~\cite{Menzies07},
 we found that those data sets may only need  $d \in \{2,3\}$
 dimensions.
 
@@ -65,7 +64,7 @@ Hence, in the following, we will pay particular attention to the ``typical'' reg
 Before writing down some maths, it is useful to start with some intuitions.
 Accordingly, consider a chess board  containing small  piles of defects in some cells.
 Like all chess boards, this one is  divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells).
-Further, some cells of the chessboard are blank which other cells are $e$\% covered
+Further, some cells of the chess board are blank while other cells are $e$\% covered
 with that signal.
 
 If we throw a small pebble at that chess board, then  the odds
@@ -80,14 +79,14 @@ learning. For example,
 instead of a board with two
 dimensions, data mining works on a ``chess board''
 with $d$ dimensions: i.e. one for all the independent
-variable collected from a project (which are ``needed'', as defined as \tion{data}).
+variables collected from a project (which are ``needed'', as defined as \tion{data}).
 
 Also,
 instead of each dimension being divided into eight (like a chess board), it is common in data mining for SE~\cite{Menzies2014a}
 to divide dimensions accroding to some {\em descritization policy}~\cite{lust08}.
 Discretization converts a numeric variable with infinite range into a smaller number of  $b$ bins. Hence, the number of cells in a
-hyper-dimensional chessboard is $b^d$ and the probability of selecting any one cell is
-\begin{equation}\label{eq:c}c=1/(d^d)=b^{-d}\end{equation}
+hyper-dimensional chess board is $b^d$ and the probability of selecting any one cell is
+\begin{equation}\label{eq:c}c=1/(b^d)=b^{-d}\end{equation}
 Once we arrive at any cells, we will be in a region with $e$ percent errors.
 What  is the probability $p$ that we will find those $e$ errors, given $n$ samples from the training data?
 According to Voas and Miller~\cite{voas1995software},
@@ -104,7 +103,7 @@ But at all other values of $k$, some cells contain more errors than others, comp
   \item $x_c$ is the proportion of errors in each part of $C$. \mbox{$x_c =  R_{c\in C}^k$}.
   \item We normalize $x_c$ to be some ratio $0 \le x_c \le 1$ as follows: $X= \sum_{c\in C} x_c$ then $x_c = x_c/X$
     \ei
-    If  $e$ is the ratio of classes within a software projects containing errors, then $E$ 
+    If  $e$ is the ratio of classes within a software project containing errors, then $E$ 
     is the expected value  of selecting a cell {\em and} that cell containing errors:
     \begin{equation}\label{eq:E}
      E   = \sum_{c\in C}c \times x_ce
@@ -129,7 +128,7 @@ the target signal, thus {\em decreasing} how many samples are required.
 \subsubsection{Monte Carlo Simulation}
     The above maths lets us define
     a  Monte Carlo simulation to assess the external validity of our results.
-    1000 times, we picked $k,b,d,e$ values at random from:
+    1000 times, we picked $k,d,b,e$ values at random from:
     \bi
       \item $k \in \{1,2,3,4,5\}$;
   \item $d \in \{3,4,5,6,7\}$ dimensions;
@@ -137,10 +136,10 @@ the target signal, thus {\em decreasing} how many samples are required.
     \item $e\in \{0.1,0.2,0.3,0.4\}$
       \ei
       (These ranges were set using our experience with data mining, For example, our prior work shows in defect prediction data sets
-      with 40 or more diminesions, that good predictors can be build using $d\le 7$ of those dimensions~\cite{Menzies07}.)
+      with 40 or more dimensions, that good predictors can be built using $d\le 7$ of those dimensions~\cite{Menzies07}.)
       
      1000 times,
-     we increased $n$ until \eq{p} showed  $q$ passed our reasonable threshold.
+     we increased $n$ until \eq{p} showed  $p$ passed our reasonable threshold.
      Next, we generated examples of what $n$ value was found using  $k,b,d,e$.
      
 \begin{figure}
@@ -202,15 +201,15 @@ likely to find defects occuring at probability $e$.}\label{fig:dtree}
     ranges of $\{k,b,d,e\}$. Decision tree learners seek an attribute range that, when used to split the data,
       simplifies the distribution of the dependent variable in each split.
       The decision tree learner is then called recursively on each split.
-      To test the stability of the learned model, the learning is repeated ten times, each time using 90\%of the data from training and the rest
-      for testing. The weighted average performance values for the learned decision trees were remarkably good:
+      To test the stability of the learned model, the learning is repeated ten times, each time using 90\% of the data from training and the rest
+      for testing. The weighted average performance values for the learned decision tree were remarkably good:
       \bi
     \item False alarm rates = 2\%;
     \item F-measures (i.e. the harmonic mean of recall and precision) of 95\%
       \ei
 \subsection{Results}
 
-The resulting decision tree, shown in \fig{dtree}. This defined regions where
+The resulting decision tree, shown in \fig{dtree}, defined regions where
 building defect predictors would be very easy and much harder:
 \bi
 \item
@@ -218,8 +217,8 @@ Lines 2 to 6 discuss a very easy case. Here, we only need
 one dimension to build defect predictors and,
 for such simple data sets, 50 to 100 examples are enough for defect prediction.
 \item
-Lines 22,36,46 show a branch of the decision three
-where  need many dimensions that divide into many bins.
+Lines 22, 36, 46 show a branch of the decision tree
+where needs many dimensions that divide into many bins.
 For such data sets, we require a larger number of samples to learn a predictor ($n \ge 200$).
 \ei
 The key part of \fig{dtree} is the ``typical'' region defined in \tion{data};
@@ -229,21 +228,18 @@ i.e.    $b=2, d \le 3$:
 lines 9,10:  we need up to 100 examples when the defect signal is rare (10\%) but
 far fewer when the signal occurs at $e>10$\%.
 \item
-Lines 22 to 27 show another set of branches in this ``typical region''. Note lines 26,27:
+Lines 22 to 27 show another set of branches in this ``typical region''. Note lines 26, 27:
 we need up 50 to 200 examples.
 \ei
 \subsection{Summary}
-Our experiments with transfer elarning showed that 50 to 200 examples are needed for adequate
+Our experiments with transfer learning showed that 50 to 200 examples are needed for adequate
 transfer of defect knowledge. If the reader doubts that this number is too small to be effective,
 we note that:
 \bi
-\item Other researchers working with LogisticRegression~\cite{peduzzi1996simulation}
-\wei{have reported that 50 ``events per decision variable'' are adequate for building models using that
-data miner; i.e. if our data only needs three dimensions
-that  50*3=150 training examples will suffice.}
-\item For our defect data sets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
-and found that for our two class defect prediction data ({\em defects=present, defects=absent}),
-that there was little improvement after 100 examples (as would have been predicted by~\cite{peduzzi1996simulation}).
+\item Other researchers working with Logistic Regression~\cite{peduzzi1996simulation}
+have reported that 10 ``events per decision variable'' are adequate for building models using that
+data miner. For our defect data sets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
+and found that considering 2 independent variable on average, there was little improvement after 100 examples with EPV = 10 (as would have been predicted by~\cite{peduzzi1996simulation}).
 \item The maths of \tion{xplain} shows that this ``100 examples are enough'' is a feature of the kinds of
 data being explored; specifically, how many dimensions are needed and how many bins are required when dividing
 those dimensions.

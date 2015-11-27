@@ -1,3 +1,4 @@
+
 \section{Size Limits (lower bounds) for Effective Transfer Learning}
 
 Like prior works\cite{nam2013transfer,
@@ -42,13 +43,13 @@ In that figure:
 \item
   The {\em black} line show the results using {\em all} data;
 \item
-  The {\em red} line shows results from transferring from {\em some} small $N$ number of samples
+  The {\em colourful} lines show results from transferring from {\em some} small $N$ number of samples
   in the source data.
 \item
   The letters show the unique ID of each data set.
 \ei
 The data sets are ordered left to right by the difference to the black line (where we transfer using {\em
-  all} the source data:
+  all} the source data):
 \bi
 \item
   On the left, the black line is
@@ -95,12 +96,12 @@ Working in the domain cardiology,
   of  Logistic Regression (the learner used in this study). Translated into our terminology,
   that study would predict that  10 defective modules per independent variable should
   suffice for effective learning. Of course, learners require defective and {\em non-defective}
-  examples so to $M$ defective examples, we add will add $N > M$ more.
+  examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
   independent variables were picked during {\em metric  selection}. In practice, that number
   was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$
-  randomly selected defect modules, then added up to $N$ more for $N\in \{50,100,150,250\}$.
+  randomly selected defective modules, then randomly added $(N-M)$ non-defective modules for $N\in \{50,100,150,250\}$.
 
   (Aside: note that this is different to the above experiment since, before, the more $N$ examples
   we selected, the more {\em defective} modules we would use. Now, in this experiment, we will also
@@ -110,12 +111,12 @@ Working in the domain cardiology,
   \bi
   \item These are median AUC results from 20 repeats.
 \item
-  The {\em black/red} lines show the results using {\em all/some} of the data, respectively
+  The {\em black/colourful} lines show the results using {\em all/some} of the data, respectively
   (but now, the {\em some} never contains more than $M=20$ defective modules;
 \item
   The data sets are ordered left to right according
   the performance difference between using
-   all} or {\em some} of the data;
+   {\em all} or {\em some} of the data;
    \item
      On the left/right ,  we do {\em better/worse} using
   {\em all} data than using {\em some}.
@@ -126,5 +127,5 @@ Working in the domain cardiology,
   $M=20$ defective modules.
 
   Note that such a very small sample would be very quick to collect: after writing (say) a few
-  hundred classes, inspect enough to find 20 defective ones-- at which point that data is a candidate
+  hundred classes, inspect enough to find 20 defective ones---at which point that data is a candidate
   for transfer learning.

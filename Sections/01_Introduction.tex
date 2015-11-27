@@ -209,7 +209,7 @@ datasets to build a prediction model. For example, many PROMISE defect datasets
 even if they have heterogeneous metric sets~\cite{promise12} could be used as
 training datasets to predict defects in any project.
 
-The key idea of our HDP approach is matching metrics that have
+The key idea of our HDP approach is to transfer knowledge from a source dataset to predict defects in a target dataset by matching metrics that have
 similar distributions between source and target datasets. In addition, we also
 used metric selection to remove less informative metrics of a source dataset
 for a prediction model before metric matching.
@@ -218,6 +218,10 @@ Our empirical study shows that HDP models are feasible and their prediction
 performance is promising. About 68\% of HDP predictions
 outperform or are comparable to WPDP predictions with statistical
 significance.
+
+However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?" Since HDP compares distributions between source and target datasets, it is important to identify the lower bounds of the size of the source and target datasets for effective transfer learning. If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
+
+To address this issue, we conduct additional empirical study by using various sampling sizes of source and target datasets and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
 
 % To our knowledge, this is a first study on defect prediction using
 % datasets with different feature spaces. We hope this study will suggest a
@@ -228,6 +232,7 @@ Our contributions are as follows:
   \item Propose the heterogeneous defect prediction models.
   \item Conduct an extensive and large-scale empirical study to evaluate
   the heterogeneous defect prediction models.
+  \item Validate the lower bounds of the size of source and target datasets for effective transfer learning in defect prediction.
 \squishend
 
 % This paper is organized as follows. Section~\ref{sec:Background} explains
