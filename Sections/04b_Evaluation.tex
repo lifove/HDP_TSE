@@ -13,7 +13,7 @@ for the target project, it requires waiting for it to finish before
 transferring its learned lessons. This begs the question ``how early can we transfer?''.
 That is, how {\em few} data from source and target projects do we need before transfer can be effective?
 
-\begin{figure}[!htp]
+\begin{figure}[t]
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=\linewidth]{Figures/raleigh/sample_random.eps}
@@ -73,7 +73,7 @@ HDP framework to get a good predictor.
 
 
 
-\begin{figure}[!htp]
+\begin{figure}[t]
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=\linewidth]{Figures/raleigh/sample_epv.eps}
@@ -104,7 +104,9 @@ Working in the domain cardiology,
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
   independent variables were picked during {\em metric  selection}. In practice, that number
   was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$
-  randomly selected defective data, then randomly added $(N-M)$ non-defective data for $N\in \{50,100,150,250\}$.
+  randomly selected defective data, then randomly added $(N-M)$ non-defective data for
+  $N\in \{50,100,150,250\}$ for the source data. For the target data set, since we don't
+  know the labels of data, we simply sampled $N$ for target data in metric matching.
 
   (Aside: note that this is different to the above experiment since, before, the more $N$ examples
   we selected, the more {\em defective} modules we would use. Now, in this experiment, we will also
