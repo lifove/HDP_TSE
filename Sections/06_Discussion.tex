@@ -200,7 +200,7 @@ the size of the target dataset.
 
 \begin{table}[!t]
 %\small
-\scriptsize
+%\scriptsize
 \centering
 \caption{Prediction performance (a
 median AUC and \% of Win) in different metric selections.
@@ -214,8 +214,8 @@ median AUC and \% of Win) in different metric selections.
 \label{tab:various_fs}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
-\begin{tabular}{|@{}c@{}||c@{ }|@{}c@{}||c@{ }|@{}c@{}||c@{ }|@{}c@{}||c|}
-%\begin{tabular}{|c||C|C||C|C||C|C||C|}
+\begin{tabular}{|@{}c@{}||c@{ }|c@{}||c@{ }|c@{}||c@{ }|c@{}||c|}
+%\begin{tabular}{|@{ }c@{ }||c|c||c|c||c|c||c|}
 \hline
 \multirow{3}{*}{\bf{Approach}}
 &\multicolumn{6}{@{ }c@{ }||}{\bf Against}
@@ -350,10 +350,10 @@ percentage of the Win results (64.7\%-66.2\%) against WPDP.
 
 \begin{table}[!t]
 %\footnotesize
-\scriptsize
+%\scriptsize
 \centering
 \caption{Prediction performance in other analyzers with the matching
-score cutoffs, 0.05 and 0.90. (Anz=Analyzer, TgtCov=Target coverage)
+score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
 % Between within- and
 % cross-results by
 % analyzers, outperforming results with statistical significance
@@ -369,8 +369,8 @@ score cutoffs, 0.05 and 0.90. (Anz=Analyzer, TgtCov=Target coverage)
 \begin{tabular}{|@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}||@{}c@{}|}
 %\begin{tabular}{|c|c||F|F||F|F||F|F||F||c|}
 \hline
-\multirow{3}{*}{\specialcell{\bf{Anz}}}
-&\multirow{3}{*}{\specialcell{\bf{Cut}\\{\bf off}}}
+\multirow{3}{*}{\specialcell{\bf{Analyzer}}}
+&\multirow{3}{*}{\bf Cutoff}
 &\multicolumn{6}{c||}{\bf Against}
 &\multirow{2}{*}{\bf HDP}
 &\multirow{3}{*}{\specialcell{\bf{Tgt}\\{\bf Cov}}}
@@ -534,7 +534,7 @@ prediction model.
 
 \begin{table}[!t]
 %\small
-\scriptsize
+%\scriptsize
 \centering
 \caption{Win/Tie percentages of HDP by KSAnalyzer (cutoff=0.05)
 against WPDP, CPDP-CM, and CPDP-IFS by different machine learners.}

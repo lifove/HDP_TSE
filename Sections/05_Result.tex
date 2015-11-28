@@ -1,5 +1,5 @@
 \vspace{-0.5em}
-\section{Result in AUC}
+\section{Result}
 \label{sec:Result}
 In this section, we report the experimental results of the HDP approach by
 significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05.
@@ -21,7 +21,7 @@ statistical test~\cite{Corder09}.
 \begin{table}[!t]
 %\footnotesize
 %\small
-\scriptsize
+%\scriptsize
 \centering
 \caption{Comparison results among WPDP, CPDP-CM, CPDP-IFS,
 and HDP by KSAnalyzer with the cutoff of 0.05 in a median AUC.
@@ -33,8 +33,8 @@ and HDP by KSAnalyzer with the cutoff of 0.05 in a median AUC.
 \label{tab:result_overview}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
-\begin{tabular}{|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|}
-%\begin{tabular}{|c||c|c|c||c|}
+%\begin{tabular}{|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|}
+\begin{tabular}{|@{ }c@{ }||c|c|c||@{ }c@{ }|}
 \hline
 {\bf Target}
 & \specialcell{{\bf WPDP}\\{(Baseline1)}} 
@@ -426,7 +426,7 @@ practice.
 
 \begin{table}[t]
 %\small
-\scriptsize
+%\scriptsize
 \centering
 \caption{Median AUCs of baselines and
 HDP in KSAnalyzer (cutoff=0.05) by each source group.
@@ -437,8 +437,8 @@ HDP in KSAnalyzer (cutoff=0.05) by each source group.
 % proposed approach are bold-faced and underlined respectively.
 }
 \label{tab:compare}
-\begin{tabular}{|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|}
-%\begin{tabular}{|c|D|D|D|D||c|}
+%\begin{tabular}{|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|}
+\begin{tabular}{|c|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||c|}
 \hline
 
 % \multirow{2}{*}{\specialcell{{\bf Source}\\{\bf group}}}	&
@@ -804,7 +804,7 @@ source and target datasets, and (2) predicting defects.
 
 \begin{table}[!t]
 %\small
-\scriptsize
+%\scriptsize
 \centering
 \caption{Win/Tie/Loss results of HDP by KSAnalyzer (cutoff=0.05)
 against WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS (Baseline3).}
@@ -813,7 +813,7 @@ against WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS (Baseline3).}
 %\setlength{\extrarowheight}{1.5pt}
 %\begin{tabular}{|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|@{ }c@{
 %}|@{ }c@{ }|}
-\begin{tabular}{|@{ }c@{}||@{ }c@{ }|@{ }c@{ }|@{ }c@{}||@{ }c@{ }|@{ }c@{
+\begin{tabular}{|c||@{ }c@{ }|@{ }c@{ }|@{ }c@{}||@{ }c@{ }|@{ }c@{
 }|@{ }c@{}||@{ }c@{ }|@{ }c@{ }|@{ }c@{}|}
 \hline
 

@@ -1,15 +1,17 @@
 
 \section{Size Limits (lower bounds) for Effective Transfer Learning}
+\label{sec:sizelimit}
 
 Like prior works\cite{nam2013transfer,
   ma2012transfer, rahman2012recalling, ryu2014value,
   zhang2014towards}, the basic HDP method we
-proposed above uses {\em all} the instances in feasible data
-sets as training data to perform KS-test and build
+proposed above uses {\em all} the instances in potential source and target data to
+perform KS-test to select the best matched metrics and then build
 defect prediction learners.
-Collecting {\em all} that data requires waiting for a project to finish before
+Collecting {\em all} that data from source and target project need much more work and also
+for the target project, it requires waiting for it to finish before
 transferring its learned lessons. This begs the question ``how early can we transfer?''.
-That is, how {\em few} source data examples do we need before transfer can be effective?
+That is, how {\em few} data from source and target projects do we need before transfer can be effective?
 
 \begin{figure}[!htp]
 	\centering
@@ -25,16 +27,17 @@ That is, how {\em few} source data examples do we need before transfer can be ef
 Recall from the above,
 HDP uses  data sets  in a two step process.
 To test the impact of having access to {\em less} data,
-we  add a third initial sampling process:
+we  add a third initial sampling process before doing metric matching:
 instead of using all the instances from
-candidate data sets, that  data sets will
+candidate source and target data sets, those data sets will
 be randomly sampled to generate smaller data sets of
 size $N \in \{50, 100, 150, 200\}$. If
 the number of instances in the original data set is
 smaller than $N$, all those instances will be
-included.
+included. With those sampled data, we do metric matching to build learner
+and finally predict labels of the original all data in target project.
 
-The results for this HDP-with-limited-training-data experiment is shown in \fig{small_data}
+The results for this HDP-with-limited-data experiment is shown in \fig{small_data}
 (we display median AUC results from 20 repeats, using  Logistic regression
 as the default learner). 
 % Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}.
@@ -43,8 +46,8 @@ In that figure:
 \item
   The {\em black} line show the results using {\em all} data;
 \item
-  The {\em colourful} lines show results from transferring from {\em some} small $N$ number of samples
-  in the source data.
+  The {\em colourful} lines show results of transferring from {\em some} small $N$ number of samples(instead of {\em all})
+  in the source and target data sets during metric matching and learner building;
 \item
   The letters show the unique ID of each data set.
 \ei
@@ -83,7 +86,7 @@ HDP framework to get a good predictor.
 
 
 The results of the last section are very encouraging-- a small number of source
-training examples are enough for effective transfer learning. Naturally,
+and target examples are enough for effective transfer learning. Naturally,
 we were suspicious of this result (since it was ``almost too good to be true'').
 Accordingly, we explored the literature and found:
 \bi
@@ -94,14 +97,14 @@ Working in the domain cardiology,
   Peduzzi et al.~\cite{peduzzi1996simulation}
   report 10 ``events'' per variable (EPV) are enough to maximize the predictive performance
   of  Logistic Regression (the learner used in this study). Translated into our terminology,
-  that study would predict that  10 defective modules per independent variable should
+  that study would predict that  10 defective data per independent variable should
   suffice for effective learning. Of course, learners require defective and {\em non-defective}
   examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
   independent variables were picked during {\em metric  selection}. In practice, that number
   was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$
-  randomly selected defective modules, then randomly added $(N-M)$ non-defective modules for $N\in \{50,100,150,250\}$.
+  randomly selected defective data, then randomly added $(N-M)$ non-defective data for $N\in \{50,100,150,250\}$.
 
   (Aside: note that this is different to the above experiment since, before, the more $N$ examples
   we selected, the more {\em defective} modules we would use. Now, in this experiment, we will also
@@ -109,10 +112,11 @@ Working in the domain cardiology,
 
   The results are shown in \fig{small_epv}. Like before:
   \bi
-  \item These are median AUC results from 20 repeats.
+  \item These are median AUC results from 20 repeats;
 \item
-  The {\em black/colourful} lines show the results using {\em all/some} of the data, respectively
-  (but now, the {\em some} never contains more than $M=20$ defective modules;
+  The {\em black/colourful} lines show the results using {\em all/some} of  data from
+  the source and target data sets during metric matching and learner building, respectively
+  (but now, the {\em some} never contains more than $M=20$ defective modules);
 \item
   The data sets are ordered left to right according
   the performance difference between using
