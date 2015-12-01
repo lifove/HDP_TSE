@@ -2,7 +2,7 @@
 \section{Size Limits (lower bounds) for Effective Transfer Learning}
 \label{sec:sizelimit}
 
-Like prior works\cite{nam2013transfer,
+Like prior works\lin{work, not countable} \cite{nam2013transfer,
   ma2012transfer, rahman2012recalling, ryu2014value,
   zhang2014towards}, the basic HDP method we
 proposed above uses {\em all} the instances in potential source and target data to
@@ -27,7 +27,7 @@ That is, how {\em few} data from source and target projects do we need before tr
 Recall from the above,
 HDP uses  data sets  in a two step process.
 To test the impact of having access to {\em less} data,
-we  add a third initial sampling process before doing metric matching:
+we  add a third initial sampling process before doing\lin{performing} metric matching:
 instead of using all the instances from
 candidate source and target data sets, those data sets will
 be randomly sampled to generate smaller data sets of
@@ -40,13 +40,14 @@ and finally predict labels of the original all data\lin{all original data} in \l
 The results for this HDP-with-limited-data experiment is shown in \fig{small_data}
 (we display median AUC results from 20 repeats, using  Logistic regression
 as the default learner). 
+\lin{It's unclear to me. So metric matching on the 50, 100, etc.? What is third initial sampling? Add a backward reference to it? One caveat: I focused on reading the abstract, Section 3, 7, and 8, and I only skimmed over the rest of the paper, so maybe I missed it. But in general it is still good to add a backward reference.}
 % Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}.
 In that figure:
 \bi
 \item
   The {\em black} line show the results using {\em all} data;
 \item
-  The {\em colourful} lines show results of transferring from {\em some} small $N$ number of samples(instead of {\em all})
+  The {\em colourful}\lin{coloured?} lines show results of transferring from {\em some} small $N$ number of samples (instead of {\em all})
   in the source and target data sets during metric matching and learner building;
 \item
   The letters show the unique ID of each data set.
@@ -69,7 +70,7 @@ tests are within 0.05 difference in terms of AUC and
 $17/28$ tests show smaller data sets have equivalent
 or even better performance. Here, we recommend that
 sample size $N=200$ could be good enough for this
-HDP framework to get a good predictor.
+HDP framework to get\lin{obtain} a good predictor.
 
 
 
@@ -85,13 +86,13 @@ HDP framework to get a good predictor.
 \subsection{20 Defective Examples  are Enough}
 
 
-The results of the last section are very encouraging-- a small number of source
+The results of the last section are very encouraging--\lin{---}a small number of source
 and target examples are enough for effective transfer learning. Naturally,
 we were suspicious of this result (since it was ``almost too good to be true'').
 Accordingly, we explored the literature and found:
 \bi
-\item Evidence that this ``a few examples are enough'' has been seen in other domains;
-\item Methods to reduce the cost of reducing this data set, even further.
+\item Evidence that this ``a few examples are enough'' has been seen in other domains; \lin{add citations}
+\item Methods to reduce the cost of reducing this data set, even further. \lin{this phrase is awkward and difficult to understand, rephrase}
   \ei
 Working in the domain cardiology,
   Peduzzi et al.~\cite{peduzzi1996simulation}
@@ -103,10 +104,10 @@ Working in the domain cardiology,
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
   independent variables were picked during {\em metric  selection}. In practice, that number
-  was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$
+  was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$ \lin{why *10?}
   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
-  $N\in \{50,100,150,250\}$ for the source data. For the target data set, since we don't
-  know the labels of data, we simply sampled $N$ for target data in metric matching.
+  $N\in \{50,100,150,250\}$ for the source data. For the target data set, since we don't\lin{do not}
+  know the labels of data\lin{data labels}, we simply sampled $N$ for target data in metric matching.
 
   (Aside: note that this is different to the above experiment since, before, the more $N$ examples
   we selected, the more {\em defective} modules we would use. Now, in this experiment, we will also
@@ -128,10 +129,10 @@ Working in the domain cardiology,
   {\em all} data than using {\em some}.
   \ei
   We observe that between $N=50$ and $N=200$, the performance delta
-  does not change by very much. Also, if we compare $N=200$ between \fig{small_data}
-  and \fig{small_epv}, there seems no large disadvantage of using just
+  does not change by very\lin{delete the weasel word very} much. Also, if we compare $N=200$ between \fig{small_data}
+  and \fig{small_epv}, there seems\lin{what does "seems" mean exactly? not very scientific here} no large disadvantage of using just
   $M=20$ defective modules.
 
-  Note that such a very small sample would be very quick to collect: after writing (say) a few
+  Note that such a very small sample would be very\lin{delete the weasel word very} quick to collect: after writing (say) a few
   hundred classes, inspect enough to find 20 defective ones---at which point that data is a candidate
   for transfer learning.
