@@ -15,8 +15,8 @@ be sufficient to build a defect predictor. Using some sampling theory, this sect
 \item
 Builds such a mathematical model;
 \item Maps known aspects
-of defect data  into that model; \lin{and} 
-\item Identifies what would\lin{delete} need to change before the above results would\lin{delete} no longer hold.
+of defect data  into that model;
+\item Identifies what need to change before the above results no longer hold.
 \ei
 To start, we repeat the {\em lessons learned} above as well as what is {\em known about defect data sets}.
 Next, we define a {\em maths model} which will be used in a {\em Monte Carlo simulation} to generate a log of how many samples are required
@@ -27,11 +27,11 @@ to find some signal. This log will be summarized via a {\em decision tree learne
 
 The above results show
 that a small number
-of examples are sufficient to build a defect predictor, even when the data is being\lin{delete} transferred from columns with other names.
-In the following we will build a model computing\lin{to compute or that computes} the probability that $n$ training examples are sufficient to detect $e$\% defective modules.
+of examples are sufficient to build a defect predictor, even when the data is  transferred from columns with other names.
+In the following we will build a model to compute the probability that $n$ training examples are sufficient to detect $e$\% defective modules.
 
-In order to simplify the analysis, we will\lin{delete} divide $n$ \lin{What is n? Is it N?} into
-  $n<50, n<100, n<200,n\ge 200$ \lin{Is it $50\le n<100$ or simply $n<100$?} respectively (and note that $n  \ge 200$ is where the above
+In order to simplify the analysis, we divide $n$ into
+  $n<50, n<100, n<200$, and $n\ge 200$ four ranges respectively (and note that $n  \ge 200$ is where the above
   results do not hold).
 
 \subsubsection{Known about defect data sets}\label{sect:data}
@@ -40,13 +40,13 @@ Recent
 results~\cite{Zhang2014,nam2015clami} show that, for defect data, good
 predictors can be built via a {\em median chop} of
 numeric project data;
-i.e.\lin{i.e.,} they are divided into $b=2$ bins \lin{I don't quite understand this. Expand the explanation?}.
+i.e., they are divided into $b=2$ bins \lin{I don't quite understand this. Expand the explanation?}.
 
 Other results~\cite{shepperd94}
 show that defect prediction data containing dozens
 of attributes, many of which are correlated
 attributes. Hence, while a data set may have many dimensions, it only really ``needs'' a few
-(and by ``need'' we mean that adding in\lin{delete} unnecessary dimensions does not add to\lin{improve} the accuracy
+(and by ``need'' we mean that adding unnecessary dimensions does not add the accuracy
 of defect predictors learned from this data).
 
 
@@ -59,9 +59,9 @@ dimensions.
 Hence, in the following, we will pay particular attention to the ``typical'' region of
  $b=2, d \le 3$.
 
-\subsubsection{A Maths\lin{Mathematical} Model}
+\subsubsection{A Mathematical Model}
 
-Before writing down some maths, it is useful to start with some intuitions\lin{The intuition of our mathematical model is as follows.}.
+Before writing down some maths, it is useful to start with some intuitions.
 Accordingly, consider a chess board  containing small  piles of defects in some cells.
 Like all chess boards, this one is  divided into a grid of $b^2$ cells (in standard chess, $b=8$ so the board has 64 cells).
 Further, some cells of the chess board are blank while other cells are $e$\% covered
@@ -118,7 +118,7 @@ threshold $T$.  To make that determination, we call
 $p(E,n)$ for increasing values of $n$ until $p \ge
 T$ (for this paper, we used $T = 67\%$).
 
-For completeness, it should be added  that\lin{delete it ... that} the procedure of the above paragraph is an {\em upper bound} on the
+For completeness, it should be added  that the procedure of the above paragraph is an {\em upper bound} on the
 number of examples needed to find a signal since it
 assumes random sampling of a skewed distribution. In
 practice, if a data mining algorithm is smart, then
@@ -126,9 +126,9 @@ it would {\em increase} the probability of finding
 the target signal, thus {\em decreasing} how many samples are required.
 
 \subsubsection{Monte Carlo Simulation}
-    The above maths lets\lin{let, please check grammar carefully} us define
+    The above maths let  us define
     a  Monte Carlo simulation to assess the external validity of our results.
-    \lin{broken sentences} 1000 times, we picked $k,d,b,e$ values at random from:
+    Within 1000 times of iterations, we picked $k,d,b,e$ values at random from:
     \bi
       \item $k \in \{1,2,3,4,5\}$;
   \item $d \in \{3,4,5,6,7\}$ dimensions;
@@ -138,7 +138,7 @@ the target signal, thus {\em decreasing} how many samples are required.
       (These ranges were set using our experience with data mining, For example, our prior work shows in defect prediction data sets
       with 40 or more dimensions, that good predictors can be built using $d\le 7$ of those dimensions~\cite{Menzies07}.)
       
-     \lin{a broken paragraph} 1000 times,
+     Within 1000 iterations of Monte Carlo simulation,
      we increased $n$ until \eq{p} showed  $p$ passed our reasonable threshold.
      Next, we generated examples of what $n$ value was found using  $k,b,d,e$.
      
@@ -193,14 +193,14 @@ the target signal, thus {\em decreasing} how many samples are required.
     46	  |   |   dimensions > 3 : \(n \ge 200 \)
 \end{alltt}
 \caption{How many $n$ examples are required to be at least 67\%
-likely to find defects occuring\lin{occurring, please spell check} at probability $e$.}\label{fig:dtree}
+likely to find defects occurring at probability $e$.}\label{fig:dtree}
 \end{figure}
 \subsubsection{Decision Tree Learning}
 
     These examples were given to a decision tree learner to determine what $n$ values are selected by different
     ranges of $\{k,b,d,e\}$. Decision tree learners seek an attribute range that, when used to split the data,
       simplifies the distribution of the dependent variable in each split.
-      The decision tree learner is then called recursively on each split. \lin{This experiment is unclear to me. What is the training set and test set? What are the labels and features? Judging from the tree, I know what the features are, but it should be expliclity stated.}
+      The decision tree learner is then called recursively on each split.  
       To test the stability of the learned model, the learning is repeated ten times, each time using 90\% of the data from training and the rest
       for testing. The weighted average performance values for the learned decision tree were remarkably good:
       \bi
@@ -209,9 +209,17 @@ likely to find defects occuring\lin{occurring, please spell check} at probabilit
       \ei
 \subsection{Results}
 
-\lin{It may be a good idea to explain how to interpret the tree. It is intuitive to me but it may not be to someone who is not familiar with decision tree.}
 The resulting decision tree, shown in \fig{dtree}, defined regions where
-building defect predictors would be very easy and much harder:
+building defect predictors would be very easy and much harder.
+Such trees can be read as nested if-then-else statements. For example, Line 1 is an ``if'',
+lines 2 to 21 are the associated ``then'' and the tree starting at Line 22 is the ``else''.
+For another example, we could summarise lines 1 to 5 as follows:
+\begin{quote}
+if there are one dimension and the probability of the defects is less than 10\% then (if
+the number if bins per dimension is three or less then 50 samples will suffice; else, up to 100
+samples may be required.)
+\end{quote}
+
 \bi
 \item
 Lines 2 to 6 discuss a very easy case. Here, we only need
@@ -242,6 +250,5 @@ have reported that 10 ``events per decision variable'' are adequate for building
 data miner. For our defect data sets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
 and found that considering 2 independent variable on average, there was little improvement after 100 examples with EPV = 10 (as would have been predicted by~\cite{peduzzi1996simulation}).
 \item The maths of \tion{xplain} shows that this ``100 examples are enough'' is a feature of the kinds of
-data being explored; \lin{the following text doesn't connect with this bullet point. Judging from the text above, the following should be a feature, but I don't see how "how many dimensions are needed" is a feature. This is somewhat related to the lack of explanation of the decision tree learning I mentioned earlier.} specifically, how many dimensions are needed and how many bins are required when dividing
-those dimensions.
+data being explored.
 \ei

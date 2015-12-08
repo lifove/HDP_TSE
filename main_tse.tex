@@ -443,7 +443,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Overcoming Limits to Transfer Learning in Defect Prediction}
+\title{Overcoming Limits to \\Transfer Learning in Defect Prediction}
 %
 %
 % author names and IEEE memberships
@@ -543,25 +543,22 @@ E-mail: \{jc.nam,lintan\}@uwaterloo.ca
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Software defect prediction is one of the most active research areas in
-software engineering. We can build a prediction model with past defect data
-collected from a software project and predict new defects in the same
-project, i.e. within-project defect prediction (WPDP).
-Researchers also proposed cross-project defect prediction (CPDP) to predict
+Much recent work has documented the success of  cross-project defect prediction (CPDP) to predict
 defects for new projects lacking in defect data by using
-prediction models built by other projects. In recent studies, CPDP is proved to
-be feasible. However, there are two major limitations to transfer knowledge across projects for CPDP. First, CPDP requires projects that have the same metric set,
-meaning the metric sets should be identical between projects.
-As a result, current techniques for CPDP are difficult to apply across
-projects with heterogeneous metric sets. Second, it is not well-studied when we can conduct effective\lin{when it is effective to conduct} CPDP. In other words, since a target dataset have few data samples as its history is short, it is important to investigate the lower bounds of data samples\lin{data sample sizes?} for effective CPDP.
+prediction models built by other projects. 
+Much of that  work share the same   limitations: it requires 
+homogeneous data; i.e. different projects   must describe themselves  using the {\em same} terminology.
 
-To address the first limitation, we propose heterogeneous defect
-prediction (HDP) to predict defects across
-projects with heterogeneous metric sets. Our HDP approach conducts metric selection
-and metric matching to build a prediction model between projects with heterogeneous
-metric sets. Our empirical study on 28 subjects shows that about 68\% of
-predictions using our approach outperform or are comparable to WPDP with
-statistical significance. For the second limitation, we conduct additional empirical study by using various sampling sizes of source and target datasets and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that the sample size of 200 for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+
+This paper presents methods for {\em hetrogeneous} defect
+prediction (HDP) that matches up different metrics in different projects.
+HDP's metric matching requires a ``large enough'' sample of distributions in the source
+and target projects---which raises the question on how large is ``large enough'' for effective
+heterogeneous defect
+prediction.
+This paper shows that empirically and theoretically, ``large enough'' may be as small as 200 examples (with as low as 20 defective
+samples). That is, even when projects use different terminology, it is possible to quickly transfer lessons
+learned about defect prediction.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -598,8 +595,8 @@ defect prediction, quality assurance, heterogeneous metrics, transfer learning.
 \IEEEpeerreviewmaketitle
 
 \input{Sections/01_Introduction.tex}
-\input{Sections/02_Background.tex}
 \input{Sections/02_Motivation.tex}
+\input{Sections/02_Background.tex}
 \input{Sections/03_Approach.tex}
 \input{Sections/04_Evaluation.tex}
 \input{Sections/05_Result.tex}

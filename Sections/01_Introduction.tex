@@ -221,7 +221,7 @@ significance.
 
 However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?" Since HDP compares distributions between source and target datasets, it is important to identify the lower bounds of the size of the source and target datasets for effective transfer learning. If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
 
-To address this issue, we conduct additional empirical study by using various sampling sizes of source and target datasets and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+To address this issue, we conduct additional empirical study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
 
 % To our knowledge, this is a first study on defect prediction using
 % datasets with different feature spaces. We hope this study will suggest a
@@ -229,12 +229,13 @@ To address this issue, we conduct additional empirical study by using various sa
 
 Our contributions are as follows:
 \squishlist
-  \item Propose the heterogeneous defect prediction models.
-  \item Conduct an extensive and large-scale empirical study to evaluate
+  \item Proposing the heterogeneous defect prediction models.
+  \item Conducting an extensive and large-scale empirical study to evaluate
   the heterogeneous defect prediction models.
-  \item Validate the lower bounds of the size of source and target datasets for effective transfer learning in defect prediction.
+  \item Validating the lower bounds of the size of source and target datasets for effective transfer learning in defect prediction.
 \squishend
 
+We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, to investigate \jc{TBA}
 % This paper is organized as follows. Section~\ref{sec:Background} explains
 % the background of our study. % for our framework for cross-domain defect
 % % prediction.

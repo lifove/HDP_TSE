@@ -1,10 +1,10 @@
-\section{Background and Related Work}
+\section{Related Work}
 \label{sec:Background}
 %\subsection{Cross-project Defect Prediction}
 The CPDP approaches have been studied by many researchers
-of late~\cite{Ma12,Nam13,Rahman12,Turhan09,Zimmermann09}. Since the performance
+of late~\cite{Canfora13,Ma12,Nam13,Panichella14,Rahman12,Ryu14,Ryu15,Turhan09,Zhang15,Zimmermann09}. Since the performance
 of CPDP is usually very poor~\cite{Zimmermann09}, researchers have proposed various techniques to
-improve CPDP~\cite{Ma12,Nam13,Turhan09,Watanabe08}.
+improve CPDP~\cite{Canfora13,Ma12,Nam13,Panichella14,Ryu14,Ryu15,Turhan09,Watanabe08}. In this section, we discuss CPDP studies in terms of metric sets.
 
 % In the previous studies, cross-prediction was
 % applied on datasets with the same metric set or researchers simply used
@@ -20,7 +20,8 @@ improve CPDP~\cite{Ma12,Nam13,Turhan09,Watanabe08}.
 % 	\item Conducting cross-prediction within a project group consisting of
 % 	existing projects having the same metric set.
 % \squishend
-
+  
+\subsection{CPDP Using Same/common Metric Sets}
 Watanabe et al. proposed the metric compensation approach for
 CPDP~\cite{Watanabe08}. The metric compensation transforms a target dataset
 similar to a source dataset by using the average metric
@@ -95,9 +96,14 @@ PROMISE repository have the same metric set~\cite{promise12}. In other words,
 we cannot directly conduct CPDP for the 18\% of the defect datasets by
 using the remaining (82\%) datasets in the PROMISE
 repository~\cite{promise12}.
-CPDP studies conducted by Canfora et al. and Panichella et al.
-use 10 Java projects only with the same metric set from the PROMISE
-repository~\cite{Canfora13,promise12,Panichella14}
+
+
+There are recent CPDP studies using datasets with the same metric sets or using common metric sets~\cite{Canfora13,promise12,Panichella14,Zhang15,Ryu14,Ryu15}.
+%Panichella. Canfora Ryu, Zhang(comsac)
+Canfora et al., Panichella et al., and Zhang et al.
+used ten Java projects only with the same metric set from the PROMISE
+repository~\cite{Canfora13,promise12,Panichella14,Zhang15}.
+Ryu et al. proposed the value-cognitive boosting and transfer cost-sensitive boosting approaches for CPDP~\cite{Ryu14,Ryu15}. Ryu et al. used common metrics in NASA and SOFTLAB datasets~\cite{Ryu14} or Jureczko datasets with the same metric set from the PROMISE repository~\cite{Ryu15}. These recent studies for CPDP did not discuss about the heterogeneity of metrics across project datasets.
 % ~\sung{say how many \% of PROMISE projects have the same dataset.}
 % although there are lots of existing datasets available.
 
@@ -108,6 +114,7 @@ repository~\cite{Canfora13,promise12,Panichella14}
 % They observed cross-prediction models can be
 % improved in terms of AUC by selecting a source dataset similar to a target
 % dataset~\cite{Fukushima14}.
+
 
 Zhang et al. proposed the universal model for CPDP~\cite{Zhang14}.
 %Since the individual project may have its specific
@@ -130,7 +137,7 @@ using object-oriented metrics cannot be used for the target dataset.
 %  or need to costly build a new universal model with the same
 % metric set of the target dataset.
 
-
+\subsection{CPDP Using Heterogeneous Metric Sets}
 He et al. addressed the limitations due to
 heterogeneous metric sets in CPDP studies listed
 above~\cite{He14}.
@@ -145,6 +152,9 @@ evaluation might be weak since the prediction performance of a regular CPDP is
 usually very poor~\cite{Zimmermann09}. In addition, He et al. conducted
 experiments on only 11 projects in 3 dataset groups~\cite{He14}.
 
+Jing et al. proposed heterogeneous cross-company defect prediction based on the extended canonical correlation analysis (CCA+)~\cite{Jing15} to address the limitations of heterogeneous metric sets. Their approach adds dummy metrics with zero values for non-existing metrics in source or target datasets and then transforms both source and target datasets to make their distributions similar. CCA+ was evaluated on 14 projects in four dataset groups.
+%One of issues of CCA+ is that it was not properly evaluated on cross-company dataset groups. For example, ReLink datasets are not from the same company but they just have same metric sets.
+
 % In our previous study, we used two groups of datasets, ReLink and
 % AEEEM~\cite{Nam13}. 
 We propose HDP to address the above
@@ -152,7 +162,7 @@ limitations caused by projects with heterogeneous metric sets.
 Contrary to the study by He et al.~\cite{He14}, we compare HDP to
 WPDP, and HDP achieved better or comparable prediction performance to WPDP in
 about 68\% of predictions.
-In addition, we conducted extensive experiments on 28 projects in 5 dataset groups. In
+Comparing to the experiments for CCA+~\cite{Jing15} on 14 projects, we conducted more extensive experiments on 28 projects in 5 dataset groups. In addition, CCA+ transforms original source and target datasets so that it is difficult to directly explain the meaning of metric values generated by CCA+~\cite{Jing15}. However, HDP keeps the original metrics and builds models with the small subset of selected and matched metrics between source and target datasets in that it can make prediction models simpler and easier to explain~\cite{Nam15HDP,Shihab14}. In
 Section~\ref{sec:Approach}, we explain our approach in detail.
 
 % In this section, we explain transfer learning on different domains.
