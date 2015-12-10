@@ -216,7 +216,7 @@ We may not have any matched metrics based on the cutoff threshold. In this
 case, we cannot conduct defect prediction. In
 Figure~\ref{fig:matching}, if the cutoff threshold is 0.9, none of the matched
 metrics are considered for HDP so we cannot build a prediction model for the target
-dataset. For this reason, we investigate target prediction coverage (i.e.
+dataset. For this reason, we investigate target prediction coverage (i.e.,
 what percentage of target datasets could be predicted?) in
 our experiments.
 
@@ -277,7 +277,7 @@ threshold of 0.30 in this example.
 % of datasets are normalized between 0 and 1 to avoid no individual feature has
 % greater influence than others~\cite{Kocaguneli13}.
 
-Each analyzer for the metric matching scores is described below.
+Each analyzer for the metric matching scores is described in the following subsections.
 
 \subsubsection{PAnalyzer}
 PAnalyzer simply compares 9 percentiles (10th, 20th,\ldots, 90th) of ordered
@@ -401,4 +401,4 @@ source and $j$-th target metrics.
 After applying metric selection and matching, we can finally build a
 prediction model using a source dataset with selected and matched metrics. Then,
 as a regular defect prediction model, we can predict defects on a target dataset
-with metrics matched to selected source metrics.
+with the matched metrics.

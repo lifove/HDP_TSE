@@ -15,7 +15,7 @@ of AT\&T for effective and efficient testing activities~\cite{Ostrand05}.
 Most defect prediction models are based on
 machine learning, therefore it is a must to collect defect datasets
 to train a prediction model~\cite{DAmbros12,Menzies07}. The
-defect datasets consist of various software metrics and labels. Commonly
+defect datasets consist of various software metrics and labels. Software metrics are the terminology describing software projects. Commonly
 used software metrics for defect prediction are complexity metrics (such as lines of code, Halstead
 metrics, McCabe's cyclometic complexity, and CK metrics) and
 process metrics~\cite{Basili96,Halstead77,McCabe76,Rahman13}. Labels indicate
@@ -220,7 +220,7 @@ significance.
 
 However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?" Since HDP compares distributions between source and target datasets, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning. If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
 
-To address this issue, we conduct additional experiments by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+To address this issue, we conduct an empirical study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
 
 % To our knowledge, this is a first study on defect prediction using
 % datasets with different feature spaces. We hope this study will suggest a

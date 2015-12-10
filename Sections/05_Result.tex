@@ -2,10 +2,8 @@
 \section{Result}
 \label{sec:Result}
 In this section, we report the experimental results of the HDP approach to address RQ1.
-The results reported in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} are based on
-significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05.
 
-Among different
+We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} based on significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05. Among different
 metric selections, significance attribute selection led to the best
 prediction performance overall. In terms of analyzers, KSAnalyzer led
 to the best prediction performance.
@@ -13,7 +11,7 @@ Since the KSAnalyzer is based on the p-value of a statistical test, we chose
 a cutoff of 0.05 which is a commonly accepted significance level in the
 statistical test~\cite{Corder09}.
 
-In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report HDP prediction performances by using various metric selection approaches, metric matching analyzers, and machine learners respectively to investigate HDP results more in terms of RQ1.
+In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report the HDP results by using various metric selection approaches, metric matching analyzers, and machine learners respectively to investigate HDP performances more in terms of RQ1.
 
 \vspace{-0.2em}
 %----------------------------------------------------------
@@ -101,7 +99,7 @@ ar6		&0.654	& 0.611 &0.527	&\underline{0.640}		\\ \hline \hline \hline
 
 Table~\ref{tab:result_overview} shows the prediction performance (a median AUC)
 of baselines and HDP by KSAnalyzer with the cutoff of 0.05,
-for each target as well as all targets (the second last row in the table). Baseline1 represents
+for each target as well as {\em all} targets (the second last row in the table). Baseline1 represents
 the WPDP results of a target project and Baseline2 shows
 the CPDP results using common metrics (CPDP-CM) between source and target
 projects. Baseline3 shows the results of CPDP-IFS proposed by He et
@@ -114,7 +112,7 @@ statistical significance are underlined in
 the table. Between Baseline3 and our approach, better AUC values with
 statistical significance are shown with an asterisk (*).
 
-The last row in Table~\ref{tab:result_overview} shows Cliff's $\delta$ for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size against the baseline. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size. For example, the Cliff's $\delta$ between WPDP and HDP is 0.143 and its magnitude is {\em negligible} as shonw in Table~\ref{tab:result_overview}. In other words, HDP is comparable to WPDP in terms of the effect size.
+The last row in Table~\ref{tab:result_overview} shows Cliff's $\delta$ for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size against the baseline. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size. For example, the Cliff's $\delta$ between WPDP and HDP is 0.143 and its magnitude is {\em negligible} as in Table~\ref{tab:result_overview}. In other words, HDP is comparable to WPDP in terms of the effect size.
 
 %From Table~\ref{tab:result_overview}, 
 We observed the following results about RQ1:
@@ -507,7 +505,7 @@ outperforms or had a comparable prediction performance against CPDP-CM.
 There are no better results in CPDP-CM
 than those in HDP by KSAnalyzer with statistical significance (no
 underlined results in third column in Table~\ref{tab:compare}). In addition, HDP
-by KSAbalyzer outperforms CPDP-IFS in all source groups.
+by KSAnalyzer outperforms CPDP-IFS in all source groups.
 
 The target prediction coverage in the MORPH and SOFTLAB groups yielded 100\% as
 shown in Table~\ref{tab:compare}. This implies our HDP models may conduct defect
@@ -875,7 +873,7 @@ Total & \specialcell{{147}\\{66.2\%}} &\specialcell{{3}\\{1.4\%}}
 \end{table}
 
 
-To investigate our performance evaluation in detail, we report
+To investigate our performance evaluation for HDP in detail, we report
 the Win/Tie/Loss results of HDP by KSAnalyzer with the cutoff of 0.05 against
 WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS
 (Baseline3) in Table~\ref{tab:win_results}.
@@ -916,13 +914,13 @@ KSAnalyzer compared to WPDP models.
 In Figure~\ref{fig:best_dist}, we analyzed distributions of matched metrics using box plots for one of Win cases, ant-1.3$\Rightarrow$ar5. 
 % the feature value distribution of
 % a matched feature in the prediction combination, ant-1.3$\Rightarrow$ar5, whose AUC is 0.938.
-The gray, black, and white box plots shows distributions of matched metrics in
+The gray, black, and white box plots show distributions of matched metric values in
 all, buggy, and clean instances respectively. The three box plots on the
 left-hand side represent distributions of a source metric while the three
 box plots on the right-hand side represent those of a target metric. The
 bottom and top of the boxes represent the first and third quartiles
 respectively.
-The solid horizontal line in a box represents the median value in each distribution. 
+The solid horizontal line in a box represents the median metric value in each distribution. 
 Black points in the figure are outliers.
 
 Figure~\ref{fig:best_dist} explains how the prediction
@@ -942,7 +940,7 @@ bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
 unique\_operands} have the tendency to be more bug-prone. For this reason, the
 model using the matched metrics could achieve such a high AUC (0.938). We could
-observe this bug-prone tendency in other Win results. Since matching metrics is
+observe this bug-proneness tendency in other Win results. Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
 addresses several issues related to a dataset shift such as the covariate shift
 and domain shift discussed by Turhan~\cite{Turhan12}.
@@ -974,16 +972,15 @@ bug-proneness between source and target metrics. Figure~\ref{fig:loss_dist}
 shows how the bug-prone tendencies of source and target metrics are different.
 Interestingly, the matched source and target metric by the KSAnalyzer is the
 same as {\em LOC} ({\em CountLineCode} and {\em loc}) in both.
-As we observe in the figure, the median of buggy instance values of the
-source metric is higher than that of clean instances in that the more {\em LOC}
-implies the higher bug-proneness in the case of Safe. However, the median of
-buggy instance values in a target metric is lower than that of clean instance values
+As we observe in the figure, the median metric value of buggy instances is higher than that of clean instances in that the more {\em LOC}
+implies the higher bug-proneness in the case of Safe. However, the median metric value of
+buggy instances in the target is lower than that of clean instances
 in that the less {\em LOC} implies the higher bug-proneness in
 velocity-1.4. This inconsistent tendency of
 bug-proneness between the source and target metrics could degrade the
 prediction performance although they are the same metric.
 
-We regard the matching that has an inconsistent bug-prone tendency between
+We regard the matching that has an inconsistent bug-proneness tendency between
 source and target metrics as a noisy metric matching.
 % This implies the target
 % feature does not follow the tendency that a higher complexity causes more bug-proneness.
@@ -1026,13 +1023,12 @@ the common metric was noisy and was not helpful for building a prediction model.
 Overall, the numbers of Win and
 Tie results are 147 and 3 respectively out of all of the 222 prediction
 combinations.
-This means that about 67.6\% of prediction combinations by our HDP
+This means that in 67.6\% of prediction combinations our HDP
 models achieve better or comparable prediction performance than those in
 WPDP.
 
 The Win/Tie/Loss results against Baseline2 and Baseline3 show a similar trend.
-The HDP results in the 161 (72.5\%) out of 222 prediction combinations show
-HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 185
+In the 161 (72.5\%) out of 222 prediction combinations, HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 185
 (83.3\%) prediction combinations are Win or Tie results.
 
 
@@ -1090,7 +1086,7 @@ None			& 0.657 &47.3\%	&0.624 &50.3\% &0.536 &66.3\% &0.663	\\ \hline
 Table~\ref{tab:various_fs} shows prediction results on various metric selection approaches
 including with no metric selection (`None'). We compare the median AUCs of
 the HDP results by KSAnalyzer with the cutoff of 0.05 to those of WPDP, CPDP-CM,
-or CPDP-IFS, and report \% of Win results.
+or CPDP-IFS, and report the percentages of Win results.
 
 Overall, we could observe metric selection to be helpful in improving
 prediction models in terms of AUC. When applying metric selection, the Win results
@@ -1103,7 +1099,7 @@ comparable to WPDP models with even a few key metrics~\cite{Gao11, He14subset}.
 However, the percentages of Win results in `None' were lower than those in
 applying metric selection. Among metric selection approaches, `Chi-Square' and
 `Significance' based approaches lead to the best performance in terms of the
-percentage of the Win results (64.7\%-66.2\%) against WPDP.
+percentages of the Win results (64.7\%-66.2\%) against WPDP.
 
 \subsection{Performance in Various Metric Matching Analyzers}
 \label{subsec05}
@@ -1356,7 +1352,7 @@ increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
 0.90, we observed prediction results by PAnalyzer and KSAnalyzer
 gradually improved from 0.617 to 0.692 and 0.724 to 0.852 in AUC, respectively.
 This means these two analyzers can filter out negative prediction combinations
-well. As a result, the percentage of Win results are also significantly
+well. As a result, the percentages of Win results are also significantly
 increased.
 
 Results by SCoAnalyzer were
@@ -1365,7 +1361,7 @@ prediction performance rarely changed regardless of cutoff thresholds; results
 by SCoAnalyzer in different cutoffs from 0.05 to 0.90 did not
 vary as well.
 A possible reason is that SCoAnalyzer does not directly compare
-the distribution between source and target metrics.
+the distributions between source and target metrics.
 This result implies that the similarity of distribution between source and
 target metrics is a very important factor for building a better
 prediction model.
@@ -1427,26 +1423,26 @@ and Logistic Model Trees
 (LMT)~\cite{DAmbros12,Ghotra15,Lee11,Lessmann08,Nam13,Song11}.
 Table~\ref{tab:diff_learners} shows Win/Tie results.
 
-Logistic regression (Logistic) led to the best results among various
-learners. The Logistic regression models works well when there is a linear
+Logistic Regression (Logistic) led to the best results among various
+learners. The Logistic Regression models works well when there is a linear
 relationship between a predictor variable (a metric) and the logit
 transformation of the outcome variable (bug-proneness)~\cite{Logstic}.
-In our study, this linear relationship is related to the bug-prone tendency of
+In our study, this linear relationship is related to the bug-proneness tendency of
 a metric, that is, a higher complexity causes more bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}.
 As the consistent bug-prone tendency of matched metrics is important in HDP, the
-HDP models built by Logistic regression can lead to the best prediction
+HDP models built by Logistic Regression can lead to the best prediction
 performance.
 
 HDP models built by other learners such as
-Simple logistic and LMT led to comparable results to Logistic regression against
+Simple Logistic and LMT led to comparable results to Logistic Regression against
 CPDP-CM and CPDP-IFS. Against Baseline2, Win results (69.4\% and 64.4\%) in
 Simple Logistic and LMT are comparable to Win results (66.2\%) in Logistic.
 %Against Baseline3, the HPD results with Simple
 %Logistic and LMT are similar to those with Logistic regression. 
-Simple logistic also uses the logit function and LMT adopts Logistic
-regression at the leaves of decision tree~\cite{Ghotra15}. In other words, both
+Simple Logistic also uses the logit function and LMT adopts Logistic
+Regression at the leaves of decision tree~\cite{Ghotra15}. In other words, both
 learners consider the linear relationship like Logistic
-regression~\cite{Logstic}. In our experimental settings, HDP tends to
+Regression~\cite{Logstic}. In our experimental settings, HDP tends to
 work well with the learners based on the linear relationship between a metric
 and a label (bug-proneness).
 
@@ -1454,8 +1450,8 @@ and a label (bug-proneness).
 In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
 \squishlist
     \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and significance attribute selection.
-    \item Compared to WPDP, HDP achieved about 68\% of Win/Tie results. However, there are still 32.4\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
+    \item Compared to WPDP, HDP achieved 67.6\% of Win/Tie results. However, there are still 32.4\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
-    \item HDP worked well with Logistic regression but not other machine learners. One possible reason is that Logistic regression captures the linear relationship between metrics and labels that is related to the bug-proneness tendency of the metrics.
+    \item HDP worked well with Logistic Regression but not other machine learners. One possible reason is that Logistic Regression captures the linear relationship between metrics and labels that is related to the bug-proneness tendency of the metrics.
 \squishend

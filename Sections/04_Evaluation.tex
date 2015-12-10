@@ -19,7 +19,9 @@ two research questions.
 % Section~\ref{sec:analyzers} (RQ1).
 RQ1 leads us to investigate whether our
 HDP is comparable to WPDP (Baseline1), CPDP-CM
-(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. In Section~\ref{sec:Result}, we report HDP results compared to three baselines as well as its performances in different settings such as various metric selection approaches, matching analyzers, and machine learners. In RQ2, we investigate the lower bounds of the effective sizes of source and target datasets for HDP models. Since HDP compares the distributions of source metrics to those of target metrics, it is important to seek the empirical evidence for the effective size of source and target datasets to match source and target metrics. We report the results of the empirical study for RQ2 in Section~\ref{sec:sizelimit} and validate the generality of its results in Section~\ref{sect:xplain}.
+(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. In Section~\ref{sec:Result}, we report HDP results compared to three baselines as well as its performances in different settings such as various metric selection approaches, matching analyzers, and machine learners.
+
+In RQ2, we investigate the lower bounds of the effective sizes of source and target datasets for HDP models. Since HDP compares the distributions of source metrics to those of target metrics, it is important to seek the empirical evidence for the effective sizes of source and target datasets to match source and target metrics. We report the results of the empirical study for RQ2 in Section~\ref{sec:sizelimit} and validate the generality of its results in Section~\ref{sect:xplain}.
 %In RQ1, we validate
 % prediction models built by defect datasets. In addition, we were interested
 % in verifying if our framework can build prediction models from non-defect
@@ -466,7 +468,7 @@ In total, we have 600 possible prediction combinations from these 28 datasets.
 % marked Wine instances as clean when the quality score is more than 5, otherwise
 % as buggy.
 
-\subsection{Matching Score Cutoff Thresholds}
+\subsection{Cutoff Thresholds for Matching Scores}
 
 To build HDP models, we apply
 various cutoff thresholds for matching scores to observe how prediction
@@ -521,7 +523,7 @@ projects with heterogeneous metric sets (Imbalanced Feature Sets) by using the
 mean, harmonic mean, minimum, maximum, range, variation ratio, first quartile,
 third quartile, interquartile range, variance, standard
 deviation, coefficient of variance, skewness, and kurtosis~\cite{He14}.
-The 16 distribution characteristics are used as features to build a prediction model.
+The 16 distribution characteristics are used as features to build a prediction model~\cite{He14}.
 % Using common features for cross-predictions on datasets with different feature
 % sets was used in previous cross-project/company defect prediction studies by Nam et al. and Turhan et al.~\cite{Nam13,Turhan09}.
 % Comparing cross-results by manual feature matching using common features to
@@ -564,10 +566,10 @@ The 16 distribution characteristics are used as features to build a prediction m
 % algorithm suggested from the previous defect prediction studies and get several
 % insights to select a proper machine learning algorithm for cross-domain defect
 % prediction as well. For the six algorithms, we used Weka
-For the machine learning algorithm, we use Logistic regression, which is widely
+For the machine learning algorithm, we use Logistic Regression, which is widely
 used for both WPDP and CPDP
 studies~\cite{Meneely2008,Nam13,Shihab11,Zimmermann09}.
-We use Logistic regression implemented in Weka with default
+We use Logistic Regression implemented in Weka with default
 options~\cite{Weka}.
 
 For WPDP, it is necessary to split datasets into training and test
@@ -609,7 +611,7 @@ threshold values.
 The higher AUC represents better prediction performance and the AUC of 0.5 means
 the performance of a random predictor~\cite{Rahman12}.
 
-To measure the effect size of AUC results among baselines and HDP, we compute Cliff's $\delta$ that is a non-parametric effect size measure~\cite{romano06}. Romano et al. suggested to evaluate the magnitude of the effect size as follows: negligible ($|\delta|<$ 0.147), small ($|\delta|<$ 0.33), medium ($|\delta|<$ 0.474), and large (0.474 $\leq|\delta|$)~\cite{romano06}.
+To measure the effect size of AUC results among baselines and HDP, we compute Cliff's $\delta$ that is a non-parametric effect size measure~\cite{romano06}. As Romano et al. suggested, we evaluate the magnitude of the effect size as follows: negligible ($|\delta|<$ 0.147), small ($|\delta|<$ 0.33), medium ($|\delta|<$ 0.474), and large (0.474 $\leq|\delta|$)~\cite{romano06}.
 
 To compare HDP by our approach to baselines, we also use the
 Win/Tie/Loss evaluation, which is used for performance comparison between
@@ -621,7 +623,7 @@ baselines and HDP~\cite{Wilcoxon45}.
 If an HDP model for the target dataset outperforms a corresponding
 baseline result after the statistical test, we mark this HDP model as a `Win'.
 In a similar way, we mark an HDP model as a `Loss' when the results of
-a baseline outperforms that of our HDP approach with statistical
+a baseline are better than those of our HDP approach with statistical
 significance.
 If there is no difference between a baseline and HDP with statistical
 significance, we mark this case as a `Tie'. Then, we count the number of
