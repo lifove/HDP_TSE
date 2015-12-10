@@ -3,15 +3,11 @@
 \vspace{-0.5em}
 \subsection{Research Questions}
 To systematically evaluate heterogeneous defect prediction (HDP) models, we set
-four research questions.
+two research questions.
 \squishlist
   \item RQ1: Is heterogeneous defect prediction comparable to WPDP
-  (Baseline1)?
-  \item RQ2: Is  heterogeneous defect prediction comparable to
-  CPDP using common metrics (CPDP-CM, Baseline2)?
-   \item RQ3: Is  heterogeneous defect prediction comparable to
-  CPDP-IFS (Baseline3)?
-   \item RQ4: What are the  lower  bounds  of  the  size  of source and target  datasets  for  effective HDP.
+  , CPDP using common metrics (CPDP-CM), and CPDP-IFS?
+   \item RQ2: What are the  lower  bounds  of  the  size  of source and target  datasets  for  effective HDP.
 %   \item[RQ2:] Are cross-domain defect predictions from non-defect to
 %   defect datasets comparable to within-predictions?
 %  \item[RQ3:] What is the prediction coverage of cross-domain defect
@@ -21,9 +17,9 @@ four research questions.
 % Since we designed four feature matching analyzers, we identify the
 % best co-occurrence analyzers among the five analyzers introduced in
 % Section~\ref{sec:analyzers} (RQ1).
-RQ1, RQ2, and RQ3 lead us to investigate whether our
+RQ1 leads us to investigate whether our
 HDP is comparable to WPDP (Baseline1), CPDP-CM
-(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}.In RQ4, we investigate the lower bounds of the effective size of source and target datasets for HDP models. Since HDP  compares the distributions of source metrics to those of target metrics, it is important to seek the empirical evidence for the effective size of source and target datasets to match source and target metrics.
+(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. In Section~\ref{sec:Result}, we report HDP results compared to three baselines as well as its performances in different settings such as various metric selection approaches, matching analyzers, and machine learners. In RQ2, we investigate the lower bounds of the effective sizes of source and target datasets for HDP models. Since HDP compares the distributions of source metrics to those of target metrics, it is important to seek the empirical evidence for the effective size of source and target datasets to match source and target metrics. We report the results of the empirical study for RQ2 in Section~\ref{sec:sizelimit} and validate the generality of its results in Section~\ref{sect:xplain}.
 %In RQ1, we validate
 % prediction models built by defect datasets. In addition, we were interested
 % in verifying if our framework can build prediction models from non-defect
@@ -590,11 +586,14 @@ splits used in WPDP. Since there are 1000 different test
 splits for a within-project prediction, the CPDP-CM, CPDP-IFS, and HDP models
 are tested on 1000 different test splits as well.
 
+These settings for comparing HDP to the baselines are for RQ1. The experimental settings for RQ2 is described in Section~\ref{sec:sizelimit} in detail.
+
 % We use ASAnalyzer with Filters as a co-occurrence analyzer and 0.90 cutoff
 % for our framework since this analyzer and cutoff leads to the best
 % performance as shown in the preliminary results (Table~\ref{tab:DiffCutOffs}).
 \vspace{-0.3em}
 \subsection{Measures}
+\label{sec:measure}
 To evaluate the prediction performance, we use the area under the receiver
 operating characteristic curve (AUC). The AUC is known as a useful measure for comparing
 different models and is widely used because AUC is unaffected by class imbalance
@@ -609,6 +608,8 @@ positive rate (recall) and the false positive rate on  various prediction
 threshold values.
 The higher AUC represents better prediction performance and the AUC of 0.5 means
 the performance of a random predictor~\cite{Rahman12}.
+
+To measure the effect size of AUC results among baselines and HDP, we compute Cliff's $\delta$ that is a non-parametric effect size measure~\cite{romano06}. Romano et al. suggested to evaluate the magnitude of the effect size as follows: negligible ($|\delta|<$ 0.147), small ($|\delta|<$ 0.33), medium ($|\delta|<$ 0.474), and large (0.474 $\leq|\delta|$)~\cite{romano06}.
 
 To compare HDP by our approach to baselines, we also use the
 Win/Tie/Loss evaluation, which is used for performance comparison between

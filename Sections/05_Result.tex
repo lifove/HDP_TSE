@@ -1,7 +1,8 @@
 \vspace{-0.5em}
 \section{Result}
 \label{sec:Result}
-In this section, we report the experimental results of the HDP approach by
+In this section, we report the experimental results of the HDP approach to address RQ1.
+The results reported in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} are based on
 significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05.
 
 Among different
@@ -12,9 +13,12 @@ Since the KSAnalyzer is based on the p-value of a statistical test, we chose
 a cutoff of 0.05 which is a commonly accepted significance level in the
 statistical test~\cite{Corder09}.
 
+In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report HDP prediction performances by using various metric selection approaches, metric matching analyzers, and machine learners respectively to investigate HDP results more in terms of RQ1.
+
 \vspace{-0.2em}
 %----------------------------------------------------------
-\subsection{Comparison Result with Baselines} % KSAnalyzer with the cutoff of %
+\subsection{Comparison Result with Baselines}
+\label{subsec01}% KSAnalyzer with the cutoff of %
 % 0.05}
 %----------------------------------------------------------
 
@@ -77,7 +81,9 @@ ar4		&0.657	& 0.588 &0.575	&{\bf \underline{0.816}}*	 \\ \hline
 ar5		&0.804	& 0.875	&0.585	&0.911*	\\ \hline
 ar6		&0.654	& 0.611 &0.527	&\underline{0.640}		\\ \hline \hline \hline
 
-{\bf {\em All}} & 0.657 & 0.636 &0.555	& \underline{\bf 0.724}*  \\ \hline
+{\bf {\em All}} & 0.657 & 0.636 &0.555	& \underline{\bf 0.724}*  \\ \hline \hline
+
+{\bf {\em Cliff's $\delta$}} & \specialcell{0.143\\(Negligible)} & \specialcell{0.296\\(Small)} & \specialcell{0.792\\(Large)}	& --  \\ \hline
 
 
 \end{tabular}
@@ -95,7 +101,7 @@ ar6		&0.654	& 0.611 &0.527	&\underline{0.640}		\\ \hline \hline \hline
 
 Table~\ref{tab:result_overview} shows the prediction performance (a median AUC)
 of baselines and HDP by KSAnalyzer with the cutoff of 0.05,
-for each target as well as all targets (the last row in the table). Baseline1 represents
+for each target as well as all targets (the second last row in the table). Baseline1 represents
 the WPDP results of a target project and Baseline2 shows
 the CPDP results using common metrics (CPDP-CM) between source and target
 projects. Baseline3 shows the results of CPDP-IFS proposed by He et
@@ -108,6 +114,8 @@ statistical significance are underlined in
 the table. Between Baseline3 and our approach, better AUC values with
 statistical significance are shown with an asterisk (*).
 
+The last row in Table~\ref{tab:result_overview} shows Cliff's $\delta$ for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size against the baseline. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size. For example, the Cliff's $\delta$ between WPDP and HDP is 0.143 and its magnitude is {\em negligible} as shonw in Table~\ref{tab:result_overview}. In other words, HDP is comparable to WPDP in terms of the effect size.
+
 %From Table~\ref{tab:result_overview}, 
 We observed the following results about RQ1:
 \squishlist
@@ -116,12 +124,9 @@ We observed the following results about RQ1:
 	significance. (The WPDP results in only ML, pc3, and pc4 are in bold font.)
 	\item HDP by KSAnalyzer with the cutoff of 0.05 outperforms
 	WPDP with statistical significance when considering
-	results from all targets ({\em All} in the last row in the table) together in
+	results from all targets ({\em All} in the second last row in the table) together in
 	our experimental settings.
-\squishend  
-
-The following results are related to RQ2:
-\squishlist 	
+	\item The Cliff's $\delta$ between WPDP and HDP is 0.143 but the magnitude of the effect size is {\em negligible}.
 	\item HDP by KSAnalyzer with the cutoff of 0.05
 	leads to better or comparable results to CPDP-CM
 	with statistical significance. (no underlines in CPDP-CM of
@@ -130,10 +135,7 @@ The following results are related to RQ2:
 	CPDP-CM with statistical significance
 	when considering results from {\em All} targets in our experimental
 	settings.
-\squishend  
-
-In terms of RQ3, we observed the following results:
-\squishlist 	
+	\item The Cliff's $\delta$ between CPDP-CM and HDP is 0.296 and the effect size is {\em small}.
 	\item HDP by KSAnalyzer with the cutoff of 0.05
 	leads to better or comparable results to CPDP-IFS with
 	statistical significance. (no asterisks in CPDP-IFS of
@@ -142,6 +144,7 @@ In terms of RQ3, we observed the following results:
 	CPDP-IFS with statistical significance
 	when considering results from {\em All} targets in our experimental
 	settings.
+	\item The Cliff's $\delta$ between CPDP-IFS and HDP is 0.792 and the magnitude of the effect size is {\em large}.
 \squishend  
 % Figure~\ref{fig:compare_results_on_defect} shows how the prediction performance
 % of within- and cross-prediction varies. In
@@ -417,7 +420,7 @@ In terms of RQ3, we observed the following results:
 % 
 
 \subsection{Target Prediction Coverage}
-
+\label{subsec02}
 Target prediction coverage shows how many target projects can be
 predicted by the HDP models. If there are no feasible prediction
 combinations for a target because of there being no matched metrics
@@ -801,7 +804,7 @@ source and target datasets, and (2) predicting defects.
 
 
 \subsection{Win/Tie/Loss Results}
-
+\label{subsec03}
 \begin{table}[!t]
 %\small
 %\scriptsize
@@ -900,10 +903,125 @@ ar3, and ar4 have only Win results. In other words, defects in those six targets
 could be predicted better by other source projects using HDP models by
 KSAnalyzer compared to WPDP models.
 
-However, the eight targets such as JDT, ML, redaktor, velocity-1.4, xalan-2.4,
+\label{sec:why}
+\begin{figure}[t]
+	\centering
+	\vspace{0.5mm}
+	\includegraphics[width=\linewidth]{Figures/Result/best_dist_bplot.pdf}
+	\caption{Distribution of metrics (matching score=0.91)
+	from ant-1.3$\Rightarrow$ar5 (AUC=0.946).}
+	\label{fig:best_dist}
+\end{figure}
+
+In Figure~\ref{fig:best_dist}, we analyzed distributions of matched metrics using box plots for one of Win cases, ant-1.3$\Rightarrow$ar5. 
+% the feature value distribution of
+% a matched feature in the prediction combination, ant-1.3$\Rightarrow$ar5, whose AUC is 0.938.
+The gray, black, and white box plots shows distributions of matched metrics in
+all, buggy, and clean instances respectively. The three box plots on the
+left-hand side represent distributions of a source metric while the three
+box plots on the right-hand side represent those of a target metric. The
+bottom and top of the boxes represent the first and third quartiles
+respectively.
+The solid horizontal line in a box represents the median value in each distribution. 
+Black points in the figure are outliers.
+
+Figure~\ref{fig:best_dist} explains how the prediction
+combination of ant-1.3$\Rightarrow$ar5 can have a high AUC, 0.946. Suppose
+that a simple model predicts that an instance is buggy when the metric value of
+the instance is more than 40 in the case of Figure~\ref{fig:best_dist}. In both
+datasets, approximately 75\% or more buggy and clean instances will be
+predicted correctly. In Figure~\ref{fig:best_dist}, the matched metrics in
+ant-1.3$\Rightarrow$ar5 are the response for class ({\em RFC}: number of methods
+invoked by a class)~\cite{Chidamber94} and the number of unique operands ({\em
+unique\_operands})~\cite{Halstead77}, respectively. The {\em RFC} and {\em
+unique\_operands} are not the same metric so it might look like an arbitrary
+matching. However, they are matched based on their similar distributions as
+shown in Figure~\ref{fig:best_dist}. Typical defect prediction metrics have
+tendencies in which higher complexity causes more
+bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
+Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
+unique\_operands} have the tendency to be more bug-prone. For this reason, the
+model using the matched metrics could achieve such a high AUC (0.938). We could
+observe this bug-prone tendency in other Win results. Since matching metrics is
+based on similarity of source and target metric distributions, HDP also
+addresses several issues related to a dataset shift such as the covariate shift
+and domain shift discussed by Turhan~\cite{Turhan12}.
+
+#The Win/Tie/Loss results show that with our HDP model by KSAnalyzer there is a higher possibility of getting a better prediction performance.
+
+
+%%%%%%%%
+% LOSS results
+%%%%%%%
+However, there are still about 32\% Loss results against WPDP as shown in Table~\ref{tab:win_results}. The eight targets such as JDT, ML, redaktor, velocity-1.4, xalan-2.4,
 xerces-1.2, pc3, and pc4 have no Wins at all against Baseline1. In
 addition, other targets still have Losses even though they have Win or Tie
 results.
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\linewidth]{Figures/Result/loss_dist_bplot.pdf}
+	\caption{Distribution of metrics (matching score=0.45)
+	from Safe$\Rightarrow$velocity-1.4 (AUC=0.391).}
+	\label{fig:loss_dist}
+\end{figure}
+
+
+As a representative Loss case, we investigated distributions of the matched metrics in Safe$\Rightarrow$velocity-1.4, whose AUC is 0.391.
+As observed, Loss results were usually caused by different tendencies of
+bug-proneness between source and target metrics. Figure~\ref{fig:loss_dist}
+shows how the bug-prone tendencies of source and target metrics are different.
+Interestingly, the matched source and target metric by the KSAnalyzer is the
+same as {\em LOC} ({\em CountLineCode} and {\em loc}) in both.
+As we observe in the figure, the median of buggy instance values of the
+source metric is higher than that of clean instances in that the more {\em LOC}
+implies the higher bug-proneness in the case of Safe. However, the median of
+buggy instance values in a target metric is lower than that of clean instance values
+in that the less {\em LOC} implies the higher bug-proneness in
+velocity-1.4. This inconsistent tendency of
+bug-proneness between the source and target metrics could degrade the
+prediction performance although they are the same metric.
+
+We regard the matching that has an inconsistent bug-prone tendency between
+source and target metrics as a noisy metric matching.
+% This implies the target
+% feature does not follow the tendency that a higher complexity causes more bug-proneness.
+% The target feature worked as noise when the model predicted
+% defects in velocity-1.4. 
+We could observe this kind of noisy metric matching in
+prediction combinations in other Loss results.
+
+However, it is very challenging to filter out the noisy metric matching since we
+cannot know labels of target instances in
+advance. If we could design a filter for the noisy metric matching, the Loss
+results would be minimized. Thus, designing a new filter to mitigate these Loss
+results is an interesting problem to address. Investigating this new filter
+for the noisy metric matching will remain as future work.
+
+Figure~\ref{fig:loss_dist} also explains why CPDP-CM did not show reasonable
+prediction performance. Although the matched metrics are same
+as {\em LOC}, its bug-prone tendency is inconsistent. Thus, this matching using
+the common metric was noisy and was not helpful for building a prediction model.
+
+% The DM filter could not remove
+% this matched feature since the modality of all instances in both source and
+% target is still similar. Without knowing labels of target instances, it is
+% difficult to filter out this case. Other Loss results also have similar
+% observations. Designing new filters for these Loss results is a challenging
+% issue since we cannot know distribution of clean and buggy instances of target in
+% advance. Investigating new filters for these patterns remains as future work.
+
+
+
+% The pc4 in Table~\ref{tab:win_results} also have many Loss results.
+% However, note that pc4 still have very high AUC values, 0.899 and 0.70,
+% respectively, The AUC value of 0.70 is considered as a promising result in defect prediction~\cite{Giger12, Lessmann08}. The reason for Loss results
+% of pc1 and pc3 is that within-results in AUC are already very high, 0.78 and
+% 0.79, respectively.
+
+
+%\TODO{Guidelines or suggestions on cross-domain defect prediction?}
 
 Overall, the numbers of Win and
 Tie results are 147 and 3 respectively out of all of the 222 prediction
@@ -915,75 +1033,429 @@ WPDP.
 The Win/Tie/Loss results against Baseline2 and Baseline3 show a similar trend.
 The HDP results in the 161 (72.5\%) out of 222 prediction combinations show
 HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 185
-(83.3\%) predction combinations are Win or Tie results.
-
-The Win/Tie/Loss results show that with our HDP model by
-KSAnalyzer there is a higher possibility of getting a better prediction
-performance.
-
-However, there are still about 32\% Loss results against WPDP. In
-Section~\ref{sec:Discussion}, we discuss and analyze why Loss results happen.
+(83.3\%) prediction combinations are Win or Tie results.
 
 
-% In the SOFTLAB group, all projects get Win results
-% which represent that average AUC of cross-prediction results outperform
-% within-prediction results with statistical significance (the paired t-test,
-% p=0.05).
-% 
-% There is one Tie result in cm1 of the NASA group. The Tie represents that
-% a cross-prediction result is comparable to a within-prediction result with
-% statistical significance. Overall, Win (17) and Tie (1) results are 18 out of 28
-% predictions. Comparing to Loss results, many cross-predictions (64\%) have
-% better or comparable results to within-predictions. In terms of Loss
-% results, 10 predictions did not outperform within-results. 
-%Even though some
-% predictions have Loss results, their within-prediction results are already high
-% and cross-prediction results are also pretty good, i.e. pc3 (0.76) and pc4(0.76) in NASA.
-% In Section~\ref{sec:Discussion}, we will discuss why some predictions got Loss
-% results in detail.
+\subsection{Performance in Different Metric Selections}
+\label{subsec04}
 
-% \begin{table}[t]
-% \small
+\begin{table}[!t]
+%\small
+%\scriptsize
+\centering
+\caption{Prediction performance (a
+median AUC and \% of Win) in different metric selections.
+% Between within- and
+% cross-results by
+% analyzers, outperforming results with statistical significance
+% (Wilcoxon signed-rank, p$<$0.05) is bold-faced. Between cross-results using
+% common features and by analyzers, outperforming results with
+% statistical significance (Wilcoxon signed-rank, p$<$0.05) is underlined.}
+}
+\label{tab:various_fs}
+%\setlength{\tabcolsep}{5pt}
+%\setlength{\extrarowheight}{1.5pt}
+\begin{tabular}{|@{}c@{}||c@{ }|c@{}||c@{ }|c@{}||c@{ }|c@{}||c|}
+%\begin{tabular}{|@{ }c@{ }||c|c||c|c||c|c||c|}
+\hline
+\multirow{3}{*}{\bf{Approach}}
+&\multicolumn{6}{@{ }c@{ }||}{\bf Against}
+&\multirow{2}{*}{\specialcell{\bf{HDP}}}
+\\\cline{2-7}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{\bf{WPDP}}}
+&\multicolumn{2}{@{ }c@{
+}||}{\specialcell{\bf{CPDP-CM}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{\bf{CPDP-IFS}}}
+&
+\\
+\cline{2-8}
+& \bf{AUC}
+& \bf{Win\%}
+& \bf{AUC}  
+& \bf{Win\%}
+& \bf{AUC}  
+& \bf{Win\%}
+& \bf{AUC}  
+\\
+\hline
+\hline
+Gain Ratio	& 0.657 &63.7\%	&0.645 &63.2\% &0.536 &80.2\% &0.720	\\ \hline
+Chi-Square	& 0.657 &64.7\%	&0.651 &66.4\% &0.556 &82.3\% &0.727  \\ \hline
+Significance& 0.657 &66.2\%	&0.636 &66.2\% &0.553 &82.0\% &0.724  \\ \hline
+Relief-F		& 0.670 &57.0\%	&0.657 &63.1\% &0.543 &80.5\% &0.709	\\ \hline
+None			& 0.657 &47.3\%	&0.624 &50.3\% &0.536 &66.3\% &0.663	\\ \hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:various_fs} shows prediction results on various metric selection approaches
+including with no metric selection (`None'). We compare the median AUCs of
+the HDP results by KSAnalyzer with the cutoff of 0.05 to those of WPDP, CPDP-CM,
+or CPDP-IFS, and report \% of Win results.
+
+Overall, we could observe metric selection to be helpful in improving
+prediction models in terms of AUC. When applying metric selection, the Win results
+account for more than about 63\% in most cases against WPDP and CPDP-CM. Against
+CPDP-IFS, the Win results of HDP account for more than 80\% after appying the
+metric selection approaches. This implies that the metric selection approaches
+can remove irrelevant metrics to build a better prediction model. In addition, this result confirms
+the previous studies that we can build prediction models better than or
+comparable to WPDP models with even a few key metrics~\cite{Gao11, He14subset}.
+However, the percentages of Win results in `None' were lower than those in
+applying metric selection. Among metric selection approaches, `Chi-Square' and
+`Significance' based approaches lead to the best performance in terms of the
+percentage of the Win results (64.7\%-66.2\%) against WPDP.
+
+\subsection{Performance in Various Metric Matching Analyzers}
+\label{subsec05}
+% \begin{table*}[t]
+% \scriptsize
 % \centering
-% \caption{Win/Tie/Loss results of cross-predictions against within-predictions
-% in terms of average AUC.}
-% \label{tab:win_results}
+% \caption{Prediction performance in other analyzers with the matching
+% score cutoff thresholds, 0.05 and 0.90. Significance attribute selection is used
+% for metric selection.
+% % Between within- and
+% % cross-results by
+% % analyzers, outperforming results with statistical significance
+% % (Wilcoxon signed-rank, p$<$0.05) is bold-faced. Between cross-results using
+% % common features and by analyzers, outperforming results with
+% % statistical significance (Wilcoxon signed-rank, p$<$0.05) is underlined.}
+% }
+% \label{tab:other_analyzers}
 % %\setlength{\tabcolsep}{5pt}
 % %\setlength{\extrarowheight}{1.5pt}
-% \begin{tabular}{|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|@{ }c@{ }|}
+% %\begin{tabular}{|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{
+% %}||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|}
+% \begin{tabular}{|c|c||c|c|c|c||c|c|c|c||c||c|}
 % \hline
-% Group 	& Target	& Within AUC	& Cross AUC & Result \\\hline
+% \multirow{2}{*}{\specialcell{\bf{Analyzer}}}
+% &\multirow{2}{*}{\specialcell{\bf{Threshold}}}
+% &\multicolumn{4}{c||}{\textbf{Against WPDP}}
+% &\multicolumn{4}{c||}{\specialcell{\bf{Against CPDP}\\\bf{using Common Metrics}}}
+% &\specialcell{\bf{HDP by\\analyzers}}
+% &\multirow{2}{*}{\specialcell{\bf{Target}\\\bf{Coverage}}}
+% \\\cline{3-11}
+% &
+% & \bf{AUC}
+% & \bf{Win\%}
+% & \bf{Tie\%}
+% & \bf{Loss\%}
+% & \bf{AUC} 
+% & \bf{Win\%}
+% & \bf{Tie\%}
+% & \bf{Loss\%}
+% & \bf{AUC}
+% & 
+% \\
 % \hline
-% \multirow{4}{*}{AEEEM} & EQ			& 0.58	& 0.77	& Win	\\ \cline{2-5}
-% & JDT			& 0.79	& 0.82	& Win	\\ \cline{2-5}
-% & LC			& 0.57	& 0.79	& Win	\\ \cline{2-5}
-% & ML			& 0.73	& 0.53	& Loss	\\ \cline{2-5}
-% & PDE			& 0.68	& 0.67	& Loss	\\ \hline \hline
+% \hline
+% %PAnalyzer& 0.00 & \bf{0.684}	& \underline{0.640}	& 0.606 & 100\% \\ \hline 
+% PAnalyzer& 0.05 & \bf{0.684} & 30.3\% & 3.0\% & 66.7\%
+% &\underline{0.640} & 45.1\% & 2.2\% & 52.7\%
+% & 0.617 & 100\%
+% \\
+% \hline PAnalyzer& 0.90  & 0.657 & 54.2\% & 2.4\% & 43.4\%
+% &0.622 & 65.1\% & 1.2\% & 33.7\%
+% & \underline{0.692} & 96\% \\
+% \hline
+% \hline
+% \hline
 % 
-% \multirow{3}{*}{ReLink} &Apache		& 0.71	& 0.68 	& Loss	\\ \cline{2-5}
-% & Zxing		& 0.60	& 0.62	& Win	\\ \cline{2-5}
-% & Safe		& 0.70	& 0.87	& Win	\\ \hline \hline
+% %KSAnalyzer & 0.00 & 0.670 &	0.637	& \underline{0.669} & 100\% \\ \hline 
+% KSAnalyzer & 0.05 & 0.657 & 66.2\% & 1.4\% & 32.4\% 
+% &0.636 & 66.2\% & 6.3\% & 27.5\% 
+% &\underline{\bf{0.724}} &100\% \\
+% \hline KSAnalyzer& 0.90  & 0.657 & 100\% & 0.0\% & 0.0\%
+% &0.761 & 71.4\% & 0.0\% & 28.6\%
+% &\bf{0.852}&21\% \\ \hline
+% \hline
+% \hline
 % 
-% \multirow{10}{*}{MORPH} &ant-1.3		& 0.61	& 0.83	& Win	\\ \cline{2-5}
-% & arc			& 0.66	& 0.79	& Win	\\ \cline{2-5}
-% & camel-1.0	& 0.53	& 0.64	& Win	\\ \cline{2-5}
-% & poi-1.5		& 0.70	& 0.73 	& Win	\\ \cline{2-5}
-% & redaktor	& 0.74	& 0.45	& Loss	\\ \cline{2-5}
-% & skarbonka	& 0.56	& 0.73	& Win	\\ \cline{2-5}
-% & tomcat		& 0.78	& 0.79 	& Win	\\ \cline{2-5}
-% & velocity-1.4	& 0.72	& 0.56	& Loss	\\ \cline{2-5}
-% & xalan-2.4	& 0.75	& 0.68	& Loss	\\ \cline{2-5}
-% & xerces-1.2	& 0.62	& 0.55	& Loss	\\ \hline \hline
+% %SCoAnalyzer & 0.00 & \bf{0.684}	&\underline{0.640}	&0.517 & 100\% \\ \hline 
+% SCoAnalyzer & 0.05 & \bf{0.684} & 28.5\% & 1.7\% & 69.8\%
+% &\underline{0.640} & 37.3\% & 3.5\% & 59.2\%
+% &0.542 & 100\%
+% \\
+% \hline SCoAnalyzer& 0.90 & \bf{0.684} & 29.0\% & 1.8\% & 69.2\%
+% &\underline{0.639} & 36.6\% & 3.3\% & 60.1\%
+% &0.547 &
+% 100\%
+% \\
+% \hline
 % 
-% \multirow{5}{*}{NASA} &cm1			& 0.63	& 0.64	& Tie	\\ \cline{2-5}
-% & mw1			& 0.60	& 0.72	& Win	\\ \cline{2-5}
-% & pc1			& 0.78	& 0.68	& Loss	\\ \cline{2-5}
-% & pc3			& 0.79	& 0.76	& Loss	\\ \cline{2-5}
-% & pc4			& 0.9	& 0.76	& Loss	\\ \hline \hline
+% %PiAnalyzer& 0.00 & \bf{0.684}	&\underline{0.640}	&0.589 & 100\% \\ \hline 
+% % PiAnalyzer& 0.05 & \bf{0.684}	&0.582 &25.2\% & 100\% \\ \hline 
+% % PiAnalyzer& 0.90 & \bf{0.684}	&0.592 &27.0\% & 100\% \\ \hline
+% \end{tabular}
+% \end{table*}
+
+
+\begin{table}[!t]
+%\footnotesize
+%\scriptsize
+\centering
+\caption{Prediction performance in other analyzers with the matching
+score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
+% Between within- and
+% cross-results by
+% analyzers, outperforming results with statistical significance
+% (Wilcoxon signed-rank, p$<$0.05) is bold-faced. Between cross-results using
+% common features and by analyzers, outperforming results with
+% statistical significance (Wilcoxon signed-rank, p$<$0.05) is underlined.}
+}
+\label{tab:other_analyzers}
+%\setlength{\tabcolsep}{5pt}
+%\setlength{\extrarowheight}{1.5pt}
+%\begin{tabular}{|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{
+%}||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|}
+\begin{tabular}{|@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}||@{}c@{}|}
+%\begin{tabular}{|c|c||F|F||F|F||F|F||F||c|}
+\hline
+\multirow{3}{*}{\specialcell{\bf{Analyzer}}}
+&\multirow{3}{*}{\bf Cutoff}
+&\multicolumn{6}{c||}{\bf Against}
+&\multirow{2}{*}{\bf HDP}
+&\multirow{3}{*}{\specialcell{\bf{Tgt}\\{\bf Cov}}}
+\\ \cline{3-8}
+
+&
+&\multicolumn{2}{c||}{\specialcell{\bf{WPDP}}}
+&\multicolumn{2}{c@{ }||}{\bf CPDP-CM}
+&\multicolumn{2}{c@{ }||}{\bf CPDP-IFS}
+&
+&
+\\\cline{3-9}
+&
+& \bf{AUC}
+& \bf{Win\%}
+& \bf{AUC} 
+& \bf{Win\%}
+& \bf{AUC} 
+& \bf{Win\%}
+& \bf{AUC}
+& 
+\\
+\hline
+\hline
+%PAnalyzer& 0.00 & \bf{0.684}	& \underline{0.640}	& 0.606 & 100\% \\ \hline 
+P& 0.05 & \bf{0.684} & 30.3\%
+&\underline{0.640} & 45.2\% 
+& 0.511	&54.5\%
+& 0.617* & 100\%
+\\
+\hline P& 0.90  & 0.657 & 54.2\% 
+&0.622 & 65.1\% 
+& 0.535	& 78.3\%
+& \underline{0.692}* & 96\% \\
+\hline
+\hline
+\hline
+
+%KSAnalyzer & 0.00 & 0.670 &	0.637	& \underline{0.669} & 100\% \\ \hline 
+KS & 0.05 & 0.657 & 66.2\% 
+&0.636 & 66.2\% 
+& 0.553	&82.4\%
+&\underline{\bf{0.724}}* &100\% \\
+\hline KS& 0.90  & 0.657 & 100\% 
+&0.761 & 71.4\% 
+& 0.624	&100.0\%
+&\bf{0.852}*&21\% \\ \hline
+\hline
+\hline
+
+%SCoAnalyzer & 0.00 & \bf{0.684}	&\underline{0.640}	&0.517 & 100\% \\ \hline 
+SCo & 0.05 & \bf{0.684} & 28.5\%
+&\underline{0.640} & 37.3\%
+& 0.511	&46.3\%
+&0.542* & 100\%
+\\
+\hline SCo& 0.90 & \bf{0.684} & 29.0\% 
+&\underline{0.639} & 36.6\%
+& 0.511	&48.4\%
+&0.547 &
+100\%
+\\
+\hline
+
+%PiAnalyzer& 0.00 & \bf{0.684}	&\underline{0.640}	&0.589 & 100\% \\ \hline 
+% PiAnalyzer& 0.05 & \bf{0.684}	&0.582 &25.2\% & 100\% \\ \hline 
+% PiAnalyzer& 0.90 & \bf{0.684}	&0.592 &27.0\% & 100\% \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+% \begin{table}[t]
+% \scriptsize
+% \centering
+% \caption{Prediction performance in other analyzers with the matching
+% score cutoff thresholds, 0.05 and 0.90.
+% % Between within- and
+% % cross-results by
+% % analyzers, outperforming results with statistical significance
+% % (Wilcoxon signed-rank, p$<$0.05) is bold-faced. Between cross-results using
+% % common features and by analyzers, outperforming results with
+% % statistical significance (Wilcoxon signed-rank, p$<$0.05) is underlined.}
+% }
+% \label{tab:other_analyzers}
+% %\setlength{\tabcolsep}{5pt}
+% %\setlength{\extrarowheight}{1.5pt}
+% \begin{tabular}{|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{
+% }|@{ }c@{ }|@{ }c@{ }|}
+% \hline
+% {\bf Analyzer} & \bf{threshold} & \bf{Within} & \bf{\specialcell{Cross\\ using\\
+% Common \\ Features}} & \bf{\specialcell{Cross by\\ analyzer}} & \bf{coverage}
+% \\
+% \hline
+% \hline
+% %PAnalyzer& 0.00 & \bf{0.684}	& \underline{0.640}	& 0.606 & 100\% \\ \hline 
+% PAnalyzer& 0.05 & \bf{0.684}	& \underline{0.640}	& 0.617 & 100\% \\ \hline 
+% PAnalyzer& 0.90 & 0.657	& 0.622	& \underline{0.692} & 96\% \\ \hline \hline
+% \hline
 % 
-% \multirow{5}{*}{SOFTLAB} & ar1			& 0.57	& 0.73	& Win	\\ \cline{2-5}
-% & ar3			& 0.55	& 0.84	& Win	\\ \cline{2-5}
-% & ar4			& 0.64	& 0.82	& Win	\\ \cline{2-5}
-% & ar5			& 0.75	& 0.93	& Win	\\ \cline{2-5}
-% & ar6			& 0.64	& 0.74	& Win	\\ \hline \hline
-% \multicolumn{5}{c}{Win: 17, Tie: 1, Loss: 10} \\ \hline
+% %KSAnalyzer & 0.00 & 0.670 &	0.637	& \underline{0.669} & 100\% \\ \hline 
+% KSAnalyzer & 0.05 & 0.657 &	0.636	& \bf{\underline{0.724}} & 100\% \\ \hline 
+% KSAnalyzer& 0.90 & 0.657 &	0.761 &\bf{0.852} & 21\% \\ \hline \hline \hline
+% 
+% %SCoAnalyzer & 0.00 & \bf{0.684}	&\underline{0.640}	&0.517 & 100\% \\ \hline 
+% SCoAnalyzer & 0.05 & \bf{0.684}	&\underline{0.640}	&0.542 & 100\% \\ \hline 
+% SCoAnalyzer& 0.90 & \bf{0.684}	&\underline{0.639}	&0.547 & 100\% \\ \hline
+% \hline
+% \hline
+% 
+% %PiAnalyzer& 0.00 & \bf{0.684}	&\underline{0.640}	&0.589 & 100\% \\ \hline 
+% PiAnalyzer& 0.05 & \bf{0.684}	&\underline{0.640}	&0.582 & 100\% \\ \hline 
+% PiAnalyzer& 0.90 & \bf{0.684}	&\underline{0.637}	&0.592 & 100\% \\ \hline
+% \end{tabular}
+% \end{table}
+
+In Table~\ref{tab:other_analyzers}, we compare the prediction performance in
+other analyzers with the matching score cutoff thresholds, 0.05 and 0.90.
+HDP's prediction results by PAnalyzer, with a cutoff of 0.90, are
+comparable to WPDP. This
+implies that comparing 9 percentiles between source and target metrics can
+evaluate the similarity of them well with a threshold of 0.90. However,
+PAnalyzer with the cutoff of 0.90 did not achieve 100\% target coverage and is
+too simple an approach to lead to better prediction performance than KSAnalyzer. In
+KSAnalyzer with a cutoff of 0.05, the AUC (0.724) outperforms it (0.657) in WPDP
+with statistical significance.
+
+HDP by KSAnalyzer with a cutoff of 0.90 could lead to significant
+improvement in the AUC value (0.852) compared to that (0.724) with the
+cutoff of 0.05.
+However, the target coverage is just 21\%. This is because some prediction
+combinations are automatically filtered out since poorly matched metrics, whose
+matching score is not greater than the cutoff, are ignored. In other words,
+defect prediction for 79\% of targets was not
+conducted since the matching scores of matched metrics in prediction
+combinations for the targets are not greater than 0.90 so
+that all matched metrics in the combinations were ignored.
+
+An interesting observation in PAnalyzer and KSAnalyzer is that AUC
+values of HDP by those analyzers improved when a cutoff threshold
+increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
+0.90, we observed prediction results by PAnalyzer and KSAnalyzer
+gradually improved from 0.617 to 0.692 and 0.724 to 0.852 in AUC, respectively.
+This means these two analyzers can filter out negative prediction combinations
+well. As a result, the percentage of Win results are also significantly
+increased.
+
+Results by SCoAnalyzer were
+worse than WPDP results. In addition,
+prediction performance rarely changed regardless of cutoff thresholds; results
+by SCoAnalyzer in different cutoffs from 0.05 to 0.90 did not
+vary as well.
+A possible reason is that SCoAnalyzer does not directly compare
+the distribution between source and target metrics.
+This result implies that the similarity of distribution between source and
+target metrics is a very important factor for building a better
+prediction model.
+
+
+\subsection{Performance in Various Machine Learners}
+\label{subsec06}
+\begin{table}[!t]
+%\small
+%\scriptsize
+\centering
+\caption{Win/Tie percentages of HDP by KSAnalyzer (cutoff=0.05)
+against WPDP, CPDP-CM, and CPDP-IFS by different machine learners.}
+\label{tab:diff_learners}
+%\setlength{\tabcolsep}{5pt}
+%\setlength{\extrarowheight}{1.5pt}
+%\begin{tabular}{|c||m{1.5cm}|m{1.5cm}|m{1.5cm}||m{1.5cm}|m{1.5cm}|m{1.5cm}|}
+\begin{tabular}{|c@{ }||c@{ }|c@{ }||c@{ }|c@{ }||c@{ }|c@{ }|}
+\hline
+\multirow{3}{*}{\specialcell{{\bf HDP}\\{\bf Learners}}}
+&\multicolumn{6}{@{ }c@{ }|}{\bf Against}
+\\ \cline{2-7}
+
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf WPDP}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-CM}}}
+&\multicolumn{2}{@{ }c@{ }|}{\specialcell{{\bf CPDP-IFS}}}
+\\
+\cline{2-7}
+
+& Win & Tie 
+& Win & Tie 
+& Win & Tie \\ \hline \hline
+
+Logistic			&66.2\%	&1.4\% & 66.2\% &6.3\%  
+& 82.0\% &2.7\%  	\\ \hline
+RandomForest		&10.4\%	&2.3\%	&42.3\% &1.4\% 
+& 65.8\% &2.2\% 	\\ \hline
+BayesNet			&34.7\%	&4.1\%	&45.9\% &2.7\% 
+& 66.2\% &2.7\% 	\\ \hline
+%NaiveBayes		&26.1\%	&1.8\%	&71.1\% &54.5\% &3.2\% &42.3\%	\\ \hline
+SVM				&24.3\%	&23.0\%	&27.5\% &0.0\% 
+& 32.9\% &14.9\% 	\\ \hline
+J48				&30.2\% &11.7\%	&32.4\% &1.4\% 
+& 41.9\% &12.1\%   \\ \hline
+SimpleLogistic	&45.5\% &2.7\%	&69.4\% &6.8\% 
+& 84.2\% &3.2\%   \\ \hline
+LMT				&42.8\% &3.2\%	&64.4\% &6.3\% 
+& 79.7\% &3.2\%   \\ \hline
+
+\end{tabular}
+\end{table}
+
+To investigate if
+HDP works with other machine learners, we built HDP models (KSAnalyzer and
+the cutoff of 0.05) with various learners used in defect prediction
+literature such as Random Forest, BayesNet, SVM, J48 Decision
+Tree, Simple Logistic,
+and Logistic Model Trees
+(LMT)~\cite{DAmbros12,Ghotra15,Lee11,Lessmann08,Nam13,Song11}.
+Table~\ref{tab:diff_learners} shows Win/Tie results.
+
+Logistic regression (Logistic) led to the best results among various
+learners. The Logistic regression models works well when there is a linear
+relationship between a predictor variable (a metric) and the logit
+transformation of the outcome variable (bug-proneness)~\cite{Logstic}.
+In our study, this linear relationship is related to the bug-prone tendency of
+a metric, that is, a higher complexity causes more bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}.
+As the consistent bug-prone tendency of matched metrics is important in HDP, the
+HDP models built by Logistic regression can lead to the best prediction
+performance.
+
+HDP models built by other learners such as
+Simple logistic and LMT led to comparable results to Logistic regression against
+CPDP-CM and CPDP-IFS. Against Baseline2, Win results (69.4\% and 64.4\%) in
+Simple Logistic and LMT are comparable to Win results (66.2\%) in Logistic.
+%Against Baseline3, the HPD results with Simple
+%Logistic and LMT are similar to those with Logistic regression. 
+Simple logistic also uses the logit function and LMT adopts Logistic
+regression at the leaves of decision tree~\cite{Ghotra15}. In other words, both
+learners consider the linear relationship like Logistic
+regression~\cite{Logstic}. In our experimental settings, HDP tends to
+work well with the learners based on the linear relationship between a metric
+and a label (bug-proneness).
+
+\subsection{Summary}
+In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
+\squishlist
+    \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and significance attribute selection.
+    \item Compared to WPDP, HDP achieved about 68\% of Win/Tie results. However, there are still 32.4\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
+    \item Applying metric selection approaches could improve HDP performances against the baselines.
+    \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
+    \item HDP worked well with Logistic regression but not other machine learners. One possible reason is that Logistic regression captures the linear relationship between metrics and labels that is related to the bug-proneness tendency of the metrics.
+\squishend

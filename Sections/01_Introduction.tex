@@ -2,7 +2,7 @@
 \label{sec:Introduction}}
 \IEEEPARstart{S}{oftware} defect prediction is one of the most active research areas in
 software
-engineering~\cite{DAmbros12,Fukushima14,Lee11,Lessmann08,Li12,Menzies07,Nam13,Rahman12,Shivaji13,Zimmermann08,Zimmermann09}.
+engineering (SE)~\cite{DAmbros12,Fukushima14,Lee11,Lessmann08,Li12,Menzies07,Nam13,Rahman12,Shivaji13,Zimmermann08,Zimmermann09}.
 If software quality assurance teams can predict defects before releasing a
 software product, they can effectively allocate limited
 resources for quality control~\cite{Menzies07,Ostrand05,Rahman12,Zimmermann08}.
@@ -43,7 +43,7 @@ tracking systems~\cite{Rahman13}.
 Thus, it is difficult to collect process metrics and instance
 labels in new projects or projects that have little historical
 data~\cite{Fukushima14,Nam13,Zimmermann09}. For example, without instances being
-labeled using past defect data it is not possible to build a prediction model.
+labeled using past defect data, it is not possible to build a prediction model.
 %~\sung{Here your
 %supporting sentences are weak and your argument is not so convincing. Any more
 % backup or citations?}
@@ -140,10 +140,9 @@ finding other projects with multiple common metrics can be challenging. As
 mentioned, there is only one common metric between NASA and AEEEM. Also,
 only using common metrics may degrade the performance of CPDP models.
 That is because some informative metrics necessary for building a good prediction model may not
-be in the common metrics across datasets. For example, in the
-study of Turhan et al., the performance of CPDP (0.35) by their approach did not
-outperform that of WPDP (0.39) in terms of the average
-f-measure~\cite{Turhan09}.
+be in the common metrics across datasets. For example, the CPDP approach proposed by Turhan et al. did not
+outperform WPDP in terms of the average
+f-measure (0.35 vs. 0.39)~\cite{Turhan09}.
 % In addition, metric values among
 % projects developed in different development contexts can have different
 % distributions as in the study by Zhang et al.~\cite{Zhang13}. This can lead to
@@ -216,12 +215,12 @@ for a prediction model before metric matching.
 
 Our empirical study shows that HDP models are feasible and their prediction
 performance is promising. About 68\% of HDP predictions
-outperform or are comparable to WPDP predictions with statistical
+are better or comparable to WPDP predictions with statistical
 significance.
 
-However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?" Since HDP compares distributions between source and target datasets, it is important to identify the lower bounds of the size of the source and target datasets for effective transfer learning. If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
+However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?" Since HDP compares distributions between source and target datasets, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning. If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
 
-To address this issue, we conduct additional empirical study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+To address this issue, we conduct additional experiments by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
 
 % To our knowledge, this is a first study on defect prediction using
 % datasets with different feature spaces. We hope this study will suggest a
@@ -230,12 +229,13 @@ To address this issue, we conduct additional empirical study by using various sa
 Our contributions are as follows:
 \squishlist
   \item Proposing the heterogeneous defect prediction models.
-  \item Conducting an extensive and large-scale empirical study to evaluate
+  \item Conducting an extensive and large-scale experiments to evaluate
   the heterogeneous defect prediction models.
   \item Validating the lower bounds of the size of source and target datasets for effective transfer learning in defect prediction.
 \squishend
 
-We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, to investigate \jc{TBA}
+We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, we motivate this study in the view of transfer learning in SE (Section~\ref{sec:Motivation}). Second, in Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we address new research question about the effective sizes for source and target datasets when conducting HDP. Third, we extend the related work with recent studies about CPDP. Fourth, we conduct the effect size analysis using Cliff's $\delta$ to investigate the magnitude of performance improvement by HDP in Section~\ref{sec:Result}.
+
 % This paper is organized as follows. Section~\ref{sec:Background} explains
 % the background of our study. % for our framework for cross-domain defect
 % % prediction.

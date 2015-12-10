@@ -2,16 +2,18 @@
 \section{Size Limits (lower bounds) for Effective Transfer Learning}
 \label{sec:sizelimit}
 
-Like prior work \cite{nam2013transfer,
-  ma2012transfer, rahman2012recalling, ryu2014value,
-  zhang2014towards}, the basic HDP method we
+Like prior work \cite{Nam13,
+  Ma12, Rahman12, Ryu14,
+  Zhang14}, the basic HDP method we
 proposed above uses {\em all} the instances in potential source and target data to
 perform KS-test to select the best matched metrics and then build
 defect prediction learners.
 Collecting {\em all} that data from source and target project need much more work and also
 for the target project, it requires waiting for it to finish before
 transferring its learned lessons. This begs the question ``how early can we transfer?''.
-That is, how {\em few} data from source and target projects do we need before transfer can be effective?
+That is, how {\em few} data from source and target projects do we need before transfer can be effective? In this section, we conduct an empirical study to answer these questions related to RQ2.
+
+To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. However, in Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our experiments for RQ2 based on HDP.
 
 \begin{figure}[t]
 	\centering
@@ -43,7 +45,7 @@ as the default learner).
 % \lin{It's unclear to me. So metric matching on the 50, 100, etc.? What is third initial sampling? Add a backward reference to it? One caveat: I focused on reading the abstract, Section 3, 7, and 8, and I only skimmed over the rest of the paper, so maybe I missed it. But in general it is still good to add a backward reference.}\wei{I didn't get the question, "what is third initial sampling?", which third?}
 % Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}.
 In that figure:
-\bi
+\squishlist
 \item
   The {\em black} line show the results using {\em all} data;
 \item
@@ -51,10 +53,10 @@ In that figure:
   in the source and target data sets during metric matching and learner building;
 \item
   The letters show the unique ID of each data set.
-\ei
+\squishend
 The data sets are ordered left to right by the difference to the black line (where we transfer using {\em
   all} the source data):
-\bi
+\squishlist
 \item
   On the left, the black line is
   {\em above} the red line; i.e. for those data sets, we do {\em better} using
@@ -62,7 +64,9 @@ The data sets are ordered left to right by the difference to the black line (whe
   \item
 On the right, the black line is {\em below} the red
 line; i.e. for those data sets, we do {\em worse}
-using {\em all} data than using {\em some}.  \ei
+using {\em all} data than using {\em some}.
+\squishend
+
 Note that the gap between the red and black line
 shrinks as we use more data and after $N=100$, the
 net gap space is almost zero.  When $N=200$, $27/28$
@@ -90,10 +94,10 @@ The results of the last section are very encouraging---a small number of source
 and target examples are enough for effective transfer learning. Naturally,
 we were suspicious of this result (since it was ``almost too good to be true'').
 Accordingly, we explored the literature and found:
-\bi
-\item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation}; 
-\item Methods to reduce the cost of sampling this data set, even further. 
-  \ei
+\squishlist
+    \item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation}; 
+    \item Methods to reduce the cost of sampling this data set, even further. 
+\squishend
 Working in the domain cardiology,
   Peduzzi et al.~\cite{peduzzi1996simulation}
   report 10 ``events'' per variable (EPV) are enough to maximize the predictive performance
@@ -104,7 +108,7 @@ Working in the domain cardiology,
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
   independent variables were picked during {\em metric  selection}. In practice, that number
-  was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule, we picked $2*10=20$ \lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
+  was very small: usually just 2. Hence, applying  Peduzzi et al.'s rule (EPV=10), we picked $2*10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
   $N\in \{50,100,150,250\}$ for the source data. For the target data set, since we do not
   know the data labels, we simply sampled $N$ for target data in metric matching.
@@ -114,7 +118,7 @@ Working in the domain cardiology,
   use a fixed $M=20$ number of defects.).
 
   The results are shown in \fig{small_epv}. Like before:
-  \bi
+\squishlist
   \item These are median AUC results from 20 repeats;
 \item
   The {\em black/colourful} lines show the results using {\em all/some} of  data from
@@ -127,7 +131,7 @@ Working in the domain cardiology,
    \item
      On the left/right ,  we do {\em better/worse} using
   {\em all} data than using {\em some}.
-  \ei
+\squishend
   We observe that between $N=50$ and $N=200$, the performance delta
   does not change by much. Also, if we compare $N=200$ between \fig{small_data}
   and \fig{small_epv}, there is no large disadvantage of using just

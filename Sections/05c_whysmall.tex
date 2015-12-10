@@ -2,7 +2,7 @@
 
 %\input{dims}
 
-\newcommand{\tion}[1]{\S\ref{sect:#1}}
+\newcommand{\tion}[1]{Section~\ref{sect:#1}}
 % \newcommand{\fig}[1]{Figure~\ref{fig:#1}}
 \newcommand{\eq}[1]{Equation~\ref{eq:#1}}
 % \newcommand{\bi}{\begin{itemize}}
@@ -11,13 +11,13 @@
 \section{Explaining Results of Size Limits for Effective Transfer Learning}\label{sect:xplain}
 To assess the generality of the above results in Section~\ref{sec:sizelimit}, we need some background knowledge that knows when a few samples will (or will not)
 be sufficient to build a defect predictor. Using some sampling theory, this section:
-\bi
+\squishlist
 \item
 Builds such a mathematical model;
 \item Maps known aspects
 of defect data  into that model;
 \item Identifies what need to change before the above results no longer hold.
-\ei
+\squishend
 To start, we repeat the {\em lessons learned} above as well as what is {\em known about defect data sets}.
 Next, we define a {\em maths model} which will be used in a {\em Monte Carlo simulation} to generate a log of how many samples are required
 to find some signal. This log will be summarized via a {\em decision tree learner}.
@@ -25,7 +25,7 @@ to find some signal. This log will be summarized via a {\em decision tree learne
 \subsection{Set up}
 \subsubsection{ Lessons from the above work}
 
-The above results show
+The results in Section~\ref{sec:sizelimit} show
 that a small number
 of examples are sufficient to build a defect predictor, even when the data is  transferred from columns with other names.
 In the following we will build a model to compute the probability that $n$ training examples are sufficient to detect $e$\% defective modules.
@@ -37,10 +37,11 @@ In order to simplify the analysis, we divide $n$ into
 \subsubsection{Known about defect data sets}\label{sect:data}
 
 Recent
-results~\cite{Zhang2014,nam2015clami} show that, for defect data, good
+results~\cite{Zhang14,nam2015clami} show that, for defect data, good
 predictors can be built via a {\em median chop} of
 numeric project data;
-i.e., they are divided into $b=2$ bins \lin{I don't quite understand this. Expand the explanation?}.
+i.e., they are divided into $b=2$ bins, i.e., defective bin and non-defective bin. For example, defective instances that likely have high metric values belong to the defective bin while non-defective ones that have low metric values belong to the non-defective bin~\cite{nam2015clami}.
+%\lin{I don't quite understand this. Expand the explanation?}.
 
 Other results~\cite{shepperd94}
 show that defect prediction data containing dozens
@@ -68,11 +69,11 @@ Further, some cells of the chess board are blank while other cells are $e$\% cov
 with that signal.
 
 If we throw a small pebble at that chess board, then  the odds
-of hitting a defects is $c \times p$ where:
-\bi
+of hitting a defect is $c \times p$ where:
+\squishlist
 \item $c$ is the probability of picking a particular cell;
 \item $p$ is the probability that, once we arrive at that cell, we will find  the  signal in that cell.
-\ei
+\squishend
 With a few changes, this chess board model can be
 used to represent the process of machine
 learning. For example,
@@ -98,11 +99,11 @@ p(e,n) = 1-(1-e)^n
 The premise of data mining is that in the data ``chess board'', some cells contain more of the signal than others. Hence, the 
 distribution of the $e$ errors are ``skewed'' by some factor $k$. If $k=1$, then all the errors are evenly distributed over all cells.
 But at all other values of $k$, some cells contain more errors than others, computed as follows:
-    \bi
+    \squishlist
   \item $R_c$ is a random number $0\le R \le 1$, selected for each part of the space $c\in C$.
   \item $x_c$ is the proportion of errors in each part of $C$. \mbox{$x_c =  R_{c\in C}^k$}.
   \item We normalize $x_c$ to be some ratio $0 \le x_c \le 1$ as follows: $X= \sum_{c\in C} x_c$ then $x_c = x_c/X$
-    \ei
+    \squishend
     If  $e$ is the ratio of classes within a software project containing errors, then $E$ 
     is the expected value  of selecting a cell {\em and} that cell containing errors:
     \begin{equation}\label{eq:E}
@@ -129,12 +130,12 @@ the target signal, thus {\em decreasing} how many samples are required.
     The above maths let  us define
     a  Monte Carlo simulation to assess the external validity of our results.
     Within 1000 times of iterations, we picked $k,d,b,e$ values at random from:
-    \bi
+    \squishlist
       \item $k \in \{1,2,3,4,5\}$;
   \item $d \in \{3,4,5,6,7\}$ dimensions;
   \item $b \in \{2,3,4,5,6,7\}$ bins; 
     \item $e\in \{0.1,0.2,0.3,0.4\}$
-      \ei
+      \squishend
       (These ranges were set using our experience with data mining, For example, our prior work shows in defect prediction data sets
       with 40 or more dimensions, that good predictors can be built using $d\le 7$ of those dimensions~\cite{Menzies07}.)
       
@@ -203,10 +204,11 @@ likely to find defects occurring at probability $e$.}\label{fig:dtree}
       The decision tree learner is then called recursively on each split.  
       To test the stability of the learned model, the learning is repeated ten times, each time using 90\% of the data from training and the rest
       for testing. The weighted average performance values for the learned decision tree were remarkably good:
-      \bi
+\squishlist
     \item False alarm rates = 2\%;
     \item F-measures (i.e. the harmonic mean of recall and precision) of 95\%
-      \ei
+\squishend
+
 \subsection{Results}
 
 The resulting decision tree, shown in \fig{dtree}, defined regions where
@@ -216,39 +218,39 @@ lines 2 to 21 are the associated ``then'' and the tree starting at Line 22 is th
 For another example, we could summarise lines 1 to 5 as follows:
 \begin{quote}
 if there are one dimension and the probability of the defects is less than 10\% then (if
-the number if bins per dimension is three or less then 50 samples will suffice; else, up to 100
+the number of bins per dimension is three or less then 50 samples will suffice; else, up to 100
 samples may be required.)
 \end{quote}
 
-\bi
+\squishlist
 \item
 Lines 2 to 6 discuss a very easy case. Here, we only need
 one dimension to build defect predictors and,
 for such simple data sets, 50 to 100 examples are enough for defect prediction.
 \item
 Lines 22, 36, 46 show a branch of the decision tree
-where needs many dimensions that divide into many bins.
+where we need many dimensions that divide into many bins.
 For such data sets, we require a larger number of samples to learn a predictor ($n \ge 200$).
-\ei
+\squishend
 The key part of \fig{dtree} is the ``typical'' region defined in \tion{data};
 i.e.    $b=2, d \le 3$:
-\bi
+\squishlist
 \item Lines 7 to 10 show one set of branches covering this ``typical'' region. Note
-lines 9,10:  we need up to 100 examples when the defect signal is rare (10\%) but
+lines 9, 10:  we need up to 100 examples when the defect signal is rare (10\%) but
 far fewer when the signal occurs at $e>10$\%.
 \item
 Lines 22 to 27 show another set of branches in this ``typical region''. Note lines 26, 27:
 we need up 50 to 200 examples.
-\ei
+\squishend
 \subsection{Summary}
 Our experiments with transfer learning showed that 50 to 200 examples are needed for adequate
 transfer of defect knowledge. If the reader doubts that this number is too small to be effective,
 we note that:
-\bi
+\squishlist
 \item Other researchers working with Logistic Regression~\cite{peduzzi1996simulation}
 have reported that 10 ``events per decision variable'' are adequate for building models using that
 data miner. For our defect data sets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
 and found that considering 2 independent variable on average, there was little improvement after 100 examples with EPV = 10 (as would have been predicted by~\cite{peduzzi1996simulation}).
-\item The maths of \tion{xplain} shows that this ``100 examples are enough'' is a feature of the kinds of
+\item The maths of \tion{xplain} show that this ``100 examples are enough'' is a feature of the kinds of
 data being explored.
-\ei
+\squishend
