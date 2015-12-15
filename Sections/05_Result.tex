@@ -1,14 +1,16 @@
 \vspace{-0.5em}
 \section{Result}
 \label{sec:Result}
-In this section, we report the experimental results of the HDP approach to address RQ1.
+In this section, we present the experimental results of the HDP approach to address RQ1.
 
-We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} based on significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05. Among different
+{\bf RQ1: Is heterogeneous defect prediction comparable to WPDP and existing CPDP approaches for heterogeneous metric sets (CPDP-CM and CPDP-IFS)?}
+
+RQ1 leads us to investigate whether our
+HDP is comparable to WPDP (Baseline1), CPDP-CM
+(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} based on significance attribute selection for metric selection and KSAnalyzer with the cutoff threshold of 0.05. Among different
 metric selections, significance attribute selection led to the best
-prediction performance overall. In terms of analyzers, KSAnalyzer led
-to the best prediction performance.
-Since the KSAnalyzer is based on the p-value of a statistical test, we chose
-a cutoff of 0.05 which is a commonly accepted significance level in the
+prediction performance overall. In terms of analyzers, KSAnalyzer led to the best prediction performance.
+Since the KSAnalyzer is based on the p-value of a statistical test, we chose a cutoff of 0.05 which is a commonly accepted significance level in the
 statistical test~\cite{Corder09}.
 
 In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report the HDP results by using various metric selection approaches, metric matching analyzers, and machine learners respectively to investigate HDP performances more in terms of RQ1.

@@ -1,27 +1,5 @@
 \section{Experimental Setup}
 \label{sec:Evaluation}
-\vspace{-0.5em}
-\subsection{Research Questions}
-To systematically evaluate heterogeneous defect prediction (HDP) models, we set
-two research questions.
-\squishlist
-  \item RQ1: Is heterogeneous defect prediction comparable to WPDP
-  , CPDP using common metrics (CPDP-CM), and CPDP-IFS?
-   \item RQ2: What are the  lower  bounds  of  the  size  of source and target  datasets  for  effective HDP.
-%   \item[RQ2:] Are cross-domain defect predictions from non-defect to
-%   defect datasets comparable to within-predictions?
-%  \item[RQ3:] What is the prediction coverage of cross-domain defect
-%  prediction?
-\squishend
-% 
-% Since we designed four feature matching analyzers, we identify the
-% best co-occurrence analyzers among the five analyzers introduced in
-% Section~\ref{sec:analyzers} (RQ1).
-RQ1 leads us to investigate whether our
-HDP is comparable to WPDP (Baseline1), CPDP-CM
-(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. In Section~\ref{sec:Result}, we report HDP results compared to three baselines as well as its performances in different settings such as various metric selection approaches, matching analyzers, and machine learners.
-
-In RQ2, we investigate the lower bounds of the effective sizes of source and target datasets for HDP models. Since HDP compares the distributions of source metrics to those of target metrics, it is important to seek the empirical evidence for the effective sizes of source and target datasets to match source and target metrics. We report the results of the empirical study for RQ2 in Section~\ref{sec:sizelimit} and validate the generality of its results in Section~\ref{sect:xplain}.
 %In RQ1, we validate
 % prediction models built by defect datasets. In addition, we were interested
 % in verifying if our framework can build prediction models from non-defect
@@ -40,7 +18,6 @@ In RQ2, we investigate the lower bounds of the effective sizes of source and tar
 %feasibility rate of cross prediction combinations were quite low (about
 %3-5\%)~\cite{He12,Zimmermann09}.
 % Thus, we address RQ3 by measuring prediction coverage.
-\vspace{-0.5em}
 \subsection{Benchmark Datasets}
 
 \begin{table}[t]
