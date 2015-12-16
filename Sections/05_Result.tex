@@ -1,5 +1,4 @@
-\vspace{-0.5em}
-\section{Result}
+\section{Prediction Performance of HDP}
 \label{sec:Result}
 In this section, we present the experimental results of the HDP approach to address RQ1.
 
@@ -15,7 +14,6 @@ statistical test~\cite{Corder09}.
 
 In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report the HDP results by using various metric selection approaches, metric matching analyzers, and machine learners respectively to investigate HDP performances more in terms of RQ1.
 
-\vspace{-0.2em}
 %----------------------------------------------------------
 \subsection{Comparison Result with Baselines}
 \label{subsec01}% KSAnalyzer with the cutoff of %
@@ -906,7 +904,6 @@ KSAnalyzer compared to WPDP models.
 \label{sec:why}
 \begin{figure}[t]
 	\centering
-	\vspace{0.5mm}
 	\includegraphics[width=\linewidth]{Figures/Result/best_dist_bplot.pdf}
 	\caption{Distribution of metrics (matching score=0.91)
 	from ant-1.3$\Rightarrow$ar5 (AUC=0.946).}
@@ -1455,5 +1452,5 @@ In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are t
     \item Compared to WPDP, HDP achieved 67.6\% of Win/Tie results. However, there are still 32.4\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
-    \item HDP worked well with Logistic Regression but not other machine learners. One possible reason is that Logistic Regression captures the linear relationship between metrics and labels that is related to the bug-proneness tendency of the metrics.
+    \item HDP worked well with Logistic Regression but not other machine learners. One possible reason is that Logistic Regression captures the linear relationship between metrics and the logit transformation of labels that is related to the bug-proneness tendency of the metrics.
 \squishend

@@ -4,7 +4,7 @@
 The CPDP approaches have been studied by many researchers
 of late~\cite{Canfora13,Ma12,Nam13,Panichella14,Rahman12,Ryu14,Ryu15,Turhan09,Zhang15,Zimmermann09}. Since the performance
 of CPDP is usually very poor~\cite{Zimmermann09}, researchers have proposed various techniques to
-improve CPDP~\cite{Canfora13,Ma12,Nam13,Panichella14,Ryu14,Ryu15,Turhan09,Watanabe08}. In this section, we discuss CPDP studies in terms of metric sets.
+improve CPDP~\cite{Canfora13,Ma12,Nam13,Panichella14,Ryu14,Ryu15,Turhan09,Watanabe08}. In this section, we discuss CPDP studies in terms of metric sets in defect prediction datasets.
 
 % In the previous studies, cross-prediction was
 % applied on datasets with the same metric set or researchers simply used
@@ -40,7 +40,7 @@ Fukushima et al. conducted an empirical study of just-in-time defect prediction
 in the CPDP setting~\cite{Fukushima14}. They used 16
 datasets with the same metric set~\cite{Fukushima14}. The 11 datasets were
 provided by Kamei et al. but 5 projects were newly collected with the same metric
-set of the 11 datasets~\cite{Fukushima14,Kamei13}.
+set used in the 11 datasets~\cite{Fukushima14,Kamei13}.
 
 However, collecting datasets with the
 same metric set might limit CPDP. For example, if
@@ -98,8 +98,9 @@ using the remaining (82\%) datasets in the PROMISE
 repository~\cite{promise12}.
 
 
-There are recent CPDP studies using datasets with the same metric sets or using common metric sets~\cite{Canfora13,promise12,Panichella14,Zhang15,Ryu14,Ryu15}.
+There are other CPDP studies using datasets with the same metric sets or using common metric sets~\cite{Canfora13,me12d,promise12,Panichella14,Zhang15,Ryu14,Ryu15}.
 %Panichella. Canfora Ryu, Zhang(comsac)
+Menzies et al. proposed a local prediction model based on clustering~\cite{me12d}. They used seven defect datasets with 20 object-oriented metrics from the PROMISE repository~\cite{me12d,promise12}.
 Canfora et al., Panichella et al., and Zhang et al.
 used ten Java projects only with the same metric set from the PROMISE
 repository~\cite{Canfora13,promise12,Panichella14,Zhang15}.
@@ -138,9 +139,9 @@ using object-oriented metrics cannot be used for the target dataset.
 % metric set of the target dataset.
 
 \subsection{CPDP Using Heterogeneous Metric Sets}
-He et al. addressed the limitations due to
+He et al.~\cite{He14} addressed the limitations due to
 heterogeneous metric sets in CPDP studies listed
-above~\cite{He14}.
+above.
 Their approach, CPDP-IFS, used distribution
 characteristic vectors of an instance as metrics.
 The prediction performance of their best approach is comparable to or

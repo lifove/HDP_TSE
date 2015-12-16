@@ -4705,7 +4705,9 @@ between column types.}%
 % V1.8 compsoc is partial width
 \ifCLASSOPTIONcompsoc
 % comparison with proofs suggests it's in the range of 92.1-92.3%
-\long\def\@IEEEtitleabstractindextextbox#1{\parbox{0.922\textwidth}{\@IEEEcompsocnotconfonly{\rightskip\@flushglue\leftskip\z@skip}#1}}
+\long\def\@IEEEtitleabstractindextextbox#1{\parbox{0.922\textwidth}
+{#1}}
+%{\@IEEEcompsocnotconfonly{\rightskip\@flushglue\leftskip\z@skip}#1}}
 \fi
 
 % formats the Title, authors names, affiliations and special paper notice
