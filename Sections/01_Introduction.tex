@@ -74,7 +74,7 @@ labeled instances in Project A (source) and predicts defects in Project B (targe
 
 However, most CPDP approaches have a serious limitation:
 CPDP is only feasible for projects which have exactly the same metric
-set as shown in Figure~\ref{fig:subfig2}. Finding other projects with exactly
+set as shown in Figure~\ref{fig:subfig2}. {\em This is the first limit to transfer knowledge among projects for defect prediction}. Finding other projects with exactly
 the same metric set can be challenging. Publicly available defect
 datasets that are widely used in defect prediction literature usually have
 heterogeneous metric sets~\cite{DAmbros12,promise12,Nam13}.
@@ -185,7 +185,7 @@ for a prediction model before metric matching.
 
 In addition to proposing HDP, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning since HDP compares distributions between source and target datasets. 
 %However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?"
-If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
+If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model. {\em This is the second limit we want to address in terms of transfer learning in defect prediction}.
 
 
 \begin{figure}[t]
