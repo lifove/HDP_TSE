@@ -1,19 +1,19 @@
 \IEEEraisesectionheading{\section{Introduction}
 \label{sec:Introduction}}
-\IEEEPARstart{S}{oftware} defect prediction is one of the most active research areas in
-software
-engineering (SE)~\cite{DAmbros12,Fukushima14,Lee11,Lessmann08,Li12,Menzies07,Nam13,Rahman12,Shivaji13,Zimmermann08,Zimmermann09}.
-If software quality assurance teams can predict defects before releasing a
-software product, they can effectively allocate limited
-resources for quality control~\cite{Menzies07,Ostrand05,Rahman12,Zimmermann08}.
-For example, Ostrand et al. applied defect prediction in two large software systems
-of AT\&T for effective and efficient testing activities~\cite{Ostrand05}.
+%\IEEEPARstart{S}{oftware} defect prediction is one of the most active research areas in
+%software
+%engineering (SE)~\cite{DAmbros12,Fukushima14,Lee11,Lessmann08,Li12,Menzies07,Nam13,Rahman12,Shivaji13,Zimmermann08,Zimmermann09}.
+%If software quality assurance teams can predict defects before releasing a
+%software product, they can effectively allocate limited
+%resources for quality control~\cite{Menzies07,Ostrand05,Rahman12,Zimmermann08}.
+%For example, Ostrand et al. applied defect prediction in two large software systems
+%of AT\&T for effective and efficient testing activities~\cite{Ostrand05}.
 % For
 % this reason, many software defect prediction studies have been
 %conducted~\cite{DAmbros12,Lee11,Lessmann08,Li12,Mende10,Menzies07,Shivaji13,Zimmermann08}.
 
-Most defect prediction models are based on
-machine learning, therefore it is a must to collect defect datasets
+\IEEEPARstart{M}{ost} defect prediction models are based on
+machine learning. Therefore, it is a must to collect defect datasets
 to train a prediction model~\cite{DAmbros12,Menzies07}. The
 defect datasets consist of various software metrics and labels. Software metrics are the terminology describing software projects. Commonly
 used software metrics for defect prediction are complexity metrics (such as lines of code, Halstead
@@ -48,36 +48,6 @@ labeled using past defect data, it is not possible to build a prediction model.
 %supporting sentences are weak and your argument is not so convincing. Any more
 % backup or citations?}
 
-
-\begin{figure}[t]
-
-	\centering
- 
- \begin{subfigure}[b]{0.8\linewidth}
- 	\includegraphics[scale=0.5]{Figures/intro/p_within.pdf}
-  	\caption{Within-Project Defect Prediction \tiny{(WPDP)}}
-   	\label{fig:subfig1}
- \end{subfigure}
- 
- \begin{subfigure}{0.8\linewidth}
- 	\includegraphics[scale=0.5]{Figures/intro/p_cross.pdf}
-  	\caption{Cross-Project Defect Prediction \tiny{(CPDP)}}
-   	\label{fig:subfig2}
- \end{subfigure}
- 
- \begin{subfigure}{0.8\linewidth}
- 	\includegraphics[scale=0.5]{Figures/intro/p_crossdomain.pdf}
-  	\caption{Heterogeneous Defect Prediction \tiny{(HDP)}}
-   	\label{fig:subfig3}
- \end{subfigure}
- 
- \label{fig:type_of_predictions}
- \caption{%
-  %Caption of subfigures \subref{fig:subfig1}, 
-  %\subref{fig:subfig2} and \subref{fig:subfig3}
-  Various Defect Prediction Scenarios
-  }
-\end{figure}
 
 
 To address this issue, researchers
@@ -213,6 +183,41 @@ similar distributions between source and target datasets. In addition, we also
 used metric selection to remove less informative metrics of a source dataset
 for a prediction model before metric matching.
 
+In addition to proposing HDP, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning since HDP compares distributions between source and target datasets. 
+%However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?"
+If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model.
+
+
+\begin{figure}[t]
+
+	\centering
+ 
+ \begin{subfigure}[b]{0.8\linewidth}
+ 	\includegraphics[scale=0.5]{Figures/intro/p_within.pdf}
+  	\caption{Within-Project Defect Prediction \tiny{(WPDP)}}
+   	\label{fig:subfig1}
+ \end{subfigure}
+ 
+ \begin{subfigure}{0.8\linewidth}
+ 	\includegraphics[scale=0.5]{Figures/intro/p_cross.pdf}
+  	\caption{Cross-Project Defect Prediction \tiny{(CPDP)}}
+   	\label{fig:subfig2}
+ \end{subfigure}
+ 
+ \begin{subfigure}{0.8\linewidth}
+ 	\includegraphics[scale=0.5]{Figures/intro/p_crossdomain.pdf}
+  	\caption{Heterogeneous Defect Prediction \tiny{(HDP)}}
+   	\label{fig:subfig3}
+ \end{subfigure}
+ 
+ \label{fig:type_of_predictions}
+ \caption{%
+  %Caption of subfigures \subref{fig:subfig1}, 
+  %\subref{fig:subfig2} and \subref{fig:subfig3}
+  Various Defect Prediction Scenarios
+  }
+\end{figure}
+
 \subsection{Research Questions}
 To systematically evaluate HDP models, we set
 two research questions.
@@ -235,17 +240,15 @@ performance is promising. About 68\% of HDP predictions
 are better or comparable to WPDP predictions with statistical
 significance.
 
-However, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning since HDP compares distributions between source and target datasets. 
-%However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?"
-If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model. 
 
-To address this issue, we conduct an empirical study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+For RQ2, we conducted the experimental study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+
 
 % To our knowledge, this is a first study on defect prediction using
 % datasets with different feature spaces. We hope this study will suggest a
 % promising next step for defect prediction research.
 
-Our contributions are as follows:
+Our contributions are summarized as follows:
 \squishlist
   \item Proposing the heterogeneous defect prediction models.
   \item Conducting an extensive and large-scale experiments to evaluate
@@ -256,7 +259,8 @@ Our contributions are as follows:
 
 \subsection{Extensions from Prior Publication}
 
-We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, we motivate this study in the view of transfer learning in SE (Section~\ref{sec:Motivation}). Second, in Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we address new research question about the effective sizes of source and target datasets when conducting HDP. Third, we extend the related work with recent studies about CPDP. Fourth, we conduct the effect size analysis using Cliff's $\delta$ to investigate the magnitude of performance improvement by HDP in Section~\ref{sec:Result}.
+We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, we motivate this study in the view of transfer learning in SE. Thus, we discuss how transfer learning can be helpful to understand the nature of generality in SE and why we focus on defect prediction in terms of transfer learning (Section~\ref{sec:Motivation}). Second, we address new research question about the effective sizes of source and target datasets when conducting HDP.  In Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we show experimental and theoretical validation to investigate the effective sizes of project datasets for HDP. Third, we discuss more related work with recent studies. In Section~\ref{sec:Background}, we discuss metric sets used in CPDP and how our HDP is similar to and different from recent studies about CPDP using heterogeneous metric sets.
+%Fourth, we conduct the effect size analysis using Cliff's $\delta$ to investigate the magnitude of performance improvement by HDP in Section~\ref{sec:Result}.
 
 % This paper is organized as follows. Section~\ref{sec:Background} explains
 % the background of our study. % for our framework for cross-domain defect
@@ -267,3 +271,5 @@ We extend the previous publication~\cite{Nam15HDP} in the following aspects. Fir
 % Section~\ref{sec:Discussion}, we discuss insights of our results as well as
 % threats to validity. Section~\ref{sec:Conclusion} summarizes and concludes our
 % study.
+
+

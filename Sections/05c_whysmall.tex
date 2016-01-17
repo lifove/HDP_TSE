@@ -217,11 +217,11 @@ Such trees can be read as nested if-then-else statements. For example, Line 1 is
 lines 2 to 21 are the associated ``then'' and the tree starting at Line 22 is the ``else''.
 For another example, we could summarise lines 1 to 5 as follows:
 \begin{quote}
-if there are one dimension and the probability of the defects is less than 10\% then (if
+{\em If there are one dimension and the probability of the defects is less than 10\% then (if
 the number of bins per dimension is three or less then 50 samples will suffice; else, up to 100
-samples may be required.)
+samples may be required.)}
 \end{quote}
-
+In that tree:
 \squishlist
 \item
 Lines 2 to 6 discuss a very easy case. Here, we only need
@@ -252,5 +252,6 @@ have reported that 10 ``events per decision variable'' are adequate for building
 data miner. For our defect datasets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
 and found that considering 2 independent variable on average, there was little improvement after 100 examples with EPV = 10 (as would have been predicted by~\cite{peduzzi1996simulation}).
 \item The maths of \tion{xplain} show that this ``100 examples are enough'' is a feature of the kinds of
-data being explored.
+data currently being explored in the defect prediction
+literature.
 \squishend
