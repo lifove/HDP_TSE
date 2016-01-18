@@ -74,7 +74,7 @@ labeled instances in Project A (source) and predicts defects in Project B (targe
 
 However, most CPDP approaches have a serious limitation:
 CPDP is only feasible for projects which have exactly the same metric
-set as shown in Figure~\ref{fig:subfig2}. {\em This is the first limit to transfer knowledge among projects for defect prediction}. Finding other projects with exactly
+set as shown in Figure~\ref{fig:subfig2}. Finding other projects with exactly
 the same metric set can be challenging. Publicly available defect
 datasets that are widely used in defect prediction literature usually have
 heterogeneous metric sets~\cite{DAmbros12,promise12,Nam13}.
@@ -185,7 +185,7 @@ for a prediction model before metric matching.
 
 In addition to proposing HDP, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning since HDP compares distributions between source and target datasets. 
 %However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?"
-If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model. {\em This is the second limit we want to address in terms of transfer learning in defect prediction}.
+If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model. We address this limit in this paper as well.
 
 
 \begin{figure}[t]
@@ -259,7 +259,7 @@ Our contributions are summarized as follows:
 
 \subsection{Extensions from Prior Publication}
 
-We extend the previous publication~\cite{Nam15HDP} in the following aspects. First, we motivate this study in the view of transfer learning in SE. Thus, we discuss how transfer learning can be helpful to understand the nature of generality in SE and why we focus on defect prediction in terms of transfer learning (Section~\ref{sec:Motivation}). Second, we address new research question about the effective sizes of source and target datasets when conducting HDP.  In Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we show experimental and theoretical validation to investigate the effective sizes of project datasets for HDP. Third, we discuss more related work with recent studies. In Section~\ref{sec:Background}, we discuss metric sets used in CPDP and how our HDP is similar to and different from recent studies about CPDP using heterogeneous metric sets.
+We extend the previous conference paper of the same name~\cite{Nam15HDP} in the following ways. First, we motivate this study in the view of transfer learning in SE. Thus, we discuss how transfer learning can be helpful to understand the nature of generality in SE and why we focus on defect prediction in terms of transfer learning (Section~\ref{sec:Motivation}). Second, we address new research question about the effective sizes of source and target datasets when conducting HDP.  In Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we show experimental and theoretical validation to investigate the effective sizes of project datasets for HDP. Third, we discuss more related work with recent studies. In Section~\ref{sec:Background}, we discuss metric sets used in CPDP and how our HDP is similar to and different from recent studies about CPDP using heterogeneous metric sets.
 %Fourth, we conduct the effect size analysis using Cliff's $\delta$ to investigate the magnitude of performance improvement by HDP in Section~\ref{sec:Result}.
 
 % This paper is organized as follows. Section~\ref{sec:Background} explains
