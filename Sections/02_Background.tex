@@ -1,4 +1,78 @@
-\section{Related Work on Defect Prediction}
+\section{Related Work}
+\subsection{Related Work on Transfer Learning}
+In the machine learning literature, the 2010 article by
+Pan\&Yang~\cite{Pan10} is the definitive definition of
+transfer learning.
+
+Pan\&Yang state that transfer learning is defined over a {\em domain} $D$,
+which is composed of pairs of
+examples $X$ and a probability distribution about those examples $P(X)$;
+i.e., \mbox{$D = \{ X, P(X) \}$}.
+This $P$ distribution represents what class values to expect, given the $X$ values.
+
+
+The transfer learning {\em task} $T$ is to learn a function $f$ that predicts labels $Y$; i.e.,
+$T = \{ Y, f \}$.
+Given a new example $x$, the intent is that the function can produce a correct
+label $y\in Y$; i.e., $y = f(x)$ and $x\in X$.
+According to Pan\&Yang, synonyms for transfer learning include, learning
+to learn, life-long learning, knowledge transfer, inductive transfer,
+multitask learning, knowledge consolidation, context-sensitive
+learning, knowledge-based inductive bias, metalearning, and
+incremental/cumulative learning.
+
+Pan\&Yang~\cite{pan10} define four types of transfer learning:
+\bi
+\item
+When moving from some source domain    to the target domain,   {\em instance-transfer} methods
+provides example data for model building in the target;
+\item
+{\em Feature-representation transfer} synthesizes example data for
+model building;
+\item
+{\em Parameter transfer} provides parameter terms for existing models;
+\item
+and {\em Relational-transfer} provides mappings between term parameters.
+\ei
+From a business perspective, we can offer the following examples of
+how to use these four kinds of transfer. Take the case where a company
+is moving from Java-based desktop application development to
+Python-based web application development. The project manager for the
+first Python webapp wants to build a model that helps her predict
+which classes have the most defects so that she can focus system
+testing:
+
+\bi
+\item
+{\em Instance-transfer} tells her which Java project data are relevant
+for building her Python defect prediction model.
+\item
+{\em Feature-representation transfer} will create synthesized Python
+project data based on analysis of the Java project data that she can
+use to build her defect prediction model.  
+\item
+If defect prediction models previously existed for the Java projects,
+{\em parameter transfer} will tell her how to weight the terms in old
+models to make those model are relevant for the Python projects.
+\item
+Finally, {\em relational-transfer} will tell her how to translate some
+JAVA-specific concepts (such as metrics collected from JAVA interfaces
+classes)  into synonymous terms for Python (note that this last kind
+of transfer is very difficult and, in the case of SE, the least
+explored).
+\ei
+In the SE literature, methods for CPDP using same/common metrics sets are examples 
+of {\em instance transfer} and methods for CPDP using Heterogeneous metrics sets are examples
+of {\em relational-transfer}. These methods are discussed in the next two sections of this paper.
+
+As to the other kinds of transfer, there is some work in the effort estimation literature of using
+genetic algorithms to automatically learn weights for different parameters~\cite{sigweni2014feature}. Such work is ane example of {\em parameter transfer}.
+To the best of our knowledge, there is no work on feature-representation transfer, but research into automatically
+learning APIs between programs~\cite{dallmeier2012automatically} might be considered a close analog.
+
+
+
+\subsection{Related Work on Defect Prediction}
 \label{sec:Background}
 %\subsection{Cross-project Defect Prediction}
 Recall from the above that we distinguish cross-project defect prediction (CPDP) from within-project defect prediction (WPDP).
@@ -22,7 +96,7 @@ improve CPDP~\cite{Canfora13,Ma12,Nam13,Panichella14,Ryu14,Ryu15,Turhan09,Watana
 % 	existing projects having the same metric set.
 % \squishend
   
-\subsection{CPDP Using Same/common Metric Sets}
+\subsubsection{CPDP Using Same/common Metric Sets}
 Watanabe et al. proposed the metric compensation approach for
 CPDP~\cite{Watanabe08}. The metric compensation transforms a target dataset
 similar to a source dataset by using the average metric
@@ -139,7 +213,7 @@ using object-oriented metrics cannot be used for the target dataset.
 %  or need to costly build a new universal model with the same
 % metric set of the target dataset.
 
-\subsection{CPDP Using Heterogeneous Metric Sets}
+\subsubsection{CPDP Using Heterogeneous Metric Sets}
 He et al.~\cite{He14} addressed the limitations due to
 heterogeneous metric sets in CPDP studies listed
 above.

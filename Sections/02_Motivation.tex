@@ -66,7 +66,6 @@ to declare $N$ prior projects as {\em reference projects},
 from which lessons learned will be transferred to new projects.
 In practice, using such reference sets requires three processes:
 \squishlist
-
 \item Finding the reference sets (this paper shows that finding
   them may not be a too complex task, at least for defect prediction).
   \item Recognizing when to update  the reference set. In practice,
@@ -74,17 +73,22 @@ In practice, using such reference sets requires three processes:
 \item Transferring
   lessons from the reference set to new projects.  
 \squishend
-In this approach, the policies of the organization will be
+In the case where all the datasets use the same metrics, this is a relatively
+simple task. With Kirhsna and Fu~\cite{krishna19}, we have found such reference projects just by training of
+projectX then testing on projectY (and the reference set are the projectXs with highest scores).
+Once found, these reference sets can generate
+  policies of an organization that are 
 stable just as long as the reference set is not updated.
+
 In this paper, we do not address the pace of change in the reference set
 (that is left for future work).
 Rather, we focus on point \#3: transferring lessons from
-the reference set to new projects. To support this third point,
+the reference set to new projects in the case of heterogeneous data sets. To support this third point,
 we need to resolve the problems
   that this paper addresses (data expressed in different terminology
   cannot transfer till there is enough data to match old projects to new).
 
-  
+ 
 
 
 \subsection{Why Explore Defect Prediction?}
