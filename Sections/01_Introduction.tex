@@ -12,50 +12,56 @@
 % this reason, many software defect prediction studies have been
 %conducted~\cite{DAmbros12,Lee11,Lessmann08,Li12,Mende10,Menzies07,Shivaji13,Zimmermann08}.
 
-\IEEEPARstart{M}{ost} defect prediction models are based on
-machine learning. Therefore, it is a must to collect defect datasets
-to train a prediction model~\cite{DAmbros12,Menzies07}. The
-defect datasets consist of various software metrics and labels. Software metrics are the terminology describing software projects. Commonly
+\IEEEPARstart{M}{achine} learners can be used to automatically generate software quality
+models from project data~\cite{DAmbros12,Menzies07}. 
+Such data comprises  various {\em software metrics} and {\em labels}:
+\bi
+\item
+{\em Software metrics} are the terms used to  describing software projects. Commonly
 used software metrics for defect prediction are complexity metrics (such as lines of code, Halstead
 metrics, McCabe's cyclometic complexity, and CK metrics) and
-process metrics~\cite{Basili96,Halstead77,McCabe76,Rahman13}. Labels indicate
+process metrics~\cite{Basili96,Halstead77,McCabe76,Rahman13}.
+\item
+When learning defect models,
+{\em labels} indicate
 whether the source code is buggy or clean for binary
 classification~\cite{Lee11,Nam13}.
+\ei
 % These metrics measure how software and its development process are complex, and
 % they are used as features for building a prediction model based on machine
 % learning.
 
+\noindent
 Most proposed defect prediction models have been evaluated on
-within-project defect prediction (WPDP)
+``within-project'' defect prediction (WPDP)
 settings~\cite{DAmbros12,Lee11,Menzies07}.
-In Figure~\ref{fig:subfig1}, each instance representing a source code file or
+As shown
+in Figure~\ref{fig:subfig1}, in WPDP,  each instance representing a source code file or
 function consists of software metric values and is labeled as buggy or clean.
 In the WPDP setting, a prediction model is
 trained using the labeled instances in {\em Project A} and predict unlabeled (`?')
 instances in the same project as buggy or clean.
 
-However, it is difficult to build a prediction model for new
+It is difficult to build a prediction model for new
 software projects or projects with little historical
-information~\cite{Zimmermann09} since they do not have enough training
-instances. Various process metrics and label information can be extracted from
-the historical data of software repositories such as version control and issue
-tracking systems~\cite{Rahman13}.
-Thus, it is difficult to collect process metrics and instance
-labels in new projects or projects that have little historical
-data~\cite{Fukushima14,Nam13,Zimmermann09}. For example, without instances being
-labeled using past defect data, it is not possible to build a prediction model.
+information~\cite{Zimmermann09} since such projects lack sufficient  training
+data. 
+%Various process metrics and label information can be extracted from
+%the historical data of software repositories such as version control and issue
+%tracking systems~\cite{Rahman13}.
+%Thus, it is difficult to collect process metrics and instance
+%labels in new projects or projects that have little historical
+%data~\cite{Fukushima14,Nam13,Zimmermann09}. For example, without instances being
+%labeled using past defect data, it is not possible to build a prediction model.
 %~\sung{Here your
 %supporting sentences are weak and your argument is not so convincing. Any more
 % backup or citations?}
-
-
-
 To address this issue, researchers
-have proposed cross-project defect
+have proposed ``cross-project'' defect
 prediction (CPDP)~\cite{He12, Ma12, Nam13, Rahman12, Turhan09, Zimmermann09}.
 CPDP approaches predict defects even for new projects lacking
-in historical data by reusing prediction models built by other project
-datasets. As shown in Figure~\ref{fig:subfig2}, a prediction model is trained by
+in historical data by reusing information from other other project. As shown in Figure~\ref{fig:subfig2}, in CPDP,
+a prediction model is trained by
 labeled instances in {\em Project A} (source) and predicts defects in {\em Project B} (target).
 
 %\sung{This part is not relevent, since you are not improving cross-defect prediction.}
@@ -72,12 +78,16 @@ labeled instances in {\em Project A} (source) and predicts defects in {\em Proje
 % Studies by Briand et al.~\cite{Briand02} and Rahman et al.~\cite{Rahman12} found
 % that the cross-prediction is viable in terms of cost-effectiveness.
 
-However, most CPDP approaches have a serious limitation:
-CPDP is only feasible for projects which have exactly the same metric
-set as shown in Figure~\ref{fig:subfig2}. Finding other projects with exactly
+Most CPDP approaches have a serious limitation:
+standard CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}). Finding other projects with exactly
 the same metric set can be challenging. Publicly available defect
 datasets that are widely used in defect prediction literature usually have
-heterogeneous metric sets~\cite{DAmbros12,promise12,Nam13}.
+{\em heterogeneous} metric sets:
+\bi
+\item
+
+In   heterogenous data, different metrics are collected in different projects.
+\item
 For example, many NASA datasets in the PROMISE repository have 37 metrics but
 AEEEM datasets used by D'Ambroas et al. have 61
 metrics~\cite{DAmbros12,promise12}.
@@ -86,7 +96,7 @@ code (LOC)}.
 CPDP between NASA and AEEEM
 datasets with all metric sets is not feasible since they have
 completely different metrics~\cite{Turhan09}.
-
+\ei
 % Different metric sets among project datasets are due to different
 % development `contexts' such as programing language, open-/closed-source, 
 % application domain, system size, and etc.~\cite{Zhang13}. For
@@ -101,11 +111,11 @@ completely different metrics~\cite{Turhan09}.
 % difference of development environments as several context factors and analyzed
 % that the context factors affect the distribution of software
 % metrics~\cite{Zhang13}.
-
 Some CPDP studies use only common metrics when source and target datasets have
 heterogeneous metric sets~\cite{Ma12,Turhan09}.
 For example, Turhan et al. use the only 17 common metrics between the NASA and
-SOFTLAB datasets that have heterogeneous metric sets~\cite{Turhan09}. However,
+SOFTLAB datasets that have heterogeneous metric sets~\cite{Turhan09}. 
+This approach is hardly a general solution since
 finding other projects with multiple common metrics can be challenging. As
 mentioned, there is only one common metric between NASA and AEEEM. Also,
 only using common metrics may degrade the performance of CPDP models.
