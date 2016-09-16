@@ -15,9 +15,9 @@
 \IEEEPARstart{M}{achine} learners can be used to automatically generate software quality
 models from project data~\cite{DAmbros12,Menzies07}. 
 Such data comprises  various {\em software metrics} and {\em labels}:
-\bi
+\squishlist
 \item
-{\em Software metrics} are the terms used to  describing software projects. Commonly
+{\em Software metrics} are the terms used to describe software projects. Commonly
 used software metrics for defect prediction are complexity metrics (such as lines of code, Halstead
 metrics, McCabe's cyclometic complexity, and CK metrics) and
 process metrics~\cite{Basili96,Halstead77,McCabe76,Rahman13}.
@@ -26,7 +26,7 @@ When learning defect models,
 {\em labels} indicate
 whether the source code is buggy or clean for binary
 classification~\cite{Lee11,Nam13}.
-\ei
+\squishend
 % These metrics measure how software and its development process are complex, and
 % they are used as features for building a prediction model based on machine
 % learning.
@@ -44,7 +44,7 @@ instances in the same project as buggy or clean.
 
 It is difficult to build a prediction model for new
 software projects or projects with little historical
-information~\cite{Zimmermann09} since such projects lack sufficient  training
+information~\cite{Zimmermann09} since such projects lack sufficient training
 data. 
 %Various process metrics and label information can be extracted from
 %the historical data of software repositories such as version control and issue
@@ -60,7 +60,7 @@ To address this issue, researchers
 have proposed ``cross-project'' defect
 prediction (CPDP)~\cite{He12, Ma12, Nam13, Rahman12, Turhan09, Zimmermann09}.
 CPDP approaches predict defects even for new projects lacking
-in historical data by reusing information from other other project. As shown in Figure~\ref{fig:subfig2}, in CPDP,
+in historical data by reusing information from other projects. As shown in Figure~\ref{fig:subfig2}, in CPDP,
 a prediction model is trained by
 labeled instances in {\em Project A} (source) and predicts defects in {\em Project B} (target).
 
@@ -79,11 +79,11 @@ labeled instances in {\em Project A} (source) and predicts defects in {\em Proje
 % that the cross-prediction is viable in terms of cost-effectiveness.
 
 Most CPDP approaches have a serious limitation:
-standard CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}). Finding other projects with exactly
+typical CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}). Finding other projects with exactly
 the same metric set can be challenging. Publicly available defect
 datasets that are widely used in defect prediction literature usually have
 {\em heterogeneous} metric sets:
-\bi
+\squishlist
 \item
 
 In   heterogenous data, different metrics are collected in different projects.
@@ -96,7 +96,7 @@ code (LOC)}.
 CPDP between NASA and AEEEM
 datasets with all metric sets is not feasible since they have
 completely different metrics~\cite{Turhan09}.
-\ei
+\squishend
 % Different metric sets among project datasets are due to different
 % development `contexts' such as programing language, open-/closed-source, 
 % application domain, system size, and etc.~\cite{Zhang13}. For
@@ -195,7 +195,7 @@ for a prediction model before metric matching.
 
 In addition to proposing HDP, it is important to identify the lower bounds of the sizes of the source and target datasets for effective transfer learning since HDP compares distributions between source and target datasets. 
 %However, when conducting HDP, there is another issue, "how early can we transfer knowledge from source to target?"
-If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model. We address this limit in this paper as well.
+If HDP requires many source or target instances to compare there distributions, HDP may not be effective to build a prediction model for the small datasets. We address this limit experimentally as well as theoretically in this paper.
 
 
 \begin{figure}[t]
@@ -246,8 +246,8 @@ two research questions.
 
 \subsection{Contributions}
 Our experimental study shows that HDP models are feasible and their prediction
-performance is promising. About 68\% of HDP predictions
-are better or comparable to WPDP predictions with statistical
+performance is promising. About 50\% -- 74\% of HDP predictions
+are better or comparable to predictions in baseline approaches with statistical
 significance.
 
 
@@ -269,7 +269,7 @@ Our contributions are summarized as follows:
 
 \subsection{Extensions from Prior Publication}
 
-We extend the previous conference paper of the same name~\cite{Nam15HDP} in the following ways. First, we motivate this study in the view of transfer learning in SE. Thus, we discuss how transfer learning can be helpful to understand the nature of generality in SE and why we focus on defect prediction in terms of transfer learning (Section~\ref{sec:Motivation}). Second, we address new research question about the effective sizes of source and target datasets when conducting HDP.  In Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we show experimental and theoretical validation to investigate the effective sizes of project datasets for HDP. Third, we discuss more related work with recent studies. In Section~\ref{sec:Background}, we discuss metric sets used in CPDP and how our HDP is similar to and different from recent studies about CPDP using heterogeneous metric sets.
+We extend the previous conference paper of the same name~\cite{Nam15HDP} in the following ways. First, we motivate this study in the view of transfer learning in software engineering (SE). Thus, we discuss how transfer learning can be helpful to understand the nature of generality in SE and why we focus on defect prediction in terms of transfer learning (Section~\ref{sec:Motivation}). Second, we address new research question about the effective sizes of source and target datasets when conducting HDP.  In Section~\ref{sec:sizelimit} and~\ref{sect:xplain}, we show experimental and theoretical validation to investigate the effective sizes of project datasets for HDP. Third, we discuss more related work with recent studies. In Section~\ref{sec:Background}, we discuss metric sets used in CPDP and how our HDP is similar to and different from recent studies about CPDP using heterogeneous metric sets.
 %Fourth, we conduct the effect size analysis using Cliff's $\delta$ to investigate the magnitude of performance improvement by HDP in Section~\ref{sec:Result}.
 
 % This paper is organized as follows. Section~\ref{sec:Background} explains
