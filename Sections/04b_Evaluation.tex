@@ -3,7 +3,7 @@
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=.66\linewidth]{Figures/raleigh/sample_random.eps}
-	\caption{Improvements of using sampled data over all data with sampled size N = \{50, 100, 150, 200\}. We label the data in table \ref{tab:datasets} from a to z, and the last two datasets ar5 and ar6 as A and B.}
+	\caption{Improvements of using sampled data over all data with sampled size N = \{50, 100, 150, 200\}. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
 	\label{fig:small_data}
 \end{figure*}
 
@@ -21,13 +21,15 @@ Like prior work \cite{Nam13,
   Zhang14}, the basic HDP method we
 proposed above uses {\em all} the instances in potential source and target data to
 perform KS-test to select the best matched metrics and then build
-defect prediction learners.
-Collecting {\em all} that data from source and target projects need much more work and also
-for the target project, it requires waiting for it to finish before
-transferring its learned lessons. This begs the question ``how early can we transfer?''.
-That is, how {\em few} data from source and target projects do we need before transfer can be effective? In this section, we conduct an empirical study to answer these questions related to RQ2.
+defect prediction learners, which takes several days with a machine with 24 cores in \cite{Nam15HDP}.
+Such a long runtime can prevent HDP from applying into practice.
+% Collecting {\em all} that data from source and target projects need much more work and also
+% for the target project, it requires waiting for it to finish before
+% transferring its learned lessons. 
+This begs the question  ``Can we use a few, instead of {\em all}, source and target project data to apply HDP?'' In this section, we conduct an empirical study to answer these questions related to RQ2.
 
-To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
+% To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. 
+% In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
 
 
 
@@ -41,13 +43,23 @@ we  add an instance sampling process before performing metric matching:
 instead of using all the instances from
 candidate source and target datasets, those datasets will
 be randomly sampled (without replacement)to generate smaller datasets of
-size $N \in \{50, 100, 150, 200\}$. For most data sets consiered in this experiment, $N$ with these values is a 
-small data size compared to the orginal data size. {\it If
+size $N \in \{50, 100, 150, 200\}$. 
+
+The reason we choose those $N$ values as follows. On one hand, by looking at the size of datasets used in the
+above experiment, we observed that minimum size is ar5 with $36$ instances and maximum size is pc5 with $17001$ instances.
+The median and mean value of dataset size are $1505$ and $325$, respectively. Then $200$ is less than both of 
+them, which is reasonably small.
+On the other hand, we use these numbers to show using small datasets is feasible compared to
+the original. We're not claiming they're the best~(optimal) small numbers. For most data sets considered in this experiment, $N$ with these values is a 
+small data size compared to the original data size. 
+
+When sampling the original data, {\it if
 the number of instances in the original dataset is
 smaller than $N$, all those instances will be
-included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the data set has less than $200$ instances, such as 'ar3', we use all
+included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the data set has less than $200$ instances, such as ar3, we use all
 the instances and no oversampling is applied. With those sampled $N=200$ data, we perform metric matching to build a learner
-and finally predict labels of all original data in the target project.
+and finally predict labels of all original data in the target project. We sample the data without replacement
+to void duplicate data.
 
 The results for this HDP-with-limited-data experiment is shown in \fig{small_data}
 (we display median AUC results from 20 repeats, using  Logistic Regression
@@ -68,7 +80,7 @@ In that figure:
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=0.66\linewidth]{Figures/raleigh/sample_epv.eps}
-	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. We label the data in table \ref{tab:datasets} from a to z, and the last two datasets ar5 and ar6 as A and B.}
+	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
 	\label{fig:small_epv}
 \end{figure*}
 The datasets are ordered left to right by the difference to the black line (where we transfer using {\em
@@ -116,7 +128,7 @@ Working in the domain cardiology,
   examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
-  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of different matched features are as follows: \{1:120, 2:249, 3:171, 4:60, 5:14\}, where keys and values represent number of matched features, the corresponding counts, respectively. Our read of this distribution is that the median of matched features is $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV=10,  in our case, \# of events =10, \# of variables =2), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
+  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of different matched features are as follows: $\{1:120, 2:249, 3:171, 4:60, 5:14\}$, where keys and values represent number of matched features, the corresponding counts, respectively. Our read of this distribution is that the median of matched features is $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
   $N\in \{50,100,150,200\}$ for the source data. For the target dataset, since we do not
   know the data labels, we simply sampled $N$ for target data in metric matching.
