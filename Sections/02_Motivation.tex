@@ -4,24 +4,24 @@
 \subsection{Why Explore Transfer Learning?}
 One reason to explore transfer learning
 is to study the nature of
-generality in SE.  Professional
+generality in SE. Professional
 societies assume such generalities exist when they
 offer lists of supposedly general ``best practices'':
 \squishlist
 \item For example, the  IEEE 1012 standard for software
   verification~\cite{1012} proposes numerous methods for assessing software quality;
 \item
- Endres \& Rombach catalog
+ Endres and Rombach catalog
 dozens of lessons of software
 engineering~\cite{endres03} such as McCabe's Law (functions with a ``cyclomatic complexity'' greater
 than ten are more error prone);
 \item Further, many other
-widely-cited researchers do the same such as  Jones~\cite{jones10} and
+widely-cited researchers do the same such as Jones~\cite{jones10} and
 Glass~\cite{glass02} who list (for exmple)
 Brooks' Law (adding programmers to a late project makes it later).
 % Boehm~\cite{hoehm00b}.
 \item
-  More generally, Budgen \& Kitchenham seek to
+  More generally, Budgen and Kitchenham seek to
 reorganize SE research using general conclusions
 drawn from a larger number of
 studies~\cite{budgen06,budgen09}.
@@ -32,11 +32,11 @@ those supposed generalities?
 Numerous {\em local learning} results show that we
 should mistrust general conclusions (made over a
 wide population of projects) since they may not hold
-for projects.  Posnett et al.~\cite{posnett11}
+for projects. Posnett et al.~\cite{posnett11}
 discuss {\em ecological inference} in software
 engineering, which is the concept that what holds
 for the entire population also holds for each
-individual.  They learn models at different levels
+individual. They learn models at different levels
 of aggregation (modules, packages, files) and show
 that models that work at one level of aggregation
 can be sub-optimal at others.  For example, Yang et
@@ -60,7 +60,7 @@ expensive testing procedures, etc.)?
 If we cannot {\em generalize} to all projects and all parts
 of current projects, perhaps a more achievable goal is to {\em stabilize} the pace of conclusion change. 
 While it may be 
-a fool's errand  and wait for  eternal and global SE
+a fool's errand and wait for eternal and global SE
 conclusions, one possible approach is for organizations
 to declare $N$ prior projects as {\em reference projects},
 from which lessons learned will be transferred to new projects.
@@ -68,25 +68,24 @@ In practice, using such reference sets requires three processes:
 \squishlist
 \item Finding the reference sets (this paper shows that finding
   them may not be a too complex task, at least for defect prediction).
-  \item Recognizing when to update  the reference set. In practice,
+  \item Recognizing when to update the reference set. In practice,
   this could be as simple as noting when predictions start failing for new projects---at which time, we would loop to point \#1.
 \item Transferring
   lessons from the reference set to new projects.  
 \squishend
 In the case where all the datasets use the same metrics, this is a relatively
-simple task. With Kirhsna and Fu~\cite{krishna19}, we have found such reference projects just by training of
-projectX then testing on projectY (and the reference set are the projectXs with highest scores).
-Once found, these reference sets can generate
-  policies of an organization that are 
+simple task. With Kirhsna and Fu~\cite{krishna16}, we have found such reference projects just by training of
+a project X then testing on a project Y (and the reference set are the project Xs with highest scores).
+Once found, these reference sets can generate policies of an organization that are 
 stable just as long as the reference set is not updated.
 
 In this paper, we do not address the pace of change in the reference set
 (that is left for future work).
 Rather, we focus on point \#3: transferring lessons from
 the reference set to new projects in the case of heterogeneous data sets. To support this third point,
-we need to resolve the problems
-  that this paper addresses (data expressed in different terminology
-  cannot transfer till there is enough data to match old projects to new).
+we need to resolve the problem
+  that this paper addresses, i.e., data expressed in different terminology
+  cannot transfer till there is enough data to match old projects to new projects.
 
  
 
@@ -133,7 +132,7 @@ Nevertheless, it is the only option when
 resources prevent a complete assessment of everything.
 
 One such lightweight sampling policy is defect predictors learned from static code attributes.
-Given static code descriptors for each module, plus a count of humber of issues raised during inspect (or at runtime),
+Given static code descriptors for each module, plus a count of the number of issues raised during inspect (or at runtime),
 data miners can
 learn where the probability of software defects is highest.
 
@@ -151,10 +150,10 @@ which can be as large as four or six people~\cite{me02f}.
 {\em Widely used:}  Researchers and industrial practitioners  use static attributes to guide software 
 quality predictions.
  Defect prediction models have been reported
-  at Google~\cite{lewis13}.
+  at large industrial companies such as Google~\cite{lewis13}, Microsoft~\cite{Nagappan06}, AT\&T~\cite{Ostrand05}, and Samsung~\cite{Kim15remi}.
 Verification and validation (V\&V) textbooks
 \cite{rakitin01} advise using static code complexity attributes
-to decide which modules are worth manual inspections.  
+to decide which modules are worth manual inspections. 
 
 
 {\em Useful:}
