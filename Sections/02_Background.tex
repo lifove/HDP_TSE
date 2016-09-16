@@ -1,10 +1,10 @@
 \section{Related Work}
 \subsection{Related Work on Transfer Learning}
 In the machine learning literature, the 2010 article by
-Pan\&Yang~\cite{Pan10} is the definitive definition of
+Pan and Yang~\cite{Pan10} is the definitive definition of
 transfer learning.
 
-Pan\&Yang state that transfer learning is defined over a {\em domain} $D$,
+Pan and Yang state that transfer learning is defined over a {\em domain} $D$,
 which is composed of pairs of
 examples $X$ and a probability distribution about those examples $P(X)$;
 i.e., \mbox{$D = \{ X, P(X) \}$}.
@@ -15,14 +15,14 @@ The transfer learning {\em task} $T$ is to learn a function $f$ that predicts la
 $T = \{ Y, f \}$.
 Given a new example $x$, the intent is that the function can produce a correct
 label $y\in Y$; i.e., $y = f(x)$ and $x\in X$.
-According to Pan\&Yang, synonyms for transfer learning include, learning
+According to Pan and Yang, synonyms for transfer learning include, learning
 to learn, life-long learning, knowledge transfer, inductive transfer,
 multitask learning, knowledge consolidation, context-sensitive
 learning, knowledge-based inductive bias, metalearning, and
 incremental/cumulative learning.
 
-Pan\&Yang~\cite{Pan10} define four types of transfer learning:
-\bi
+Pan and Yang~\cite{Pan10} define four types of transfer learning:
+\squishlist
 \item
 When moving from some source domain    to the target domain,   {\em instance-transfer} methods
 provides example data for model building in the target;
@@ -33,13 +33,13 @@ model building;
 {\em Parameter transfer} provides parameter terms for existing models;
 \item
 and {\em Relational-transfer} provides mappings between term parameters.
-\ei
+\squishend
 From a business perspective, we can offer the following examples of
 how to use these four kinds of transfer. Take the case where a company
 is moving from Java-based desktop application development to
 Python-based web application development. The project manager for the
 first Python webapp wants to build a model that helps her predict
-which classes have the most defects so that she can focus system
+which classes have the most defects so that she can focus on system
 testing:
 
 \bi
@@ -57,7 +57,7 @@ models to make those model are relevant for the Python projects.
 \item
 Finally, {\em relational-transfer} will tell her how to translate some
 JAVA-specific concepts (such as metrics collected from JAVA interfaces
-classes)  into synonymous terms for Python (note that this last kind
+classes) into synonymous terms for Python (note that this last kind
 of transfer is very difficult and, in the case of SE, the least
 explored).
 \ei
@@ -66,7 +66,7 @@ of {\em instance transfer} and methods for CPDP using Heterogeneous metrics sets
 of {\em relational-transfer}. These methods are discussed in the next two sections of this paper.
 
 As to the other kinds of transfer, there is some work in the effort estimation literature of using
-genetic algorithms to automatically learn weights for different parameters~\cite{sigweni2014feature}. Such work is ane example of {\em parameter transfer}.
+genetic algorithms to automatically learn weights for different parameters~\cite{sigweni2014feature}. Such work is an example of {\em parameter transfer}.
 To the best of our knowledge, there is no work on feature-representation transfer, but research into automatically
 learning APIs between programs~\cite{dallmeier2012automatically} might be considered a close analog.
 
