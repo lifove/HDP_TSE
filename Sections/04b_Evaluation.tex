@@ -3,7 +3,7 @@
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=.66\linewidth]{Figures/raleigh/sample_random.eps}
-	\caption{Improvements of using sampled data over all data with sampled size N = \{50, 100, 150, 200\}. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
+	\caption{Improvements of using sampled data over all data with sampled size N = \{50, 100, 150, 200\}. The Right side show  using small dataset is better than using all data. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
 	\label{fig:small_data}
 \end{figure*}
 
@@ -19,17 +19,14 @@ Since HDP compares the distributions of source metrics to those of target metric
 Like prior work \cite{Nam13,
   Ma12, Rahman12, Ryu14,
   Zhang14}, the basic HDP method we
-proposed above uses {\em all} the instances in potential source and target data to
-perform KS-test to select the best matched metrics and then build
-defect prediction learners, which takes several days with a machine with 24 cores in \cite{Nam15HDP}.
-Such a long runtime can prevent HDP from applying into practice.
-% Collecting {\em all} that data from source and target projects need much more work and also
-% for the target project, it requires waiting for it to finish before
-% transferring its learned lessons. 
-This begs the question  ``Can we use a few, instead of {\em all}, source and target project data to apply HDP?'' In this section, we conduct an empirical study to answer these questions related to RQ2.
+proposed above uses {\em all} the instances in potential source and target projects to perform metric to select the best matched metrics and then build
+defect prediction learners.
+Collecting {\em all} that data from source and target projects need much more work and also
+for the target project, it requires waiting for it to finish before
+transferring its learned lessons. This begs the question ``how early can we transfer?''.
+That is, how {\em few} historical data and target projects do we need before transfer can be effective? In this section, we conduct an empirical study to answer these questions related to RQ2.
 
-% To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. 
-% In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
+To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
 
 
 
@@ -80,7 +77,7 @@ In that figure:
 	\centering
 % 	\vspace{0.5mm}
 	\includegraphics[width=0.66\linewidth]{Figures/raleigh/sample_epv.eps}
-	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
+	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. The Right side show  using small dataset with EPV is better than using all data. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
 	\label{fig:small_epv}
 \end{figure*}
 The datasets are ordered left to right by the difference to the black line (where we transfer using {\em
