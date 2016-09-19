@@ -589,10 +589,10 @@ options~\cite{Weka}.
 For WPDP, it is necessary to split datasets into training and test
 sets. We use the two-fold cross validation (CV), which is widely used in the evaluation of
 defect prediction models~\cite{Klas2010,Nam13,Pinzger2008}. In the two-fold CV, we use one half of the instances for training a model and the rest for
-test (round 1). Then, we use the two splits in a reverse way, where we
+test (round 1). Then, we use the two splits (folds) in a reverse way, where we
 use the previous test set for training and the previous training set for test
 (round 2). We repeat these two rounds 500 times, i.e. 1000 tests, since there
-is a randomness in selecting instances for each split~\cite{Arcuri11}.
+is a randomness in selecting instances for each split~\cite{Arcuri11}. When conducting the two-fold CV, the stratified CV that keeps the buggy rate of the two folds same as that of the original datasets is applied as we used the default options in Weka~\cite{Weka}.
 
 For CPDP-CM, CPDP-IFS, and HDP, we build a 
 prediction model by using a source dataset and test the model on the same test
