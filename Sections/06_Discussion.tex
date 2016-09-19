@@ -181,9 +181,11 @@ We evaluated our HDP models in AUC.
 
 For RQ1, we computed matching scores using all
 	source and target instances for each prediction combination.
-	With that matching scores, we tested prediction models on a test set from the 50:50 random splits because of the WPDP models as explained in Section~\ref{sec:expdesign}.
+	With that matching scores, we tested prediction models on a test set from the two-fold cross validation because of the WPDP models as explained in Section~\ref{sec:expdesign}.
 	To conduct WPDP with all instances of a project dataset as a test set, we need a training dataset from the previous releases of the same project. However, the training dataset is not
-	available for our subjects. This may lead to an issue on construct validity since the matching score computations are not based on actual target instances used in the 50:50 random sampling. To address this issue, we additionally conducted experiments with different sample sizes, i.e., 50, 100, 150, and 200 rather using all instances when computing matching scores for HDP in Section~\ref{sec:sizelimit}.
+	available for our subjects. This may lead to an issue on construct validity since the matching score computations are not based on actual target instances used in the samples of the two-fold cross validation. To address this issue, we additionally conducted experiments with different sample sizes, i.e., 50, 100, 150, and 200 rather using all instances when computing matching scores for HDP in Section~\ref{sec:sizelimit}.
+
+A recent study by Tantithamthavorn et al.~\cite{Tantithamthavorn16} pointed out model validation techniques may lead to different interpretation of defect prediction results. Although the n-fold cross validation is one of widely used model validation techniques~\cite{Klas2010,Nam13,Pinzger2008}, our experimental results based on the two-fold cross validation may be different from those using other validation techniques. This could be an issue in terms of construct validity as well.
 %	about HDP against CPDP-CM and CPDP-IFS by testing a prediction model on a
 %	test set using all instances of a target dataset in each prediction
 %	combination.
