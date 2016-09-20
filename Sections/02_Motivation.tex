@@ -122,12 +122,10 @@ C)/log(1-p)$. For example, $N(0.90,10^{-3})=2301$
 but $N(0.98,10^{-3})=3901$; i.e. nearly double the number of tests.}.
 Exponential costs quickly exhaust finite resources so
 standard practice is to apply the best
-available  methods on code sections that seem   most critical. 
-But 
-any method that focuses on parts of the code
-can blind us to defects in other areas. Some  {\em
-lightweight sampling policy} should be used to explore the rest of the system.  This
-sampling policy will always be incomplete.
+available  methods on code sections that seem most critical. 
+But any method that focuses on parts of the code
+can blind us to defects in other areas. Some  {\em lightweight sampling policy} should be used to explore the rest of the system.
+This sampling policy will always be incomplete.
 Nevertheless, it is the only option when
 resources prevent a complete assessment of everything.
 
@@ -174,6 +172,8 @@ Raffo documents the typical    defect detection capability of
 industrial review methods:   around 50\%
  for full Fagan inspections~\cite{fagan76} to
 21\% for less-structured inspections.
+In some sense, defect prediction might not be necessary for small software projects.
+However, software projects seldom grow by small fractions in practice. For example, a project team may suddenly merge a large branch into a master branch in a version control system or add a large third-part library. In addition, a small project could be just one of many other projects in a software company. In this case, the small project also should be considered for limited resource allocation in terms of software quality control by the company. For this reason, defect prediction could be useful even for the small software projects.
 
 Not only do static code defect predictors perform well compared to manual methods,
 they also are competitive with certain automatic methods.
