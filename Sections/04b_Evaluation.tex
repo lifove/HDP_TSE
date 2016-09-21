@@ -125,7 +125,7 @@ Working in the domain cardiology,
   examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
-  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of different matched features are as follows: $\{1:120, 2:249, 3:171, 4:60, 5:14\}$, where keys and values represent number of matched features, the corresponding counts, respectively. Our read of this distribution is that the median of matched features is $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
+  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of different matched features are as follows: $\{1:120, 2:249, 3:171, 4:60, 5:14\}$, where keys and values represent number of matched features, the corresponding counts of cross prediction combinations, respectively. Our read of this distribution is that the median of matched features is $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
   $N\in \{50,100,150,200\}$ for the source data. For the target dataset, since we do not
   know the data labels, we simply sampled $N$ for target data in metric matching.
@@ -154,5 +154,5 @@ Working in the domain cardiology,
   and \fig{small_epv}, there is no large disadvantage of using just
   $M=20$ defective instances.
 
-  Note that such a very small sample would be quick to collect: since training data is already available even before we start our target(new) project, we can easily sample $N$ data with $M=20$ defective classes/files for each candidate training data. After writing (say) a few
+  Note that such a very small sample would be quick to collect: since training data is already available even before we start our target (new) project, we can easily sample $N$ data with $M=20$ defective classes/files for each candidate training data. After writing (say) a few
   hundred classes for the target project, it's also easy to randomly sample $N$ from target project---at which point that data is a candidate for transfer learning.
