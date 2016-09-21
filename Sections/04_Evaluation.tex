@@ -45,8 +45,8 @@ This section presents the details of our experimental study such as benchmark da
 	\\ \hline \hline
 \multirow{5}{*}{\specialcell{AEEEM~\\\cite{DAmbros12,Nam13}}}
 	&	EQ
-	&\centering325
-	&	129 (39.69\%)
+	&\centering324
+	&	129 (39.81\%)
 	& \multirow{5}{*}{61}
 	& \multirow{5}{*}{Class}
 	\\ %\cline{4-5}
@@ -58,7 +58,7 @@ This section presents the details of our experimental study such as benchmark da
 	\\ 
 
 	&	LC	
-	&\centering399
+	&\centering691
 	& 64 (9.26\%)
 	& &
 	\\ 
@@ -300,7 +300,7 @@ apply the HDP approach on datasets even in different granularity levels.
 % prediction across benchmark datasets. We validated our framework using
 % models built by defect, SE, or non-SE for testing defect datasets.
 
-We used five groups with 28 defect datasets: AEEEM, ReLink, MORPH, NASA,
+We used five groups with 34 defect datasets: AEEEM, ReLink, MORPH, NASA,
 and SOFTLAB.
 
 AEEEM was used to benchmark different defect
@@ -322,8 +322,8 @@ other OO metrics~\cite{Peters12}.
 
 NASA and SOFTLAB contain proprietary
 datasets from NASA and a Turkish software company, respectively~\cite{Turhan09}.
-We used five NASA datasets, which share the same metric set in the PROMISE
-repository~\cite{promise12,Shepperd13}. We used cleaned NASA datasets (DS$'$ version)~\cite{Shepperd13}.
+We used 11 NASA datasets in the PROMISE
+repository~\cite{promise12,Shepperd13}. Some NASA datasets have different metric sets as shown in Table~\ref{tab:datasets}. We used cleaned NASA datasets (DS$'$ version)~\cite{Shepperd13}.
 For the SOFTLAB group, we used all SOFTLAB datasets in the PROMISE
 repository~\cite{promise12}. The metrics used in both NASA and SOFTLAB groups
 are Halstead and McCabe's cyclomatic metrics but NASA has additional
@@ -334,14 +334,13 @@ groups.
 For example, we build a prediction model by Apache in ReLink and tested the
 model on velocity-1.4 in MORPH
 (Apache$\Rightarrow$velocity-1.4).\footnote{Hereafter a rightward arrow
-($\Rightarrow$) denotes a prediction combination.}
+($\Rightarrow$) denotes a prediction combination.} Since some NASA datasets do not have the same metric sets, we also conducted cross prediction between some NASA datasets that have different metric sets, e.g, (cm1$\Rightarrow$jm1).
 
-We did not conduct defect prediction across projects in the same group
-where datasets have the same metric set since the focus of our study is on prediction
+We did not conduct defect prediction across projects where datasets have the same metric set since the focus of our study is on prediction
 across datasets with heterogeneous metric sets.
 % We represent this prediction combination as EQ$\Rightarrow$Apache. We use the same representation,
 % SOURCE$\Rightarrow$Target, for other prediction combinations across the paper.
-In total, we have 600 possible prediction combinations from these 28 datasets.
+In total, we have 962 possible prediction combinations from these 34 datasets. Since we select top 15\% of metrics for metric selection as explained in Section~\ref{sec:metricselection}, the number of selected metrics varies from 3 (MORPH) to 9 (AEEEM)~\cite{Gao11}.
 
 % \begin{table}[t]
 % \small

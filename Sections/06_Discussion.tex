@@ -96,6 +96,10 @@ To minimize the percentage of Loss results, we can sacrifice the target coverage
 by increasing the cutoff as Table~\ref{tab:other_analyzers} shows KSAnalyzer with
 the cutoff of 0.90 led to 100\% Win results in feasible predictions against
 WPDP.
+By controlling a cutoff value, we may increase the target coverage.
+For example, we can start from a higher cutoff value and decrease the cutoff until HDP is eligible.
+This greedy approach might be helpful for practitioners who want to increase the target coverage when conducting HDP.
+We remain validating this idea as a future work.
 
 % However, we also observed Loss results and figured out filtering out Loss cases
 % is quite challenging. When the metrics in defect datasets did not follow the

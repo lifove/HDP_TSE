@@ -280,7 +280,7 @@ Each analyzer for the metric matching scores is described in the following subse
 
 \subsubsection{PAnalyzer}
 PAnalyzer simply compares 9 percentiles (10th, 20th,\ldots, 90th) of ordered
-values between source and target metrics.
+values between source and target metrics. A percentile is a statistical measure that indicates the value at a specific percentage of observations in descriptive statistics. By comparing differences at the 9 percentiles, we simulate the similarity between source and target metric values. The intuition of this analyzer comes from the assumption that the similar source and target metric values have similar statistical information. Since comparing only medians, i.e., 50th percentile just show one aspect of distributions of source and target metric values, we expand the comparison at the 9 spots of distributions of those metric values.
 
 First, we compute the difference of $n$-th
 percentiles in source and target metric values by the following
@@ -293,7 +293,7 @@ of $i$-th source and $j$-th target metrics, and $sp_{ij}(n)$ and $bp_{ij}(n)$
 are smaller and bigger percentile values respectively at $n$-th percentiles
 of $i$-th source and $j$-th target metrics. For example, if the 10th
 percentile of the source metric values is 20 and that of target metric values is
-15, the difference is 0.75 ($P_{ij}(10)=15/20=0.75$).
+15, the difference is 0.75 ($P_{ij}(10)=15/20=0.75$). Then, we repeat this calculation at the 20th, 30th,\ldots, 90th percentiles.
 
 Using this percentile comparison function, a matching score between source
 and target metrics is calculated by the following equation:
@@ -301,9 +301,9 @@ and target metrics is calculated by the following equation:
 M_{ij}=\frac{\sum\limits_{k=1}^9
 P_{ij}(10\times{k})}{9}\end{equation}
 , where $M_{ij}$ is a matching score between $i$-th source and $j$-th
-target metrics. The best matching score of this equation is 1.0
+target metrics. For example, if we assume a set of all $P_{ij}$, i.e., $P_{ij}{(10\times{k})}=\{0.75, 0.34, 0.23, 0.44, 0.55, 0.56, 0.78, 0.97, 0.55\}$, $M_{ij}$ will be 0.574(=$\frac{0.75+0.34+0.23+0.44+0.55+0.56+0.78+0.97+0.55}{9}$). The best matching score of this equation is 1.0
 when the values of the source and target metrics of all 9 percentiles are the
-same.
+same, i.e., $sp_{ij}(n)=1$.
 
 \subsubsection{KSAnalyzer}
 KSAnalyzer uses a p-value from the Kolmogorov-Smirnov Test (KS-test)
