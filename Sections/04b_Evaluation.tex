@@ -26,7 +26,7 @@ for the target project, it requires waiting for it to finish before
 transferring its learned lessons. This begs the question ``how early can we transfer?''.
 That is, how {\em few} historical data and target projects do we need before transfer can be effective? In this section, we conduct an empirical study to answer these questions related to RQ2.
 
-To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 28 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
+To investigate the size limits for effective transfer learning in the setting of CPDP across datasets with heterogeneous metric sets, we focus on the HDP approach. There are other approaches such as CPDP-IFS~\cite{He14} and CCA+~\cite{Jing15}. In Section~\ref{sec:Result}, we observed that HDP outperforms CPDP-IFS. In addition, CCA+ was evaluated in somewhat different context, i.e., cross-company defect prediction and with 14 projects which are far less than 34 projects used in our experiments for HDP. In addition, the implementation of CCA+ is not publicly available yet and more complex than HDP. For this reason, we conducted our empirical study for RQ2 based on HDP.
 
 
 
@@ -94,9 +94,9 @@ using {\em all} data than using {\em some}.
 \squishend
 Note that the gap between the red and black line
 shrinks as we use more data and after $N=100$, the
-net gap space is almost zero.  When $N=200$, $27/28$
+net gap space is almost zero.  When $N=200$, $23/34$
 tests are within the gap of 0.05 in terms of AUC and
-$17/28$ tests show smaller datasets have equivalent
+$16/34$ tests show smaller datasets have equivalent
 or even better performance. Here, we recommend that
 samll sample size, like $N=200$, could be as good as using all source and target data for this HDP framework to obtain a good predictor.
 
