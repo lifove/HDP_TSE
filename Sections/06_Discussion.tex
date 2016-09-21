@@ -186,6 +186,8 @@ For RQ1, we computed matching scores using all
 	available for our subjects. This may lead to an issue on construct validity since the matching score computations are not based on actual target instances used in the samples of the two-fold cross validation. To address this issue, we additionally conducted experiments with different sample sizes, i.e., 50, 100, 150, and 200 rather using all instances when computing matching scores for HDP in Section~\ref{sec:sizelimit}.
 
 A recent study by Tantithamthavorn et al.~\cite{Tantithamthavorn16} pointed out model validation techniques may lead to different interpretation of defect prediction results. Although the n-fold cross validation is one of widely used model validation techniques~\cite{Klas2010,Nam13,Pinzger2008}, our experimental results based on the two-fold cross validation may be different from those using other validation techniques. This could be an issue in terms of construct validity as well.
+
+Since we used the default options for machine learners in our experiments, the experimental results could be improved further when we use optimized options~\cite{Tantithamthavorn16icse,Fu2016}. Thus, our results may be affected by the optimized options. We remain conducting experiments with the optimized options as a future work. 
 %	about HDP against CPDP-CM and CPDP-IFS by testing a prediction model on a
 %	test set using all instances of a target dataset in each prediction
 %	combination.

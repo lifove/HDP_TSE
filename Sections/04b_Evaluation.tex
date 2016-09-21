@@ -39,7 +39,7 @@ To test the impact of having access to {\em less} data,
 we  add an instance sampling process before performing metric matching:
 instead of using all the instances from
 candidate source and target datasets, those datasets will
-be randomly sampled (without replacement)to generate smaller datasets of
+be randomly sampled (without replacement) to generate smaller datasets of
 size $N \in \{50, 100, 150, 200\}$. 
 
 The reason we choose those $N$ values as follows. On one hand, by looking at the size of datasets used in the
@@ -95,7 +95,7 @@ using {\em all} data than using {\em some}.
 Note that the gap between the red and black line
 shrinks as we use more data and after $N=100$, the
 net gap space is almost zero.  When $N=200$, $27/28$
-tests are within 0.05 difference in terms of AUC and
+tests are within the gap of 0.05 in terms of AUC and
 $17/28$ tests show smaller datasets have equivalent
 or even better performance. Here, we recommend that
 samll sample size, like $N=200$, could be as good as using all source and target data for this HDP framework to obtain a good predictor.
