@@ -96,13 +96,13 @@ detail.
 \label{sec:metricselection}
 For metric selection, we used various feature selection
 approaches widely used in defect prediction such as gain ratio, chi-square,
-relief-F, and significance attribute evaluation~\cite{Gao11,Shivaji13}.
+relief-F, and significance attribute evaluation~\cite{Gao11,Shivaji13}. In our experiments, we used Weka implementation for these four feature selection approaches~\cite{Weka}
 According to benchmark studies about various feature selection approaches, a
 single best feature selection approach for all prediction models does not
 exist~\cite{Catal09,Hall03,Liu02}. For this reason, we conduct experiments
 under different feature selection approaches. When applying feature selection
 approaches, we select top 15\% of metrics as suggested by Gao et
-al.~\cite{Gao11}. In addition, we compare the prediction results with or without
+al.~\cite{Gao11}. For example, if the number of features in a dataset is 100, we select 15 top features ranked by a feature selection approach. In addition, we compare the prediction results with or without
 metric selection in the experiments.
 
 % The key idea of CFS
