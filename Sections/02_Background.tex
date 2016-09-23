@@ -62,15 +62,18 @@ of transfer is very difficult and, in the case of SE, the least
 explored).
 \squishend
 In the SE literature, methods for CPDP using same/common metrics sets are examples 
-of {\em instance transfer} and methods for CPDP using Heterogeneous metrics sets are examples
-of {\em relational-transfer}. These methods are discussed in the next two sections of this paper.
-
-As to the other kinds of transfer, there is some work in the effort estimation literature of using
+of {\em instance transfer}. As to the other kinds of transfer, there is some work in the effort estimation literature of using
 genetic algorithms to automatically learn weights for different parameters~\cite{sigweni2014feature}. Such work is an example of {\em parameter transfer}.
 To the best of our knowledge, there is no work on feature-representation transfer, but research into automatically
 learning APIs between programs~\cite{dallmeier2012automatically} might be considered a close analog.
 
+In the survey of Pan and Yang~\cite{Pan10}, most transfer learning algorithms in these four types of transfer learning assume the same feature space.
+In other words, the surveyed transfer learning studies in~\cite{Pan10} focused on different distributions between source and target `domains or tasks'
+under the assumption that the feature spaces between source and target domains are same. However, Pan and Yang discussed the need for transfer learning between source and target that have different feature spaces and referred to this kind of transfer learning as {\em heterogeneous transfer learning}.
 
+A recent survey of transfer learning by Weiss et al. published in 2016~\cite{Weiss2016} categorizes transfer learning approaches in homogeneous or heterogeneous transfer learning based on the same or different feature spaces respectively. Weiss et al. put the four types of transfer learning by Pan and Yang into homogeneous transfer learning~\cite{Weiss2016}. For heterogeneous transfer learning, Weiss et al. divide related studies into two sub-categories: {\em symmetric transformation} and {\em asymmetric transformation}~\cite{Weiss2016}. Symmetric transformation finds a common latent space whether both source and target can have similar distributions while Asymmetric transformation aligns source and target features to form the same feature spaces~\cite{Weiss2016}.
+
+By the definition of Weiss et al., HDP is an example of heterogeneous transfer learning based on asymmetric transformation to solve issues of CPDP using heterogeneous metric sets. We discuss the related work about CPDP based on transfer learning concept in the following subsection.
 
 \subsection{Related Work on Defect Prediction}
 \label{sec:Background}
