@@ -126,6 +126,9 @@ metric selection in the experiments.
 % distribution similarity}
 \label{sec:analyzers}
 
+Matching source and target metrics is the core of HDP.
+The intuition of matching metrics is originated from the typical defect-proneness tendency of software metrics, i.e., the higher complexity of source code and development process causes the more defect-proneness~\cite{Menzies07,DAmbros12,nam2015clami}. The higher complexity of source code and development process usually is represented with the higher metric values. Thus, various product and process metrics, e.g., McCabe's cyclomatic, lines of code, and the number of developers modifying a file, follow this defect-proneness tendency~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. By matching metrics, HDP transfers this defect-proneness tendency from a source project for predicting defects in a target project.
+
 To match source and target metrics, we measure the similarity of each source and
 target metric pair by using several existing methods such as percentiles,
 Kolmogorov-Smirnov Test, and Spearman's correlation
