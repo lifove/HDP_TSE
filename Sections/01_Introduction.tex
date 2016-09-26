@@ -42,10 +42,32 @@ In the WPDP setting, a prediction model is
 trained using the labeled instances in {\em Project A} and predict unlabeled (`?')
 instances in the same project as buggy or clean.
 
-It is difficult to build a prediction model for new
-software projects or projects with little historical
-information~\cite{Zimmermann09} since such projects lack sufficient training
-data. 
+Sometimes, software engineers
+need more tha within-project defect prediction.
+The $21^{\mathit{st}}$ century is the era of the ``mash up'',
+where new systems are built by combining large sections of old
+code in some new and novel manner.
+Software engineers working on such mash-ups often face
+the problem of working with  large code bases built by other developers that are, in some sense ``alien''; i.e.
+code has been written for other purposes, 
+by other people, for different organizations.  When performing
+quality assurance on such code, developers
+seek some way to ``transfer'' whatever expertise is
+available and apply it to the ``alien'' code.  
+Sepcfically, for this
+paper, we assume that
+\bi
+\item
+Developers are experts on  their local code base;
+\item
+Developers have applied that expertise to log what parts
+of their code are particularly defect prone;
+\item
+Developers now want to apply that defect log to
+build defect predictors for the ``alien'' code.
+\ei
+Prior papers have explored transfer data
+about code quality from one project across to another.
 %Various process metrics and label information can be extracted from
 %the historical data of software repositories such as version control and issue
 %tracking systems~\cite{Rahman13}.
@@ -56,7 +78,7 @@ data.
 %~\sung{Here your
 %supporting sentences are weak and your argument is not so convincing. Any more
 % backup or citations?}
-To address this issue, researchers
+For example, researchers
 have proposed ``cross-project'' defect
 prediction (CPDP)~\cite{He12, Ma12, Nam13, Rahman12, Turhan09, Zimmermann09}.
 CPDP approaches predict defects even for new projects lacking
@@ -245,13 +267,19 @@ two research questions.
 % Section~\ref{sec:analyzers} (RQ1).
 
 \subsection{Contributions}
-Our experimental study shows that HDP models are feasible and their prediction
+Our experimental results on RQ1 (in Section~6) shows that HDP models are feasible and their prediction
 performance is promising. About 50\% -- 74\% of HDP predictions
 are better or comparable to predictions in baseline approaches with statistical
 significance.
+ 
+A natural response to the RQ1 results is to ask RQ2; i.e. how early is such transfer
+feasible?  Section~7 shown some curious empirical results (from our
+work, as well as prior work by researchers in medicine) that show a few hundred examples are enough-- this result is curious since we would have thought that
+heterogeneous transfer would complicate move information across projects;
+thus {\em increasing} the quantity of data needed for effective transfer.
 
-
-For RQ2, we conducted the experimental study by using various sampling sizes of source and target datasets for HDP and validate the generality of its results through a {\em Monte Carlo} simulation. Our results suggest that 200 instances for source (with at least 20 defective samples) and target datasets could be effective enough for our HDP models.
+The results of Section_~7 are so curious that is natural to ask are they just a quirk of our data, or do they represent a more general case? To answer this question, and to assess the external validity of the Section~7 results, Section~8 of this paper builds and explores a mathematical model of defect prediction.
+That analysis concludes that the Section~7 are actually representive of the general case; i.e. transfer should be possible after a mere few hundred examples. 
 
 
 % To our knowledge, this is a first study on defect prediction using
@@ -263,7 +291,9 @@ Our contributions are summarized as follows:
   \item Proposing the heterogeneous defect prediction models.
   \item Conducting extensive and large-scale experiments to evaluate
   the heterogeneous defect prediction models.
-  \item Validating the lower bounds of the size of source and target datasets for effective heterogeneous defect prediction.
+  \item Empirically validating the lower bounds of the size of source and target datasets for effective heterogeneous defect prediction.
+  \item Theoretically demonstrating that the above empirical results are actually
+  the general and expected results.
 \squishend
 
 
