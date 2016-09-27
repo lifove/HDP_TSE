@@ -482,10 +482,10 @@ SOFTLAB     &0.705  &0.631  &0.551  &\underline{0.692}*     &100\%\\ \hline
 
 \end{tabular}
 \end{table}
-For target prediction coverage, we analysed our HDP results by KSAnalyzer with
+For target prediction coverage, we analyzed our HDP results by KSAnalyzer with
 the cutoff of 0.05 by each source group. For example, after applying
 metric selection and matching, we can build a prediction model by using EQ in
-AEEEM and predict each of 23 target projects in four other dataset
+AEEEM and predict each of 29 target projects in four other dataset
 groups. However, because of the cutoff value, some predictions may not be
 feasible. For example, EQ$\Rightarrow$Apache was not feasible because there are
 no matched metrics whose matching scores are greater than 0.05.
@@ -507,19 +507,19 @@ asterisks.% in Table~\ref{tab:compare} accordingly.
 First of all, in each source group, we could observe HDP outperforms or is
 comparable to WPDP with statistical significance.
 For example, target projects were predicted by some projects in ReLink and
-the median AUC for HDP by KSAnalyzer is 0.702 while that of
+the median AUC for HDP by KSAnalyzer is 0.701 while that of
 WPDP is 0.654. In addition,
 HDP by KSAnalyzer also
-outperforms or had a comparable prediction performance against CPDP-CM.
+outperforms CPDP-CM and CPDP-IFS.
 There are no better results in CPDP-CM
 than those in HDP by KSAnalyzer with statistical significance (no
 underlined results in third column in Table~\ref{tab:compare}). In addition, HDP
 by KSAnalyzer outperforms CPDP-IFS in all source groups.
 
-The target prediction coverage in the MORPH and SOFTLAB groups yielded 100\% as
+The target prediction coverage in the NASA and SOFTLAB groups yielded 100\% as
 shown in Table~\ref{tab:compare}. This implies our HDP models may conduct defect
 prediction with high target coverage even using datasets which only appear in
-one source group. AEEEM, ReLink, and NASA groups have 48\%, 88\%, and 52\% respectively
+one source group. AEEEM, ReLink, and MORPH groups have 35\%, 84\%, and 92\% respectively
 since some prediction combinations do not have matched metrics because of low matching scores ($\leq$0.05).
 Thus, some prediction combinations
 using matched metrics with low matching scores can be automatically excluded. In
