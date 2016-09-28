@@ -605,11 +605,12 @@ These settings for comparing HDP to the baselines are for RQ1. The experimental 
 \subsection{Measures}
 \label{sec:measure}
 To evaluate the prediction performance, we use the area under the receiver
-operating characteristic curve (AUC). The AUC is known as a useful measure for comparing
+operating characteristic curve (AUC). Evaluation measures such as precision is highly affected by prediction thresholds and higher defective ratios (class imbalance) of datasets~\cite{Tantithamthavorn16}.
+However, the AUC is known as a useful measure for comparing
 different models and is widely used because AUC is unaffected by class imbalance
 as well as being independent from the cutoff probability (prediction
 threshold) that is used to decide whether an instance should be classified as
-positive or negative~\cite{Giger12,Lessmann08,Rahman12,Song11}.
+positive or negative~\cite{Giger12,Lessmann08,Rahman12,Song11,Tantithamthavorn16}.
 Mende confirmed that it is difficult to compare the defect prediction
 performance reported in the defect prediction literature since prediction
 results come from the different cutoffs of prediction thresholds~\cite{Mende10}.
