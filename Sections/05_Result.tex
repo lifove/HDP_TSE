@@ -890,13 +890,13 @@ WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS
 (Baseline3) in Table~\ref{tab:win_results}.
 
 
-KSAnalyzer with the cutoff of 0.05 conducted 222 out of 600 prediction
-combinations since 378 combinations do not have any matched
+KSAnalyzer with the cutoff of 0.05 conducted 284 out of 962 prediction
+combinations since 584 combinations do not have any matched
 metrics because of the cutoff threshold. In
 Table~\ref{tab:win_results}, the target dataset, EQ, was predicted in four
 prediction combinations and our approach, HDP, outperforms Baseline1 and
 Baseline3 in the four combinations (i.e. 4 Wins). However, HDP outperforms
-Baseline2 in only two combinations of the target, EQ (2 Wins). 
+Baseline2 in only one combinations of the target, EQ (1 Wins). 
 
 
 % \subsection{Matched features}
@@ -907,8 +907,8 @@ Baseline2 in only two combinations of the target, EQ (2 Wins).
 % settings is that most defect prediction metrics usually represent complexity of
 % source code and its change; it tends to be more buggy when the complexity is
 % higher.
-Against Baseline1, the six targets such as EQ, Zxing, skarbonka, tomcat,
-ar3, and ar4 have only Win results. In other words, defects in those six targets
+Against Baseline1, the six targets such as EQ, Zxing, ant-1.3, skarbonka, pc2, 
+mc1, ar1, ar3, and ar4 have only Win results. In other words, defects in those nine targets
 could be predicted better by other source projects using HDP models by
 KSAnalyzer compared to WPDP models.
 
@@ -949,7 +949,7 @@ tendencies in which higher complexity causes more
 bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
 unique\_operands} have the tendency to be more bug-prone. For this reason, the
-model using the matched metrics could achieve such a high AUC (0.938). We could
+model using the matched metrics could achieve such a high AUC (0.946). We could
 observe this bug-proneness tendency in other Win results. Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
 addresses several issues related to a dataset shift such as the covariate shift
@@ -961,8 +961,8 @@ and domain shift discussed by Turhan~\cite{Turhan12}.
 %%%%%%%%
 % LOSS results
 %%%%%%%
-However, there are still about 32\% Loss results against WPDP as shown in Table~\ref{tab:win_results}. The eight targets such as JDT, ML, redaktor, velocity-1.4, xalan-2.4,
-xerces-1.2, pc3, and pc4 have no Wins at all against Baseline1. In
+However, there are still about 28.9\% Loss results against WPDP as shown in Table~\ref{tab:win_results}. The eight targets such as JDT, ML, redaktor, tomcat, velocity-1.4, xalan-2.4,
+xerces-1.2, pc3, pc4, and pc5 have no Wins at all against Baseline1. In
 addition, other targets still have Losses even though they have Win or Tie
 results.
 
@@ -1031,16 +1031,15 @@ the common metric was noisy and was not helpful for building a prediction model.
 %\TODO{Guidelines or suggestions on cross-domain defect prediction?}
 
 Overall, the numbers of Win and
-Tie results are 147 and 3 respectively out of all of the 222 prediction
+Tie results are 200 and 2 respectively out of all of the 284 prediction
 combinations.
-This means that in 67.6\% of prediction combinations our HDP
+This means that in 71.1\% of prediction combinations our HDP
 models achieve better or comparable prediction performance than those in
 WPDP.
 
 The Win/Tie/Loss results against Baseline2 and Baseline3 show a similar trend.
-In the 161 (72.5\%) out of 222 prediction combinations, HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 185
-(83.3\%) prediction combinations are Win or Tie results.
-
+In the 218 (76.8\%) out of 284 prediction combinations, HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 244
+(85.9\%) prediction combinations are Win or Tie results.
 
 \subsection{Performance in Different Metric Selections}
 \label{subsec04}
