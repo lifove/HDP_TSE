@@ -1041,6 +1041,9 @@ The Win/Tie/Loss results against Baseline2 and Baseline3 show a similar trend.
 In the 218 (76.8\%) out of 284 prediction combinations, HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 244
 (85.9\%) prediction combinations are Win or Tie results.
 
+%A recent study shows that high defect rate of a dataset may bias prediction results,i.e., higgher buggy rate of a dataset tends to lead better prediciton results~\cite{Tantithamthavorn16}. This bias could be matter under the WPDP setting as the study discuss about model validation technioques~\cite{Tantithamthavorn16}. Since HDP is CPDP on datasets using different metric sets, To make sure if the promising reuslts of HDP is affected by the defect rate of a target dataset
+
+
 \subsection{Performance in Different Metric Selections}
 \label{subsec04}
 
@@ -1263,20 +1266,20 @@ KS & 0.05 & 0.654 & 70.4\%
 \hline KS& 0.90  & 0.657 & 77.8\% 
 &0.588 & 77.8\% 
 & 0.585	&100.0\%
-&\underline{0.831}*&26\% \\ \hline
+&\underline{0.831}*&21\% \\ \hline
 \hline
 \hline
 
 %SCoAnalyzer & 0.00 & \bf{0.684}	&\underline{0.640}	&0.517 & 100\% \\ \hline 
-SCo & 0.05 & \bf{705} & 41.9\%
+SCo & 0.05 & \bf{0.705} & 41.9\%
 &0.655 &55.8\%
 & 0.520	&68.4\%
-&\underline{0.678}* & \%
+&\underline{0.678}* & 100\%
 \\
-\hline SCo& 0.90 & \bf{-} & -\% 
-&\underline{-} & -\%
-& -	&-\%
-&- &
+\hline SCo& 0.90 & {\bf 0.705} & 43.4\% 
+&0.654 & 53.1\%
+&0.520	&69.8\%
+&\underline{0.679}*&
 100\%
 \\
 \hline
@@ -1339,13 +1342,13 @@ HDP's prediction results by PAnalyzer, with a cutoff of 0.90, are
 comparable to WPDP. This
 implies that comparing 9 percentiles between source and target metrics can
 evaluate the similarity of them well with a threshold of 0.90. However,
-PAnalyzer with the cutoff of 0.90 did not achieve 100\% target coverage and is
+PAnalyzer with the cutoff is
 too simple an approach to lead to better prediction performance than KSAnalyzer. In
-KSAnalyzer with a cutoff of 0.05, the AUC (0.724) outperforms it (0.657) in WPDP
+KSAnalyzer with a cutoff of 0.05, the AUC (0.724) outperforms it (0.693) in WPDP
 with statistical significance.
 
 HDP by KSAnalyzer with a cutoff of 0.90 could lead to significant
-improvement in the AUC value (0.852) compared to that (0.724) with the
+improvement in the AUC value (0.831) compared to that (0.724) with the
 cutoff of 0.05.
 However, the target coverage is just 21\%. This is because some prediction
 combinations are automatically filtered out since poorly matched metrics, whose
@@ -1359,7 +1362,7 @@ An interesting observation in PAnalyzer and KSAnalyzer is that AUC
 values of HDP by those analyzers improved when a cutoff threshold
 increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
 0.90, we observed prediction results by PAnalyzer and KSAnalyzer
-gradually improved from 0.617 to 0.692 and 0.724 to 0.852 in AUC, respectively.
+gradually improved from \jc{0.617} to 0.693 and 0.724 to 0.831 in AUC, respectively.
 This means these two analyzers can filter out negative prediction combinations
 well. As a result, the percentages of Win results are also significantly
 increased.
