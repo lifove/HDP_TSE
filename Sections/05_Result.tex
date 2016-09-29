@@ -52,7 +52,7 @@ ML	&{\bf 0.734} (-0.762,L)	&0.651 (0.642,{\bf L})	&0.557 (0.999,{\bf L})	&0.692*
 PDE	&0.684 (0.279,{\bf S})	&0.681 (0.211,{\bf S})	&0.566 (0.966,{\bf L})	&0.693* \\ \hline
 Apache	&0.715 (0.044,{\bf N})	&0.697 (0.255,{\bf S})	&0.618 (0.582,{\bf L})	&0.731* \\ \hline
 Safe	&0.706 (0.583,{\bf L})	&0.749 (0.388,{\bf M})	&0.630 (0.698,{\bf L})	&\underline{{\bf 0.837}}* \\ \hline
-Zxing	&0.605 (0.678,{\bf L})	&0.618 (0.529,{\bf L})	&0.556 (0.652,{\bf L})	&{\bf 0.650}* \\ \hline
+ZXing	&0.605 (0.678,{\bf L})	&0.618 (0.529,{\bf L})	&0.556 (0.652,{\bf L})	&{\bf 0.650}* \\ \hline
 ant-1.3	&0.609 (0.707,{\bf L})	&0.781 (0.222,{\bf S})	&0.528 (0.713,{\bf L})	&{\bf 0.800}* \\ \hline
 arc	&0.670 (0.213,{\bf S})	&0.626 (0.524,{\bf L})	&0.547 (0.954,{\bf L})	&0.701 \\ \hline
 camel-1.0	&0.550 (0.427,{\bf M})	&0.590 (0.397,{\bf M})	&0.500 (0.600,{\bf L})	&0.639* \\ \hline
@@ -843,7 +843,7 @@ ML	&0	&0 	&6	&4	&2 	&0	&6	&0 	&0\\ \hline
 PDE	&4	&0 	&1	&2	&0 	&3	&5	&0 	&0\\ \hline
 Apache	&6	&0 	&6	&8	&0 	&4	&10	&0 	&2\\ \hline
 Safe	&16	&0 	&3	&14	&0 	&5	&16	&0 	&3\\ \hline
-Zxing	&5	&0 	&0	&4	&0 	&1	&4	&1 	&0\\ \hline
+ZXing	&5	&0 	&0	&4	&0 	&1	&4	&1 	&0\\ \hline
 ant-1.3	&11	&0 	&0	&7	&0 	&4	&10	&0 	&1\\ \hline
 arc	&2	&1 	&0	&2	&0 	&1	&3	&0 	&0\\ \hline
 camel-1.0	&5	&0 	&2	&5	&0 	&2	&6	&0 	&1\\ \hline
@@ -907,7 +907,7 @@ Baseline2 in only one combinations of the target, EQ (1 Wins).
 % settings is that most defect prediction metrics usually represent complexity of
 % source code and its change; it tends to be more buggy when the complexity is
 % higher.
-Against Baseline1, the six targets such as EQ, Zxing, ant-1.3, skarbonka, pc2, 
+Against Baseline1, the six targets such as EQ, ZXing, ant-1.3, skarbonka, pc2, 
 mc1, ar1, ar3, and ar4 have only Win results. In other words, defects in those nine targets
 could be predicted better by other source projects using HDP models by
 KSAnalyzer compared to WPDP models.
@@ -1381,61 +1381,61 @@ prediction model.
 
 \subsection{Performance in Various Machine Learners}
 \label{subsec06}
-\begin{table*}[!t]
+\begin{table}[!t]
 %\small
 %\scriptsize
 \centering
 \caption{Prediction performance (a median AUC and \%
-of Win/Tie) of HDP by KSAnalyzer (cutoff=0.05)
+of Win) of HDP by KSAnalyzer (cutoff=0.05)
 against WPDP, CPDP-CM, and CPDP-IFS by different machine learners.}
 \label{tab:diff_learners}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
 %\begin{tabular}{|c||m{1.5cm}|m{1.5cm}|m{1.5cm}||m{1.5cm}|m{1.5cm}|m{1.5cm}|}
-\begin{tabular}{|c@{ }||c@{ }|c@{ }|c@{ }||c@{ }|c@{ }|c@{ }||c@{ }|c@{ }|c@{ }||c@{ }|}
+\begin{tabular}{|c@{ }||c@{ }|@{ }c@{}||c@{ }|@{ }c@{}||@{ }c@{ }|@{ }c@{}||c@{ }|}
 \hline
 \multirow{3}{*}{\specialcell{{\bf HDP}\\{\bf Learners}}}
-&\multicolumn{9}{@{ }c@{ }||}{\bf Against}
+&\multicolumn{6}{@{ }c@{ }||}{\bf Against}
 &\multirow{2}{*}{{\bf HDP}}
-\\ \cline{2-10}
+\\ \cline{2-7}
 
-&\multicolumn{3}{@{ }c@{ }||}{\specialcell{{\bf WPDP}}}
-&\multicolumn{3}{@{ }c@{ }||}{\specialcell{{\bf CPDP-CM}}}
-&\multicolumn{3}{@{ }c@{ }||}{\specialcell{{\bf CPDP-IFS}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf WPDP}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-CM}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-IFS}}}
 &
 \\
-\cline{2-11}
+\cline{2-8}
 
-&AUC & Win & Tie 
-&AUC & Win & Tie 
-&AUC & Win & Tie
+&AUC & Win
+&AUC & Win
+&AUC & Win
 &AUC
  \\ \hline \hline
 
-SimpleLogistic	&0.654 &70.4\% &0.7\%	&0.632 &71.5\% &5.3\% 
-&0.558 & 84.9\% &1.1\%   	&\underline{{\bf 0.718}}*\\ \hline
+SimpleLogistic	&0.654 &70.4\% 	&0.632 &71.5\%  
+&0.558 & 84.9\%    	&\underline{{\bf 0.718}}*\\ \hline
 
-RandomForest		&{\bf 0.654} &38.7\%	&5.3\%	&0.632 &45.4\% &4.9\% 
-&0.558 & 69.0\% &1.4\%		&0.640* 	\\ \hline
+RandomForest		&{\bf 0.654} &38.7\%		&0.632 &45.4\%  
+&0.558 & 69.0\% 		&0.640* 	\\ \hline
 
-BayesNet			&{\bf 0.654} &39.4\%	&6.0\%	&0.632 &46.5\% &1.1\% 
-&0.558 & 63.0\% &2.8\% 		&0.633*\\ \hline
+BayesNet			&{\bf 0.654} &39.4\%		&0.632 &46.5\%  
+&0.558 & 63.0\% 		&0.633*\\ \hline
 %NaiveBayes		&26.1\%	&1.8\%	&71.1\% &54.5\% &3.2\% &42.3\%	\\ \hline
 	
-SVM				&{\bf 0.654} &6.7\%	&2.1\%	&\underline{0.632} &29.2\% &1.1\% 
-&0.558* & 32.0\% &14.1\% 	&0.500	\\ \hline
+SVM				&{\bf 0.654} &6.7\%		&\underline{0.632} &29.2\%  
+&0.558* & 32.0\% 	&0.500	\\ \hline
 
-J48				&{\bf 0.654} &21.1\% &3.9\%	&\underline{0.632} &36.6\% &2.1\% 
-&0.558 & 43.3\% &8.5\%			&0.568   \\ \hline
+J48				&{\bf 0.654} &21.1\%	&\underline{0.632} &36.6\%  
+&0.558 & 43.3\% 			&0.568   \\ \hline
 
-Logistic			&0.654 &65.5\%	&1.8\% &0.632 & 68.3\% &4.9\%  
-&0.558 & 82.0\% &2.7\% 		&\underline{{\bf 0.711}}* 	\\ \hline
+Logistic			&0.654 &65.5\%	 &0.632 & 68.3\%   
+&0.558 & 82.0\% 		&\underline{{\bf 0.711}}* 	\\ \hline
 
-LMT				&0.654 &64.1\% &0.7\%	&0.682 &64.1\% &4.6\% 
-&0.558 & 78.2\% &1.2\%		&\underline{{\bf 0.702}}*   \\ \hline
+LMT				&0.654 &64.1\% 	&0.682 &64.1\%  
+&0.558 & 78.2\% 		&\underline{{\bf 0.702}}*   \\ \hline
 
 \end{tabular}
-\end{table*}
+\end{table}
 
 To investigate if
 HDP works with other machine learners, we built HDP models (KSAnalyzer and
