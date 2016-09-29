@@ -137,7 +137,7 @@ the target signal, thus {\em decreasing} how many samples are required.
     \item $e\in \{0.1,0.2,0.3,0.4\}$
       \squishend
       (These ranges were set using our experience with data mining, For example, our prior work shows in defect prediction datasets
-      with 40 or more dimensions, that good predictors can be built using $d\le 7$ of those dimensions~\cite{Menzies07}.)
+      with 40 or more dimensions, that good predictors can be built using $d\le 3$ of those dimensions~\cite{Menzies07}.)
       
      Within 1000 iterations of Monte Carlo simulation,
      we increased $n$ until \eq{p} showed  $p$ passed our reasonable threshold.
@@ -226,7 +226,8 @@ In that tree:
 \item
 Lines 2 to 6 discuss a very easy case. Here, we only need
 one dimension to build defect predictors and,
-for such simple datasets, 50 to 100 examples are enough for defect prediction.
+for such simple datasets, 
+a few examples are enough for defect prediction.
 \item
 Lines 22, 36, 46 show a branch of the decision tree
 where we need many dimensions that divide into many bins.
