@@ -948,7 +948,7 @@ shown in Figure~\ref{fig:best_dist}. Typical defect prediction metrics have
 tendencies in which higher complexity causes more
 defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
-unique\_operands} have the tendency to be more bug-prone. For this reason, the
+unique\_operands} have the tendency to be more defect-prone. For this reason, the
 model using the matched metrics could achieve such a high AUC (0.946). We could
 observe this defect-proneness tendency in other Win results. Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
@@ -979,7 +979,7 @@ results.
 As a representative Loss case, we investigated distributions of the matched metrics in Safe$\Rightarrow$velocity-1.4, whose AUC is 0.391.
 As observed, Loss results were usually caused by different tendencies of
 defect-proneness between source and target metrics. Figure~\ref{fig:loss_dist}
-shows how the bug-prone tendencies of source and target metrics are different.
+shows how the defect-prone tendencies of source and target metrics are different.
 Interestingly, the matched source and target metric by the KSAnalyzer is the
 same as {\em LOC} ({\em CountLineCode} and {\em loc}) in both.
 As we observe in the figure, the median metric value of buggy instances is higher than that of clean instances in that the more {\em LOC}
@@ -1008,7 +1008,7 @@ for the noisy metric matching will remain as future work.
 
 Figure~\ref{fig:loss_dist} also explains why CPDP-CM did not show reasonable
 prediction performance. Although the matched metrics are same
-as {\em LOC}, its bug-prone tendency is inconsistent. Thus, this matching using
+as {\em LOC}, its defect-prone tendency is inconsistent. Thus, this matching using
 the common metric was noisy and was not helpful for building a prediction model.
 
 % The DM filter could not remove
@@ -1452,7 +1452,7 @@ relationship between a predictor variable (a metric) and the logit
 transformation of the outcome variable (defect-proneness)~\cite{Landwehr2005,Logstic}.
 In our study, this linear relationship is related to the defect-proneness tendency of
 a metric, that is, a higher complexity causes more defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}.
-As the consistent bug-prone tendency of matched metrics is important in HDP, the
+As the consistent defect-prone tendency of matched metrics is important in HDP, the
 HDP models built by Simple Logistic can lead to the best prediction
 performance.
 
@@ -1467,6 +1467,8 @@ Regression at the leaves of decision tree~\cite{Ghotra15}. In other words, both
 learners consider the linear relationship like Simple Logistic~\cite{Landwehr2005,Logstic}. In our experimental settings, HDP tends to
 work well with the learners based on the linear relationship between a metric
 and a label (defect-proneness).
+
+According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~/cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
 
 \subsection{Summary}
 In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
