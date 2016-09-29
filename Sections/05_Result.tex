@@ -52,7 +52,7 @@ ML	&{\bf 0.734} (-0.762,L)	&0.651 (0.642,{\bf L})	&0.557 (0.999,{\bf L})	&0.692*
 PDE	&0.684 (0.279,{\bf S})	&0.681 (0.211,{\bf S})	&0.566 (0.966,{\bf L})	&0.693* \\ \hline
 Apache	&0.715 (0.044,{\bf N})	&0.697 (0.255,{\bf S})	&0.618 (0.582,{\bf L})	&0.731* \\ \hline
 Safe	&0.706 (0.583,{\bf L})	&0.749 (0.388,{\bf M})	&0.630 (0.698,{\bf L})	&\underline{{\bf 0.837}}* \\ \hline
-Zxing	&0.605 (0.678,{\bf L})	&0.618 (0.529,{\bf L})	&0.556 (0.652,{\bf L})	&{\bf 0.650}* \\ \hline
+ZXing	&0.605 (0.678,{\bf L})	&0.618 (0.529,{\bf L})	&0.556 (0.652,{\bf L})	&{\bf 0.650}* \\ \hline
 ant-1.3	&0.609 (0.707,{\bf L})	&0.781 (0.222,{\bf S})	&0.528 (0.713,{\bf L})	&{\bf 0.800}* \\ \hline
 arc	&0.670 (0.213,{\bf S})	&0.626 (0.524,{\bf L})	&0.547 (0.954,{\bf L})	&0.701 \\ \hline
 camel-1.0	&0.550 (0.427,{\bf M})	&0.590 (0.397,{\bf M})	&0.500 (0.600,{\bf L})	&0.639* \\ \hline
@@ -843,7 +843,7 @@ ML	&0	&0 	&6	&4	&2 	&0	&6	&0 	&0\\ \hline
 PDE	&4	&0 	&1	&2	&0 	&3	&5	&0 	&0\\ \hline
 Apache	&6	&0 	&6	&8	&0 	&4	&10	&0 	&2\\ \hline
 Safe	&16	&0 	&3	&14	&0 	&5	&16	&0 	&3\\ \hline
-Zxing	&5	&0 	&0	&4	&0 	&1	&4	&1 	&0\\ \hline
+ZXing	&5	&0 	&0	&4	&0 	&1	&4	&1 	&0\\ \hline
 ant-1.3	&11	&0 	&0	&7	&0 	&4	&10	&0 	&1\\ \hline
 arc	&2	&1 	&0	&2	&0 	&1	&3	&0 	&0\\ \hline
 camel-1.0	&5	&0 	&2	&5	&0 	&2	&6	&0 	&1\\ \hline
@@ -907,7 +907,7 @@ Baseline2 in only one combinations of the target, EQ (1 Wins).
 % settings is that most defect prediction metrics usually represent complexity of
 % source code and its change; it tends to be more buggy when the complexity is
 % higher.
-Against Baseline1, the six targets such as EQ, Zxing, ant-1.3, skarbonka, pc2, 
+Against Baseline1, the six targets such as EQ, ZXing, ant-1.3, skarbonka, pc2, 
 mc1, ar1, ar3, and ar4 have only Win results. In other words, defects in those nine targets
 could be predicted better by other source projects using HDP models by
 KSAnalyzer compared to WPDP models.
@@ -946,11 +946,11 @@ unique\_operands} are not the same metric so it might look like an arbitrary
 matching. However, they are matched based on their similar distributions as
 shown in Figure~\ref{fig:best_dist}. Typical defect prediction metrics have
 tendencies in which higher complexity causes more
-bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
+defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
-unique\_operands} have the tendency to be more bug-prone. For this reason, the
+unique\_operands} have the tendency to be more defect-prone. For this reason, the
 model using the matched metrics could achieve such a high AUC (0.946). We could
-observe this bug-proneness tendency in other Win results. Since matching metrics is
+observe this defect-proneness tendency in other Win results. Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
 addresses several issues related to a dataset shift such as the covariate shift
 and domain shift discussed by Turhan~\cite{Turhan12}.
@@ -978,22 +978,22 @@ results.
 
 As a representative Loss case, we investigated distributions of the matched metrics in Safe$\Rightarrow$velocity-1.4, whose AUC is 0.391.
 As observed, Loss results were usually caused by different tendencies of
-bug-proneness between source and target metrics. Figure~\ref{fig:loss_dist}
-shows how the bug-prone tendencies of source and target metrics are different.
+defect-proneness between source and target metrics. Figure~\ref{fig:loss_dist}
+shows how the defect-prone tendencies of source and target metrics are different.
 Interestingly, the matched source and target metric by the KSAnalyzer is the
 same as {\em LOC} ({\em CountLineCode} and {\em loc}) in both.
 As we observe in the figure, the median metric value of buggy instances is higher than that of clean instances in that the more {\em LOC}
-implies the higher bug-proneness in the case of Safe. However, the median metric value of
+implies the higher defect-proneness in the case of Safe. However, the median metric value of
 buggy instances in the target is lower than that of clean instances
-in that the less {\em LOC} implies the higher bug-proneness in
+in that the less {\em LOC} implies the higher defect-proneness in
 velocity-1.4. This inconsistent tendency of
-bug-proneness between the source and target metrics could degrade the
+defect-proneness between the source and target metrics could degrade the
 prediction performance although they are the same metric.
 
-We regard the matching that has an inconsistent bug-proneness tendency between
+We regard the matching that has an inconsistent defect-proneness tendency between
 source and target metrics as a noisy metric matching.
 % This implies the target
-% feature does not follow the tendency that a higher complexity causes more bug-proneness.
+% feature does not follow the tendency that a higher complexity causes more defect-proneness.
 % The target feature worked as noise when the model predicted
 % defects in velocity-1.4. 
 We could observe this kind of noisy metric matching in
@@ -1008,7 +1008,7 @@ for the noisy metric matching will remain as future work.
 
 Figure~\ref{fig:loss_dist} also explains why CPDP-CM did not show reasonable
 prediction performance. Although the matched metrics are same
-as {\em LOC}, its bug-prone tendency is inconsistent. Thus, this matching using
+as {\em LOC}, its defect-prone tendency is inconsistent. Thus, this matching using
 the common metric was noisy and was not helpful for building a prediction model.
 
 % The DM filter could not remove
@@ -1245,10 +1245,10 @@ score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
 \hline
 \hline
 %PAnalyzer& 0.00 & \bf{0.684}	& \underline{0.640}	& 0.606 & 100\% \\ \hline 
-P& 0.05 & \bf{-} & -\%
-&\underline{-} & -\% 
-& -	&-\%
-& - & -\%
+P& 0.05 & \bf{0.705} & 43.0\%
+&0.655 & 54.9\% 
+&0.520	&69.5\%
+& \underline{0.679}* & 100\%
 \\
 \hline P& 0.90  & 0.657 & 55.0\% 
 &0.629 & 63.6\% 
@@ -1362,7 +1362,7 @@ An interesting observation in PAnalyzer and KSAnalyzer is that AUC
 values of HDP by those analyzers improved when a cutoff threshold
 increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
 0.90, we observed prediction results by PAnalyzer and KSAnalyzer
-gradually improved from \jc{0.617} to 0.693 and 0.724 to 0.831 in AUC, respectively.
+gradually improved from 0.678 to 0.693 and 0.724 to 0.831 in AUC, respectively.
 This means these two analyzers can filter out negative prediction combinations
 well. As a result, the percentages of Win results are also significantly
 increased.
@@ -1385,42 +1385,54 @@ prediction model.
 %\small
 %\scriptsize
 \centering
-\caption{Win/Tie percentages of HDP by KSAnalyzer (cutoff=0.05)
+\caption{Prediction performance (a median AUC and \%
+of Win) of HDP by KSAnalyzer (cutoff=0.05)
 against WPDP, CPDP-CM, and CPDP-IFS by different machine learners.}
 \label{tab:diff_learners}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
 %\begin{tabular}{|c||m{1.5cm}|m{1.5cm}|m{1.5cm}||m{1.5cm}|m{1.5cm}|m{1.5cm}|}
-\begin{tabular}{|c@{ }||c@{ }|c@{ }||c@{ }|c@{ }||c@{ }|c@{ }|}
+\begin{tabular}{|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|}
 \hline
 \multirow{3}{*}{\specialcell{{\bf HDP}\\{\bf Learners}}}
-&\multicolumn{6}{@{ }c@{ }|}{\bf Against}
+&\multicolumn{6}{@{ }c@{ }||}{\bf Against}
+&\multirow{2}{*}{{\bf HDP}}
 \\ \cline{2-7}
 
 &\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf WPDP}}}
 &\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-CM}}}
-&\multicolumn{2}{@{ }c@{ }|}{\specialcell{{\bf CPDP-IFS}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-IFS}}}
+&
 \\
-\cline{2-7}
+\cline{2-8}
 
-& Win & Tie 
-& Win & Tie 
-& Win & Tie \\ \hline \hline
-SimpleLogistic	&70.4\% &0.7\%	&71.5\% &5.3\% 
-& 84.9\% &1.1\%   \\ \hline
-RandomForest		&38.7\%	&5.3\%	&45.4\% &4.9\% 
-& 69.0\% &1.4\% 	\\ \hline
-BayesNet			&39.4\%	&6.0\%	&46.5\% &1.1\% 
-& 63.0\% &2.8\% 	\\ \hline
+&AUC & Win
+&AUC & Win
+&AUC & Win
+&AUC
+ \\ \hline \hline
+
+SimpleLogistic	&0.654 &70.4\% 	&0.632 &71.5\%  
+&0.558 & 84.9\%    	&\underline{{\bf 0.718}}*\\ \hline
+
+RandomForest		&{\bf 0.654} &38.7\%		&0.632 &45.4\%  
+&0.558 & 69.0\% 		&0.640* 	\\ \hline
+
+BayesNet			&{\bf 0.654} &39.4\%		&0.632 &46.5\%  
+&0.558 & 63.0\% 		&0.633*\\ \hline
 %NaiveBayes		&26.1\%	&1.8\%	&71.1\% &54.5\% &3.2\% &42.3\%	\\ \hline
-SVM				&6.7\%	&2.1\%	&29.2\% &1.1\% 
-& 32.0\% &14.1\% 	\\ \hline
-J48				&21.1\% &3.9\%	&36.6\% &2.1\% 
-& 43.3\% &8.5\%   \\ \hline
-Logistic			&65.5\%	&1.8\% & 68.3\% &4.9\%  
-& 82.0\% &2.7\%  	\\ \hline
-LMT				&64.1\% &0.7\%	&64.1\% &4.6\% 
-& 78.2\% &1.2\%   \\ \hline
+	
+SVM				&{\bf 0.654} &6.7\%		&\underline{0.632} &29.2\%  
+&0.558* & 32.0\% 	&0.500	\\ \hline
+
+J48				&{\bf 0.654} &21.1\%	&\underline{0.632} &36.6\%  
+&0.558 & 43.3\% 			&0.568   \\ \hline
+
+Logistic			&0.654 &65.5\%	 &0.632 & 68.3\%   
+&0.558 & 82.0\% 		&\underline{{\bf 0.711}}* 	\\ \hline
+
+LMT				&0.654 &64.1\% 	&0.682 &64.1\%  
+&0.558 & 78.2\% 		&\underline{{\bf 0.702}}*   \\ \hline
 
 \end{tabular}
 \end{table}
@@ -1432,15 +1444,15 @@ literature such as Random Forest, BayesNet, SVM, J48 Decision
 Tree, Logistic Regression (Logistic),
 and Logistic Model Trees
 (LMT)~\cite{DAmbros12,Ghotra15,Lee11,Lessmann08,Nam13,Song11,Ghotra15}.
-Table~\ref{tab:diff_learners} shows Win/Tie results.
+Table~\ref{tab:diff_learners} shows median AUCs and Win results.
 
 Simple Logistic led to the best results among various
 learners. The Simple Logistic builds a linear logistic regression model based on LogitBoost~\cite{Landwehr2005}. It works well when there is a linear
 relationship between a predictor variable (a metric) and the logit
-transformation of the outcome variable (bug-proneness)~\cite{Landwehr2005,Logstic}.
-In our study, this linear relationship is related to the bug-proneness tendency of
-a metric, that is, a higher complexity causes more bug-proneness~\cite{DAmbros12,Menzies07,Rahman13}.
-As the consistent bug-prone tendency of matched metrics is important in HDP, the
+transformation of the outcome variable (defect-proneness)~\cite{Landwehr2005,Logstic}.
+In our study, this linear relationship is related to the defect-proneness tendency of
+a metric, that is, a higher complexity causes more defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}.
+As the consistent defect-prone tendency of matched metrics is important in HDP, the
 HDP models built by Simple Logistic can lead to the best prediction
 performance.
 
@@ -1454,7 +1466,9 @@ Logistic also uses the logit function and LMT adopts Logistic
 Regression at the leaves of decision tree~\cite{Ghotra15}. In other words, both
 learners consider the linear relationship like Simple Logistic~\cite{Landwehr2005,Logstic}. In our experimental settings, HDP tends to
 work well with the learners based on the linear relationship between a metric
-and a label (bug-proneness).
+and a label (defect-proneness).
+
+According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~/cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
 
 \subsection{Summary}
 In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
@@ -1463,5 +1477,5 @@ In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are t
     \item Compared to WPDP, HDP achieved 71.1\% of Win/Tie results. However, there are still 28.9\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
-    \item HDP worked well with Simple Logistic, Logistic, and LMT but not other machine learners. One possible reason is that Logistic related classifiers capture the linear relationship between metrics and the logit transformation of labels that is related to the bug-proneness tendency of the metrics.
+    \item HDP worked well with Simple Logistic, Logistic, and LMT but not other machine learners. One possible reason is that Logistic related classifiers capture the linear relationship between metrics and the logit transformation of labels that is related to the defect-proneness tendency of the metrics.
 \squishend
