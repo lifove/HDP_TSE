@@ -28,7 +28,7 @@ This section presents the details of our experimental study such as benchmark da
 \label{tab:datasets}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
-\begin{tabular}{|@{ }c@{ }|@{ }c@{ }|c|c|@{ }c@{ }|@{ }c@{ }|}
+\begin{tabular}{|@{}c@{}|@{}c@{}|c|c|@{}c@{}|@{}c@{}|}
 \hline
 	\multirow{2}{*}{\textbf{Group}}
 	&\multirow{2}{*}{\textbf{Dataset}}
@@ -524,10 +524,10 @@ models for datasets between AEEEM and MORPH. Since
 using common metrics has been adopted to address the limitation on heterogeneous
 metric sets in previous CPDP studies~\cite{He14,Ma12,Turhan09}, we set CPDP-CM
 as a baseline to evaluate our HDP models.
-The number of matched metrics varies across the dataset group. Between
-AEEEM and ReLink, only one common metric exists, {\em LOC}.
-NASA and SOFTLAB have 28 common metrics. On average, the number of common
-metrics in our datasets are about five.
+The number of common metrics varies across the dataset groups as ranged from 1 to 38. Between
+AEEEM and ReLink, only one common metric exists, {\em LOC} (ck\_oo\_numberOfLinesOfCode : CountLineCode).
+Some NASA datasets that have different metric sets, e.g., pc5 vs. mc2, have 38 common metrics. On average, the number of common
+metrics in our datasets is about 12. We put all the common metrics between the five dataset groups in the online appendix: {\em http://lifove.github.io/hdp\#cm}.
 
 We include CPDP-IFS proposed by He et al. as a
 baseline~\cite{He14}. CPDP-IFS enables defect prediction on
@@ -579,10 +579,8 @@ The 16 distribution characteristics are used as features to build a prediction m
 % algorithm suggested from the previous defect prediction studies and get several
 % insights to select a proper machine learning algorithm for cross-domain defect
 % prediction as well. For the six algorithms, we used Weka
-For the machine learning algorithm, we use Logistic Regression, which is widely
-used for both WPDP and CPDP
-studies~\cite{Meneely2008,Nam13,Shihab11,Zimmermann09}.
-We use Logistic Regression implemented in Weka with default
+For the machine learning algorithm, we use seven widely used classifiers such as Simple logistic, Logistic regression, Random Forest, Bayesian Network, Support vector machine, J48 decision tree, and Logistic model tree~\cite{DAmbros12,Ghotra15,Lee11,Lessmann08,Nam13,Song11,Ghotra15}.
+For these classifiers, we use Weka implementation with default
 options~\cite{Weka}.
 
 For WPDP, it is necessary to split datasets into training and test
@@ -607,11 +605,12 @@ These settings for comparing HDP to the baselines are for RQ1. The experimental 
 \subsection{Measures}
 \label{sec:measure}
 To evaluate the prediction performance, we use the area under the receiver
-operating characteristic curve (AUC). The AUC is known as a useful measure for comparing
+operating characteristic curve (AUC). Evaluation measures such as precision is highly affected by prediction thresholds and higher defective ratios (class imbalance) of datasets~\cite{Tantithamthavorn16}.
+However, the AUC is known as a useful measure for comparing
 different models and is widely used because AUC is unaffected by class imbalance
 as well as being independent from the cutoff probability (prediction
 threshold) that is used to decide whether an instance should be classified as
-positive or negative~\cite{Giger12,Lessmann08,Rahman12,Song11}.
+positive or negative~\cite{Giger12,Lessmann08,Rahman12,Song11,Tantithamthavorn16}.
 Mende confirmed that it is difficult to compare the defect prediction
 performance reported in the defect prediction literature since prediction
 results come from the different cutoffs of prediction thresholds~\cite{Mende10}.
