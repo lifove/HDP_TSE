@@ -598,7 +598,7 @@ source and target datasets, and (2) predicting defects.
 % 		& 	& \specialcell{{\bf ASw/F}} & {\bf Random} & \\ \hline
 % 
 % Effort & 0.63	& 0.84 & 0.73	& 11\% (3/28)\\ \hline
-% Severity & N/A  & N/A	& N/A	& 0\% (0/28)\\ \hline
+% Severity & n/a  & n/a	& n/a	& 0\% (0/28)\\ \hline
 % {\bf SE all}  & {\bf0.63}	& {\bf 0.84} & {\bf 0.73}		& {\bf 11\%} (3/28)\\
 % \hline \hline \hline
 % Medical	& 0.69	& 0.71	& 0.58	& 32\% (9/28)\\ \hline
@@ -1043,6 +1043,42 @@ In the 218 (76.8\%) out of 284 prediction combinations, HDP outperforms and is c
 
 %A recent study shows that high defect rate of a dataset may bias prediction results,i.e., higher buggy rate of a dataset tends to lead better prediciton results~\cite{Tantithamthavorn16}. This bias could be matter under the WPDP setting as the study discusses about model validation technioques~\cite{Tantithamthavorn16}. Since HDP is CPDP on datasets using different metric sets, To make sure if the promising reuslts of HDP is affected by the defect rate of a target dataset
 
+
+\subsection{Performance by Source Datasets}
+
+Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ could predict five targets by HDP and the median AUC from these five target predictions is 0.794.\footnote{For detailed target prediction results by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc} Since the total number of target predictions is 284 out of 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics between source and target datasets.
+
+As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) whose defect ratio is 0.73\%. 
+
+The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. 
+
+
+\begin{table}[!t]
+\caption{HDP Prediction performance in median AUC by source datasets.}
+\label{tab:by_source}
+\begin{tabular}{|c||c|c||c||c|c|}
+\hline
+\bf{Source}	& \bf{AUC} 	&\specialcell{\bf{\# of}\\\bf{Targets}} &\bf{ Source} & \bf{AUC} 	&\specialcell{\bf{\# of}\\\bf{Targets}} \\ \hline
+\hline
+EQ	&0.794	&5	&JDT	&0.756	&10	\\ \hline
+LC	&0.674	&2	&ML	&0.714	&3	\\ \hline
+PDE	&n/a	&0	&Apache	&0.720	&17	\\ \hline
+Safe	&0.693	&22	&ZXing	&0.707	&12	\\ \hline
+ant-1.3	&0.738	&16	&arc	&0.667	&8	\\ \hline
+camel-1.0	&0.803	&2	&poi-1.5	&0.756	&6	\\ \hline
+redaktor	&n/a	&0	&skarbonka	&0.692	&17	\\ \hline
+tomcat	&0.739	&9	&velocity-1.4	&n/a	&0	\\ \hline
+xalan-2.4	&0.762	&7	&xerces-1.2	&n/a	&0	\\ \hline
+cm1	&0.701	&9	&mw1	&0.720	&13	\\ \hline
+pc1	&0.830	&9	&pc3	&0.773	&9	\\ \hline
+pc4	&n/a	&0	&jm1	&0.788	&8	\\ \hline
+pc2	&0.822	&3	&pc5	&n/a	&0	\\ \hline
+mc1	&0.856	&3	&mc2	&0.734	&20	\\ \hline
+kc3	&0.689	&5	&ar1	&0.320	&3	\\ \hline
+ar3	&0.738	&11	&ar4	&0.682	&18	\\ \hline
+ar5	&0.697	&28	&ar6	&0.740	&9	\\ \hline
+\end{tabular}
+\end{table}
 
 \subsection{Performance in Different Metric Selections}
 \label{subsec04}
