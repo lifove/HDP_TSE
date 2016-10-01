@@ -6,7 +6,7 @@ In this section, we present the experimental results of the HDP approach to addr
 
 RQ1 leads us to investigate whether our
 HDP is comparable to WPDP (Baseline1), CPDP-CM
-(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} based on Gain ratio attribute selection for metric selection, KSAnalyzer with the cutoff threshold of 0.05, and Simple logistic classifier. Among different
+(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02},~\ref{subsec03}, and~\ref{subsec04-0} based on Gain ratio attribute selection for metric selection, KSAnalyzer with the cutoff threshold of 0.05, and Simple logistic classifier. Among different
 metric selections, Gain ratio attribute selection with Simple logistic led to the best
 prediction performance overall. In terms of analyzers, KSAnalyzer led to the best prediction performance.
 Since the KSAnalyzer is based on the p-value of a statistical test, we chose a cutoff of 0.05 which is a commonly accepted significance level in the
@@ -115,7 +115,7 @@ statistical significance are underlined in
 the table. Between Baseline3 and our approach, better AUC values with
 statistical significance are shown with an asterisk (*).
 
-The values in parentheses in Table~\ref{tab:result_overview} show Cliff's $\delta$ and its magnitude for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size (N: Negligible, S: Small, M: Medium, and L: Large). For example, the Cliff's $\delta$ of AUCs between WPDP and HDP for EQ is 0.997 and its magnitude is {\em Large} as in Table~\ref{tab:result_overview}. In other words, HDP outperforms WPDP in EQ in terms of the effect size.
+The values in parentheses in Table~\ref{tab:result_overview} show Cliff's $\delta$ and its magnitude for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size (N: Negligible, S: Small, M: Medium, and L: Large). For example, the Cliff's $\delta$ of AUCs between WPDP and HDP for EQ is 0.997 and its magnitude is {\em Large} as in Table~\ref{tab:result_overview}. In other words, HDP outperforms WPDP in EQ with the large magnitude of the effect size.
 
 %From Table~\ref{tab:result_overview}, 
 We observed the following results about RQ1:
@@ -514,7 +514,7 @@ outperforms CPDP-CM and CPDP-IFS.
 There are no better results in CPDP-CM
 than those in HDP by KSAnalyzer with statistical significance (no
 underlined results in third column in Table~\ref{tab:compare}). In addition, HDP
-by KSAnalyzer outperforms CPDP-IFS in all source groups.
+by KSAnalyzer outperforms CPDP-IFS in most source groups with statistical significance except for AEEEM.
 
 The target prediction coverage in the NASA and SOFTLAB groups yielded 100\% as
 shown in Table~\ref{tab:compare}. This implies our HDP models may conduct defect
@@ -1045,6 +1045,7 @@ In the 218 (76.8\%) out of 284 prediction combinations, HDP outperforms and is c
 
 
 \subsection{Performance by Source Datasets}
+\label{subsec04-0}
 
 \begin{table}[!t]
 \caption{HDP Prediction performance in median AUC by source datasets.}
