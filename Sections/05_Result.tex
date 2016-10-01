@@ -884,14 +884,14 @@ Total	&\specialcell{{200}\\{70.4\%}}	&\specialcell{{2}\\{0.7\%}}	&\specialcell{{
 \end{table}
 
 
-To investigate our performance evaluation for HDP in detail, we report
+To investigate the evaluation results for HDP in detail, we report
 the Win/Tie/Loss results of HDP by KSAnalyzer with the cutoff of 0.05 against
 WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS
 (Baseline3) in Table~\ref{tab:win_results}.
 
 
 KSAnalyzer with the cutoff of 0.05 conducted 284 out of 962 prediction
-combinations since 584 combinations do not have any matched
+combinations since 678 combinations do not have any matched
 metrics because of the cutoff threshold. In
 Table~\ref{tab:win_results}, the target dataset, EQ, was predicted in four
 prediction combinations and our approach, HDP, outperforms Baseline1 and
@@ -950,7 +950,7 @@ defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
 unique\_operands} have the tendency to be more defect-prone. For this reason, the
 model using the matched metrics could achieve such a high AUC (0.946). We could
-observe this defect-proneness tendency in other Win results. Since matching metrics is
+observe this defect-proneness tendency in other Win results (See the online appendix, https://lifove.github.io/hdp/\#pc). Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
 addresses several issues related to a dataset shift such as the covariate shift
 and domain shift discussed by Turhan~\cite{Turhan12}.
@@ -991,7 +991,7 @@ defect-proneness between the source and target metrics could degrade the
 prediction performance although they are the same metric.
 
 We regard the matching that has an inconsistent defect-proneness tendency between
-source and target metrics as a noisy metric matching.
+source and target metrics as {\em a noisy metric matching}.
 % This implies the target
 % feature does not follow the tendency that a higher complexity causes more defect-proneness.
 % The target feature worked as noise when the model predicted
@@ -1031,7 +1031,7 @@ the common metric was noisy and was not helpful for building a prediction model.
 %\TODO{Guidelines or suggestions on cross-domain defect prediction?}
 
 Overall, the numbers of Win and
-Tie results are 200 and 2 respectively out of all of the 284 prediction
+Tie results are 200 and 2 respectively out of all 284 prediction
 combinations.
 This means that in 71.1\% of prediction combinations our HDP
 models achieve better or comparable prediction performance than those in
@@ -1074,12 +1074,12 @@ ar5	&0.697	&28	&ar6	&0.740	&9	\\ \hline
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ predicts five targets by HDP and the median AUC from these five target predictions is 0.794. Since the total number of feasible target predictions is 284 out of all 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics between source and target datasets.
+Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ predicts five targets by HDP and the median AUC from these five target predictions is 0.794. Since the total number of feasible target predictions is 284 out of all 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics.
 
-The higher defect ratio of a training dataset may make bias as prediction performance is better than the lower defect ratio~\cite{Tantithamthavorn16}. To investigate if HDP is also affected by defect ratio of the training dataset and what makes better prediction performance, we analyzed the best and worst source datasets that lead to the best and worst AUC values, respectively.
+The higher defect ratio of a training dataset may make bias as the prediction performance of the dataset with the higher defect ratio may be better than that with the lower defect ratio~\cite{Tantithamthavorn16}. To investigate if HDP is also affected by defect ratio of the training dataset and what makes better prediction performance, we analyzed the best and worst source datasets that lead to the best and worst AUC values, respectively.
 
 We found that HDP does not bias prediction performance from the defect ratios of datasets and prediction performance is highly depending on the defect-proneness tendency of matched metrics under our experiments.
-As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) although its defect ratio is very low, 0.73\%. We investigate distributions of matched metrics of EQ like Figure~\ref{fig:best_dist} and~\ref{fig:loss_dist}.\footnote{For detailed target prediction results and distributions of matched metrics by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc.} We observed that all the matched metrics for the source, EQ, show the typical defect-proneness similarly to Figure~\ref{fig:best_dist}. The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. We observed that the matched metrics of ar1 show inconsistent tendency of defect-proneness between source and target, i.e., noisy matching. From these best and worst cases, we confirm again consistent defect-proneness of matched metrics between source and target datasets is most important to lead to promising prediction performance in HDP.
+As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) although its defect ratio is very low, 0.73\%. We investigate distributions of matched metrics of EQ like Figure~\ref{fig:best_dist} and~\ref{fig:loss_dist}.\footnote{For detailed target prediction results and distributions of matched metrics by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc.} We observed that all the matched metrics for the source, EQ, show the typical defect-proneness similarly to Figure~\ref{fig:best_dist}. The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. We observed that the matched metrics of ar1 show inconsistent tendency of defect-proneness between source and target, i.e., noisy matching. From these best and worst cases, we confirm again consistent defect-proneness of matched metrics between source and target datasets is most important to lead to promising prediction performance.
 
 
 
@@ -1384,7 +1384,7 @@ comparable to WPDP. This
 implies that comparing 9 percentiles between source and target metrics can
 evaluate the similarity of them well with a threshold of 0.90. However,
 PAnalyzer with the cutoff is
-too simple an approach to lead to better prediction performance than KSAnalyzer. In
+too simple to lead to better prediction performance than KSAnalyzer. In
 KSAnalyzer with a cutoff of 0.05, the AUC (0.724) outperforms it (0.693) in WPDP
 with statistical significance.
 
@@ -1405,8 +1405,7 @@ increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
 0.90, we observed prediction results by PAnalyzer and KSAnalyzer
 gradually are improved from 0.678 to 0.693 and 0.724 to 0.831 in AUC, respectively.
 This means these two analyzers can filter out negative prediction combinations
-well. As a result, the percentages of Win results are also significantly
-increased.
+well. As a result, the percentages of Win results are also increased.
 
 Results by SCoAnalyzer were
 worse than WPDP results. In addition,
@@ -1509,12 +1508,12 @@ learners consider the linear relationship like Simple Logistic~\cite{Landwehr200
 work well with the learners based on the linear relationship between a metric
 and a label (defect-proneness).
 
-According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~/cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
+According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~\cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
 
 \subsection{Summary}
 In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
 \squishlist
-    \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and significance attribute selection.
+    \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and Gain ratio attribute selection.
     \item Compared to WPDP, HDP achieved 71.1\% of Win/Tie results. However, there are still 28.9\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
