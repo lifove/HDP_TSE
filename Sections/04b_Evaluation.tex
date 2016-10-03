@@ -31,7 +31,7 @@ To investigate the size limits for effective transfer learning in the setting of
 
 
  
-\subsection{Using Small Data Sets is Feasible}
+\subsection{Using Small Datasets is Feasible}
 
 Recall from the above,
 HDP uses  datasets  in a two step process.
@@ -47,13 +47,13 @@ above experiment, we observed that minimum size is ar5 with $36$ instances and m
 The median and mean value of dataset size are $1505$ and $325$, respectively. Then $200$ is less than both of 
 them, which is reasonably small.
 On the other hand, we use these numbers to show using small datasets is feasible compared to
-the original. We're not claiming they're the best~(optimal) small numbers. For most data sets considered in this experiment, $N$ with these values is a 
+the original. We're not claiming they're the best~(optimal) small numbers. For most datasets considered in this experiment, $N$ with these values is a 
 small data size compared to the original data size. 
 
 When sampling the original data, {\it if
 the number of instances in the original dataset is
 smaller than $N$, all those instances will be
-included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the data set has less than $200$ instances, such as ar3, we use all
+included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the dataset has less than $200$ instances, such as ar3, we use all
 the instances and no oversampling is applied. With those sampled $N=200$ data, we perform metric matching to build a learner
 and finally predict labels of all original data in the target project. We sample the data without replacement
 to void duplicate data.
@@ -85,17 +85,17 @@ The datasets are ordered left to right by the difference to the black line (wher
 \squishlist
 \item
   On the left, the black line is
-  {\em above} the red line; i.e. for those datasets, we do {\em better} using
+  {\em above} the red line; i.e., for those datasets, we do {\em better} using
   {\em all} data than using {\em some}.
   \item
 On the right, the black line is {\em below} the red
-line; i.e. for those datasets, we do {\em worse}
+line; i.e., for those datasets, we do {\em worse}
 using {\em all} data than using {\em some}.
 \squishend
 Note that the gap between the red and black line
 shrinks as we use more data and after $N=100$, the
 net gap space is almost zero.  When $N=200$, in $28/34$
-data sets,
+datasets,
 it is hard to distinguish
 the blue and black curves of \fig{small_data}.
 That is, we conclude

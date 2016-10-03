@@ -79,7 +79,7 @@ used to represent the process of machine
 learning. For example,
 instead of a board with two
 dimensions, data mining works on a ``chess board''
-with $d$ dimensions: i.e. one for all the independent
+with $d$ dimensions: i.e., one for all the independent
 variables collected from a project (which are ``needed'', as defined as \tion{data}).
 
 Also,
@@ -206,7 +206,7 @@ likely to find defects occurring at probability $e$.}\label{fig:dtree}
       for testing. The weighted average performance values for the learned decision tree were remarkably good:
 \squishlist
     \item False alarm rates = 2\%;
-    \item F-measures (i.e. the harmonic mean of recall and precision) of 95\%
+    \item F-measures (i.e., the harmonic mean of recall and precision) of 95\%
 \squishend
 
 \subsection{Results}
@@ -234,7 +234,7 @@ where we need many dimensions that divide into many bins.
 For such datasets, we require a larger number of samples to learn a predictor ($n \ge 200$).
 \squishend
 The key part of \fig{dtree} is the ``typical'' region defined in \tion{data};
-i.e.    $b=2, d \le 3$:
+i.e.,    $b=2, d \le 3$:
 \squishlist
 \item Lines 7 to 10 show one set of branches covering this ``typical'' region. Note
 lines 9, 10:  we need up to 100 examples when the defect signal is rare (10\%) but
@@ -252,7 +252,7 @@ we note that:
 have reported that 10 ``events per decision variable'' are adequate for building models using that
 data miner. For our defect datasets, in \fig{small_epv}, we repeated the analysis of~\cite{peduzzi1996simulation}
 and found that considering 2 independent variable on average, there was little improvement after 100 examples with EPV = 10 (as would have been predicted by~\cite{peduzzi1996simulation}).
-\item The maths of \tion{xplain} show that this ``100 examples are enough'' is a feature of the kinds of
+\item The maths of \tion{xplain} show that this ``a small number of examples are enough'' is a feature of the kinds of
 data currently being explored in the defect prediction
 literature.
 \squishend
