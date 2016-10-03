@@ -102,7 +102,7 @@ single best feature selection approach for all prediction models does not
 exist~\cite{Catal09,Hall03,Liu02}. For this reason, we conduct experiments
 under different feature selection approaches. When applying feature selection
 approaches, we select top 15\% of metrics as suggested by Gao et
-al.~\cite{Gao11}. For example, if the number of features in a dataset is 100, we select 15 top features ranked by a feature selection approach. In addition, we compare the prediction results with or without
+al.~\cite{Gao11}. For example, if the number of features in a dataset is 200, we select 30 top features ranked by a feature selection approach. In addition, we compare the prediction results with or without
 metric selection in the experiments.
 
 % The key idea of CFS
@@ -127,14 +127,13 @@ metric selection in the experiments.
 \label{sec:analyzers}
 
 Matching source and target metrics is the core of HDP.
-The intuition of matching metrics is originated from the typical defect-proneness tendency of software metrics, i.e., the higher complexity of source code and development process causes the more defect-proneness~\cite{Menzies07,DAmbros12,nam2015clami}. The higher complexity of source code and development process usually is represented with the higher metric values. Thus, various product and process metrics, e.g., McCabe's cyclomatic, lines of code, and the number of developers modifying a file, follow this defect-proneness tendency~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. By matching metrics, HDP transfers this defect-proneness tendency from a source project for predicting defects in a target project.
+The intuition of matching metrics is originated from the typical defect-proneness tendency of software metrics, i.e., the higher complexity of source code and development process causes the more defect-proneness~\cite{Menzies07,DAmbros12,nam2015clami}. The higher complexity of source code and development process usually is represented with the higher metric values. Thus, various product and process metrics, e.g., McCabe's cyclomatic, lines of code, and the number of developers modifying a file, follow this defect-proneness tendency~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. By matching metrics, HDP transfers this defect-proneness tendency from a source project for predicting defects in a target project. For example, assume that a metric, the number of methods invoked by a class ({\em RFC}), in a certain Java project (source) has the tendency that a class file having the RFC value greater than 40 is highly defect-prone. If a target metric, {\em the number of operands}, follows the similar distribution and its defect-proneness tendency, transferring this defect-proneness tendency of the source metric, RFC, as knowledge by matching the source and target metrics could be effective to predict defects in the target dataset.
 
 To match source and target metrics, we measure the similarity of each source and
 target metric pair by using several existing methods such as percentiles,
 Kolmogorov-Smirnov Test, and Spearman's correlation
 coefficient~\cite{Massey51,Spearman10}.
-We define the following three analyzers
-for metric matching:
+We define metric matching analyzers as follows:
 \squishlist
 	\item Percentile based matching (PAnalyzer)
 	\item Kolmogorov-Smirnov Test based matching (KSAnalyzer)
@@ -318,7 +317,7 @@ used in our empirical study have exponential distributions~\cite{Menzies07} and
 metrics in other datasets have unknown distributions and variances, the KS-test
 is a suitable statistical test to compute p-values for these datasets. In statistical testing, a p-value shows the
 probability of whether two samples are significantly different or not. We used
-the {\em KolmogorovSmirnovTest} implemented in the {\em Apache commons math}
+the {\em KolmogorovSmirnovTest} implemented in the {\em Apache commons math3 3.3}
 library.
 
 
@@ -334,7 +333,7 @@ rank correlation coefficient as a matching score for source and target
 metrics~\cite{Spearman10}.
 Spearman's rank correlation measures how two samples
 are correlated~\cite{Spearman10}. To compute the coefficient, we used the
-{\em SpearmansCorrelation} in the {\em Apache commons math} library. Since the
+{\em SpearmansCorrelation} in the {\em Apache commons math3 3.3} library. Since the
 size of metric vectors should be the same to compute the coefficient, we
 randomly select metric values from a metric vector that is of a greater size
 than another metric vector. For example, if the sizes of the source and target metric

@@ -6,7 +6,7 @@ In this section, we present the experimental results of the HDP approach to addr
 
 RQ1 leads us to investigate whether our
 HDP is comparable to WPDP (Baseline1), CPDP-CM
-(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02}, and~\ref{subsec03} based on Gain ratio attribute selection for metric selection, KSAnalyzer with the cutoff threshold of 0.05, and Simple logistic classifier. Among different
+(Baseline2), and CDDP-IFS (Baseline3)~\cite{He14}. We report the representative HDP results in Section~\ref{subsec01},~\ref{subsec02},~\ref{subsec03}, and~\ref{subsec04-0} based on Gain ratio attribute selection for metric selection, KSAnalyzer with the cutoff threshold of 0.05, and Simple logistic classifier. Among different
 metric selections, Gain ratio attribute selection with Simple logistic led to the best
 prediction performance overall. In terms of analyzers, KSAnalyzer led to the best prediction performance.
 Since the KSAnalyzer is based on the p-value of a statistical test, we chose a cutoff of 0.05 which is a commonly accepted significance level in the
@@ -115,7 +115,7 @@ statistical significance are underlined in
 the table. Between Baseline3 and our approach, better AUC values with
 statistical significance are shown with an asterisk (*).
 
-The values in parentheses in Table~\ref{tab:result_overview} show Cliff's $\delta$ and its magnitude for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size (N: Negligible, S: Small, M: Medium, and L: Large). For example, the Cliff's $\delta$ of AUCs between WPDP and HDP for EQ is 0.997 and its magnitude is {\em Large} as in Table~\ref{tab:result_overview}. In other words, HDP outperforms WPDP in EQ in terms of the effect size.
+The values in parentheses in Table~\ref{tab:result_overview} show Cliff's $\delta$ and its magnitude for the effect size among baselines and HDP. If a Cliff's $\delta$ is a positive value, HDP improves a baseline in terms of the effect size. As explained in Section~\ref{sec:measure}, based on a Cliff's $\delta$, we can estimate the magnitude of the effect size (N: Negligible, S: Small, M: Medium, and L: Large). For example, the Cliff's $\delta$ of AUCs between WPDP and HDP for EQ is 0.997 and its magnitude is {\em Large} as in Table~\ref{tab:result_overview}. In other words, HDP outperforms WPDP in EQ with the large magnitude of the effect size.
 
 %From Table~\ref{tab:result_overview}, 
 We observed the following results about RQ1:
@@ -514,7 +514,7 @@ outperforms CPDP-CM and CPDP-IFS.
 There are no better results in CPDP-CM
 than those in HDP by KSAnalyzer with statistical significance (no
 underlined results in third column in Table~\ref{tab:compare}). In addition, HDP
-by KSAnalyzer outperforms CPDP-IFS in all source groups.
+by KSAnalyzer outperforms CPDP-IFS in most source groups with statistical significance except for AEEEM.
 
 The target prediction coverage in the NASA and SOFTLAB groups yielded 100\% as
 shown in Table~\ref{tab:compare}. This implies our HDP models may conduct defect
@@ -598,7 +598,7 @@ source and target datasets, and (2) predicting defects.
 % 		& 	& \specialcell{{\bf ASw/F}} & {\bf Random} & \\ \hline
 % 
 % Effort & 0.63	& 0.84 & 0.73	& 11\% (3/28)\\ \hline
-% Severity & N/A  & N/A	& N/A	& 0\% (0/28)\\ \hline
+% Severity & n/a  & n/a	& n/a	& 0\% (0/28)\\ \hline
 % {\bf SE all}  & {\bf0.63}	& {\bf 0.84} & {\bf 0.73}		& {\bf 11\%} (3/28)\\
 % \hline \hline \hline
 % Medical	& 0.69	& 0.71	& 0.58	& 32\% (9/28)\\ \hline
@@ -884,14 +884,14 @@ Total	&\specialcell{{200}\\{70.4\%}}	&\specialcell{{2}\\{0.7\%}}	&\specialcell{{
 \end{table}
 
 
-To investigate our performance evaluation for HDP in detail, we report
+To investigate the evaluation results for HDP in detail, we report
 the Win/Tie/Loss results of HDP by KSAnalyzer with the cutoff of 0.05 against
 WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS
 (Baseline3) in Table~\ref{tab:win_results}.
 
 
 KSAnalyzer with the cutoff of 0.05 conducted 284 out of 962 prediction
-combinations since 584 combinations do not have any matched
+combinations since 678 combinations do not have any matched
 metrics because of the cutoff threshold. In
 Table~\ref{tab:win_results}, the target dataset, EQ, was predicted in four
 prediction combinations and our approach, HDP, outperforms Baseline1 and
@@ -950,7 +950,7 @@ defect-proneness~\cite{DAmbros12,Menzies07,Rahman13}. In
 Figure~\ref{fig:best_dist}, instances with higher values of {\em RFC} and {\em
 unique\_operands} have the tendency to be more defect-prone. For this reason, the
 model using the matched metrics could achieve such a high AUC (0.946). We could
-observe this defect-proneness tendency in other Win results. Since matching metrics is
+observe this defect-proneness tendency in other Win results (See the online appendix, https://lifove.github.io/hdp/\#pc). Since matching metrics is
 based on similarity of source and target metric distributions, HDP also
 addresses several issues related to a dataset shift such as the covariate shift
 and domain shift discussed by Turhan~\cite{Turhan12}.
@@ -991,7 +991,7 @@ defect-proneness between the source and target metrics could degrade the
 prediction performance although they are the same metric.
 
 We regard the matching that has an inconsistent defect-proneness tendency between
-source and target metrics as a noisy metric matching.
+source and target metrics as {\em a noisy metric matching}.
 % This implies the target
 % feature does not follow the tendency that a higher complexity causes more defect-proneness.
 % The target feature worked as noise when the model predicted
@@ -1031,7 +1031,7 @@ the common metric was noisy and was not helpful for building a prediction model.
 %\TODO{Guidelines or suggestions on cross-domain defect prediction?}
 
 Overall, the numbers of Win and
-Tie results are 200 and 2 respectively out of all of the 284 prediction
+Tie results are 200 and 2 respectively out of all 284 prediction
 combinations.
 This means that in 71.1\% of prediction combinations our HDP
 models achieve better or comparable prediction performance than those in
@@ -1043,6 +1043,47 @@ In the 218 (76.8\%) out of 284 prediction combinations, HDP outperforms and is c
 
 %A recent study shows that high defect rate of a dataset may bias prediction results,i.e., higher buggy rate of a dataset tends to lead better prediciton results~\cite{Tantithamthavorn16}. This bias could be matter under the WPDP setting as the study discusses about model validation technioques~\cite{Tantithamthavorn16}. Since HDP is CPDP on datasets using different metric sets, To make sure if the promising reuslts of HDP is affected by the defect rate of a target dataset
 
+
+\subsection{Performance by Source Datasets}
+\label{subsec04-0}
+
+\begin{table}[!t]
+\caption{HDP Prediction performance in median AUC by source datasets.}
+\label{tab:by_source}
+\begin{tabular}{|c||c|c||c||c|c|}
+\hline
+\bf{Source}	& \bf{AUC} 	&\specialcell{\bf{\# of}\\\bf{Targets}} &\bf{ Source} & \bf{AUC} 	&\specialcell{\bf{\# of}\\\bf{Targets}} \\ \hline
+\hline
+EQ	&0.794	&5	&JDT	&0.756	&10	\\ \hline
+LC	&0.674	&2	&ML	&0.714	&3	\\ \hline
+PDE	&n/a	&0	&Apache	&0.720	&17	\\ \hline
+Safe	&0.693	&22	&ZXing	&0.707	&12	\\ \hline
+ant-1.3	&0.738	&16	&arc	&0.667	&8	\\ \hline
+camel-1.0	&0.803	&2	&poi-1.5	&0.756	&6	\\ \hline
+redaktor	&n/a	&0	&skarbonka	&0.692	&17	\\ \hline
+tomcat	&0.739	&9	&velocity-1.4	&n/a	&0	\\ \hline
+xalan-2.4	&0.762	&7	&xerces-1.2	&n/a	&0	\\ \hline
+cm1	&0.701	&9	&mw1	&0.720	&13	\\ \hline
+pc1	&0.830	&9	&pc3	&0.773	&9	\\ \hline
+pc4	&n/a	&0	&jm1	&0.788	&8	\\ \hline
+pc2	&0.822	&3	&pc5	&n/a	&0	\\ \hline
+mc1	&0.856	&3	&mc2	&0.734	&20	\\ \hline
+kc3	&0.689	&5	&ar1	&0.320	&3	\\ \hline
+ar3	&0.738	&11	&ar4	&0.682	&18	\\ \hline
+ar5	&0.697	&28	&ar6	&0.740	&9	\\ \hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ predicts five targets by HDP and the median AUC from these five target predictions is 0.794. Since the total number of feasible target predictions is 284 out of all 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics.
+
+The higher defect ratio of a training dataset may make bias as the prediction performance of the dataset with the higher defect ratio may be better than that with the lower defect ratio~\cite{Tantithamthavorn16}. To investigate if HDP is also affected by defect ratio of the training dataset and what makes better prediction performance, we analyzed the best and worst source datasets that lead to the best and worst AUC values, respectively.
+
+We found that HDP does not bias prediction performance from the defect ratios of datasets and prediction performance is highly depending on the defect-proneness tendency of matched metrics under our experiments.
+As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) although its defect ratio is very low, 0.73\%. We investigate distributions of matched metrics of EQ like Figure~\ref{fig:best_dist} and~\ref{fig:loss_dist}.\footnote{For detailed target prediction results and distributions of matched metrics by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc.} We observed that all the matched metrics for the source, EQ, show the typical defect-proneness tendency similarly to Figure~\ref{fig:best_dist}. The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. We observed that the matched metrics of ar1 show inconsistent tendency of defect-proneness between source and target, i.e., noisy matching. From these best and worst cases, we confirm again the consistent defect-proneness tendency of matched metrics between source and target datasets is most important to lead to promising prediction performance.
+
+
+
+ 
 
 \subsection{Performance in Different Metric Selections}
 \label{subsec04}
@@ -1343,7 +1384,7 @@ comparable to WPDP. This
 implies that comparing 9 percentiles between source and target metrics can
 evaluate the similarity of them well with a threshold of 0.90. However,
 PAnalyzer with the cutoff is
-too simple an approach to lead to better prediction performance than KSAnalyzer. In
+too simple to lead to better prediction performance than KSAnalyzer. In
 KSAnalyzer with a cutoff of 0.05, the AUC (0.724) outperforms it (0.693) in WPDP
 with statistical significance.
 
@@ -1359,13 +1400,12 @@ combinations for the targets are not greater than 0.90 so
 that all matched metrics in the combinations were ignored.
 
 An interesting observation in PAnalyzer and KSAnalyzer is that AUC
-values of HDP by those analyzers improved when a cutoff threshold
+values of HDP by those analyzers tend to be improved when a cutoff threshold
 increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
 0.90, we observed prediction results by PAnalyzer and KSAnalyzer
-gradually improved from 0.678 to 0.693 and 0.724 to 0.831 in AUC, respectively.
+gradually are improved from 0.678 to 0.693 and 0.724 to 0.831 in AUC, respectively.
 This means these two analyzers can filter out negative prediction combinations
-well. As a result, the percentages of Win results are also significantly
-increased.
+well. As a result, the percentages of Win results are also increased.
 
 Results by SCoAnalyzer were
 worse than WPDP results. In addition,
@@ -1468,17 +1508,17 @@ learners consider the linear relationship like Simple Logistic~\cite{Landwehr200
 work well with the learners based on the linear relationship between a metric
 and a label (defect-proneness).
 
-According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~/cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
+According to the recent study by Ghotra et al., LMT and Simple Logistic tend to lead to better prediction performance than other kinds of machine learners~\cite{Ghotra15}. HDP results based on Simple Logistic and LMT also confirm the results by Ghotra et al.~\cite{Ghotra15}. However, these results do not generalize HDP works best by Simple Logistic or LMT as Ghotra et al. also pointed out prediction results and the best machine learner may vary based on each dataset~\cite{Ghotra15}.
 
 \subsection{Summary}
 In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are the key observations of the results in our experimental setting:
 \squishlist
-    \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and significance attribute selection.
+    \item Overall, HDP led to better or comparable results to the baselines such as WPDP, CPDP-CM, and CPDP-IFS when using KSAnalyzer with the cutoff of 0.05 and Gain ratio attribute selection.
     \item Compared to WPDP, HDP achieved 71.1\% of Win/Tie results. However, there are still 28.9\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved. 
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to compare distributions of two variables~\cite{Lilliefors67,Massey51}.
     \item HDP worked well with Simple Logistic, Logistic, and LMT but not other machine learners. One possible reason is that Logistic related classifiers capture the linear relationship between metrics and the logit transformation of labels that is related to the defect-proneness tendency of the metrics.
 \squishend
 
-In the case of homogeneous transfer (where the source and target data sets have the same variable names), we have results with Krishna and Menzies\cite{krishna2016too}. It has shown that within ``communities'' (projects that collect data using the same variable names) there exists one ``bellwether'' \footnote{In a flock of sheep, the ``bellwether'' is the individual that the rest of the flock will follow.} data set from which it is possible to learn defect predictors that work well for all other members of that community. (Aside: this also means that within each community that are projects that always produce demonstrably worse defect models.) While such bellwethers are an interesting way to simplify homogeneous transfer learning, our own experiments show that this ``bellwether'' idea does not work for heterogeneous transfer (where source and target can have different terminology). We conjecture that bellwethers work for homogeneous data due to regularities in the data that may not be present in the heterogeneous case. 
+In the case of homogeneous transfer (where the source and target data sets have the same variable names), we have results with Krishna and Menzies~\cite{krishna16}. It has shown that within ``communities'' (projects that collect data using the same variable names) there exists one ``bellwether'' \footnote{In a flock of sheep, the ``bellwether'' is the individual that the rest of the flock will follow.} data set from which it is possible to learn defect predictors that work well for all other members of that community. (Aside: this also means that within each community that are projects that always produce demonstrably worse defect models.) While such bellwethers are an interesting way to simplify homogeneous transfer learning, our own experiments show that this ``bellwether'' idea does not work for heterogeneous transfer (where source and target can have different terminology). We conjecture that bellwethers work for homogeneous data due to regularities in the data that may not be present in the heterogeneous case. 
 

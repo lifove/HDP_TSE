@@ -31,7 +31,7 @@ To investigate the size limits for effective transfer learning in the setting of
 
 
  
-\subsection{Using Small Data Sets is Feasible}
+\subsection{Using Small Datasets is Feasible}
 
 Recall from the above,
 HDP uses  datasets  in a two step process.
@@ -47,16 +47,16 @@ above experiment, we observed that minimum size is ar5 with $36$ instances and m
 The median and mean value of dataset size are $1505$ and $325$, respectively. Then $200$ is less than both of 
 them, which is reasonably small.
 On the other hand, we use these numbers to show using small datasets is feasible compared to
-the original. We're not claiming they're the best~(optimal) small numbers. For most data sets considered in this experiment, $N$ with these values is a 
+the original. We're not claiming they're the best~(optimal) small numbers. For most datasets considered in this experiment, $N$ with these values is a 
 small data size compared to the original data size. 
 
 When sampling the original data, {\it if
 the number of instances in the original dataset is
 smaller than $N$, all those instances will be
-included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the data set has less than $200$ instances, such as ar3, we use all
+included}. For example, $N=200$ means we sampled both source and target data with size of $200$. If the dataset has less than $200$ instances, such as ar3, we use all
 the instances and no oversampling is applied. With those sampled $N=200$ data, we perform metric matching to build a learner
 and finally predict labels of all original data in the target project. We sample the data without replacement
-to void duplicate data.
+to avoid duplicate data.
 
 The results for this HDP-with-limited-data experiment is shown in \fig{small_data}
 (we display median AUC results from 20 repeats, using  Logistic Regression
@@ -85,17 +85,17 @@ The datasets are ordered left to right by the difference to the black line (wher
 \squishlist
 \item
   On the left, the black line is
-  {\em above} the red line; i.e. for those datasets, we do {\em better} using
+  {\em above} the red line; i.e., for those datasets, we do {\em better} using
   {\em all} data than using {\em some}.
   \item
 On the right, the black line is {\em below} the red
-line; i.e. for those datasets, we do {\em worse}
+line; i.e., for those datasets, we do {\em worse}
 using {\em all} data than using {\em some}.
 \squishend
 Note that the gap between the red and black line
 shrinks as we use more data and after $N=100$, the
 net gap space is almost zero.  When $N=200$, in $28/34$
-data sets,
+datasets,
 it is hard to distinguish
 the blue and black curves of \fig{small_data}.
 That is, we conclude
@@ -129,7 +129,7 @@ Working in the domain cardiology,
   examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
-  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of different matched features are as follows: $\{1:120, 2:249, 3:171, 4:60, 5:14\}$, where keys and values represent number of matched features, the corresponding counts of cross prediction combinations, respectively. Our read of this distribution is that the median of matched features is $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
+  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of matched features are as follows: $\{1:158, 2:78, 3:38, 4:9, 5:1\}$, where keys and values represent number of matched features, the corresponding counts of cross prediction combinations, respectively. Our read of this distribution is that the average number of matched features is about $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
   $N\in \{50,100,150,200\}$ for the source data. For the target dataset, since we do not
   know the data labels, we simply sampled $N$ for target data in metric matching.

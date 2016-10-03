@@ -340,7 +340,7 @@ We did not conduct defect prediction across projects where datasets have the sam
 across datasets with heterogeneous metric sets.
 % We represent this prediction combination as EQ$\Rightarrow$Apache. We use the same representation,
 % SOURCE$\Rightarrow$Target, for other prediction combinations across the paper.
-In total, we have 962 possible prediction combinations from these 34 datasets. Since we select top 15\% of metrics for metric selection as explained in Section~\ref{sec:metricselection}, the number of selected metrics varies from 3 (MORPH) to 9 (AEEEM)~\cite{Gao11}.
+In total, we have 962 possible prediction combinations from these 34 datasets. Since we select top 15\% of metrics from a source dataset for metric selection as explained in Section~\ref{sec:metricselection}, the number of selected metrics varies from 3 (MORPH) to 9 (AEEEM)~\cite{Gao11}.
 
 % \begin{table}[t]
 % \small
@@ -497,7 +497,7 @@ number of matched metrics is four in cm1$\Rightarrow$ar5 while that is one in
 ar6$\Rightarrow$pc3. The average number of matched metrics also varies by
 analyzers and cutoff values; 4 (PAnalyzer), 2 (KSAnalyzer), and 5 (SCoAnalyzer)
 in the cutoff of 0.05 but 1 (PAnalyzer), 1 (KSAnalyzer), and 4 (SCoAnalyzer) in
-the cutoff of 0.90 on average.
+the cutoff of 0.90.
 
 \subsection{Baselines}
 
@@ -527,7 +527,7 @@ as a baseline to evaluate our HDP models.
 The number of common metrics varies across the dataset groups as ranged from 1 to 38. Between
 AEEEM and ReLink, only one common metric exists, {\em LOC} (ck\_oo\_numberOfLinesOfCode : CountLineCode).
 Some NASA datasets that have different metric sets, e.g., pc5 vs. mc2, have 38 common metrics. On average, the number of common
-metrics in our datasets is about 12. We put all the common metrics between the five dataset groups in the online appendix: {\em http://lifove.github.io/hdp\#cm}.
+metrics in our datasets is about 12. We put all the common metrics between the five dataset groups in the online appendix: {\em https://lifove.github.io/hdp\#cm}.
 
 We include CPDP-IFS proposed by He et al. as a
 baseline~\cite{He14}. CPDP-IFS enables defect prediction on

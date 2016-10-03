@@ -101,7 +101,7 @@ discusses why we focus on defect prediction.
 Human programmers are clever, but flawed. Coding  adds functionality, but also defects.
 Hence, software sometimes crashes (perhaps at the most awkward or dangerous moment) or delivers
 the wrong functionality. For a very long list of software-related errors,
-see  Peter Neumann's ``Risk Digest'' at catless.ncl.ac.uk/Risks.
+see  Peter Neumann's ``Risk Digest'' at http://catless.ncl.ac.uk/Risks.
 
 Since programming inherently
 introduces defects into  programs, it is important to test them before they're used.
@@ -112,7 +112,7 @@ exponentially with assessment effort.
 For example, for  black-box testing methods,
 a {\em linear} increase
 in the confidence $C$ of finding  defects
-can take {\em exponentially} more effort\footnote{A randomly selected 
+can take {\em exponentially} more effort.\footnote{A randomly selected 
 input to a program will find a fault with probability $p$.
 After $N$ random black-box tests, the chances of the inputs 
 not revealing any fault 
@@ -120,7 +120,7 @@ is $(1-p)^N$. Hence, the chances $C$ of seeing the fault is $1-(1-p)^N$
 which can be rearranged to 
  $N(C,p)=log(1 -
 C)/log(1-p)$. For example, $N(0.90,10^{-3})=2301$
-but $N(0.98,10^{-3})=3901$; i.e. nearly double the number of tests.}.
+but $N(0.98,10^{-3})=3901$; i.e. nearly double the number of tests.}
 Exponential costs quickly exhaust finite resources so
 standard practice is to apply the best
 available  methods on code sections that seem most critical. 
@@ -158,7 +158,7 @@ Defect predictors often  find the location of  70\% (or more)
 of the defects in code~\cite{me07b}.
 Defect predictors have some level of generality:
 predictors learned at NASA~\cite{me07b} have also been found useful elsewhere
-(e.g. in Turkey~\cite{tosun10,tosun09}).
+(e.g., in Turkey~\cite{tosun10,tosun09}).
 The success of this method in  predictors in finding bugs is markedly
 higher than other currently-used
 industrial
