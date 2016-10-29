@@ -26,10 +26,10 @@ Brooks' Law (adding programmers to a late project makes it later).
 reorganize SE research using general conclusions
 drawn from a larger number of
 studies~\cite{budgen06,budgen09}.
-\squishend 
+\squishend
 
 Given the constant pace of change within SE, can we trust
-those supposed generalities? 
+those supposed generalities?
 Numerous {\em local learning} results show that we
 should mistrust general conclusions (made over a
 wide population of projects) since they may not hold
@@ -59,36 +59,36 @@ when should it be refactored, where to focus
 expensive testing procedures, etc.)?
 
 If we cannot {\em generalize} to all projects and all parts
-of current projects, perhaps a more achievable goal is to {\em stabilize} the pace of conclusion change. 
-While it may be 
+of current projects, perhaps a more achievable goal is to {\em stabilize} the pace of conclusion change.
+While it may be
 a fool's errand and wait for eternal and global SE
 conclusions, one possible approach is for organizations
 to declare $N$ prior projects as {\em reference projects},
 from which lessons learned will be transferred to new projects.
 In practice, using such reference sets requires three processes:
-\squishlist
+\begin{enumerate}
 \item Finding the reference sets (this paper shows that finding
   them may not be a too complex task, at least for defect prediction).
   \item Recognizing when to update the reference set. In practice,
-  this could be as simple as noting when predictions start failing for new projects---at which time, we would loop to point \#1.
+  this could be as simple as noting when predictions start failing for new projects---at which time, we would loop to the point 1).
 \item Transferring
-  lessons from the reference set to new projects.  
-\squishend
+  lessons from the reference set to new projects.
+\end{enumerate}
 In the case where all the datasets use the same metrics, this is a relatively
 simple task. With Kirhsna and Fu~\cite{krishna16}, we have found such reference projects just by training of
 a project X then testing on a project Y (and the reference set are the project Xs with highest scores).
-Once found, these reference sets can generate policies of an organization that are 
+Once found, these reference sets can generate policies of an organization that are
 stable just as long as the reference set is not updated.
 
 In this paper, we do not address the pace of change in the reference set
 (that is left for future work).
-Rather, we focus on point \#3: transferring lessons from
+Rather, we focus on the point 3): transferring lessons from
 the reference set to new projects in the case of heterogeneous data sets. To support this third point,
 we need to resolve the problem
   that this paper addresses, i.e., data expressed in different terminology
   cannot transfer till there is enough data to match old projects to new projects.
 
- 
+
 
 
 \subsection{Why Explore Defect Prediction?}
@@ -96,7 +96,7 @@ we need to resolve the problem
 There are many lessons we {\em might} try to transfer between projects
 about staffing policies, testing methods, language choices, etc. While
 all those matters are important and are worthy of research, this section
-discusses why we focus on defect prediction.  
+discusses why we focus on defect prediction.
 
 Human programmers are clever, but flawed. Coding  adds functionality, but also defects.
 Hence, software sometimes crashes (perhaps at the most awkward or dangerous moment) or delivers
@@ -107,23 +107,23 @@ Since programming inherently
 introduces defects into  programs, it is important to test them before they're used.
 Testing is expensive.
 Software assessment budgets are finite
-while assessment effectiveness increases 
+while assessment effectiveness increases
 exponentially with assessment effort.
 For example, for  black-box testing methods,
 a {\em linear} increase
 in the confidence $C$ of finding  defects
-can take {\em exponentially} more effort.\footnote{A randomly selected 
+can take {\em exponentially} more effort.\footnote{A randomly selected
 input to a program will find a fault with probability $p$.
-After $N$ random black-box tests, the chances of the inputs 
-not revealing any fault 
+After $N$ random black-box tests, the chances of the inputs
+not revealing any fault
 is $(1-p)^N$. Hence, the chances $C$ of seeing the fault is $1-(1-p)^N$
-which can be rearranged to 
+which can be rearranged to
  $N(C,p)=log(1 -
 C)/log(1-p)$. For example, $N(0.90,10^{-3})=2301$
-but $N(0.98,10^{-3})=3901$; i.e. nearly double the number of tests.}
+but $N(0.98,10^{-3})=3901$; i.e., nearly double the number of tests.}
 Exponential costs quickly exhaust finite resources so
 standard practice is to apply the best
-available  methods on code sections that seem most critical. 
+available  methods on code sections that seem most critical.
 But any method that focuses on parts of the code
 can blind us to defects in other areas. Some  {\em lightweight sampling policy} should be used to explore the rest of the system.
 This sampling policy will always be incomplete.
@@ -142,15 +142,15 @@ use}, {\em widely-used}, and {\em useful} to use.
 Other methods, like  manual code reviews, are far slower and far more labor-intensive.
 For example, depending on the review methods, 8 to 20 LOC/minute can be
 inspected and this effort repeats for all members of the review team,
-which can be as large as four or six people~\cite{me02f}. 
+which can be as large as four or six people~\cite{me02f}.
 
-{\em Widely used:}  Researchers and industrial practitioners  use the software metrics to guide software 
+{\em Widely used:}  Researchers and industrial practitioners  use the software metrics to guide software
 quality predictions.
  Defect prediction models have been reported
   at large industrial companies such as Google~\cite{lewis13}, Microsoft~\cite{Nagappan06}, AT\&T~\cite{Ostrand05}, and Samsung~\cite{Kim15remi}.
 Verification and validation (V\&V) textbooks
 \cite{rakitin01} advise using the software metrics
-to decide which modules are worth manual inspections. 
+to decide which modules are worth manual inspections.
 
 
 {\em Useful:}
@@ -162,11 +162,11 @@ predictors learned at NASA~\cite{me07b} have also been found useful elsewhere
 The success of this method in  predictors in finding bugs is markedly
 higher than other currently-used
 industrial
-methods such as manual code reviews. For example, 
+methods such as manual code reviews. For example,
 a  panel at {\em IEEE Metrics
-2002}~\cite{shu02} concluded that manual software  reviews can find ${\approx}60\%$ 
+2002}~\cite{shu02} concluded that manual software  reviews can find ${\approx}60\%$
 of defects.
-In another work, 
+In another work,
 Raffo documents the typical defect detection capability of
 industrial review methods:   around 50\%
  for full Fagan inspections~\cite{fagan76} to
@@ -180,9 +180,9 @@ A recent study at ICSE'14, Rahman et al.~\cite{rahman14:icse} compared
 (a) static code analysis tools FindBugs, Jlint, and Pmd and (b) defect predictors
 (which they called ``statistical defect prediction'') built using logistic regression.
 They found  no significant differences in the cost-effectiveness
-of these  approaches. Given this equivalence, it is significant to note that 
+of these  approaches. Given this equivalence, it is significant to note that
 defect prediction can be quickly adapted to new languages by building lightweight
-parsers to extract high-level software metrics. The same is not true for static code analyzers-- these need extensive modification before they can be used on new
+parsers to extract high-level software metrics. The same is not true for static code analyzers---these need extensive modification before they can be used on new
 languages.
 
 Having offered general high-level notes on defect prediction,
