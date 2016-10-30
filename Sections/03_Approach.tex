@@ -7,7 +7,7 @@
 % For example, we cannot extract the object-oriented metrics from the software
 % projects that are not developed in the object-oriented languages. In addition,
 % metric values may have different distributions in different development
-% environments. 
+% environments.
 % %  In the machine
 % % learning literature, ``different domains'' indicate different feature spaces
 % In other words, defect prediction datasets collected from different
@@ -41,7 +41,7 @@ of features by removing redundant and irrelevant features~\cite{Guyon03}.
 % As discussed in Section~\ref{sec:Background}, using only common metrics between
 % source and target defect datasets to build a prediction model limits the
 % prediction performance since informative metrics may not be included in the
-% common metric set. To address this issue, 
+% common metric set. To address this issue,
 We apply widely used feature selection
 techniques for metric selection of a source dataset as in
 Section~\ref{sec:metricselection}~\cite{Gao11,Shivaji13}.
@@ -61,7 +61,7 @@ target instances.
 
 In the following subsections, we explain the metric selection and matching in
 detail.
-  
+
 %   \item {\bf Filtering out source features whose median value of buggy
 %   instances are lower than that of clean instances}: The intuition of this
 %   strategy is based on the unique characteristic of defect prediction datasets,
@@ -85,7 +85,7 @@ detail.
 % prediction overview.
 % The cross-domain defect prediction consists of four components: label adjuster,
 % feature selector, co-occurrence analyzer, and cross-prediction runner.
-% 
+%
 % The label adjuster makes label names between source and target datasets the same
 % if they are different. For example, NASA and SOFTLAB defect datasets in the PROMISE
 % repository have different buggy (clean) labels, that is, ``Y'' (``N'') and
@@ -117,7 +117,7 @@ metric selection in the experiments.
 
 % It is possible to use other feature selection
 % approaches~\cite{Shivaji13}. However, we used the CfsSubsetEval in our
-% experimental setting for easy replication since 
+% experimental setting for easy replication since
 % the CfsSubsetEval is a Weka's default feature selection
 % algorithm~\cite{Weka}.~\sung{This is very weak argument. As long as other algorithms are available, they can replicate. Provide other reasons. Perhaps, this algorithm is simple?fast? many others are using this?}
 
@@ -127,7 +127,7 @@ metric selection in the experiments.
 \label{sec:analyzers}
 
 Matching source and target metrics is the core of HDP.
-The intuition of matching metrics is originated from the typical defect-proneness tendency of software metrics, i.e., the higher complexity of source code and development process causes the more defect-proneness~\cite{Menzies07,DAmbros12,nam2015clami}. The higher complexity of source code and development process usually is represented with the higher metric values. Thus, various product and process metrics, e.g., McCabe's cyclomatic, lines of code, and the number of developers modifying a file, follow this defect-proneness tendency~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. By matching metrics, HDP transfers this defect-proneness tendency from a source project for predicting defects in a target project. For example, assume that a metric, the number of methods invoked by a class ({\em RFC}), in a certain Java project (source) has the tendency that a class file having the RFC value greater than 40 is highly defect-prone. If a target metric, {\em the number of operands}, follows the similar distribution and its defect-proneness tendency, transferring this defect-proneness tendency of the source metric, RFC, as knowledge by matching the source and target metrics could be effective to predict defects in the target dataset.
+The intuition of matching metrics is originated from the typical defect-proneness tendency of software metrics, i.e., the higher complexity of source code and development process causes the more defect-proneness~\cite{Menzies07,DAmbros12,nam2015clami}. The higher complexity of source code and development process is usually represented with the higher metric values. Thus, various product and process metrics, e.g., McCabe's cyclomatic, lines of code, and the number of developers modifying a file, follow this defect-proneness tendency~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. By matching metrics, HDP transfers this defect-proneness tendency from a source project for predicting defects in a target project. For example, assume that a metric, the number of methods invoked by a class ({\em RFC}), in a certain Java project (source) has the tendency that a class file having the RFC value greater than 40 is highly defect-prone. If a target metric, {\em the number of operands}, follows the similar distribution and its defect-proneness tendency, transferring this defect-proneness tendency of the source metric, RFC, as knowledge by matching the source and target metrics could be effective to predict defects in the target dataset.
 
 To match source and target metrics, we measure the similarity of each source and
 target metric pair by using several existing methods such as percentiles,
@@ -149,11 +149,11 @@ We define metric matching analyzers as follows:
 % 	horizontal line represents an average feature value for each plot.}
 % 	\label{fig:common_feature}
 % \end{figure}
-% 
+%
 % % To build efficient machine learning models, the distribution of both
 % %   training and test data should be same~\cite{Pan10}.However,
 % %   datasets from different domains most likely have different distributions.
-% 
+%
 % Since researchers in previous studies of cross-project defect prediction focused
 % on making different features similar or selecting similar instances, similarity
 % between source and target datasets is an important factor for
@@ -169,7 +169,7 @@ We define metric matching analyzers as follows:
 % matched features for defect prediction.
 % In Section~\ref{sec:analyzers}, we explain four
 % feature matching approaches.
-% \item 
+% \item
 
 %\subsection{Cross-domain Defect Prediction Model}
 %\label{sec:framework}
@@ -238,7 +238,7 @@ matched metrics for the given source and target metrics with the cutoff
 threshold of 0.30 in this example.
 %that can be solved
 % by a linear program in polynomial time~\cite{Matouek06}.
- 
+
 % Based on the co-occurrence features, we can
 % generate new source and target datasets with only the co-occurrence features.
 % For example, as shown in Figure~\ref{fig:framework}, the datasets of Project A
@@ -247,12 +247,12 @@ threshold of 0.30 in this example.
 % these co-occurrence features, we can generate new source and target datasets
 % with a two-feature set as in Figure~\ref{fig:framework}. We designed various
 % co-occurrence analyzers, which are explained in Section~\ref{sec:analyzers}.
-% 
+%
 
 
 % as
 % explained in Section~\ref{sec:Background}. Among them, we use
-% ASAnalyzer with Filters investigated in Section~\ref{sec:ASAnalyzer}. 
+% ASAnalyzer with Filters investigated in Section~\ref{sec:ASAnalyzer}.
 
 % The cross-prediction runner conducts actual cross-domain defect prediction. The
 % runner builds a prediction model by using a new source dataset and predicts
@@ -267,11 +267,11 @@ threshold of 0.30 in this example.
 % design five co-occurrence feature analyzers as follows:
 % \squishlist
 % 	\item Average and Standard deviation analyzer (ASAnalyzer)
-% 	\item T-test analyzer (TAnalyzer) 
+% 	\item T-test analyzer (TAnalyzer)
 % 	\item Pearson's correlation analyzer
 % (PCoAnalyzer)
-% 	\item Spearman's correlation analyzer (SCoAnalyzer) 
-% 	\item Popularity index analyzer (PiAnalyzer) 
+% 	\item Spearman's correlation analyzer (SCoAnalyzer)
+% 	\item Popularity index analyzer (PiAnalyzer)
 % \squishend
 
 % Before applying analyzers, all feature values
@@ -305,7 +305,7 @@ P_{ij}(10\times{k})}{9}\end{equation}
 , where $M_{ij}$ is a matching score between $i$-th source and $j$-th
 target metrics. For example, if we assume a set of all $P_{ij}$, i.e., $P_{ij}{(10\times{k})}=\{0.75, 0.34, 0.23, 0.44, 0.55, 0.56, 0.78, 0.97, 0.55\}$, $M_{ij}$ will be 0.574(=$\frac{0.75+0.34+0.23+0.44+0.55+0.56+0.78+0.97+0.55}{9}$). The best matching score of this equation is 1.0
 when the values of the source and target metrics of all 9 percentiles are the
-same, i.e., $sp_{ij}(n)=1$.
+same, i.e., $P_{ij}(n)=1$.
 
 \subsubsection{KSAnalyzer}
 KSAnalyzer uses a p-value from the Kolmogorov-Smirnov Test (KS-test)
@@ -354,7 +354,7 @@ source and $j$-th target metrics.
 % metrics and outlier instances for effort estimation~\cite{Kocaguneli13}.
 % Popularity index represents how many times a metric or an instance is a nearest
 % neighbor of other metrics or instances~\cite{Kocaguneli13}.
-% 
+%
 % To match source and target
 % metrics based on the popularity index, we proceed with the following steps:
 % \squishlist

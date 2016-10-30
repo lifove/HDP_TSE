@@ -36,7 +36,7 @@ This section presents the details of our experimental study such as benchmark da
 	&\multirow{2}{*}{\textbf{\specialcell{\# of\\metrics}}}
 	&\multirow{2}{*}{\textbf{\specialcell{Prediction \\ Granularity}}}
 	\\ \cline{3-4}
-	
+
 	&
 	&\textbf{All}
 	&\textbf{Buggy(\%)}
@@ -55,26 +55,26 @@ This section presents the details of our experimental study such as benchmark da
 	&\centering997
 	& 206 (20.66\%)
 	& &
-	\\ 
+	\\
 
-	&	LC	
+	&	LC
 	&\centering691
 	& 64 (9.26\%)
 	& &
-	\\ 
-	
-	&	ML	
+	\\
+
+	&	ML
 	&\centering1862
 	& 245 (13.16\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	PDE
 	&\centering1492
 	& 209 (14.01\%)
 	& &
 	\\ \hline
-	
+
 \multirow{3}{*}{\specialcell{ReLink\\\cite{Wu11}}}
 	&	Apache
 	&\centering194
@@ -87,8 +87,8 @@ This section presents the details of our experimental study such as benchmark da
 	&\centering56
 	& 22 (39.29\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	ZXing
 	&\centering399
 	& 118 (29.57\%)
@@ -100,19 +100,19 @@ This section presents the details of our experimental study such as benchmark da
 % 	&	57(5.40\%)
 % 	& \multirow{3}{*}{113}
 % 	\\ %\cline{4-5}
-% 
+%
 % 	&	MIMMylyn
 % 	&\centering1061
 % 	& 152(14.30\%)
-% 	& 
-% 	\\ 
-% 	
+% 	&
+% 	\\
+%
 % 	&	MIMTeam
 % 	&\centering239
 % 	& 85(35.50\%)
-% 	& 
+% 	&
 % 	\\ \hline
-	
+
 \multirow{10}{*}{\specialcell{MORPH\\\cite{Peters12}}}
 	&	ant-1.3
 	&\centering125
@@ -125,50 +125,50 @@ This section presents the details of our experimental study such as benchmark da
 	&\centering234
 	& 27 (11.54\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	camel-1.0
 	&\centering339
 	& 13 (3.83\%)
 	& &
 	\\
-	
+
 	&	poi-1.5
 	&\centering237
 	& 141 (59.49\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	redaktor
 	&\centering176
 	& 27 (15.34\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	skarbonka
 	&\centering45
 	& 9 (20.00\%)
-	& & 
-	\\ 
-	
+	& &
+	\\
+
 	&	tomcat
 	&\centering858
 	& 77 (8.97\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	velocity-1.4
 	&\centering196
 	& 147 (75.00\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	xalan-2.4
 	&\centering723
 	& 110 (15.21\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	xerces-1.2
 	&\centering440
 	& 71 (16.14\%)
@@ -223,7 +223,7 @@ This section presents the details of our experimental study such as benchmark da
 	&\centering17001
 	& 503 (2.96\%)
 	& 38 &
-	\\ 
+	\\
 
 	&	mc1
 	&\centering9277
@@ -242,7 +242,7 @@ This section presents the details of our experimental study such as benchmark da
 	& 36 (18.00\%)
 	& 39 &
 	\\ \hline
-	
+
 \multirow{5}{*}{\specialcell{SOFTLAB\\\cite{Turhan09}}}
 	&	ar1
 	&\centering121
@@ -255,25 +255,25 @@ This section presents the details of our experimental study such as benchmark da
 	&\centering63
 	& 8 (12.70\%)
 	& &
-	\\ 
+	\\
 
 	&	ar4
 	&\centering107
 	& 20 (18.69\%)
 	& &
-	\\ 
-	
-	&	ar5	
+	\\
+
+	&	ar5
 	&\centering36
 	& 8 (22.22\%)
 	& &
-	\\ 
-	
+	\\
+
 	&	ar6
 	&\centering101
 	& 15 (14.85\%)
 	& &
-	\\ \hline	
+	\\ \hline
 
 \end{tabular}
 \end{table}
@@ -295,7 +295,7 @@ apply the HDP approach on datasets even in different granularity levels.
 % 	\caption{Overview of cross-domain defect prediction across benchmark datasets.}
 % 	\label{fig:overview}
 % \end{figure}
-% 
+%
 % Figure~\ref{fig:overview} describes the overview of our cross-domain defect
 % prediction across benchmark datasets. We validated our framework using
 % models built by defect, SE, or non-SE for testing defect datasets.
@@ -323,7 +323,7 @@ other OO metrics~\cite{Peters12}.
 NASA and SOFTLAB contain proprietary
 datasets from NASA and a Turkish software company, respectively~\cite{Turhan09}.
 We used 11 NASA datasets in the PROMISE
-repository~\cite{promise12,Shepperd13}. Some NASA datasets have different metric sets as shown in Table~\ref{tab:datasets}. We used cleaned NASA datasets (DS$'$ version)~\cite{Shepperd13}.
+repository~\cite{promise12,Shepperd13}. Some NASA datasets have different metric sets as shown in Table~\ref{tab:datasets}. We used cleaned NASA datasets (DS$'$ version) available from the PROMISE repository~\cite{Shepperd13,promise12}.
 For the SOFTLAB group, we used all SOFTLAB datasets in the PROMISE
 repository~\cite{promise12}. The metrics used in both NASA and SOFTLAB groups
 are Halstead and McCabe's cyclomatic metrics but NASA has additional
@@ -334,7 +334,7 @@ groups.
 For example, we build a prediction model by Apache in ReLink and tested the
 model on velocity-1.4 in MORPH
 (Apache$\Rightarrow$velocity-1.4).\footnote{Hereafter a rightward arrow
-($\Rightarrow$) denotes a prediction combination.} Since some NASA datasets do not have the same metric sets, we also conducted cross prediction between some NASA datasets that have different metric sets, e.g, (cm1$\Rightarrow$jm1).
+($\Rightarrow$) denotes a prediction combination.} Since some NASA datasets do not have the same metric sets, we also conducted cross prediction between some NASA datasets that have different metric sets, e.g., (cm1$\Rightarrow$jm1).
 
 We did not conduct defect prediction across projects where datasets have the same metric set since the focus of our study is on prediction
 across datasets with heterogeneous metric sets.
@@ -372,7 +372,7 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % 	& 7
 % 	& R
 % 	\\ \hline
-% 	
+%
 % Severity
 % 	&	pitsB
 % 	&\centering987
@@ -381,11 +381,11 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % 	& M
 % 	\\ \hline
 % % Medical
-% % 	& Cancer	
+% % 	& Cancer
 % % 	&\centering253
 % % 	& 162(64.03\%)
 % % 	& 15154
-% % 	& B 
+% % 	& B
 % % 	\\ 	\hline
 % % Wine
 % % 	& Quality
@@ -396,7 +396,7 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % % 	\\ \hline
 % \end{tabular}
 % \end{table}
-% 
+%
 % For SE datasets, we used two datasets, Effort~\cite{Kocaguneli13}
 % and Severity~\cite{Menzies08}, as shown in Table~\ref{tab:SE_datasets}.
 % We chose one representative dataset, which has the most number of instances in
@@ -404,7 +404,7 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % Effort and Severity datasets were collected for software engineering studies,
 % effort estimation~\cite{Kocaguneli13} and severity assessment of software defect
 % reports~\cite{Menzies08}, respectively.
-% 
+%
 % \begin{table}[t]
 % \small
 % \centering
@@ -428,7 +428,7 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % 	&
 % 	&
 % 	\\ \hline \hline
-% 
+%
 % Medical
 % 	& Cancer
 % 	&\centering569
@@ -445,7 +445,7 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % 	\\ \hline
 % \end{tabular}
 % \end{table}
-% 
+%
 % We used Medical~\cite{Street93}, and
 % Wine~\cite{Cortez09} datasets for non-SE datasets.
 % Medical and Wine datasets are from totally different areas.
@@ -454,17 +454,17 @@ In total, we have 962 possible prediction combinations from these 34 datasets. S
 % (breast cancer), is similar to that of software defect prediction.
 % Wine dataset was to predict the quality of wines. Using these datasets from
 % different research areas would be interesting to evaluate our approach as well.
-% 
+%
 % We build prediction models by each SE or non-SE dataset and test the models on
 % all defect datasets. In total, we have 112 prediction combinations for
 % SE and non-SE$\Rightarrow$defect.
-% 
+%
 % We categorized non-defect datasets into three tasks:
 % binary classification (B), multi-class classification (M), or regression (R).
 % For a dataset of the B task, we can directly use class labels by matching them into buggy or clean to build
 % prediction models. For example, two classes of the Medical dataset, Malignant
 % and Benign, can be matched into buggy and clean, respectively.
-% 
+%
 % Datasets of the M task have more than two class labels (nominal or ordinal
 % values). Datasets of the R task have cardinal values. To build binary
 % classification models for defect prediction in the M and R tasks, we should
@@ -487,8 +487,7 @@ To build HDP models, we apply
 various cutoff thresholds for matching scores to observe how prediction
 performance varies according to different cutoff values. Matched metrics
 by analyzers have their own matching scores as explained in
-Section~\ref{sec:Approach}. We apply different cutoff values (0.05 and 0.10,
-0.20,\ldots,0.90) for the HDP models. If a
+Section~\ref{sec:Approach}. We apply different cutoff values (0.05 and 0.10, 0.20,\ldots, 0.90) for the HDP models. If a
 matching score cutoff is 0.50, we remove matched metrics with the
 matching score $\leq$ 0.50 and build a prediction model with matched metrics
 with the score $>$ 0.50. The number of matched metrics varies by each prediction
@@ -591,7 +590,7 @@ use the previous test set for training and the previous training set for test
 (round 2). We repeat these two rounds 500 times, i.e. 1000 tests, since there
 is a randomness in selecting instances for each split~\cite{Arcuri11}. When conducting the two-fold CV, the stratified CV that keeps the buggy rate of the two folds same as that of the original datasets is applied as we used the default options in Weka~\cite{Weka}.
 
-For CPDP-CM, CPDP-IFS, and HDP, we build a 
+For CPDP-CM, CPDP-IFS, and HDP, we build a
 prediction model by using a source dataset and test the model on the same test
 splits used in WPDP. Since there are 1000 different test
 splits for a within-project prediction, the CPDP-CM, CPDP-IFS, and HDP models
@@ -639,5 +638,3 @@ significance, we mark this case as a `Tie'. Then, we count the number of
 wins, ties, and losses for HDP models. By using the Win/Tie/Loss
 evaluation, we can investigate how many HDP predictions it will take to improve
 baseline approaches.
-
-
