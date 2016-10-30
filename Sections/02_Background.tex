@@ -25,7 +25,7 @@ Pan and Yang~\cite{Pan10} define four types of transfer learning:
 \squishlist
 \item
 When moving from some source domain    to the target domain,   {\em instance-transfer} methods
-provides example data for model building in the target;
+provide example data for model building in the target;
 \item
 {\em Feature-representation transfer} synthesizes example data for
 model building;
@@ -49,7 +49,7 @@ for building her Python defect prediction model.
 \item
 {\em Feature-representation transfer} will create synthesized Python
 project data based on analysis of the Java project data that she can
-use to build her defect prediction model.  
+use to build her defect prediction model.
 \item
 If defect prediction models previously existed for the Java projects,
 {\em parameter transfer} will tell her how to weight the terms in old
@@ -61,7 +61,7 @@ classes) into synonymous terms for Python (note that this last kind
 of transfer is very difficult and, in the case of SE, the least
 explored).
 \squishend
-In the SE literature, methods for CPDP using same/common metrics sets are examples 
+In the SE literature, methods for CPDP using same/common metrics sets are examples
 of {\em instance transfer}. As to the other kinds of transfer, there is some work in the effort estimation literature of using
 genetic algorithms to automatically learn weights for different parameters~\cite{sigweni2014feature}. Such work is an example of {\em parameter transfer}.
 To the best of our knowledge, there is no work on feature-representation transfer, but research into automatically
@@ -87,18 +87,18 @@ improve CPDP~\cite{Canfora13,Ma12,Nam13,Panichella14,Ryu14,Ryu15,Turhan09,Watana
 % In the previous studies, cross-prediction was
 % applied on datasets with the same metric set or researchers simply used
 % following ways to overcome the limitation about different metric sets:
-% % ~\sung{I think you need to organize previous work based on this. 
+% % ~\sung{I think you need to organize previous work based on this.
 % % Say, A did something. B did something. However, they applied on datasets with the same metric sets.
 % % C did something. D did something. Howerver, they used common metric among existing project datasets.
 % % \ldots
-% % } 
+% % }
 % \squishlist
 % 	\item Collecting the same metric set for projects used in an empirical study.
 % 	\item Using common metrics among existing project datasets.
 % 	\item Conducting cross-prediction within a project group consisting of
 % 	existing projects having the same metric set.
 % \squishend
-  
+
 \subsubsection{CPDP Using Same/common Metric Sets}
 Watanabe et al. proposed the metric compensation approach for
 CPDP~\cite{Watanabe08}. The metric compensation transforms a target dataset
@@ -160,7 +160,7 @@ transfer learning technique called Transfer Component Analysis (TCA) and
 proposed TCA+~\cite{Nam13}. They used 8
 datasets in two groups, ReLink and AEEEM, with 26 and 61 metrics
 respectively~\cite{Nam13}.
-% 
+%
 % He et al. conducted the empirical study for defect prediction
 % using a simplified metric set~\cite{He14subset}. They conducted CPDP on 34
 % datasets with the same metric set (20 code metrics) and showed CPDP
@@ -189,7 +189,7 @@ Ryu et al. proposed the value-cognitive boosting and transfer cost-sensitive boo
 % Cross-prediction with TCA+ showed comparable results to within-prediction in average f-measure on 8 open source projects~\cite{Nam13}.
 
 % Fukushima et al. conducted an empirical study of just-in-time defect prediction
-% under cross-project settings on 11 open source projects with the same metric set~\cite{Fukushima14}. 
+% under cross-project settings on 11 open source projects with the same metric set~\cite{Fukushima14}.
 % They observed cross-prediction models can be
 % improved in terms of AUC by selecting a source dataset similar to a target
 % dataset~\cite{Fukushima14}.
@@ -200,7 +200,7 @@ Zhang et al. proposed the universal model for CPDP~\cite{Zhang14}.
 %defect characteristic, the universal model may not work for all
 %projects~\cite{Zhang14}. To resolve this limitation, Zhang et al. proposed
 %context-aware rank transformations that change metric values ranged from 1 to
-% 10 across all projects~\cite{Zhang14}. In this way, 
+% 10 across all projects~\cite{Zhang14}. In this way,
 The universal model is
 built using 1398 projects from SourceForge and Google code and leads to
 comparable prediction results to WPDP in their experimental
@@ -235,7 +235,7 @@ Jing et al. proposed heterogeneous cross-company defect prediction based on the 
 %One of issues of CCA+ is that it was not properly evaluated on cross-company dataset groups. For example, ReLink datasets are not from the same company but they just have same metric sets.
 
 % In our previous study, we used two groups of datasets, ReLink and
-% AEEEM~\cite{Nam13}. 
+% AEEEM~\cite{Nam13}.
 We propose HDP to address the above
 limitations caused by projects with heterogeneous metric sets.
 Contrary to the study by He et al.~\cite{He14}, we compare HDP to
@@ -249,22 +249,22 @@ Section~\ref{sec:Approach}, we describe our approach in detail.
 % machine learning community~\cite{Pan10}. Transfer learning can reduce expensive
 % costs incurred while collecting and labeling training data by transferring
 % knowledge from existing data and models~\cite{Pan10}.
-% 
+%
 % To define transfer learning formally, Pan et al. gave the definition of a
 % domain; ``a domain, $D$, consists of two components: a feature space $\chi$ and
 % a marginal distribution $P(X)$, where $X=\{x_1,...,x_n\}\in
 % \chi$''~\cite{Pan10}. According to this definition, a domain can be
 % represented as follows: $D=\{\chi,P(X)\}$. When we say two domains are different, it
 % represents different feature spaces, $\chi$, or different distributions, $P(X)$.
-% 
+%
 % Most transfer learning studies focused on different distributions by
 % assuming feature spaces are the same across datasets, but less focused on
 % different feature spaces~\cite{Pan10}.
 % Since our study aims to resolve the issue on defect prediction on
 % datasets with different feature spaces, the term `different
 % domains' stands for `different feature spaces of datasets' throughout the paper.
-% 
-% 
+%
+%
 % Dai et al.~\cite{Dai08} proposed Translated Learning to address transfer
 % learning on different feature spaces.
 % The core approach used in translated learning is to identify co-occurrence features, which are
@@ -280,7 +280,7 @@ Section~\ref{sec:Approach}, we describe our approach in detail.
 % % Translated learning is an independent
 % % algorithm from existing machine learning algorithms such as Decision tree,
 % % Random Forest, Logistic Regression and etc., which are widely used for defect prediction.
-% 
+%
 % Inspired by translated and heterogeneous transfer learning, we design
 % our approaches to identify co-occurrence features between source and target
 % datasets for the cross-domain defect prediction. Our approaches are based on
@@ -295,4 +295,3 @@ Section~\ref{sec:Approach}, we describe our approach in detail.
 % \subsubsection{Random Analyzer}
 % We defined random analyzer, where we match srouce and target feautres randomly
 % to evaluate if the proposed analyzers work better than the random analyzer.
-
