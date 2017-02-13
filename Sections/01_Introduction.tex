@@ -48,7 +48,7 @@ The $21^{\mathit{st}}$ century is the era of the ``mash up'',
 where new systems are built by combining large sections of old
 code in some new and novel manner.
 Software engineers working on such mash-ups often face
-the problem of working with  large code bases built by other developers that are, in some sense ``alien''; i.e.,
+the problem of working with large code bases built by other developers that are, in some sense ``alien''; i.e.,
 code has been written for other purposes,
 by other people, for different organizations.  When performing
 quality assurance on such code, developers
@@ -58,7 +58,7 @@ Specifically, for this
 paper, we assume that
 \squishlist
 \item
-Developers are experts on  their local code base;
+Developers are experts on their local code base;
 \item
 Developers have applied that expertise to log what parts
 of their code are particularly defect-prone;
@@ -101,13 +101,15 @@ labeled instances in {\em Project A} (source) and predicts defects in {\em Proje
 % that the cross-prediction is viable in terms of cost-effectiveness.
 
 Most CPDP approaches have a serious limitation:
-typical CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}). Finding other projects with exactly
-the same metric set can be challenging. Publicly available defect
+typical CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}).
+Developers deal with this limitation by collecting the same metric sets.
+However, there are several situations where collecting the same metric sets can be challenging. Language-dependent metrics are difficult to collect for projects written in different languages.
+Metrics collected by a commercial metric tool with a limited license may generate additional cost for project teams when collecting metrics for new projects that do not obtain the tool license. Because of these situations,
+publicly available defect
 datasets that are widely used in defect prediction literature usually have
 {\em heterogeneous} metric sets:
 \squishlist
 \item
-
 In heterogeneous data, different metrics are collected in different projects.
 \item
 For example, many NASA datasets in the PROMISE repository have 37 metrics but
@@ -133,6 +135,7 @@ completely different metrics~\cite{Turhan09}.
 % difference of development environments as several context factors and analyzed
 % that the context factors affect the distribution of software
 % metrics~\cite{Zhang13}.
+
 Some CPDP studies use only common metrics when source and target datasets have
 heterogeneous metric sets~\cite{Ma12,Turhan09}.
 For example, Turhan et al. use the only 17 common metrics between the NASA and
@@ -209,6 +212,7 @@ Figure~\ref{fig:subfig3}, we could reuse any existing defect
 datasets to build a prediction model. For example, many PROMISE defect datasets
 even if they have heterogeneous metric sets~\cite{promise12} could be used as
 training datasets to predict defects in any project.
+Thus, addressing the issue of the heterogeneous metric sets also can benefit developers who want to build a prediction model with more defects from publicly available defect datasets even whose source code is not available.
 
 The key idea of our HDP approach is to transfer knowledge, i.e., the typical defect-proneness tendency of software metrics, from a source dataset to predict defects in a target dataset by matching metrics that have
 similar distributions between source and target datasets~\cite{Bird2011,DAmbros12,Menzies07,Ohlsson1996,Rahman13}. In addition, we also
