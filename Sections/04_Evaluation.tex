@@ -500,13 +500,13 @@ the cutoff of 0.90.
 
 \subsection{Baselines}
 
-We compare HDP to three baselines: WPDP (Baseline1), CPDP using common
-metrics (CPDP-CM) between source and target datasets (Baseline2), and CPDP-IFS
-(Baseline3).
+We compare HDP to four baselines: WPDP (Baseline1), CPDP using common
+metrics between source and target datasets (Baseline2), CPDP-IFS
+(Baseline3), and Unsupervised defect prediction (Baseline4).
 
 We first compare HDP to WPDP. Comparing HDP
 to WPDP will provide empirical evidence of whether our
-HDP models are applicable in practice.
+HDP models are applicable in practice. When conducting WPDP, we applied feature selection approached to remove redundant and irrelevant features as suggested by  Gao et al.~\cite{Gao11}. To fairly compare WPDP with HDP, we used the same feature selection techniques used for metric selection in HDP as explained in Section~\ref{sec:metricselection}~\cite{Gao11,Shivaji13}.
 
 % In addition, we compare cross-prediction results of our analyzers
 % to those using common fetures. The random analyzer randomly matches source and
@@ -518,9 +518,9 @@ HDP models are applicable in practice.
 We conduct CPDP using only common metrics (CPDP-CM) between
 source and target datasets as in previous CPDP
 studies~\cite{He14,Ma12,Turhan09}.
-For example, AEEEM and MORPH have OO metrics as common metrics so we use them to build prediction
+For example, AEEEM and MORPH have OO metrics as common metrics so we select them to build prediction
 models for datasets between AEEEM and MORPH. Since
-using common metrics has been adopted to address the limitation on heterogeneous
+selecting common metrics has been adopted to address the limitation on heterogeneous
 metric sets in previous CPDP studies~\cite{He14,Ma12,Turhan09}, we set CPDP-CM
 as a baseline to evaluate our HDP models.
 The number of common metrics varies across the dataset groups as ranged from 1 to 38. Between
@@ -531,7 +531,8 @@ metrics in our datasets is about 12. We put all the common metrics between the f
 We include CPDP-IFS proposed by He et al. as a
 baseline~\cite{He14}. CPDP-IFS enables defect prediction on
 projects with heterogeneous metric sets (Imbalanced Feature Sets) by using the
-16 distribution characteristics of values of each instance such as mode, median,
+16 distribution characteristics of values of each instance with all metrics.
+The 16 distribution characteristics are mode, median,
 mean, harmonic mean, minimum, maximum, range, variation ratio, first quartile,
 third quartile, interquartile range, variance, standard
 deviation, coefficient of variance, skewness, and kurtosis~\cite{He14}.
@@ -542,7 +543,11 @@ The 16 distribution characteristics are used as features to build a prediction m
 % those of our co-occurrence analyzers can provide guidelines for what makes good
 % cross-predictions.
 
-
+As Baseline4, we add unsupervised defect prediction (UDP).
+UDP does not require any labeled source data so that researchers have proposed UDP to avoid a CPDP limitation of different distributions between source and target datasets.
+Recently, fully automated unsupervised defect prediction approaches have been proposed by Nam and Kim~\cite{nam2015clami} and Zhang et al.~\cite{Zhang2016ICSE}.
+In the experiments, we chose to use CLAMI proposed by Nam and Kim~\cite{nam2015clami} for UDP because of the following reasons. First, there are no comparative studies between CLAMI and the approach of Zhang et al. yet\cite{nam2015clami,Zhang2016ICSE}. Thus, it is difficult to judge which approach is better at this moment.
+Second, our HDP experimental framework is based on Java and Weka as CLAMI does. This would be beneficial when we compare CLAMI and HDP under the consistent experimental setting. CLAMI conducts its own metric and instance selection heuristics to generate prediction models~\cite{nam2015clami}.
 
 %In other words, matching scores computed by ScoAnalyzer and PiAnalyzer
 %may not be helpful to judge how much matched features are similar or not.
