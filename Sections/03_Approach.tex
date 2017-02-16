@@ -290,7 +290,7 @@ equation:
 \begin{equation}
 P_{ij}(n)=\frac{sp_{ij}(n)}{bp_{ij}(n)}
 \end{equation}
-, where $P_{ij}(n)$ is the comparison function for $n$-th percentiles
+where $P_{ij}(n)$ is the comparison function for $n$-th percentiles
 of $i$-th source and $j$-th target metrics, and $sp_{ij}(n)$ and $bp_{ij}(n)$
 are smaller and bigger percentile values respectively at $n$-th percentiles
 of $i$-th source and $j$-th target metrics. For example, if the 10th
@@ -302,7 +302,7 @@ and target metrics is calculated by the following equation:
 \begin{equation}
 M_{ij}=\frac{\sum\limits_{k=1}^9
 P_{ij}(10\times{k})}{9}\end{equation}
-, where $M_{ij}$ is a matching score between $i$-th source and $j$-th
+where $M_{ij}$ is a matching score between $i$-th source and $j$-th
 target metrics. For example, if we assume a set of all $P_{ij}$, i.e., $P_{ij}{(10\times{k})}=\{0.75, 0.34, 0.23, 0.44, 0.55, 0.56, 0.78, 0.97, 0.55\}$, $M_{ij}$ will be 0.574(=$\frac{0.75+0.34+0.23+0.44+0.55+0.56+0.78+0.97+0.55}{9}$). The best matching score of this equation is 1.0
 when the values of the source and target metrics of all 9 percentiles are the
 same, i.e., $P_{ij}(n)=1$.
@@ -323,7 +323,7 @@ library.
 
 The matching score is:
 \begin{equation}M_{ij}=p_{ij}\end{equation}
-, where $p_{ij}$ is a p-value from the KS-test of $i$-th source and $j$-th
+where $p_{ij}$ is a p-value from the KS-test of $i$-th source and $j$-th
 target metrics. A p-value tends to be zero when two metrics are significantly
 different.
 
@@ -343,7 +343,7 @@ metric values are sorted before computing the coefficient.
 
 The matching score is as follows:
 \begin{equation}M_{ij}=c_{ij}\end{equation}
-, where $c_{ij}$ is a Spearman's rank correlation coefficient between $i$-th
+where $c_{ij}$ is a Spearman's rank correlation coefficient between $i$-th
 source and $j$-th target metrics.
 
 % \subsubsection{Popularity Index (PiAnalyzer)}
@@ -367,7 +367,7 @@ source and $j$-th target metrics.
 %   metrics in the datasets consisting of instances from Step 1. The matching
 %   score is:
 % 		\begin{equation}M_{ij}=1-norm(E_{ij})\end{equation}
-% 	, where $E_{ij}$ is a Euclidean distance between $i$-th source and $j$-th
+% 	where $E_{ij}$ is a Euclidean distance between $i$-th source and $j$-th
 % 	target metrics and $norm(x)$ is the normalization function to make $x$ range
 % 	from zero to one. The matching score tends to be one when the distance between $i$-th source and $j$-th
 % 	target metrics, $E_{ij}$, is closest.
