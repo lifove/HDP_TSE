@@ -595,10 +595,11 @@ use the previous test set for training and the previous training set for test
 (round 2). We repeat these two rounds 500 times, i.e., 1000 tests, since there
 is randomness in selecting instances for each split~\cite{Arcuri11}. When conducting the two-fold CV, the stratified CV that keeps the buggy rate of the two folds same as that of the original datasets is applied as we used the default options in Weka~\cite{Weka}.
 
-For CPDP-CM, CPDP-IFS, and HDP, we build a
-prediction model by using a source dataset and test the model on the same test
-splits used in WPDP. Since there are 1000 different test
-splits for a within-project prediction, the CPDP-CM, CPDP-IFS, and HDP models
+For CPDP-CM, CPDP-IFS, UDP, and HDP, we test the model on the same test
+splits used in WPDP. For CPDP-CM, CPDP-IFS, and HDP, we build a
+prediction model by using a source dataset, while UDP does not require any source datasets as it is based on the unsupervised learning.
+Since there are 1000 different test
+splits for a within-project prediction, the CPDP-CM, CPDP-IFS, UDP, and HDP models
 are tested on 1000 different test splits as well.
 
 These settings for comparing HDP to the baselines are for RQ1. The experimental settings for RQ2 is described in Section~\ref{sec:sizelimit} in detail.
