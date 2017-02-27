@@ -1430,7 +1430,7 @@ prediction model.
 
 \subsection{Performance in Various Machine Learners}
 \label{subsec06}
-\begin{table}[!t]
+\begin{table*}[!t]
 %\small
 %\scriptsize
 \centering
@@ -1441,50 +1441,55 @@ against WPDP, CPDP-CM, and CPDP-IFS by different machine learners.}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
 %\begin{tabular}{|c||m{1.5cm}|m{1.5cm}|m{1.5cm}||m{1.5cm}|m{1.5cm}|m{1.5cm}|}
-\begin{tabular}{|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|}
+%\begin{tabular}{|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|@{ }c@{ }||c@{ }|@{ }c@{}||c@{ }|}
+\begin{tabular}{|c||c|c||c|c||c|c||c|c||c|}
 \hline
 \multirow{3}{*}{\specialcell{{\bf HDP}\\{\bf Learners}}}
-&\multicolumn{6}{@{ }c@{ }||}{\bf Against}
+&\multicolumn{8}{@{ }c@{ }||}{\bf Against}
+
 &\multirow{2}{*}{{\bf HDP}}
-\\ \cline{2-7}
+\\ \cline{2-9}
 
 &\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf WPDP}}}
 &\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-CM}}}
 &\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf CPDP-IFS}}}
+&\multicolumn{2}{@{ }c@{ }||}{\specialcell{{\bf UDP}}}
 &
 \\
-\cline{2-8}
+\cline{2-10}
 
+&AUC & Win
 &AUC & Win
 &AUC & Win
 &AUC & Win
 &AUC
  \\ \hline \hline
 
-SimpleLogistic	&0.654 &70.4\% 	&0.632 &71.5\%
-&0.558 & 84.9\%    	&\underline{{\bf 0.718}}*\\ \hline
+SimpleLogistic	&0.763 &44.0\% 	&0.680 &60.9\%
+&0.691 & 62.7\%  &0.734 & 48.9\%    	&\underline{0.718}*\\ \hline
 
-RandomForest		&{\bf 0.654} &38.7\%		&0.632 &45.4\%
-&0.558 & 69.0\% 		&0.640* 	\\ \hline
+RandomForest			&{\bf 0.732} &39.4\%		&0.629 &46.5\%
+&0.619 & 63.0\% &0.674$^{\&}$ & 84.9\% 		&0.640*\\ \hline
 
-BayesNet			&{\bf 0.654} &39.4\%		&0.632 &46.5\%
-&0.558 & 63.0\% 		&0.633*\\ \hline
+BayesNet		&{\bf 0.703} &41.5\%		&0.583 &48.2\%
+&0.675* & 29.2\% &0.666$^{\&}$ & 35.2\% 		&\underline{0.633} 	\\ \hline
+
 %NaiveBayes		&26.1\%	&1.8\%	&71.1\% &54.5\% &3.2\% &42.3\%	\\ \hline
 
-SVM				&{\bf 0.654} &6.7\%		&\underline{0.632} &29.2\%
-&0.558* & 32.0\% 	&0.500	\\ \hline
+SVM				&0.500 &29.9\%		&0.500 &28.2\%
+&0.500 &26.4\% &0.635$^{\&}$  &11.6\% 	&0.500 \\ \hline
 
-J48				&{\bf 0.654} &21.1\%	&\underline{0.632} &36.6\%
-&0.558 & 43.3\% 			&0.568   \\ \hline
+J48				&{\bf 0.598} &34.2\%	&0.500 &44.7\%
+&0.558 & 46.8\% &0.671$^{\&}$  & 18.7\% 			&\underline{0.568}   \\ \hline
 
-Logistic			&0.654 &65.5\%	 &0.632 & 68.3\%
-&0.558 & 82.0\% 		&\underline{{\bf 0.711}}* 	\\ \hline
+Logistic			& {\bf 0.732} &45.1\%	&0.632 &68.3\%
+&0.558 &82.0\% &0.702 &64.8\% &\underline{0.711}*$^{\&}$	\\ \hline
 
-LMT				&0.654 &64.1\% 	&0.682 &64.1\%
-&0.558 & 78.2\% 		&\underline{{\bf 0.702}}*   \\ \hline
+LMT				&{\bf 0.751} &42.3\% 	&0.671 &58.5\%
+&0.690 &56.0\% &0.734$^{\&}$ &41.9\% 		&\underline{0.702}   \\ \hline
 
 \end{tabular}
-\end{table}
+\end{table*}
 
 To investigate if
 HDP works with other machine learners, we built HDP models (KSAnalyzer and
