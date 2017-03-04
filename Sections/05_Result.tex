@@ -1247,12 +1247,12 @@ percentages of the Win results (70.2\%-70.7\%) against WPDP.
 % \end{table*}
 
 
-\begin{table}[!t]
+\begin{table*}[!t]
 %\footnotesize
 %\scriptsize
 \centering
 \caption{Prediction performance in other analyzers with the matching
-score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
+score cutoffs, 0.05 and 0.90.
 % Between within- and
 % cross-results by
 % analyzers, outperforming results with statistical significance
@@ -1265,23 +1265,27 @@ score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
 %\setlength{\extrarowheight}{1.5pt}
 %\begin{tabular}{|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{
 %}||@{ }c@{ }||@{ }c@{ }|@{ }c@{ }|@{ }c@{ }||@{ }c@{ }||@{ }c@{ }|}
-\begin{tabular}{|@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}||@{}c@{}|}
+%\begin{tabular}{|@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}|@{}c@{}||@{}c@{}||@{}c@{}|}
+\begin{tabular}{|c|c||c|c||c|c||c|c||c|c||c|c|@{ }c@{ }|}
 %\begin{tabular}{|c|c||F|F||F|F||F|F||F||c|}
 \hline
 \multirow{3}{*}{\specialcell{\bf{Analyzer}}}
 &\multirow{3}{*}{\bf Cutoff}
-&\multicolumn{6}{c||}{\bf Against}
+&\multicolumn{8}{c||}{\bf Against}
 &\multirow{2}{*}{\bf HDP}
-&\multirow{3}{*}{\specialcell{\bf{Tgt}\\{\bf Cov}}}
-\\ \cline{3-8}
+&\multirow{3}{*}{\specialcell{\bf{Target}\\{\bf Coverage}}}
+&\multirow{3}{*}{\specialcell{\bf{\# of Prediction}\\{\bf Combination}}}
+\\ \cline{3-10}
 
 &
 &\multicolumn{2}{c||}{\specialcell{\bf{WPDP}}}
 &\multicolumn{2}{c@{ }||}{\bf CPDP-CM}
 &\multicolumn{2}{c@{ }||}{\bf CPDP-IFS}
+&\multicolumn{2}{c@{ }||}{\bf UDP}
 &
 &
-\\\cline{3-9}
+&
+\\\cline{3-11}
 &
 & \bf{AUC}
 & \bf{Win\%}
@@ -1290,47 +1294,73 @@ score cutoffs, 0.05 and 0.90. (TgtCov=Target coverage)
 & \bf{AUC}
 & \bf{Win\%}
 & \bf{AUC}
+& \bf{Win\%}
+& \bf{AUC}
+&
 &
 \\
 \hline
 \hline
 %PAnalyzer& 0.00 & \bf{0.684}	& \underline{0.640}	& 0.606 & 100\% \\ \hline
-P& 0.05 & \bf{0.705} & 43.0\%
+P& 0.05
+& \bf{0.741} & 43.0\%
 &0.655 & 54.9\%
 &0.520	&69.5\%
-& \underline{0.679}* & 100\%
+&0.693$^{\&}$	&69.5\%
+&0.642* & 100\%
+&962
 \\
-\hline P& 0.90  & 0.657 & 55.0\%
-&0.629 & 63.6\%
-& 0.558	& 79.3\%
-& \underline{0.693}* & 100\% \\
+\hline
+P& 0.90
+&{\bf 0.732} & 32.9\%
+&0.629 & 62.9\%
+&0.558	& 80.0\%
+&0.680	& 59.3\%
+& \underline{0.693}* & 100\%
+&140
+\\
 \hline
 \hline
 \hline
 
 %KSAnalyzer & 0.00 & 0.670 &	0.637	& \underline{0.669} & 100\% \\ \hline
-KS & 0.05 & 0.654 & 70.4\%
-&0.613 & 71.5\%
-& 0.524	&84.9\%
-&\underline{\bf{0.724}}* &100\% \\
-\hline KS& 0.90  & 0.657 & 77.8\%
+KS & 0.05
+&{\bf 0.732} & 45.1\%
+&0.632 & 68.3\%
+& 0.558	&82.0\%
+& 0.702	&64.8\%
+&\underline{0.711}*$^{\&}$ &100\%
+& 284
+\\\hline
+
+KS& 0.90
+& 0.816 & 55.6\%
 &0.588 & 77.8\%
 & 0.585	&100.0\%
-&\underline{0.831}*&21\% \\ \hline
+& 0.786	&88.9\%
+&\underline{0.831}* &21\%
+& 90
+\\ \hline
 \hline
 \hline
 
 %SCoAnalyzer & 0.00 & \bf{0.684}	&\underline{0.640}	&0.517 & 100\% \\ \hline
-SCo & 0.05 & \bf{0.705} & 41.9\%
-&0.655 &55.8\%
-& 0.520	&68.4\%
-&\underline{0.678}* & 100\%
+SCo & 0.05
+& \bf{0.741} & 16.9\%
+&\underline{0.655} &41.9\%
+& 0.520	&55.7\%
+& 0.693$^{\&}$	&38.7\%
+&0.609* & 100\%
+& 962
 \\
-\hline SCo& 0.90 & {\bf 0.705} & 43.4\%
-&0.654 & 53.1\%
+\hline
+SCo& 0.90
+& {\bf 0.741} & 43.4\%
+&\underline{0.654} & 53.1\%
 &0.520	&69.8\%
-&\underline{0.679}*&
-100\%
+& 0.693$^{\&}$ &69.8\%
+&0.614* &100\%
+& 958
 \\
 \hline
 
@@ -1338,7 +1368,7 @@ SCo & 0.05 & \bf{0.705} & 41.9\%
 % PiAnalyzer& 0.05 & \bf{0.684}	&0.582 &25.2\% & 100\% \\ \hline
 % PiAnalyzer& 0.90 & \bf{0.684}	&0.592 &27.0\% & 100\% \\ \hline
 \end{tabular}
-\end{table}
+\end{table*}
 
 
 
