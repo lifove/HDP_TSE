@@ -222,6 +222,7 @@ SOFTLAB     &{\bf 0.741}    &0.631  &0.551  &0.681  &\underline{0.692}*      &10
 
 \end{tabular}
 \end{table}
+
 For target prediction coverage, we analyzed our HDP results by KSAnalyzer with
 the cutoff of 0.05 by each source group. For example, after applying
 metric selection and matching, we can build a prediction model by using EQ in
@@ -245,7 +246,7 @@ approach with statistical significance are in bold font, underlined, with asteri
 ampersands.% in Table~\ref{tab:compare} accordingly.
 
 First of all, in each source group, we could observe WPDP did not outperform HDP in three source groups, AEEEM, MORPH, and NASA, with statistical significance.
-For example, target projects were predicted by some projects in AEEEM and
+For example, 29 target projects ($34-5$ AEEEM datasets) were predicted by some projects in AEEEM and
 the median AUC for HDP by KSAnalyzer is 0.753 while that of
 WPDP is 0.732. In addition,
 HDP by KSAnalyzer also
@@ -264,7 +265,9 @@ Thus, some prediction combinations
 using matched metrics with low matching scores can be automatically excluded. In
 this sense, our HDP approach follows a similar concept to the two-phase
 prediction model~\cite{Kim13}: (1) checking prediction feasibility between
-source and target datasets, and (2) predicting defects.
+source and target datasets, and (2) predicting defects. This mechanism is helpful to filter out the matched metrics whose distributions are not similar depending on a matching score.
+
+Target coverage limitation from AEEEM, ReLink, or MORPH groups can be solved by using either NASA or SOFTLAB groups. This shows the scalability of HDP as it can easily overcome the target coverage limitation by adding any existing defect datasets as a source until we can achieve the 100\% target coverage.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -494,9 +497,10 @@ This means that in 47.1\% of prediction combinations our HDP
 models achieve better or comparable prediction performance than those in
 WPDP.
 
-However, HDP show relatively better results against Baseline2, Baseline3, and Baseline4 in terms of the Win/Tie/Loss evaluation.
+However, HDP shows relatively better results against Baseline2, Baseline3, and Baseline4 in terms of the Win/Tie/Loss evaluation.
 In the 208 (73.2\%) out of 284 prediction combinations, HDP outperforms and is comparable to CPDP-CM. Against Baseline3, 236
-(83.1\%) prediction combinations are Win or Tie results. Against Baseline4, HDP has 194 Win or Tie results (68.3\%).
+(83.1\%) prediction combinations are Win or Tie results. Against Baseline4, HDP has 194 Win or Tie results (68.3\%). In addition, there are at least one Win case for all targets against CPDP-CM, CPDP-IFS, and UDP except for LC and xalan-2.4 in UDP (Table~\ref{tab:win_results}).
+From 284 out of 962 combinations, we could achieve the 100\% target coverage and find at least one HDP model that are better than that by CPDP-CM, CPDP-IFS, or UDP in most combinations.
 
 %A recent study shows that high defect rate of a dataset may bias prediction results,i.e., higher buggy rate of a dataset tends to lead better prediciton results~\cite{Tantithamthavorn16}. This bias could be matter under the WPDP setting as the study discusses about model validation technioques~\cite{Tantithamthavorn16}. Since HDP is CPDP on datasets using different metric sets, To make sure if the promising reuslts of HDP is affected by the defect rate of a target dataset
 
