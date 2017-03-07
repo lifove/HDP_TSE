@@ -84,8 +84,8 @@ However, in practice, it might be that no training datasets for
 both WPDP and CPDP exist. In this case, we can apply the HDP approach.
 
 In Section~\ref{sec:Result} and Table~\ref{tab:other_analyzers}, we confirm
-that HDP by KSAnalyzer with the cutoff of 0.05
-outperforms WPDP and shows 100\% target coverage.
+that many target predictions in HDP by KSAnalyzer with the cutoff of 0.05
+outperform or are comparable to those in WPDP and the HDP predictions show 100\% target coverage.
 Since KSAnalyzer can match similar source and target metrics, we guide the use
 of KSAnalyzer for HDP. In terms of the matching score cutoff threshold, there is a
 trade-off between prediction performance and target coverage. Since a cutoff
@@ -94,7 +94,7 @@ significance~\cite{Corder09}, we can conduct HDP using KSAnalyzer with the
 cutoff of 0.05. However, we observe some Loss results in our empirical study.
 To minimize the percentage of Loss results, we can sacrifice the target coverage
 by increasing the cutoff as Table~\ref{tab:other_analyzers} shows KSAnalyzer with
-the cutoff of 0.90 led to 100\% Win results in feasible predictions against
+the cutoff of 0.90 led to 77.8\% Win results in feasible predictions against
 WPDP.
 By controlling a cutoff value, we may increase the target coverage.
 For example, we can start from a higher cutoff value and decrease the cutoff until HDP is eligible.
@@ -191,7 +191,7 @@ For RQ1, we computed matching scores using all
 
 A recent study by Tantithamthavorn et al.~\cite{Tantithamthavorn16} pointed out model validation techniques may lead to different interpretation of defect prediction results. Although the n-fold cross validation is one of widely used model validation techniques~\cite{Klas2010,Nam13,Pinzger2008}, our experimental results based on the two-fold cross validation may be different from those using other validation techniques. This could be an issue in terms of construct validity as well.
 
-Since we used the default options for machine learners in our experiments, the experimental results could be improved further when we use optimized options~\cite{Tantithamthavorn16icse,Fu2016}. Thus, our results may be affected by the optimized options. We remain conducting experiments with the optimized options as a future work. 
+Since we used the default options for machine learners in our experiments, the experimental results could be improved further when we use optimized options~\cite{Tantithamthavorn16icse,Fu2016}. Thus, our results may be affected by the other options tuning machine learners. We remain conducting experiments with the optimized options as a future work. 
 %	about HDP against CPDP-CM and CPDP-IFS by testing a prediction model on a
 %	test set using all instances of a target dataset in each prediction
 %	combination.
