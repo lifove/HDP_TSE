@@ -340,7 +340,7 @@ We did not conduct defect prediction across projects where datasets have the sam
 across datasets with heterogeneous metric sets.
 % We represent this prediction combination as EQ$\Rightarrow$Apache. We use the same representation,
 % SOURCE$\Rightarrow$Target, for other prediction combinations across the paper.
-In total, we have 962 possible prediction combinations from these 34 datasets. Since we select top 15\% of metrics from a source dataset for metric selection as explained in Section~\ref{sec:metricselection}, the number of selected metrics varies from 3 (MORPH) to 9 (AEEEM)~\cite{Gao11}.
+In total, we have 962 possible prediction combinations from these 34 datasets. Since we select top 15\% of metrics from a source dataset for metric selection as explained in Section~\ref{sec:metricselection}, the number of selected metrics varies from 3 (MORPH) to 9 (AEEEM)~\cite{Gao11}. For datasets, we did not apply any data preprocessing approach such as log transformation~\cite{Menzies07} and sampling techniques for class imbalance~\cite{JingTSE16ClassImbalance} since the study focus is on the heterogeneous issue on CPDP datasets.
 
 % \begin{table}[t]
 % \small
@@ -500,13 +500,13 @@ the cutoff of 0.90.
 
 \subsection{Baselines}
 
-We compare HDP to three baselines: WPDP (Baseline1), CPDP using common
-metrics (CPDP-CM) between source and target datasets (Baseline2), and CPDP-IFS
-(Baseline3).
+We compare HDP to four baselines: WPDP (Baseline1), CPDP using common
+metrics between source and target datasets (Baseline2), CPDP-IFS
+(Baseline3), and Unsupervised defect prediction (Baseline4).
 
 We first compare HDP to WPDP. Comparing HDP
 to WPDP will provide empirical evidence of whether our
-HDP models are applicable in practice.
+HDP models are applicable in practice. When conducting WPDP, we applied feature selection approached to remove redundant and irrelevant features as suggested by  Gao et al.~\cite{Gao11}. To fairly compare WPDP with HDP, we used the same feature selection techniques used for metric selection in HDP as explained in Section~\ref{sec:metricselection}~\cite{Gao11,Shivaji13}.
 
 % In addition, we compare cross-prediction results of our analyzers
 % to those using common fetures. The random analyzer randomly matches source and
@@ -518,20 +518,21 @@ HDP models are applicable in practice.
 We conduct CPDP using only common metrics (CPDP-CM) between
 source and target datasets as in previous CPDP
 studies~\cite{He14,Ma12,Turhan09}.
-For example, AEEEM and MORPH have OO metrics as common metrics so we use them to build prediction
+For example, AEEEM and MORPH have OO metrics as common metrics so we select them to build prediction
 models for datasets between AEEEM and MORPH. Since
-using common metrics has been adopted to address the limitation on heterogeneous
+selecting common metrics has been adopted to address the limitation on heterogeneous
 metric sets in previous CPDP studies~\cite{He14,Ma12,Turhan09}, we set CPDP-CM
 as a baseline to evaluate our HDP models.
 The number of common metrics varies across the dataset groups as ranged from 1 to 38. Between
 AEEEM and ReLink, only one common metric exists, {\em LOC} (ck\_oo\_numberOfLinesOfCode : CountLineCode).
 Some NASA datasets that have different metric sets, e.g., pc5 vs. mc2, have 38 common metrics. On average, the number of common
-metrics in our datasets is about 12. We put all the common metrics between the five dataset groups in the online appendix: {\em https://lifove.github.io/hdp\#cm}.
+metrics in our datasets is about 12. We put all the common metrics between the five dataset groups in the online appendix: {\em https://lifove.github.io/hdp/\#cm}.
 
 We include CPDP-IFS proposed by He et al. as a
 baseline~\cite{He14}. CPDP-IFS enables defect prediction on
 projects with heterogeneous metric sets (Imbalanced Feature Sets) by using the
-16 distribution characteristics of values of each instance such as mode, median,
+16 distribution characteristics of values of each instance with all metrics.
+The 16 distribution characteristics are mode, median,
 mean, harmonic mean, minimum, maximum, range, variation ratio, first quartile,
 third quartile, interquartile range, variance, standard
 deviation, coefficient of variance, skewness, and kurtosis~\cite{He14}.
@@ -542,7 +543,11 @@ The 16 distribution characteristics are used as features to build a prediction m
 % those of our co-occurrence analyzers can provide guidelines for what makes good
 % cross-predictions.
 
-
+As Baseline4, we add unsupervised defect prediction (UDP).
+UDP does not require any labeled source data so that researchers have proposed UDP to avoid a CPDP limitation of different distributions between source and target datasets.
+Recently, fully automated unsupervised defect prediction approaches have been proposed by Nam and Kim~\cite{nam2015clami} and Zhang et al.~\cite{Zhang2016ICSE}.
+In the experiments, we chose to use CLAMI proposed by Nam and Kim~\cite{nam2015clami} for UDP because of the following reasons. First, there are no comparative studies between CLAMI and the approach of Zhang et al. yet\cite{nam2015clami,Zhang2016ICSE}. Thus, it is difficult to judge which approach is better at this moment.
+Second, our HDP experimental framework is based on Java and Weka as CLAMI does. This would be beneficial when we compare CLAMI and HDP under the consistent experimental setting. CLAMI conducts its own metric and instance selection heuristics to generate prediction models~\cite{nam2015clami}.
 
 %In other words, matching scores computed by ScoAnalyzer and PiAnalyzer
 %may not be helpful to judge how much matched features are similar or not.
@@ -590,10 +595,11 @@ use the previous test set for training and the previous training set for test
 (round 2). We repeat these two rounds 500 times, i.e., 1000 tests, since there
 is randomness in selecting instances for each split~\cite{Arcuri11}. When conducting the two-fold CV, the stratified CV that keeps the buggy rate of the two folds same as that of the original datasets is applied as we used the default options in Weka~\cite{Weka}.
 
-For CPDP-CM, CPDP-IFS, and HDP, we build a
-prediction model by using a source dataset and test the model on the same test
-splits used in WPDP. Since there are 1000 different test
-splits for a within-project prediction, the CPDP-CM, CPDP-IFS, and HDP models
+For CPDP-CM, CPDP-IFS, UDP, and HDP, we test the model on the same test
+splits used in WPDP. For CPDP-CM, CPDP-IFS, and HDP, we build a
+prediction model by using a source dataset, while UDP does not require any source datasets as it is based on the unsupervised learning.
+Since there are 1000 different test
+splits for a within-project prediction, the CPDP-CM, CPDP-IFS, UDP, and HDP models
 are tested on 1000 different test splits as well.
 
 These settings for comparing HDP to the baselines are for RQ1. The experimental settings for RQ2 is described in Section~\ref{sec:sizelimit} in detail.

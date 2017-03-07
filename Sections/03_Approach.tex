@@ -290,7 +290,7 @@ equation:
 \begin{equation}
 P_{ij}(n)=\frac{sp_{ij}(n)}{bp_{ij}(n)}
 \end{equation}
-, where $P_{ij}(n)$ is the comparison function for $n$-th percentiles
+where $P_{ij}(n)$ is the comparison function for $n$-th percentiles
 of $i$-th source and $j$-th target metrics, and $sp_{ij}(n)$ and $bp_{ij}(n)$
 are smaller and bigger percentile values respectively at $n$-th percentiles
 of $i$-th source and $j$-th target metrics. For example, if the 10th
@@ -302,30 +302,21 @@ and target metrics is calculated by the following equation:
 \begin{equation}
 M_{ij}=\frac{\sum\limits_{k=1}^9
 P_{ij}(10\times{k})}{9}\end{equation}
-, where $M_{ij}$ is a matching score between $i$-th source and $j$-th
+where $M_{ij}$ is a matching score between $i$-th source and $j$-th
 target metrics. For example, if we assume a set of all $P_{ij}$, i.e., $P_{ij}{(10\times{k})}=\{0.75, 0.34, 0.23, 0.44, 0.55, 0.56, 0.78, 0.97, 0.55\}$, $M_{ij}$ will be 0.574(=$\frac{0.75+0.34+0.23+0.44+0.55+0.56+0.78+0.97+0.55}{9}$). The best matching score of this equation is 1.0
 when the values of the source and target metrics of all 9 percentiles are the
 same, i.e., $P_{ij}(n)=1$.
 
 \subsubsection{KSAnalyzer}
-KSAnalyzer uses a p-value from the Kolmogorov-Smirnov Test (KS-test)
-as a matching score between source and target metrics. The KS-test is a
-non-parametric two sample test that can be applicable when we cannot be sure
-about the normality of two samples and/or the same
-variance~\cite{Lilliefors67,Massey51}. Since metrics in some defect datasets
-used in our empirical study have exponential distributions~\cite{Menzies07} and
-metrics in other datasets have unknown distributions and variances, the KS-test
-is a suitable statistical test to compute p-values for these datasets. In statistical testing, a p-value shows the
-probability of whether two samples are significantly different or not. We used
-the {\em KolmogorovSmirnovTest} implemented in the {\em Apache commons math3 3.3}
-library.
 
+KSAnalyzer uses a p-value from the Kolmogorov-Smirnov Test (KS-test) as a matching score between source and target metrics. The KS-test is a non-parametric statistical test to compare two samples~\cite{Lilliefors67,Massey51}. Particularly, the KS-test can be applicable when we cannot be sure about the normality of two samples and/or the same variance~\cite{Lilliefors67,Massey51}. Since metrics in some defect datasets used in our empirical study have exponential distributions~\cite{Menzies07} and metrics in other datasets have unknown distributions and variances, the KS-test is a suitable statistical test to compare two metrics.
+
+In the KS-test, a p-value shows the significance level with which we have very strong evidence to reject the null hypothesis, i.e., two samples are drawn from the same distribution~\cite{Lilliefors67,Massey51}. We expected that matched metrics whose null hypothesis can be rejected with significance levels specified by commonly used p-values such as 0.01, 0.05, and 0.10 can be filtered out to build a better prediction model. Thus, we used a p-value of the KS-test to decide the matched metrics should be filtered out. We used the {\em KolmogorovSmirnovTest} implemented in the {\em Apache commons math3 3.3} library.
 
 The matching score is:
 \begin{equation}M_{ij}=p_{ij}\end{equation}
-, where $p_{ij}$ is a p-value from the KS-test of $i$-th source and $j$-th
-target metrics. A p-value tends to be zero when two metrics are significantly
-different.
+where $p_{ij}$ is a p-value from the KS-test of $i$-th source and $j$-th
+target metrics. Note that in KSAnalyzer the higher matching score does not represent the higher similarity of two metrics. To observe how the matching scores based on the KS-test impact on prediction performance, we conducted experiments with various p-values.
 
 \subsubsection{SCoAnalyzer}
 In SCoAnalyzer, we used the Spearman's
@@ -343,7 +334,7 @@ metric values are sorted before computing the coefficient.
 
 The matching score is as follows:
 \begin{equation}M_{ij}=c_{ij}\end{equation}
-, where $c_{ij}$ is a Spearman's rank correlation coefficient between $i$-th
+where $c_{ij}$ is a Spearman's rank correlation coefficient between $i$-th
 source and $j$-th target metrics.
 
 % \subsubsection{Popularity Index (PiAnalyzer)}
@@ -367,7 +358,7 @@ source and $j$-th target metrics.
 %   metrics in the datasets consisting of instances from Step 1. The matching
 %   score is:
 % 		\begin{equation}M_{ij}=1-norm(E_{ij})\end{equation}
-% 	, where $E_{ij}$ is a Euclidean distance between $i$-th source and $j$-th
+% 	where $E_{ij}$ is a Euclidean distance between $i$-th source and $j$-th
 % 	target metrics and $norm(x)$ is the normalization function to make $x$ range
 % 	from zero to one. The matching score tends to be one when the distance between $i$-th source and $j$-th
 % 	target metrics, $E_{ij}$, is closest.
