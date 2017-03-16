@@ -74,13 +74,13 @@ In that figure:
 \item
   The letters show the unique ID of each dataset.
 \squishend
-\begin{figure*}[t]
-	\centering
-% 	\vspace{0.5mm}
-	\includegraphics[width=0.66\linewidth]{Figures/raleigh/sample_epv.eps}
-	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. The Right side show  using small dataset with EPV is better than using all data. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
-	\label{fig:small_epv}
-\end{figure*}
+% \begin{figure*}[t]
+% 	\centering
+% % 	\vspace{0.5mm}
+% 	\includegraphics[width=0.66\linewidth]{Figures/raleigh/sample_epv.eps}
+% 	\caption{Improvements of using sampled data N  = \{50, 100, 150, 200\} with EPV constraints. The Right side show  using small dataset with EPV is better than using all data. We label the data in table \ref{tab:datasets} from a to z, and continue from A to H, the last two datasets ar5 and ar6 as G and H.}
+% 	\label{fig:small_epv}
+% \end{figure*}
 The datasets are ordered left to right by the difference to the black line (where we transfer using {\em
   all} the source data):
 \squishlist
@@ -110,54 +110,54 @@ not improve defect prediction.
 
 
 
-\subsection{20 Defective Examples  are Enough}
+% \subsection{20 Defective Examples  are Enough}
 
 
-The results of the last section are very encouraging---a small number of source
-and target examples are enough for effective transfer learning. Naturally,
-we were suspicious of this result (since it was ``almost too good to be true'').
-Accordingly, we explored the literature and found that:
-\squishlist
-    \item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation}; 
-    \item Further, we found new methods to reduce the cost of sampling this dataset, even further. 
-\squishend
-Working in the domain cardiology,
-  Peduzzi et al.~\cite{peduzzi1996simulation}
-  report 10 ``events'' per variable (EPV) are enough to maximize the predictive performance
-  of  Logistic Regression (the learner used in this study). Translated into our terminology,
-  that study would predict that  10 defective data per independent variable should
-  suffice for effective learning. Of course, learners require defective and {\em non-defective}
-  examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
+% The results of the last section are very encouraging---a small number of source
+% and target examples are enough for effective transfer learning. Naturally,
+% we were suspicious of this result (since it was ``almost too good to be true'').
+% Accordingly, we explored the literature and found that:
+% \squishlist
+%     \item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation}; 
+%     \item Further, we found new methods to reduce the cost of sampling this dataset, even further. 
+% \squishend
+% Working in the domain cardiology,
+%   Peduzzi et al.~\cite{peduzzi1996simulation}
+%   report 10 ``events'' per variable (EPV) are enough to maximize the predictive performance
+%   of  Logistic Regression (the learner used in this study). Translated into our terminology,
+%   that study would predict that  10 defective data per independent variable should
+%   suffice for effective learning. Of course, learners require defective and {\em non-defective}
+%   examples so to $M$ defective examples, we add $(N-M)$ non-defective examples more.
 
-  To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
-  independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of matched features are as follows: $\{1:158, 2:78, 3:38, 4:9, 5:1\}$, where keys and values represent number of matched features, the corresponding counts of cross prediction combinations, respectively. Our read of this distribution is that the average number of matched features is about $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
-  randomly selected defective data, then randomly added $(N-M)$ non-defective data for
-  $N\in \{50,100,150,200\}$ for the source data. For the target dataset, since we do not
-  know the data labels, we simply sampled $N$ for target data in metric matching.
+%   To apply the method of Peduzzi et al., we first instrumented HDP to determine how many
+%   independent variables were picked during {\em metric  selection}. In our previous experiments when using all source and target data to do feature/metric matching, we observed that the counts of matched features are as follows: $\{1:158, 2:78, 3:38, 4:9, 5:1\}$, where keys and values represent number of matched features, the corresponding counts of cross prediction combinations, respectively. Our read of this distribution is that the average number of matched features is about $2$. That means usually those 2 features from source and target projects can be used to build the learner. Hence, applying  Peduzzi et al.'s rule (EPV = $10$,  in our case, \# of events = $10$, \# of variables = $2$), we picked $2\times 10=20$ %\lin{why *10?}\wei{EPV=10, mentioned in the last paragraph. }
+%   randomly selected defective data, then randomly added $(N-M)$ non-defective data for
+%   $N\in \{50,100,150,200\}$ for the source data. For the target dataset, since we do not
+%   know the data labels, we simply sampled $N$ for target data in metric matching.
 
-  (Aside: note that this is different to the above experiment since, before, the more $N$ examples
-  we selected, the more {\em defective} instances we would use. Now, in this experiment, we will also
-  use a fixed $M=20$ number of defective files and classes.).
+%   (Aside: note that this is different to the above experiment since, before, the more $N$ examples
+%   we selected, the more {\em defective} instances we would use. Now, in this experiment, we will also
+%   use a fixed $M=20$ number of defective files and classes.).
 
-  The results are shown in \fig{small_epv}. Like before:
-\squishlist
-  \item These are median AUC results from 20 repeats;
-\item
-  The {\em black/colourful} lines show the results using {\em all/some} of  data from
-  the source and target datasets during metric matching and learner building, respectively
-  (but now, the {\em some} never contains more than $M=20$ defective instances);
-\item
-  The datasets are ordered left to right according
-  the performance difference between using
-   {\em all} or {\em some} of the data;
-   \item
-     On the left/right ,  we do {\em better/worse} using
-  {\em all} data than using {\em some}.
-\squishend
-  We observe that between $N=50$ and $N=200$, the performance delta
-  does not change by much. Also, if we compare $N=200$ between \fig{small_data}
-  and \fig{small_epv}, there is no large disadvantage of using just
-  $M=20$ defective instances.
+%   The results are shown in \fig{small_epv}. Like before:
+% \squishlist
+%   \item These are median AUC results from 20 repeats;
+% \item
+%   The {\em black/colourful} lines show the results using {\em all/some} of  data from
+%   the source and target datasets during metric matching and learner building, respectively
+%   (but now, the {\em some} never contains more than $M=20$ defective instances);
+% \item
+%   The datasets are ordered left to right according
+%   the performance difference between using
+%   {\em all} or {\em some} of the data;
+%   \item
+%      On the left/right ,  we do {\em better/worse} using
+%   {\em all} data than using {\em some}.
+% \squishend
+%   We observe that between $N=50$ and $N=200$, the performance delta
+%   does not change by much. Also, if we compare $N=200$ between \fig{small_data}
+%   and \fig{small_epv}, there is no large disadvantage of using just
+%   $M=20$ defective instances.
 
-  Note that such a very small sample would be quick to collect: since training data is already available even before we start our target (new) project, we can easily sample $N$ data with $M=20$ defective classes/files for each candidate training data. After writing (say) a few
-  hundred classes for the target project, it's also easy to randomly sample $N$ from target project---at which point that data is a candidate for transfer learning.
+%   Note that such a very small sample would be quick to collect: since training data is already available even before we start our target (new) project, we can easily sample $N$ data with $M=20$ defective classes/files for each candidate training data. After writing (say) a few
+%   hundred classes for the target project, it's also easy to randomly sample $N$ from target project---at which point that data is a candidate for transfer learning.
