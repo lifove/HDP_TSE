@@ -30,7 +30,7 @@ To investigate the size limits for effective transfer learning in the setting of
 
 
 
- 
+
 \subsection{Using Small Datasets is Feasible}
 
 Recall from the above,
@@ -40,15 +40,15 @@ we  add an instance sampling process before performing metric matching:
 instead of using all the instances from
 candidate source and target datasets, those datasets will
 be randomly sampled (without replacement) to generate smaller datasets of
-size $N \in \{50, 100, 150, 200\}$. 
+size $N \in \{50, 100, 150, 200\}$.
 
 The reason we choose those $N$ values as follows. On one hand, by looking at the size of datasets used in the
 above experiment, we observed that minimum size is ar5 with $36$ instances and maximum size is pc5 with $17001$ instances.
-The median and mean value of dataset size are $1505$ and $325$, respectively. Then $200$ is less than both of 
+The median and mean value of dataset size are $1505$ and $325$, respectively. Then $200$ is less than both of
 them, which is reasonably small.
 On the other hand, we use these numbers to show using small datasets is feasible compared to
-the original. We're not claiming they're the best~(optimal) small numbers. For most datasets considered in this experiment, $N$ with these values is a 
-small data size compared to the original data size (e.g. we use $N \in \{50, 100, 150, 200\}$ whereas our datasets vary in size from 332 to 17001  median
+the original. We're not claiming they're the best~(optimal) small numbers. For most datasets considered in this experiment, $N$ with these values is a
+small data size compared to the original data size (e.g., we use $N \in \{50, 100, 150, 200\}$ whereas our datasets vary in size from 332 to 17001  median
 to maximum number of rows).
 
 When sampling the original data, {\it if
@@ -61,7 +61,7 @@ to avoid duplicate data.
 
 The results for this HDP-with-limited-data experiment is shown in \fig{small_data}
 (we display median AUC results from 20 repeats, using  Logistic Regression
-as the default learner). 
+as the default learner).
 % \lin{It's unclear to me. So metric matching on the 50, 100, etc.? What is third initial sampling? Add a backward reference to it? One caveat: I focused on reading the abstract, Section 3, 7, and 8, and I only skimmed over the rest of the paper, so maybe I missed it. But in general it is still good to add a backward reference.}\wei{I didn't get the question, "what is third initial sampling?", which third?}
 % Since {\it Apahce commons math} library takes quite long time to conduct KS-test as mentioned, we replace it with Scipy, a python package, to speed up our experiment. \footnote{As shown in the table, the difference between those two KS-test results is acceptable}.
 In that figure:
@@ -118,8 +118,8 @@ not improve defect prediction.
 % we were suspicious of this result (since it was ``almost too good to be true'').
 % Accordingly, we explored the literature and found that:
 % \squishlist
-%     \item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation}; 
-%     \item Further, we found new methods to reduce the cost of sampling this dataset, even further. 
+%     \item Evidence that this ``a few examples are enough'' has been seen in other domains~\cite{peduzzi1996simulation};
+%     \item Further, we found new methods to reduce the cost of sampling this dataset, even further.
 % \squishend
 % Working in the domain cardiology,
 %   Peduzzi et al.~\cite{peduzzi1996simulation}
