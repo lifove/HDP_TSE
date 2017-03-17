@@ -23,7 +23,7 @@ In Section~\ref{subsec04},~\ref{subsec05}, and~\ref{subsec06}, we report the HDP
 %\small
 %\scriptsize
 \centering
-\caption{Comparison results among WPDP, CPDP-CM, CPDP-IFS,
+\caption{Comparison results among WPDP, CPDP-CM, CPDP-IFS, UDP,
 and HDP by KSAnalyzer with the cutoff of 0.05 in a median AUC. (Cliff's $\delta$ magnitude --- N: Negligible, S: Small, M: Medium, and L: Large)
 %  Outperforming results with statistical
 %  significance (Wilcoxon signed-rank test, p$<$0.05) between within and cross by
@@ -281,7 +281,7 @@ Target coverage limitation from AEEEM, ReLink, or MORPH groups can be solved by 
 %\scriptsize
 \centering
 \caption{Win/Tie/Loss results of HDP by KSAnalyzer (cutoff=0.05)
-against WPDP (Baseline1), CPDP-CM (Baseline2), and CPDP-IFS (Baseline3).}
+against WPDP (Baseline1), CPDP-CM (Baseline2), CPDP-IFS (Baseline3), and UDP (Baseline4).}
 \label{tab:win_results}
 %\setlength{\tabcolsep}{5pt}
 %\setlength{\extrarowheight}{1.5pt}
@@ -535,19 +535,7 @@ ar5	&0.691	&28	&ar6	&0.740	&9	\\ \hline
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ predicts five targets by HDP and the median AUC from these five target predictions is 0.794. Since the total number of feasible target predictions is 284 out of all 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics.
-
-The higher defect ratio of a training dataset may make bias as the prediction performance of the dataset with the higher defect ratio may be better than that with the lower defect ratio~\cite{Tantithamthavorn16}. To investigate if HDP is also affected by defect ratio of the training dataset and what makes better prediction performance, we analyzed the best and worst source datasets that lead to the best and worst AUC values, respectively.
-
-We found that HDP does not bias prediction performance from the defect ratios of datasets and prediction performance is highly depending on the defect-proneness tendency of matched metrics under our experiments.
-As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) although its defect ratio is very low, 0.73\%. We investigate distributions of matched metrics of EQ like Figure~\ref{fig:best_dist} and~\ref{fig:loss_dist}.\footnote{For detailed target prediction results and distributions of matched metrics by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc.} We observed that all the matched metrics for the source, EQ, show the typical defect-proneness tendency similarly to Figure~\ref{fig:best_dist}. The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. We observed that the matched metrics of ar1 show inconsistent tendency of defect-proneness between source and target, i.e., noisy metric matching. From these best and worst cases, we confirm again the consistent defect-proneness tendency of matched metrics between source and target datasets is most important to lead to better prediction performance.
-
-
-
-
-
-
-\begin{table*}[h]
+\begin{table*}[t]
 %\small
 %\scriptsize
 \centering
@@ -597,7 +585,7 @@ None			& 0.657 &46.7\%	&0.622 &51.6\% &0.545 &64.2\% &0.693$^{\&}$ &44.0\% &\und
 \end{tabular}
 \end{table*}
 
-\begin{table*}[ht]
+\begin{table*}[t]
 %\footnotesize
 %\scriptsize
 \centering
@@ -720,6 +708,15 @@ SCo& 0.90
 \end{tabular}
 \end{table*}
 
+Table~\ref{tab:by_source} shows prediction performance of HDP (KSAnalyzer, cutoff=0.05, and Gain Ratio feature selection) by each source dataset. The 3rd and 6th columns represent the number of targets predicted by a source. For example, EQ predicts five targets by HDP and the median AUC from these five target predictions is 0.794. Since the total number of feasible target predictions is 284 out of all 962 prediction combinations, six source datasets (PDE, redaktor, velocity-1.4, xerces-1.2, pc4, and pc5) did not predict any targets because there were no matched metrics.
+
+The higher defect ratio of a training dataset may make bias as the prediction performance of the dataset with the higher defect ratio may be better than that with the lower defect ratio~\cite{Tantithamthavorn16}. To investigate if HDP is also affected by defect ratio of the training dataset and what makes better prediction performance, we analyzed the best and worst source datasets that lead to the best and worst AUC values, respectively.
+
+We found that HDP does not bias prediction performance from the defect ratios of datasets and prediction performance is highly depending on the defect-proneness tendency of matched metrics under our experiments.
+As shown in Table~\ref{tab:by_source}, the best source dataset is mc1 (0.856) although its defect ratio is very low, 0.73\%. We investigate distributions of matched metrics of EQ like Figure~\ref{fig:best_dist} and~\ref{fig:loss_dist}.\footnote{For detailed target prediction results and distributions of matched metrics by each source dataset, please refer to the online appendix: https://lifove.github.io/hdp/\#pc.} We observed that all the matched metrics for the source, EQ, show the typical defect-proneness tendency similarly to Figure~\ref{fig:best_dist}. The worst source dataset is ar1 (0.320) whose defect ratio is 7.44\%. We observed that the matched metrics of ar1 show inconsistent tendency of defect-proneness between source and target, i.e., noisy metric matching. From these best and worst cases, we confirm again the consistent defect-proneness tendency of matched metrics between source and target datasets is most important to lead to better prediction performance.
+
+
+
 \subsection{Performance in Different Metric Selections}
 \label{subsec04}
 
@@ -742,52 +739,7 @@ applying metric selection. Among metric selection approaches, `Gain Ratio', `Chi
 `Significance' based approaches lead to the best performance in terms of the
 percentages of the Win results (64.8\%-83.4\%) against CPDP-CM, CPDP-IFS, and UDP.
 
-\subsection{Performance in Various Metric Matching Analyzers}
-\label{subsec05}
-
-In Table~\ref{tab:other_analyzers}, we compare the prediction performance in
-other analyzers with the matching score cutoff thresholds, 0.05 and 0.90.
-HDP's prediction results by PAnalyzer, with a cutoff of 0.90, are
-comparable to CPDP-CM and CPDP-IFS. This
-implies that comparing 9 percentiles between source and target metrics can
-evaluate the similarity of them well with a threshold of 0.90 against CPDP-CM and CPDP-IFS. However,
-PAnalyzer with the cutoff is
-too simple to lead to better prediction performance than KSAnalyzer. In
-KSAnalyzer with a cutoff of 0.05, the AUC (0.711) better than that (0.693) of PAnalyzer with the cutoff of 0.90.
-
-HDP by KSAnalyzer with a cutoff of 0.90 could show better AUC value (0.831) compared to that (0.711) with the
-cutoff of 0.05.
-However, the target coverage is just 21\%. This is because some prediction
-combinations are automatically filtered out since poorly matched metrics, whose
-matching score is not greater than the cutoff, are ignored. In other words,
-defect prediction for 79\% of targets was not
-conducted since the matching scores of matched metrics in prediction
-combinations for the targets are not greater than 0.90 so
-that all matched metrics in the combinations were ignored.
-
-An interesting observation in PAnalyzer and KSAnalyzer is that AUC
-values of HDP by those analyzers tend to be improved when a cutoff threshold
-increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
-0.90, we observed prediction results by PAnalyzer and KSAnalyzer
-gradually are improved from 0.642 to 0.693 and 0.711 to 0.831 in AUC, respectively.
-This means these two analyzers can filter out negative prediction combinations
-well. As a result, the percentages of Win results are also increased.
-
-HDP results by SCoAnalyzer were
-worse than WPDP, CPDP-CM, and UDP. In addition,
-prediction performance rarely changed regardless of cutoff thresholds; results
-by SCoAnalyzer in different cutoffs from 0.05 to 0.90 did not
-vary as well.
-A possible reason is that SCoAnalyzer does not directly compare
-the distributions between source and target metrics.
-This result implies that the similarity of distribution between source and
-target metrics is a very important factor for building a better
-prediction model.
-
-
-\subsection{Performance in Various Machine Learners}
-\label{subsec06}
-\begin{table*}[!t]
+\begin{table*}[th]
 %\small
 %\scriptsize
 \centering
@@ -848,6 +800,51 @@ LMT				&{\bf 0.751} &42.3\% 	&0.671 &58.5\%
 \end{tabular}
 \end{table*}
 
+\subsection{Performance in Various Metric Matching Analyzers}
+\label{subsec05}
+
+In Table~\ref{tab:other_analyzers}, we compare the prediction performance in
+other analyzers with the matching score cutoff thresholds, 0.05 and 0.90.
+HDP's prediction results by PAnalyzer, with a cutoff of 0.90, are
+comparable to CPDP-CM and CPDP-IFS. This
+implies that comparing 9 percentiles between source and target metrics can
+evaluate the similarity of them well with a threshold of 0.90 against CPDP-CM and CPDP-IFS. However,
+PAnalyzer with the cutoff is
+too simple to lead to better prediction performance than KSAnalyzer. In
+KSAnalyzer with a cutoff of 0.05, the AUC (0.711) better than that (0.693) of PAnalyzer with the cutoff of 0.90.
+
+HDP by KSAnalyzer with a cutoff of 0.90 could show better AUC value (0.831) compared to that (0.711) with the
+cutoff of 0.05.
+However, the target coverage is just 21\%. This is because some prediction
+combinations are automatically filtered out since poorly matched metrics, whose
+matching score is not greater than the cutoff, are ignored. In other words,
+defect prediction for 79\% of targets was not
+conducted since the matching scores of matched metrics in prediction
+combinations for the targets are not greater than 0.90 so
+that all matched metrics in the combinations were ignored.
+
+An interesting observation in PAnalyzer and KSAnalyzer is that AUC
+values of HDP by those analyzers tend to be improved when a cutoff threshold
+increased. As the cutoff threshold increased as 0.05, 0.10, 0.20,\ldots, and
+0.90, we observed prediction results by PAnalyzer and KSAnalyzer
+gradually are improved from 0.642 to 0.693 and 0.711 to 0.831 in AUC, respectively.
+This means these two analyzers can filter out negative prediction combinations
+well. As a result, the percentages of Win results are also increased.
+
+HDP results by SCoAnalyzer were
+worse than WPDP, CPDP-CM, and UDP. In addition,
+prediction performance rarely changed regardless of cutoff thresholds; results
+by SCoAnalyzer in different cutoffs from 0.05 to 0.90 did not
+vary as well.
+A possible reason is that SCoAnalyzer does not directly compare
+the distributions between source and target metrics.
+This result implies that the similarity of distribution between source and
+target metrics is a very important factor for building a better
+prediction model.
+
+\subsection{Performance in Various Machine Learners}
+\label{subsec06}
+
 To investigate if
 HDP works with other machine learners, we built HDP models (KSAnalyzer and
 the cutoff of 0.05) with various learners used in defect prediction
@@ -889,7 +886,7 @@ In Section~\ref{sec:Result}, we showed HDP results for RQ1. The followings are t
     \item Compared to WPDP (0.732), HDP achieved 0.711 in terms of median AUC. Note that WPDP is an upper bound and 18 of 34 projects show better prediction results with statistical significance in terms of median AUC. However, there are still 52.8\% of Loss results against WPDP. Based on the analysis of distributions of matched metrics, we observed that the Loss cases are caused by the inconsistent defect-proneness tendency of the matched metrics. Identifying the inconsistent tendency in advance is a challenging problem to be solved.
     \item Applying metric selection approaches could improve HDP performances against the baselines.
     \item KSAnalyzer showed the best HDP performance compared to PAnalyzer and SCoAnalyzer. This confirms that KS-test is a good tool to decide whether distributions of two variables are drawn from the same distribution~\cite{Lilliefors67,Massey51}.
-    \item HDP worked well with Simple Logistic, Logistic, and LMT but not other machine learners. One possible reason is that Logistic related classifiers capture the linear relationship between metrics and the logit transformation of labels that is related to the defect-proneness tendency of the metrics.
+    \item HDP worked well with Simple Logistic, Logistic, and LMT but not with other machine learners. One possible reason is that Logistic related classifiers capture the linear relationship between metrics and the logit transformation of labels that is related to the defect-proneness tendency of the metrics.
 \squishend
 
 In the case of homogeneous transfer (where the source and target datasets have the same variable names), we have results with Krishna et al.~\cite{krishna16}. It has shown that within ``communities'' (projects that collect data using the same variable names) there exists one ``bellwether'' \footnote{In a flock of sheep, the ``bellwether'' is the individual that the rest of the flock will follow.} dataset from which it is possible to learn defect predictors that work well for all other members of that community. (Aside: this also means that within each community there are projects that always produce demonstrably worse defect models.) While such bellwethers are an interesting way to simplify homogeneous transfer learning, our own experiments show that this ``bellwether'' idea does not work for heterogeneous transfer (where source and target can have different terminology). We conjecture that bellwethers work for homogeneous data due to regularities in the data that may not be present in the heterogeneous case.
