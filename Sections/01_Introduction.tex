@@ -101,7 +101,7 @@ labeled instances in {\em Project A} (source) and predicts defects in {\em Proje
 % that the cross-prediction is viable in terms of cost-effectiveness.
 
 Most CPDP approaches have a serious limitation:
-typical CPDP requires that all projects collect exactly the same metrics (as shown Figure~\ref{fig:subfig2}).
+typical CPDP requires that all projects collect exactly the same metrics (as shown in Figure~\ref{fig:subfig2}).
 Developers deal with this limitation by collecting the same metric sets.
 However, there are several situations where collecting the same metric sets can be challenging. Language-dependent metrics are difficult to collect for projects written in different languages.
 Metrics collected by a commercial metric tool with a limited license may generate additional cost for project teams when collecting metrics for new projects that do not obtain the tool license. Because of these situations,
@@ -258,7 +258,7 @@ If HDP requires many source or target instances to compare there distributions, 
 To systematically evaluate HDP models, we set
 two research questions.
 \squishlist
-  \item RQ1: Is heterogeneous defect prediction comparable to WPDP and existing CPDP approaches for heterogeneous metric sets?
+  \item RQ1: Is heterogeneous defect prediction comparable to WPDP, existing CPDP approaches for heterogeneous metric sets, and unsupervised defect prediction?
    \item RQ2: What are the  lower  bounds  of  the  size  of source and target  datasets  for  effective HDP?
 %   \item[RQ2:] Are cross-domain defect predictions from non-defect to
 %   defect datasets comparable to within-predictions?
@@ -281,7 +281,7 @@ feasible?  Section~\ref{sec:sizelimit} shows some curious empirical results  tha
 heterogeneous transfer would complicate move information across projects;
 thus {\em increasing} the quantity of data needed for effective transfer.
 
-The results of Section~\ref{sec:sizelimit} are so curious that is natural to ask are they just a quirk of our data, or do they represent a more general case? To answer this question and to assess the external validity of the results in Section~\ref{sec:sizelimit}, Section~\ref{sect:xplain} of this paper builds and explores a mathematical model of defect prediction.
+The results of Section~\ref{sec:sizelimit} are so curious that is natural to ask: are they just a quirk of our data, or do they represent a more general case? To answer this question and to assess the external validity of the results in Section~\ref{sec:sizelimit}, Section~\ref{sect:xplain} of this paper builds and explores a mathematical model of defect prediction.
 That analysis concludes that Section~\ref{sec:sizelimit} is actually representative of the general case; i.e., transfer should be possible after a mere few hundred examples.
 
 
